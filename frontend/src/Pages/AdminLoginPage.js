@@ -1,6 +1,5 @@
 import React from "react";
-import "./css/Pages.css";
-
+import "./ReservationAdmin/css/Pages.css";
 const AdminLoginPage = () => {
   return (
     <div className="div">

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import "./css/Pages.css";
-import Sidebar from "../../Components/Sidebar";
+import "../css/Pages.css";
+
+import Sidebar from "../../Components/ReservationSidebar";
 
 const StudentInfoUpdate = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
