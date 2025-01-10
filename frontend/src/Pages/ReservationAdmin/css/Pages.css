@@ -1,0 +1,15 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.div {
+  padding-top: 6px;
+  padding-left: 50px;
+  transition: transform 0.3s ease;
+}
+
+.div.shifted {
+  transform: translateX(200px);
+}
