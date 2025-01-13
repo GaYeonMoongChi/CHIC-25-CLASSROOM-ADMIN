@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import "./css/sidebar.css";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
   useEffect(() => {
