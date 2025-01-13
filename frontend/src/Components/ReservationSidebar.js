@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import "./css/sidebar.css";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
   useEffect(() => {
@@ -10,7 +10,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
   const links = [
     {
       id: "reservation-status-link",
-      to: "/Home",
+      to: "/Home/Reservation",
       text: "강의실 사용현황 및 예약현황",
     },
     {
