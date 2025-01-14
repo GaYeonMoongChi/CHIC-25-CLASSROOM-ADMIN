@@ -6,6 +6,7 @@ const NoticePage = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const toggleSidebar = () => setIsSidebarOpen((prev) => !prev);
+
   return (
     <div className="div">
       <div className={`div ${isSidebarOpen ? "shifted" : ""}`}>
