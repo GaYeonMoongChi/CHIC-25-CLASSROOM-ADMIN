@@ -1,0 +1,26 @@
+.advertising-page__header {
+  display: flex;
+  gap: 50px;
+}
+
+.advertising-page__search-list {
+  display: flex;
+  list-style: none;
+  gap: 50px;
+}
+
+.advertising-page__main {
+  width: 95%;
+  margin-top: 50px;
+}
+
+.advertising-page__table {
+  border: 1px solid #ccc;
+}
+
+.advertising-page__table-cell {
+  padding: 30px 30px;
+  border: 1px solid #ccc;
+}
+
+/*main 태그 내 테이블 디자인*/
