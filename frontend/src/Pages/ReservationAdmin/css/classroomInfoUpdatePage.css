@@ -1,0 +1,26 @@
+.classroom-info-update__header {
+  margin-bottom: 30px;
+}
+
+.classroom-info-update__table {
+  border: 1px solid #ccc;
+  width: 95%; /* 테이블 전체 너비 설정 */
+}
+
+.classroom-info-update__cell {
+  padding: 30px 30px;
+  border: 1px solid #ccc;
+}
+
+.classroom-info-update__details-button {
+  padding: 20px 10px;
+  font-weight: bold;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.classroom-info-update__details-button:hover {
+  background-color: #ccc;
+}
