@@ -1,0 +1,53 @@
+.notice-page__header {
+  display: flex;
+  gap: 50px;
+  margin-bottom: 30px;
+}
+
+.notice-page__create-button {
+  padding: 10px 5px;
+  font-weight: bold;
+}
+
+.notice-page__search-list {
+  display: flex;
+  list-style: none;
+  gap: 50px;
+}
+
+.notice-page__search-item {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+}
+
+.notice-page__search-item > input {
+  margin-left: 10px;
+}
+
+.notice-page__main {
+  width: 95%;
+  margin-top: 50px;
+}
+
+.notice-page__table {
+  border: 1px solid #ccc;
+}
+
+.notice-page__table-cell {
+  padding: 30px 30px;
+  border: 1px solid #ccc;
+}
+
+.notice-page__details-button {
+  padding: 20px 10px;
+  font-weight: bold;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.notice-page__details-button:hover {
+  background-color: #ccc;
+}
