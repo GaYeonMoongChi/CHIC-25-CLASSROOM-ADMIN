@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../css/Pages.css";
+import "./css/studentInfoUpdate .css";
 
 import Sidebar from "../../Components/ReservationSidebar";
 
@@ -11,42 +12,49 @@ const StudentInfoUpdate = () => {
   return (
     <div className="div">
       <div className={`div ${isSidebarOpen ? "shifted" : ""}`}>
-        <header id="header" className="header">
-          <h1 id="page-title" className="page-title">
-            학생 정보 업데이트
-          </h1>
-          <div id="header-buttons" className="header-buttons">
-            <button id="add-button" className="action-button">
-              등록
-            </button>
-            <button id="delete-button" className="action-button">
-              삭제
-            </button>
-            <button id="edit-button" className="action-button">
-              수정
-            </button>
-          </div>
+        <header className="student-info-update__header">
+          <h1 className="student-info-update__title">학생 정보 업데이트</h1>
+          <button className="student-info-update__action-button">등록</button>
+          <button className="student-info-update__action-button">수정</button>
         </header>
 
-        <main id="main" className="main">
-          <ul id="student-list" className="student-list">
-            <li className="student-item">
-              2022123456
-              <button className="detail-button">상세보기</button>
-            </li>
-            <li className="student-item">
-              2022123456
-              <button className="detail-button">상세보기</button>
-            </li>
-            <li className="student-item">
-              2022123456
-              <button className="detail-button">상세보기</button>
-            </li>
-            <li className="student-item">
-              2022123456
-              <button className="detail-button">상세보기</button>
-            </li>
-          </ul>
+        <main className="student-info-update__main">
+          <table className="student-info-update__table">
+            <tbody>
+              <tr>
+                <td className="student-info-update__id">2022123456</td>
+                <td className="student-info-update__button">
+                  <button className="student-info-update__detail-button">
+                    상세보기
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td className="student-info-update__id">2022123456</td>
+                <td className="student-info-update__button">
+                  <button className="student-info-update__detail-button">
+                    상세보기
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td className="student-info-update__id">2022123456</td>
+                <td className="student-info-update__button">
+                  <button className="student-info-update__detail-button">
+                    상세보기
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td className="student-info-update__id">2022123456</td>
+                <td className="student-info-update__button">
+                  <button className="student-info-update__detail-button">
+                    상세보기
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </main>
       </div>
 
