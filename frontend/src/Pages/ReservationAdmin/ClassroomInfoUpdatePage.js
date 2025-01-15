@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../css/Pages.css";
+import "./css/classroomInfoUpdatePage.css";
 import Sidebar from "../../Components/ReservationSidebar";
 
 const ClassroomInfoUpdatePage = () => {
@@ -10,39 +11,59 @@ const ClassroomInfoUpdatePage = () => {
   return (
     <div className="div">
       <div className={`div ${isSidebarOpen ? "shifted" : ""}`}>
-        <header id="header" className="header">
-          <h1 id="page-title" className="page-title">
-            강의실 정보 업데이트
-          </h1>
+        <header className="classroom-info-update__header">
+          <h1 className="classroom-info-update__title">강의실 정보 업데이트</h1>
         </header>
 
-        <main id="main" className="main">
-          <ul id="classroom-list" className="classroom-list">
-            <li className="classroom-item">
-              <span className="classroom-name">103</span>
-              <button id="details-103" className="details-button">
-                상세보기
-              </button>
-            </li>
-            <li className="classroom-item">
-              <span className="classroom-name">104</span>
-              <button id="details-104" className="details-button">
-                상세보기
-              </button>
-            </li>
-            <li className="classroom-item">
-              <span className="classroom-name">217</span>
-              <button id="details-217" className="details-button">
-                상세보기
-              </button>
-            </li>
-            <li className="classroom-item">
-              <span className="classroom-name">716</span>
-              <button id="details-716" className="details-button">
-                상세보기
-              </button>
-            </li>
-          </ul>
+        <main className="classroom-info-update__main">
+          <table className="classroom-info-update__table">
+            <tbody>
+              <tr>
+                <td className="classroom-info-update__cell">103 호</td>
+                <td className="classroom-info-update__cell">
+                  <button
+                    id="details-103"
+                    className="classroom-info-update__details-button"
+                  >
+                    상세보기
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td className="classroom-info-update__cell">104 호</td>
+                <td className="classroom-info-update__cell">
+                  <button
+                    id="details-104"
+                    className="classroom-info-update__details-button"
+                  >
+                    상세보기
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td className="classroom-info-update__cell">217 호</td>
+                <td className="classroom-info-update__cell">
+                  <button
+                    id="details-217"
+                    className="classroom-info-update__details-button"
+                  >
+                    상세보기
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td className="classroom-info-update__cell">716 호</td>
+                <td className="classroom-info-update__cell">
+                  <button
+                    id="details-716"
+                    className="classroom-info-update__details-button"
+                  >
+                    상세보기
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </main>
       </div>
 

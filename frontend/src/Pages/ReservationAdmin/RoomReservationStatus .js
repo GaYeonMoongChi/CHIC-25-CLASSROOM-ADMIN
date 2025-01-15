@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../css/Pages.css";
+import "./css/roomReservationStatus .css";
 
 import Sidebar from "../../Components/ReservationSidebar";
 
@@ -11,29 +12,21 @@ const RoomReservationStatus = () => {
   return (
     <div className="div">
       <div className={`div ${isSidebarOpen ? "shifted" : ""}`}>
-        <header id="header" className="header">
-          <h1 id="page-title" className="page-title">
+        <header className="room-reservation-status__header">
+          <h1 className="room-reservation-status__title">
             강의실 사용 현황 및 예약 현황
           </h1>
         </header>
 
-        <main id="main-content" className="main-content">
-          <table id="room-status-table" className="room-status-table">
+        <main className="room-reservation-status__main-content">
+          <table className="room-reservation-status__table">
             <thead>
               <tr>
-                <th></th>
-                <th id="room-103" className="room-column">
-                  103호
-                </th>
-                <th id="room-104" className="room-column">
-                  104호
-                </th>
-                <th id="room-216" className="room-column">
-                  216호
-                </th>
-                <th id="room-716" className="room-column">
-                  716호
-                </th>
+                <th className="room-reservation-status__column"></th>
+                <th className="room-reservation-status__column">103호</th>
+                <th className="room-reservation-status__column">104호</th>
+                <th className="room-reservation-status__column">216호</th>
+                <th className="room-reservation-status__column">716호</th>
               </tr>
             </thead>
             <tbody>
@@ -65,28 +58,33 @@ const RoomReservationStatus = () => {
                 "21:00",
               ].map((time) => (
                 <tr key={time}>
-                  <th scope="row" className="time-slot">
+                  <th
+                    scope="row"
+                    className="room-reservation-status__time-slot"
+                  >
                     {time}
                   </th>
-                  <td className="room-cell"></td>
-                  <td className="room-cell"></td>
-                  <td className="room-cell"></td>
-                  <td className="room-cell"></td>
+                  <td className="room-reservation-status__cell"></td>
+                  <td className="room-reservation-status__cell"></td>
+                  <td className="room-reservation-status__cell"></td>
+                  <td className="room-reservation-status__cell"></td>
                 </tr>
               ))}
             </tbody>
           </table>
         </main>
 
-        <footer id="footer" className="footer">
+        <footer className="room-reservation-status__footer">
           <button
-            id="cancel-button"
-            className="cancel-button"
+            className="room-reservation-status__button room-reservation-status__button--cancel"
             onClick={() => {}}
           >
             취소
           </button>
-          <button id="edit-button" className="edit-button" onClick={() => {}}>
+          <button
+            className="room-reservation-status__button room-reservation-status__button--edit"
+            onClick={() => {}}
+          >
             수정
           </button>
         </footer>

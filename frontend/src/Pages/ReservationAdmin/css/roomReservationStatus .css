@@ -1,0 +1,14 @@
+.room-reservation-status__header {
+  margin-bottom: 30px;
+}
+
+.room-reservation-status__table {
+  border: 1px solid #ccc;
+}
+
+.room-reservation-status__column,
+.room-reservation-status__time-slot,
+.room-reservation-status__cell {
+  padding: 10px 60px;
+  border: 1px solid #ccc;
+}
