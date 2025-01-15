@@ -1,4 +1,4 @@
-.classroom-info-update__header {
+.student-info-update__header {
   display: flex;
   gap: 50px;
   margin-bottom: 30px;
@@ -8,22 +8,22 @@
   padding: 5px 10px;
 }
 
-.classroom-info-update__main {
+.student-info-update__main {
   width: 95%;
 }
 
-.classroom-info-update__table {
+.student-info-update__table {
   border: 1px solid #ccc;
 }
 
-.classroom-info-update__name {
+.student-info-update__id {
   width: 90%;
   padding: 30px 30px;
   border: 1px solid #ccc;
   font-weight: bold;
 }
 
-.classroom-info-update__details-button {
+.student-info-update__detail-button {
   padding: 30px 30px;
   font-weight: bold;
   border: 1px solid #ccc;
@@ -31,6 +31,6 @@
   cursor: pointer;
 }
 
-.classroom-info-update__details-button:hover {
+.student-info-update__detail-button:hover {
   background-color: #ccc;
 }
