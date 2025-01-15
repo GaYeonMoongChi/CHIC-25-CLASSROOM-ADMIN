@@ -54,17 +54,15 @@ const AdvertisingPage = () => {
             </li>
             <li className="advertising-page__search-item">
               상태
-              <form className="advertising-page__status-form">
-                <select
-                  name="advertising-status"
-                  className="advertising-page__status-select"
-                >
-                  <option value="exposure" selected>
-                    적용됨
-                  </option>
-                  <option value="not-exposure">적용종료</option>
-                </select>
-              </form>
+              <select
+                name="advertising-status"
+                className="advertising-page__status-select"
+              >
+                <option value="exposure" selected>
+                  적용됨
+                </option>
+                <option value="not-exposure">적용종료</option>
+              </select>
             </li>
             <li className="advertising-page__search-item">
               작성자

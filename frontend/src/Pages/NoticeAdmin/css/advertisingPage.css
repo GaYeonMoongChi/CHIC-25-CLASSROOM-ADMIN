@@ -1,6 +1,7 @@
 .advertising-page__header {
   display: flex;
   gap: 50px;
+  margin-bottom: 30px;
 }
 
 .advertising-page__search-list {
@@ -14,6 +15,17 @@
   margin-top: 50px;
 }
 
+.advertising-page__search-item {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+}
+
+.advertising-page__search-item > input,
+.advertising-page__search-item > select {
+  margin-left: 10px;
+}
+
 .advertising-page__table {
   border: 1px solid #ccc;
 }
@@ -23,4 +35,20 @@
   border: 1px solid #ccc;
 }
 
-/*main 태그 내 테이블 디자인*/
+.advertising-page__create-button {
+  padding: 10px 5px;
+  font-weight: bold;
+}
+
+.advertising-page__detail-button {
+  padding: 20px 10px;
+  font-weight: bold;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.advertising-page__detail-button:hover {
+  background-color: #ccc;
+}
