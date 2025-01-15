@@ -19,8 +19,8 @@ const ClassroomInfoUpdatePage = () => {
           <table className="classroom-info-update__table">
             <tbody>
               <tr>
-                <td className="classroom-info-update__cell">103 호</td>
-                <td className="classroom-info-update__cell">
+                <td className="classroom-info-update__name">103 호</td>
+                <td className="classroom-info-update__button">
                   <button
                     id="details-103"
                     className="classroom-info-update__details-button"
@@ -30,8 +30,8 @@ const ClassroomInfoUpdatePage = () => {
                 </td>
               </tr>
               <tr>
-                <td className="classroom-info-update__cell">104 호</td>
-                <td className="classroom-info-update__cell">
+                <td className="classroom-info-update__name">104 호</td>
+                <td className="classroom-info-update__button">
                   <button
                     id="details-104"
                     className="classroom-info-update__details-button"
@@ -41,8 +41,8 @@ const ClassroomInfoUpdatePage = () => {
                 </td>
               </tr>
               <tr>
-                <td className="classroom-info-update__cell">217 호</td>
-                <td className="classroom-info-update__cell">
+                <td className="classroom-info-update__name">217 호</td>
+                <td className="classroom-info-update__button">
                   <button
                     id="details-217"
                     className="classroom-info-update__details-button"
@@ -52,8 +52,8 @@ const ClassroomInfoUpdatePage = () => {
                 </td>
               </tr>
               <tr>
-                <td className="classroom-info-update__cell">716 호</td>
-                <td className="classroom-info-update__cell">
+                <td className="classroom-info-update__name">716 호</td>
+                <td className="classroom-info-update__button">
                   <button
                     id="details-716"
                     className="classroom-info-update__details-button"
