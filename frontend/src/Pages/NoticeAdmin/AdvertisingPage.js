@@ -13,9 +13,8 @@ const AdvertisingPage = () => {
       <div className={`div ${isSidebarOpen ? "shifted" : ""}`}>
         <header className="advertising-page__header">
           <h1 className="advertising-page__title">홍보/광고</h1>
-          <button className="advertising-page__create-button">
-            새로운 글 생성
-          </button>
+          <button className="advertising-page__action-button">등록</button>
+          <button className="advertising-page__action-button">삭제</button>
         </header>
 
         <nav className="advertising-page__search-nav">

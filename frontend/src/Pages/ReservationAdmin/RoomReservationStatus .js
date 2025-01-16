@@ -73,21 +73,6 @@ const RoomReservationStatus = () => {
             </tbody>
           </table>
         </main>
-
-        <footer className="room-reservation-status__footer">
-          <button
-            className="room-reservation-status__button room-reservation-status__button--cancel"
-            onClick={() => {}}
-          >
-            취소
-          </button>
-          <button
-            className="room-reservation-status__button room-reservation-status__button--edit"
-            onClick={() => {}}
-          >
-            수정
-          </button>
-        </footer>
       </div>
 
       <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />

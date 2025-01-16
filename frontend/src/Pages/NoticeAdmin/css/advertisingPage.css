@@ -4,6 +4,10 @@
   margin-bottom: 30px;
 }
 
+.advertising-page__action-button {
+  padding: 5px 10px;
+}
+
 .advertising-page__search-list {
   display: flex;
   list-style: none;
@@ -31,22 +35,16 @@
 }
 
 .advertising-page__table-cell {
-  padding: 30px 30px;
+  padding: 0px 15px;
   border: 1px solid #ccc;
 }
 
-.advertising-page__create-button {
-  padding: 10px 5px;
-  font-weight: bold;
-}
-
 .advertising-page__detail-button {
-  padding: 20px 10px;
+  padding: 30px 30px;
   font-weight: bold;
-  border: none;
-  background-color: transparent;
+  border: 1px solid #ccc;
+  background-color: #dbdbdb;
   cursor: pointer;
-  border-radius: 5px;
 }
 
 .advertising-page__detail-button:hover {

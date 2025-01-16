@@ -13,7 +13,8 @@ const NoticePage = () => {
       <div className={`div ${isSidebarOpen ? "shifted" : ""}`}>
         <header className="notice-page__header">
           <h1 className="notice-page__title">공지사항</h1>
-          <button className="notice-page__create-button">새로운 글 생성</button>
+          <button className="notice-page__action-button">등록</button>
+          <button className="notice-page__action-button">삭제</button>{" "}
         </header>
 
         <nav className="notice-page__search-nav">

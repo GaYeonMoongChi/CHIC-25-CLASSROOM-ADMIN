@@ -14,7 +14,7 @@ const ClassroomInfoUpdatePage = () => {
         <header className="classroom-info-update__header">
           <h1 className="classroom-info-update__title">강의실 정보 업데이트</h1>
           <button className="student-info-update__action-button">등록</button>
-          <button className="student-info-update__action-button">수정</button>
+          <button className="student-info-update__action-button">삭제</button>
         </header>
 
         <main className="classroom-info-update__main">
