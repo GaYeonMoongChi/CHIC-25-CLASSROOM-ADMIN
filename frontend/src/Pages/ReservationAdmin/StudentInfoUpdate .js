@@ -15,7 +15,7 @@ const StudentInfoUpdate = () => {
         <header className="student-info-update__header">
           <h1 className="student-info-update__title">학생 정보 업데이트</h1>
           <button className="student-info-update__action-button">등록</button>
-          <button className="student-info-update__action-button">수정</button>
+          <button className="student-info-update__action-button">삭제</button>
         </header>
 
         <main className="student-info-update__main">
