@@ -5,7 +5,6 @@ import Sidebar from "../../Components/ReservationSidebar";
 
 const ClassroomInfoUpdatePage = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
   const toggleSidebar = () => setIsSidebarOpen((prev) => !prev);
 
   return (
