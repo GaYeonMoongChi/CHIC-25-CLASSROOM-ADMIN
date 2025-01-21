@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../css/Pages.css";
 import "./css/advertisingPage.css";
-import Sidebar from "../../Components/NoticeSidebar";
+import Sidebar from "../../Components/NoticeAdmin/NoticeSidebar";
 
 const AdvertisingPage = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);

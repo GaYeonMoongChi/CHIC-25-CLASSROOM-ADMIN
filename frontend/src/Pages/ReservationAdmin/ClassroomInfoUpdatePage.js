@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "../css/Pages.css";
 import "./css/classroomInfoUpdatePage.css";
-import Sidebar from "../../Components/ReservationSidebar";
-import ClassroomRow from "../../Components/ClassroomRow";
+import Sidebar from "../../Components/ReservationAdmin/ReservationSidebar";
+import ClassroomRow from "../../Components/ReservationAdmin/ClassroomRow";
 
 const ClassroomInfoUpdatePage = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -42,7 +42,7 @@ const ClassroomInfoUpdatePage = () => {
         </header>
 
         <main className="classroom-info-update__main">
-          <table className="classroom-info-update__table" >
+          <table className="classroom-info-update__table">
             <tbody>
               {classroomInfo.map((classroom, index) => (
                 <ClassroomRow key={index} classroom={classroom} />
