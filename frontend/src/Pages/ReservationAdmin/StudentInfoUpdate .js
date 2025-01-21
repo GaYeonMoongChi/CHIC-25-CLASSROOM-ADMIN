@@ -1,13 +1,40 @@
 import React, { useState } from "react";
 import "../css/Pages.css";
-import "./css/studentInfoUpdate .css";
+import "./css/studentInfoUpdate.css";
+import StudentRow from "../../Components/StudentRow";
 
 import Sidebar from "../../Components/ReservationSidebar";
 
 const StudentInfoUpdate = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
   const toggleSidebar = () => setIsSidebarOpen((prev) => !prev);
+
+  const studentInfo = [
+    {
+      id: "2022123456",
+      department: "정보융합학부",
+      name: "김가연",
+      number: "010-1234-5678",
+    },
+    {
+      id: "2022123456",
+      department: "정보융합학부",
+      name: "박서현",
+      number: "010-1234-5678",
+    },
+    {
+      id: "2022123456",
+      department: "정보융합학부",
+      name: "정유빈",
+      number: "010-1234-5678",
+    },
+    {
+      id: "2022123456",
+      department: "정보융합학부",
+      name: "손아현",
+      number: "010-1234-5678",
+    },
+  ];
 
   return (
     <div className="div">
@@ -21,38 +48,9 @@ const StudentInfoUpdate = () => {
         <main className="student-info-update__main">
           <table className="student-info-update__table">
             <tbody>
-              <tr>
-                <td className="student-info-update__id">2022123456</td>
-                <td className="student-info-update__button">
-                  <button className="student-info-update__detail-button">
-                    상세보기
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td className="student-info-update__id">2022123456</td>
-                <td className="student-info-update__button">
-                  <button className="student-info-update__detail-button">
-                    상세보기
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td className="student-info-update__id">2022123456</td>
-                <td className="student-info-update__button">
-                  <button className="student-info-update__detail-button">
-                    상세보기
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <td className="student-info-update__id">2022123456</td>
-                <td className="student-info-update__button">
-                  <button className="student-info-update__detail-button">
-                    상세보기
-                  </button>
-                </td>
-              </tr>
+              {studentInfo.map((students, index) => (
+                <StudentRow key={index} students={students} />
+              ))}
             </tbody>
           </table>
         </main>
