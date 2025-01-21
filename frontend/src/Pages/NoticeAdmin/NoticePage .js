@@ -1,6 +1,6 @@
 import "../css/Pages.css";
 import "./css/noticePage.css";
-import Sidebar from "../../Components/NoticeSidebar";
+import Sidebar from "../../Components/NoticeAdmin/NoticeSidebar";
 import React, { useState } from "react";
 
 const NoticePage = () => {

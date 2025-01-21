@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import "./css/sidebar.css";
+import "../css/sidebar.css";
 import { useEffect } from "react";
-import LogoutButton from "./LogoutButton";
+import LogoutButton from "../LogoutButton";
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
   useEffect(() => {

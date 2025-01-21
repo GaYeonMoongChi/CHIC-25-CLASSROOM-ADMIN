@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import "../css/Pages.css";
-import "./css/roomReservationStatus .css";
+import "./css/roomReservationStatus.css";
 
-import Sidebar from "../../Components/ReservationSidebar";
+import Sidebar from "../../Components/ReservationAdmin/ReservationSidebar";
 
 const RoomReservationStatus = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
