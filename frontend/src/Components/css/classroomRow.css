@@ -1,0 +1,18 @@
+.classroom-info-update__name {
+  width: 90%;
+  padding: 30px 30px;
+  border: 1px solid #ccc;
+  font-weight: bold;
+}
+
+.classroom-info-update__details-button {
+  padding: 30px 30px;
+  font-weight: bold;
+  border: 1px solid #ccc;
+  background-color: #dbdbdb;
+  cursor: pointer;
+}
+
+.classroom-info-update__details-button:hover {
+  background-color: #ccc;
+}

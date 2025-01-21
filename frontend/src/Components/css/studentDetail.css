@@ -19,15 +19,15 @@
   position: relative;
 }
 
-.classroom-details__classNumber {
+.student-info-update__classNumber {
   margin-bottom: 10px;
 }
 
-.classroom-details__item {
+.student-info-update__item {
   margin-bottom: 5px;
 }
 
-.classroom-details__list {
+.student-info-update__list {
   list-style: none;
 }
 

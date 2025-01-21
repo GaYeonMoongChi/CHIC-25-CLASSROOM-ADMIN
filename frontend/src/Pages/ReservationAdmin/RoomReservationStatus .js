@@ -25,8 +25,8 @@ const RoomReservationStatus = () => {
                 <th className="room-reservation-status__column"></th>
                 <th className="room-reservation-status__column">103호</th>
                 <th className="room-reservation-status__column">104호</th>
-                <th className="room-reservation-status__column">216호</th>
-                <th className="room-reservation-status__column">716호</th>
+                <th className="room-reservation-status__column">205호</th>
+                <th className="room-reservation-status__column">715호</th>
               </tr>
             </thead>
             <tbody>
@@ -56,6 +56,7 @@ const RoomReservationStatus = () => {
                 "20:00",
                 "20:30",
                 "21:00",
+                "22:00",
               ].map((time) => (
                 <tr key={time}>
                   <th
