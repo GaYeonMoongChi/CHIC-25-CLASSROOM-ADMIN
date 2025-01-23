@@ -2,11 +2,41 @@ import React, { useState } from "react";
 import "../css/Pages.css";
 import "./css/advertisingPage.css";
 import Sidebar from "../../Components/NoticeAdmin/NoticeSidebar";
+import AdvertisingRow from "../../Components/NoticeAdmin/AdvertisingRow";
 
 const AdvertisingPage = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-
   const toggleSidebar = () => setIsSidebarOpen((prev) => !prev);
+
+  const AdvertisingList = [
+    {
+      date: "2025년 1월 6일",
+      title: "2025년 신입생 특별영어과정",
+      writer: "관리자",
+      startdate: "2025년 1월 6일",
+      enddate: "2025년 1월 13일",
+      content:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+    },
+    {
+      date: "2025년 1월 7일",
+      title: "자율전공학부 재학생 멘토 모집 안내",
+      writer: "관리자",
+      startdate: "2025년 1월 7일",
+      enddate: "2025년 1월 13일",
+      content:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+    },
+    {
+      date: "2025년 1월 8일",
+      title: "2025년 탄소 중립 실천 공모전",
+      writer: "관리자",
+      startdate: "2025년 1월 8일",
+      enddate: "2025년 1월 13일",
+      content:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+    },
+  ];
 
   return (
     <div className="div">
@@ -77,34 +107,9 @@ const AdvertisingPage = () => {
         <main className="advertising-page__main">
           <table className="advertising-page__table">
             <tbody>
-              <tr className="advertising-page__table-row">
-                <td className="advertising-page__table-cell">2025년 1월 6일</td>
-                <td className="advertising-page__table-cell">
-                  2025년 CDP 강의 일정
-                </td>
-                <td className="advertising-page__table-cell">2025 01 06 ~</td>
-                <td className="advertising-page__table-cell">2025 01 31</td>
-                <td className="advertising-page__table-cell">관리자</td>
-                <td className="advertising-page__table-cell">
-                  <button className="advertising-page__detail-button">
-                    상세보기
-                  </button>
-                </td>
-              </tr>
-              <tr className="advertising-page__table-row">
-                <td className="advertising-page__table-cell">2025년 1월 6일</td>
-                <td className="advertising-page__table-cell">
-                  2025년 CDP 강의 일정
-                </td>
-                <td className="advertising-page__table-cell">2025 01 06 ~</td>
-                <td className="advertising-page__table-cell">2025 01 31</td>
-                <td className="advertising-page__table-cell">관리자</td>
-                <td className="advertising-page__table-cell">
-                  <button className="advertising-page__detail-button">
-                    상세보기
-                  </button>
-                </td>
-              </tr>
+              {AdvertisingList.map((advertising, index) => (
+                <AdvertisingRow key={index} advertising={advertising} />
+              ))}
             </tbody>
           </table>
         </main>

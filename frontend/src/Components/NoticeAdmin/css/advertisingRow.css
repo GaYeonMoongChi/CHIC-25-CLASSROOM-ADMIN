@@ -1,9 +1,9 @@
-.notice-page__table-cell {
+.advertising-page__table-cell {
   padding: 0px 15px;
   border: 1px solid #ccc;
 }
 
-.notice-page__details-button {
+.advertising-page__details-button {
   padding: 30px 30px;
   font-weight: bold;
   border: 1px solid #ccc;
@@ -11,6 +11,6 @@
   cursor: pointer;
 }
 
-.notice-page__details-button:hover {
+.advertising-page__detail-button:hover {
   background-color: #ccc;
 }

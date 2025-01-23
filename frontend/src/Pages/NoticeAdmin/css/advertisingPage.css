@@ -19,6 +19,10 @@
   margin-top: 50px;
 }
 
+.advertising-page__table {
+  border: 1px solid #ccc;
+}
+
 .advertising-page__search-item {
   display: flex;
   align-items: center;
@@ -28,25 +32,4 @@
 .advertising-page__search-item > input,
 .advertising-page__search-item > select {
   margin-left: 10px;
-}
-
-.advertising-page__table {
-  border: 1px solid #ccc;
-}
-
-.advertising-page__table-cell {
-  padding: 0px 15px;
-  border: 1px solid #ccc;
-}
-
-.advertising-page__detail-button {
-  padding: 30px 30px;
-  font-weight: bold;
-  border: 1px solid #ccc;
-  background-color: #dbdbdb;
-  cursor: pointer;
-}
-
-.advertising-page__detail-button:hover {
-  background-color: #ccc;
 }
