@@ -19,15 +19,15 @@
   position: relative;
 }
 
-.notice-details__title {
+.advertising-details__title {
   margin-bottom: 10px;
 }
 
-.notice-details__item {
+.advertising-details__item {
   margin-bottom: 5px;
 }
 
-.notice-details__list {
+.advertising-details__list {
   list-style: none;
 }
 

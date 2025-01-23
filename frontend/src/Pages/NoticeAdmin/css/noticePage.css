@@ -32,20 +32,3 @@
 .notice-page__table {
   border: 1px solid #ccc;
 }
-
-.notice-page__table-cell {
-  padding: 0px 15px;
-  border: 1px solid #ccc;
-}
-
-.notice-page__details-button {
-  padding: 30px 30px;
-  font-weight: bold;
-  border: 1px solid #ccc;
-  background-color: #dbdbdb;
-  cursor: pointer;
-}
-
-.notice-page__details-button:hover {
-  background-color: #ccc;
-}
