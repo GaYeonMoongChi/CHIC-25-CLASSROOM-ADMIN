@@ -5,7 +5,7 @@ import StudentRow from "../../Components/ReservationAdmin/StudentRow";
 
 import Sidebar from "../../Components/ReservationAdmin/ReservationSidebar";
 
-const StudentInfoUpdate = () => {
+const StudentInfoPage = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const toggleSidebar = () => setIsSidebarOpen((prev) => !prev);
 
@@ -61,4 +61,4 @@ const StudentInfoUpdate = () => {
   );
 };
 
-export default StudentInfoUpdate;
+export default StudentInfoPage;

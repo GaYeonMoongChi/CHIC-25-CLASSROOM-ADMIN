@@ -3,9 +3,6 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import DetailModal from "react-modal";
-
-DetailModal.setAppElement("#root"); // 모달창 루트 설정
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

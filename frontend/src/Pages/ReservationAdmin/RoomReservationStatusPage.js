@@ -4,7 +4,7 @@ import "./css/roomReservationStatus.css";
 
 import Sidebar from "../../Components/ReservationAdmin/ReservationSidebar";
 
-const RoomReservationStatus = () => {
+const RoomReservationStatusPage = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const toggleSidebar = () => setIsSidebarOpen((prev) => !prev);
@@ -81,4 +81,4 @@ const RoomReservationStatus = () => {
   );
 };
 
-export default RoomReservationStatus;
+export default RoomReservationStatusPage;
