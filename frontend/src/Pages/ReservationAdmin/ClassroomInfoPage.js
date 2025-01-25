@@ -4,7 +4,7 @@ import "./css/classroomInfoUpdatePage.css";
 import Sidebar from "../../Components/ReservationAdmin/ReservationSidebar";
 import ClassroomRow from "../../Components/ReservationAdmin/ClassroomRow";
 
-const ClassroomInfoUpdatePage = () => {
+const ClassroomInfoPage = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const toggleSidebar = () => setIsSidebarOpen((prev) => !prev);
 
@@ -57,4 +57,4 @@ const ClassroomInfoUpdatePage = () => {
   );
 };
 
-export default ClassroomInfoUpdatePage;
+export default ClassroomInfoPage;
