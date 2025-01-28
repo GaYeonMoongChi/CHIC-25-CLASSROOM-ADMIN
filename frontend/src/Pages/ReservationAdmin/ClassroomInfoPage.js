@@ -3,11 +3,22 @@ import "../css/Pages.css";
 import "./css/classroomInfoUpdatePage.css";
 import Sidebar from "../../Components/ReservationAdmin/ReservationSidebar";
 import ClassroomRow from "../../Components/ReservationAdmin/ClassroomRow";
+import ClassroomCreate from "../../Components/ReservationAdmin/ClassroomCreate";
 
 const ClassroomInfoPage = () => {
+  // 사이드바 상태 관리
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const toggleSidebar = () => setIsSidebarOpen((prev) => !prev);
 
+  // 등록 모달창 상태 관리
+  const [isCreateModalOpen, setCreateModalOpen] = useState(false);
+  const CreateModal = () => setCreateModalOpen((prev) => !prev);
+
+  // 삭제 모달창 상태 관리
+  const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
+  const DeleteModal = () => setDeleteModalOpen((prev) => !prev);
+
+  // 강의실 정보 데이터 (임시)
   const classroomInfo = [
     {
       number: "103 호",
@@ -37,8 +48,19 @@ const ClassroomInfoPage = () => {
       <div className={`div ${isSidebarOpen ? "shifted" : ""}`}>
         <header className="classroom-info-update__header">
           <h1 className="classroom-info-update__title">강의실 정보 업데이트</h1>
-          <button className="student-info-update__action-button">등록</button>
-          <button className="student-info-update__action-button">삭제</button>
+
+          <button
+            className="student-info-update__action-button"
+            onClick={CreateModal}
+          >
+            등록
+          </button>
+          <button
+            className="student-info-update__action-button"
+            onClick={DeleteModal}
+          >
+            삭제
+          </button>
         </header>
 
         <main className="classroom-info-update__main">
@@ -52,7 +74,14 @@ const ClassroomInfoPage = () => {
         </main>
       </div>
 
+      {/* 사이드바 컴포넌트 */}
       <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+
+      {/* 등록 모달창 컴포넌트 */}
+      {isCreateModalOpen && <ClassroomCreate onClose={CreateModal} />}
+
+      {/* 삭제 모달창 컴포넌트 */}
+      {}
     </div>
   );
 };

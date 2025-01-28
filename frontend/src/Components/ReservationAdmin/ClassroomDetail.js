@@ -1,5 +1,5 @@
 import React from "react";
-import "./css/classroomDetail.css";
+import "./css/classroomModal.css";
 
 const DetailModal = ({ classroom, onClose }) => {
   if (!classroom) return null;

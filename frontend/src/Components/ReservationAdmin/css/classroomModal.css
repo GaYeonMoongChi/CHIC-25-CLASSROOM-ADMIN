@@ -31,6 +31,18 @@
   list-style: none;
 }
 
+.classroom-create__classNumber {
+  margin-bottom: 10px;
+}
+
+.classroom-create__item {
+  margin-bottom: 5px;
+}
+
+.classroom-create__list {
+  list-style: none;
+}
+
 .modal-close {
   background: none;
   border: none;
