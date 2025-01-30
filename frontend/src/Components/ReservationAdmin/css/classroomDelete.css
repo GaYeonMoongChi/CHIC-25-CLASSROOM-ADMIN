@@ -1,0 +1,18 @@
+.classroom-delete__header {
+  display: flex;
+  gap: 50px;
+  margin-bottom: 30px;
+}
+
+.classroom-delete__main {
+  width: 95%;
+}
+
+.classroom-delete__table {
+  width: 95%;
+}
+
+.classroom-delete__td {
+  padding: 0px;
+  width: 50px;
+}

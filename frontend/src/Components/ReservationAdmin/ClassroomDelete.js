@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../../Pages/css/Pages.css";
+import "./css/classroomDelete.css";
 import "../../Pages/ReservationAdmin/css/classroomInfoUpdatePage.css";
 import ClassroomRow from "../../Components/ReservationAdmin/ClassroomRow";
 
@@ -7,7 +8,7 @@ const ClassroomDelete = ({ classroom, submit, onClose }) => {
   // 삭제할 강의실 선택 상태 관리
   const [selectedClassrooms, setSelectedClassrooms] = useState([]);
 
-  // 강의실 선택 체크박스
+  // 강의실 선택 체크박스 생성
   const toggleSelectClassroom = (number) => {
     setSelectedClassrooms((prev) =>
       prev.includes(number)
@@ -16,27 +17,25 @@ const ClassroomDelete = ({ classroom, submit, onClose }) => {
     );
   };
 
-  if (!classroom || !Array.isArray(classroom)) return null; // 배열이 아닐 경우 예외 처리
+  if (!classroom || !Array.isArray(classroom)) return null; // classroom 배열이 넘어오지 않았거나, 배열이 아닐 경우 예외 처리
 
   return (
     <div className="div">
-      <header className="classroom-info-update__header">
-        <h1 className="classroom-info-update__title">강의실 정보 삭제</h1>
-        <button className="modal-close" onClick={onClose}>
-          ✖
-        </button>
+      <header className="classroom-delete__header">
+        <h1 className="classroom-delete__title">강의실 정보 삭제</h1>
       </header>
 
-      <main className="classroom-info-update__main">
-        <table className="classroom-info-update__table">
+      <main className="classroom-delete__main">
+        <table className="classroom-delete__table">
           <tbody>
             {classroom.map((classroomItem, index) => (
               <tr key={classroomItem.number}>
-                <td>
+                <td className="classroom-delete__td">
                   <input
                     type="checkbox"
                     checked={selectedClassrooms.includes(classroomItem.number)}
                     onChange={() => toggleSelectClassroom(classroomItem.number)}
+                    className="classroom-delete__checkbox"
                   />
                 </td>
                 <td>
@@ -47,6 +46,15 @@ const ClassroomDelete = ({ classroom, submit, onClose }) => {
           </tbody>
         </table>
       </main>
+
+      <footer className="classroom-delete__footer">
+        <button className="update__cancel" onClick={onClose}>
+          취소
+        </button>
+        <button className="classroom-delete__submit" onClick={submit}>
+          완료
+        </button>
+      </footer>
     </div>
   );
 };
