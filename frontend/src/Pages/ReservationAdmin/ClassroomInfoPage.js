@@ -4,6 +4,7 @@ import "./css/classroomInfoUpdatePage.css";
 import Sidebar from "../../Components/ReservationAdmin/ReservationSidebar";
 import ClassroomRow from "../../Components/ReservationAdmin/ClassroomRow";
 import ClassroomCreate from "../../Components/ReservationAdmin/ClassroomCreate";
+import ClassroomDelete from "../../Components/ReservationAdmin/ClassroomDelete";
 
 const ClassroomInfoPage = () => {
   // 사이드바 상태 관리
@@ -12,11 +13,11 @@ const ClassroomInfoPage = () => {
 
   // 등록 모달창 상태 관리
   const [isCreateModalOpen, setCreateModalOpen] = useState(false);
-  const CreateModal = () => setCreateModalOpen((prev) => !prev);
+  const toggleCreateModal = () => setCreateModalOpen((prev) => !prev);
 
-  // 삭제 모달창 상태 관리
-  const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
-  const DeleteModal = () => setDeleteModalOpen((prev) => !prev);
+  // 삭제 모드 상태 관리
+  const [isDeleteMode, setDeleteMode] = useState(false);
+  const switchDeleteMode = () => setDeleteMode((prev) => !prev);
 
   // 강의실 정보 데이터 (임시)
   const classroomInfo = [
@@ -43,6 +44,16 @@ const ClassroomInfoPage = () => {
     },
   ];
 
+  if (isDeleteMode) {
+    return (
+      <ClassroomDelete
+        classroom={classroomInfo}
+        submit={switchDeleteMode}
+        onClose={switchDeleteMode}
+      />
+    );
+  }
+
   return (
     <div className="div">
       <div className={`div ${isSidebarOpen ? "shifted" : ""}`}>
@@ -51,13 +62,13 @@ const ClassroomInfoPage = () => {
 
           <button
             className="student-info-update__action-button"
-            onClick={CreateModal}
+            onClick={toggleCreateModal}
           >
             등록
           </button>
           <button
             className="student-info-update__action-button"
-            onClick={DeleteModal}
+            onClick={switchDeleteMode}
           >
             삭제
           </button>
@@ -78,10 +89,7 @@ const ClassroomInfoPage = () => {
       <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
 
       {/* 등록 모달창 컴포넌트 */}
-      {isCreateModalOpen && <ClassroomCreate onClose={CreateModal} />}
-
-      {/* 삭제 모달창 컴포넌트 */}
-      {}
+      {isCreateModalOpen && <ClassroomCreate onClose={toggleCreateModal} />}
     </div>
   );
 };
