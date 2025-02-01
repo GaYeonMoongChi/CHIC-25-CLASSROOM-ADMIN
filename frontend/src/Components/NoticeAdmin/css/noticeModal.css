@@ -1,4 +1,4 @@
-/* 모달창 전체 */
+/* 모달 전체 */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -15,7 +15,7 @@
   background: white;
   padding: 50px;
   border-radius: 8px;
-  width: 400px;
+  width: 900px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   position: relative;
 }
@@ -31,47 +31,47 @@
 }
 
 /* 상세보기 모달 */
-.classroom-details__classNumber {
+.notice-details__title {
   margin-bottom: 10px;
 }
 
-.classroom-details__item {
+.notice-details__item {
   margin-bottom: 5px;
 }
 
-.classroom-details__list {
+.notice-create__list {
   list-style: none;
 }
 
 /* 등록 모달 */
-.classroom-create__classNumber {
+.notice-create__title {
   margin-bottom: 10px;
 }
 
-.classroom-create__item {
+.notice-create__item {
   margin-bottom: 5px;
 }
 
-.classroom-create__list {
+.notice-create__list {
   list-style: none;
 }
 
 /* 삭제 모드 */
-.classroom-delete__header {
+.notice-delete__header {
   display: flex;
   gap: 50px;
   margin-bottom: 30px;
 }
 
-.classroom-delete__main {
+.notice-delete__main {
   width: 95%;
 }
 
-.classroom-delete__table {
+.notice-delete__table {
   width: 95%;
 }
 
-.classroom-delete__td {
+.notice-delete__td {
   padding: 0px;
   width: 50px;
 }

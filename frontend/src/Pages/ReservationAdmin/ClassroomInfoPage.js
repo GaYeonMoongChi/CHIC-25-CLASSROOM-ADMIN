@@ -44,6 +44,7 @@ const ClassroomInfoPage = () => {
     },
   ];
 
+  // 삭제 모드
   if (isDeleteMode) {
     return (
       <ClassroomDelete

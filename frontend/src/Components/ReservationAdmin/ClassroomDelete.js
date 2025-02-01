@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "../../Pages/css/Pages.css";
-import "./css/classroomDelete.css";
-import "../../Pages/ReservationAdmin/css/classroomInfoUpdatePage.css";
+import "./css/classroomModal.css";
 import ClassroomRow from "../../Components/ReservationAdmin/ClassroomRow";
 
 const ClassroomDelete = ({ classroom, submit, onClose }) => {
@@ -48,7 +47,7 @@ const ClassroomDelete = ({ classroom, submit, onClose }) => {
       </main>
 
       <footer className="classroom-delete__footer">
-        <button className="update__cancel" onClick={onClose}>
+        <button className="classroom-delete__update__cancel" onClick={onClose}>
           취소
         </button>
         <button className="classroom-delete__submit" onClick={submit}>
