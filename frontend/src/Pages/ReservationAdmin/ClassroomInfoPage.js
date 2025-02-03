@@ -3,11 +3,23 @@ import "../css/Pages.css";
 import "./css/classroomInfoUpdatePage.css";
 import Sidebar from "../../Components/ReservationAdmin/ReservationSidebar";
 import ClassroomRow from "../../Components/ReservationAdmin/ClassroomRow";
+import ClassroomCreate from "../../Components/ReservationAdmin/ClassroomCreate";
+import ClassroomDelete from "../../Components/ReservationAdmin/ClassroomDelete";
 
 const ClassroomInfoPage = () => {
+  // 사이드바 상태 관리
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const toggleSidebar = () => setIsSidebarOpen((prev) => !prev);
 
+  // 등록 모달창 상태 관리
+  const [isCreateModalOpen, setCreateModalOpen] = useState(false);
+  const toggleCreateModal = () => setCreateModalOpen((prev) => !prev);
+
+  // 삭제 모드 상태 관리
+  const [isDeleteMode, setDeleteMode] = useState(false);
+  const switchDeleteMode = () => setDeleteMode((prev) => !prev);
+
+  // 강의실 정보 데이터 (임시)
   const classroomInfo = [
     {
       number: "103 호",
@@ -32,13 +44,35 @@ const ClassroomInfoPage = () => {
     },
   ];
 
+  // 삭제 모드
+  if (isDeleteMode) {
+    return (
+      <ClassroomDelete
+        classroom={classroomInfo}
+        submit={switchDeleteMode}
+        onClose={switchDeleteMode}
+      />
+    );
+  }
+
   return (
     <div className="div">
       <div className={`div ${isSidebarOpen ? "shifted" : ""}`}>
         <header className="classroom-info-update__header">
           <h1 className="classroom-info-update__title">강의실 정보 업데이트</h1>
-          <button className="student-info-update__action-button">등록</button>
-          <button className="student-info-update__action-button">삭제</button>
+
+          <button
+            className="student-info-update__action-button"
+            onClick={toggleCreateModal}
+          >
+            등록
+          </button>
+          <button
+            className="student-info-update__action-button"
+            onClick={switchDeleteMode}
+          >
+            삭제
+          </button>
         </header>
 
         <main className="classroom-info-update__main">
@@ -52,7 +86,11 @@ const ClassroomInfoPage = () => {
         </main>
       </div>
 
+      {/* 사이드바 컴포넌트 */}
       <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+
+      {/* 등록 모달창 컴포넌트 */}
+      {isCreateModalOpen && <ClassroomCreate onClose={toggleCreateModal} />}
     </div>
   );
 };

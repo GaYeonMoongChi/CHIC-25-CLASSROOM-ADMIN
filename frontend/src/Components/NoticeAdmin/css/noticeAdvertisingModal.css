@@ -1,0 +1,123 @@
+/* 모달 전체 */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: white;
+  padding: 50px;
+  width: 1000px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+/* notice 상세보기 모달 */
+.notice-details__title {
+  margin-bottom: 10px;
+}
+
+.notice-details__item {
+  margin-bottom: 5px;
+}
+
+.notice-details__list {
+  list-style: none;
+}
+
+/* notice 등록 모달 */
+.notice-create__title {
+  margin-bottom: 10px;
+}
+
+.notice-create__item {
+  margin-bottom: 5px;
+}
+
+.notice-create__list {
+  list-style: none;
+}
+
+/* notice 삭제 모드 */
+.notice-delete__header {
+  display: flex;
+  gap: 50px;
+  margin-bottom: 30px;
+}
+
+.notice-delete__main {
+  width: 95%;
+}
+
+.notice-delete__table {
+  width: 95%;
+}
+
+.notice-delete__td {
+  padding: 0px;
+  width: 50px;
+}
+
+/* Advertising 상세보기 모달 */
+.advertising-details__title {
+  margin-bottom: 10px;
+}
+
+.advertising-details__item {
+  margin-bottom: 5px;
+}
+
+.advertising-details__list {
+  list-style: none;
+}
+
+/* Advertising 등록 모달 */
+.advertising-create__title {
+  margin-bottom: 10px;
+}
+
+.advertising-create__item {
+  margin-bottom: 5px;
+}
+
+.advertising-create__list {
+  list-style: none;
+}
+
+/* Advertising 삭제 모드 */
+.advertising-delete__header {
+  display: flex;
+  gap: 50px;
+  margin-bottom: 30px;
+}
+
+.advertising-delete__main {
+  width: 95%;
+}
+
+.advertising-delete__table {
+  width: 95%;
+}
+
+.advertising-delete__td {
+  padding: 0px;
+  width: 50px;
+}
