@@ -14,8 +14,8 @@
 .modal-content {
   background: white;
   padding: 50px;
+  width: 1000px;
   border-radius: 8px;
-  width: 900px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   position: relative;
 }
@@ -30,7 +30,7 @@
   right: 10px;
 }
 
-/* 상세보기 모달 */
+/* notice 상세보기 모달 */
 .notice-details__title {
   margin-bottom: 10px;
 }
@@ -39,11 +39,11 @@
   margin-bottom: 5px;
 }
 
-.notice-create__list {
+.notice-details__list {
   list-style: none;
 }
 
-/* 등록 모달 */
+/* notice 등록 모달 */
 .notice-create__title {
   margin-bottom: 10px;
 }
@@ -56,7 +56,7 @@
   list-style: none;
 }
 
-/* 삭제 모드 */
+/* notice 삭제 모드 */
 .notice-delete__header {
   display: flex;
   gap: 50px;
@@ -72,6 +72,52 @@
 }
 
 .notice-delete__td {
+  padding: 0px;
+  width: 50px;
+}
+
+/* Advertising 상세보기 모달 */
+.advertising-details__title {
+  margin-bottom: 10px;
+}
+
+.advertising-details__item {
+  margin-bottom: 5px;
+}
+
+.advertising-details__list {
+  list-style: none;
+}
+
+/* Advertising 등록 모달 */
+.advertising-create__title {
+  margin-bottom: 10px;
+}
+
+.advertising-create__item {
+  margin-bottom: 5px;
+}
+
+.advertising-create__list {
+  list-style: none;
+}
+
+/* Advertising 삭제 모드 */
+.advertising-delete__header {
+  display: flex;
+  gap: 50px;
+  margin-bottom: 30px;
+}
+
+.advertising-delete__main {
+  width: 95%;
+}
+
+.advertising-delete__table {
+  width: 95%;
+}
+
+.advertising-delete__td {
   padding: 0px;
   width: 50px;
 }

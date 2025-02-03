@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./css/classroomModal.css";
+import "./css/classroomStudentModal.css";
 
 const ClassroomUpdate = ({ classroom, submit, onClose }) => {
   // 수정할 값들의 상태

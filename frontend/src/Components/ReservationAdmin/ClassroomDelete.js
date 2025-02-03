@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../../Pages/css/Pages.css";
-import "./css/classroomModal.css";
+import "./css/classroomStudentModal.css";
 import ClassroomRow from "../../Components/ReservationAdmin/ClassroomRow";
 
 const ClassroomDelete = ({ classroom, submit, onClose }) => {

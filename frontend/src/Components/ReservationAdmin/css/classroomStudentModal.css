@@ -15,7 +15,7 @@
   background: white;
   padding: 50px;
   border-radius: 8px;
-  width: 400px;
+  width: 1000px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   position: relative;
 }
@@ -74,4 +74,17 @@
 .classroom-delete__td {
   padding: 0px;
   width: 50px;
+}
+
+/* Student 상세보기 모달 */
+.student-info-update__classNumber {
+  margin-bottom: 10px;
+}
+
+.student-info-update__item {
+  margin-bottom: 5px;
+}
+
+.student-info-update__list {
+  list-style: none;
 }

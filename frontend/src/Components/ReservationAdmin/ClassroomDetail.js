@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./css/classroomModal.css";
+import "./css/classroomStudentModal.css";
 import ClassroomUpdate from "./ClassroomUpdate";
 
 const DetailModal = ({ classroom, onClose }) => {
@@ -40,7 +40,11 @@ const DetailModal = ({ classroom, onClose }) => {
       </div>
 
       {isUpdateMode && (
-        <ClassroomUpdate classroom={classroom} submit={switchUpdateMode} onClose={switchUpdateMode}/>
+        <ClassroomUpdate
+          classroom={classroom}
+          submit={switchUpdateMode}
+          onClose={switchUpdateMode}
+        />
       )}
     </div>
   );

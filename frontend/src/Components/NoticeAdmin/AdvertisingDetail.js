@@ -1,5 +1,5 @@
 import React from "react";
-import "./css/advertisingDetail.css";
+import "./css/noticeAdvertisingModal.css";
 
 const DetailModal = ({ advertising, onClose }) => {
   console.log(advertising);
@@ -15,13 +15,20 @@ const DetailModal = ({ advertising, onClose }) => {
         <div className="advertising-details__main">
           <ul className="advertising-details__list">
             <li className="advertising-details__item">
-              ▪️ 작성자: {advertising.writer}
+              <strong className="advertising-details__label">
+                ▪️ 작성자:{" "}
+              </strong>
+              {advertising.writer}
             </li>
             <li className="advertising-details__item">
-              ▪️ 작성일: {advertising.date}
+              <strong className="advertising-details__label">
+                ▪️ 작성일:{" "}
+              </strong>
+              {advertising.date}
             </li>
             <li className="advertising-details__item">
-              ▪️ 본문: {advertising.content}
+              <strong className="advertising-details__label">▪️ 본문: </strong>
+              {advertising.content}
             </li>
           </ul>
         </div>

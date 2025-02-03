@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../../Pages/css/Pages.css";
-import "./css/noticeModal.css";
+import "./css/noticeAdvertisingModal.css";
 import NoticeRow from "./NoticeRow";
 
 const ClassroomDelete = ({ notice, submit, onClose }) => {

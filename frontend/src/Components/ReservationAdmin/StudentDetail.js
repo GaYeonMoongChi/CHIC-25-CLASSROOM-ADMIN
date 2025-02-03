@@ -1,5 +1,5 @@
 import React from "react";
-import "./css/studentDetail.css";
+import "./css/classroomStudentModal.css";
 
 const StudentDetailModal = ({ students, onClose }) => {
   if (!students) return null;
