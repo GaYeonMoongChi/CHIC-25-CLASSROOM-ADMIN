@@ -30,7 +30,7 @@
   right: 10px;
 }
 
-/* 상세보기 모달 */
+/* 강의실 상세보기 모달 */
 .classroom-details__classNumber {
   margin-bottom: 10px;
 }
@@ -43,7 +43,7 @@
   list-style: none;
 }
 
-/* 등록 모달 */
+/* 강의실 등록 모달 */
 .classroom-create__classNumber {
   margin-bottom: 10px;
 }
@@ -56,7 +56,7 @@
   list-style: none;
 }
 
-/* 삭제 모드 */
+/* 강의실 삭제 모드 */
 .classroom-delete__header {
   display: flex;
   gap: 50px;
@@ -87,4 +87,37 @@
 
 .student-info-update__list {
   list-style: none;
+}
+
+/* 학생생 등록 모달 */
+.students-create__classNumber {
+  margin-bottom: 10px;
+}
+
+.students-create__item {
+  margin-bottom: 5px;
+}
+
+.students-create__list {
+  list-style: none;
+}
+
+/* 학생 삭제 모드 */
+.students-delete__header {
+  display: flex;
+  gap: 50px;
+  margin-bottom: 30px;
+}
+
+.students-delete__main {
+  width: 95%;
+}
+
+.students-delete__table {
+  width: 95%;
+}
+
+.students-delete__td {
+  padding: 0px;
+  width: 50px;
 }

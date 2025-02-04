@@ -1,6 +1,6 @@
 import React from "react";
 import "./css/noticeAdvertisingModal.css";
-const DetailModal = ({ onClose }) => {
+const AdvertisingCreate = ({ onClose }) => {
   return (
     <div className="modal-overlay">
       <div className="modal-content">
@@ -78,4 +78,4 @@ const DetailModal = ({ onClose }) => {
   );
 };
 
-export default DetailModal;
+export default AdvertisingCreate;

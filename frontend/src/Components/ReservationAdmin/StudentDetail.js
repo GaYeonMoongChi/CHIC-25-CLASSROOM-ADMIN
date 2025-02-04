@@ -21,10 +21,6 @@ const StudentDetailModal = ({ students, onClose }) => {
               {students.id}
             </li>
             <li className="student-info-update__item">
-              <strong className="student-info-update__label">▪️ 소속: </strong>
-              {students.department}
-            </li>
-            <li className="student-info-update__item">
               <strong className="student-info-update__label">
                 ▪️ 전화번호:{" "}
               </strong>
