@@ -76,16 +76,29 @@
   width: 50px;
 }
 
-/* Student 상세보기 모달 */
-.student-info-update__classNumber {
+/* 강의실 수정 모달 */
+.classroom-update__title {
   margin-bottom: 10px;
 }
 
-.student-info-update__item {
+.classroom-update__item {
   margin-bottom: 5px;
 }
 
-.student-info-update__list {
+.classroom-update__list {
+  list-style: none;
+}
+
+/* Student 상세보기 모달 */
+.student-details__title {
+  margin-bottom: 10px;
+}
+
+.student-details__item {
+  margin-bottom: 5px;
+}
+
+.student-details__list {
   list-style: none;
 }
 
@@ -120,4 +133,17 @@
 .students-delete__td {
   padding: 0px;
   width: 50px;
+}
+
+/* 학생 수정 모달 */
+.students-update__title {
+  margin-bottom: 10px;
+}
+
+.students-update__item {
+  margin-bottom: 5px;
+}
+
+.students-update__list {
+  list-style: none;
 }
