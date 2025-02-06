@@ -38,3 +38,7 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
   console.log(`서버가 http://localhost:${port} 에서 실행 중입니다.`);
 });
+
+const studentRoutes = require('./routes/student'); // student 라우트 불러오기
+app.use('/api/students', studentRoutes); // API 경로 등록
+
