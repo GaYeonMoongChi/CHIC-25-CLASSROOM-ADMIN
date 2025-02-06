@@ -5,7 +5,10 @@
 }
 
 .advertising-page__action-button {
-  padding: 5px 10px;
+  padding: 0px 5px;
+  border-radius: 10px;
+  background-color: black;
+  color: white;
 }
 
 .advertising-page__search-list {
@@ -17,10 +20,6 @@
 .advertising-page__main {
   width: 95%;
   margin-top: 50px;
-}
-
-.advertising-page__table {
-  border: 1px solid #ccc;
 }
 
 .advertising-page__search-item {

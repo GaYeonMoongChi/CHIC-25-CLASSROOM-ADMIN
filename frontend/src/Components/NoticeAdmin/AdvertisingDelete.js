@@ -19,7 +19,7 @@ const AdvertisingDelete = ({ advertising, submit, onClose }) => {
   return (
     <div className="div">
       <header className="advertising-delete__header">
-        <h1 className="advertising-delete__title">홍보/광고 글삭제</h1>
+        <h1 className="advertising-delete__title">홍보/광고글 삭제</h1>
       </header>
 
       <main className="advertising-delete__main">

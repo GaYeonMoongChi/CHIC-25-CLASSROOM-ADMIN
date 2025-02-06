@@ -8,7 +8,7 @@ const AdvertisingCreate = ({ onClose }) => {
           <button className="modal-close" onClick={onClose}>
             ✖
           </button>
-          <h1 className="advertising-create__title">홍보/광고글 등록</h1>
+          <h1 className="advertising-create__title">홍보/광고글 생성</h1>
           <strong className="advertising-create__label">▪️ 제목: </strong>
           <input
             type="text"
