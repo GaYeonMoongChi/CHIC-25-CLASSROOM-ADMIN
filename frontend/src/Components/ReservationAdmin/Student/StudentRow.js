@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import StudentDetailModal from "./StudentDetail";
-import "./css/studentRow.css";
+import "../css/studentRow.css";
 
 const StudentRow = ({ students }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);

@@ -1,5 +1,6 @@
 import React from "react";
-import "./css/noticeAdvertisingModal.css";
+import "../css/noticeAdvertisingModal.css";
+
 const AdvertisingCreate = ({ onClose }) => {
   return (
     <div className="modal-overlay">

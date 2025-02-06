@@ -1,5 +1,5 @@
 import React from "react";
-import "./css/noticeAdvertisingModal.css";
+import "../css/noticeAdvertisingModal.css";
 
 const NoticeCreate = ({ onClose }) => {
   return (

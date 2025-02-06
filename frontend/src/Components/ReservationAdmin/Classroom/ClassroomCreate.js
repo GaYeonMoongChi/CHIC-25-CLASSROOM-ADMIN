@@ -1,5 +1,5 @@
 import React from "react";
-import "./css/classroomStudentModal.css";
+import "../css/classroomStudentModal.css";
 
 const ClassroomCreate = ({ onClose }) => {
   return (

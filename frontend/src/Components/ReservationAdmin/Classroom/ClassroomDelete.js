@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import "../../Pages/css/Pages.css";
-import "./css/classroomStudentModal.css";
-import ClassroomRow from "../../Components/ReservationAdmin/ClassroomRow";
+import "../../../Pages/css/Pages.css";
+import "../css/classroomStudentModal.css";
+import ClassroomRow from "../../ReservationAdmin/Classroom/ClassroomRow";
 
 const ClassroomDelete = ({ classroom, submit, onClose }) => {
   // 삭제할 강의실 선택 상태 관리

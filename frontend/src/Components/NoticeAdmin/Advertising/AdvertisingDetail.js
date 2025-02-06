@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./css/noticeAdvertisingModal.css";
+import "../css/noticeAdvertisingModal.css";
 import AdvertisingUpdate from "./AdvertisingUpdate";
 
 const DetailModal = ({ advertising, onClose }) => {

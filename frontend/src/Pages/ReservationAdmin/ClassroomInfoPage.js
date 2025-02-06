@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import "../css/Pages.css";
 import "./css/classroomInfoUpdatePage.css";
 import Sidebar from "../../Components/ReservationAdmin/ReservationSidebar";
-import ClassroomRow from "../../Components/ReservationAdmin/ClassroomRow";
-import ClassroomCreate from "../../Components/ReservationAdmin/ClassroomCreate";
-import ClassroomDelete from "../../Components/ReservationAdmin/ClassroomDelete";
+import ClassroomRow from "../../Components/ReservationAdmin/Classroom/ClassroomRow";
+import ClassroomCreate from "../../Components/ReservationAdmin/Classroom/ClassroomCreate";
+import ClassroomDelete from "../../Components/ReservationAdmin/Classroom/ClassroomDelete";
 
 const ClassroomInfoPage = () => {
   // 사이드바 상태 관리

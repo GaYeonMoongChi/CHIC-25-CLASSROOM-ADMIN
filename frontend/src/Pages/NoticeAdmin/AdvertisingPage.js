@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import "../css/Pages.css";
 import "./css/advertisingPage.css";
 import Sidebar from "../../Components/NoticeAdmin/NoticeSidebar";
-import AdvertisingRow from "../../Components/NoticeAdmin/AdvertisingRow";
-import AdvertisingCreate from "../../Components/NoticeAdmin/AdvertisingCreate";
-import AdvertisingDelete from "../../Components/NoticeAdmin/AdvertisingDelete";
+import AdvertisingRow from "../../Components/NoticeAdmin/Advertising/AdvertisingRow";
+import AdvertisingCreate from "../../Components/NoticeAdmin/Advertising/AdvertisingCreate";
+import AdvertisingDelete from "../../Components/NoticeAdmin/Advertising/AdvertisingDelete";
 
 const AdvertisingPage = () => {
   // 사이드바 상태 관리

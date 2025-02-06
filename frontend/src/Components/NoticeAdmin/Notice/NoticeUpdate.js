@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./css/noticeAdvertisingModal.css";
+import "../css/noticeAdvertisingModal.css";
 
 const NoticeUpdate = ({ notice, submit, onClose }) => {
   // 수정할 값들의 상태

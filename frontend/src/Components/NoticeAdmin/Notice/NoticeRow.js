@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import DetailModal from "./NoticeDetail";
-import "./css/noticeRow.css";
+import "../css/noticeRow.css";
 
 const NoticeRow = ({ notice }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);

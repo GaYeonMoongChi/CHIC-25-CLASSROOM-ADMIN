@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import "./css/noticeAdvertisingModal.css";
-import NoticeUpdate from "../../Components/NoticeAdmin/NoticeUpdate";
+import "../css/noticeAdvertisingModal.css";
+import NoticeUpdate from "./NoticeUpdate";
 
 const DetailModal = ({ notice, onClose }) => {
   // 수정 모달 상태 관리

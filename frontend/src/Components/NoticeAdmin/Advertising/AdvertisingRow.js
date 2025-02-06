@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import DetailModal from "./AdvertisingDetail";
-import "./css/advertisingRow.css";
+import "../css/advertisingRow.css";
 
 const AdvertisingRow = ({ advertising }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
