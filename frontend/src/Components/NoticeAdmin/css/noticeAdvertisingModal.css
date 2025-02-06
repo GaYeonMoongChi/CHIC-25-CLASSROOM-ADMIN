@@ -76,6 +76,19 @@
   width: 50px;
 }
 
+/* Notice 수정 모달 */
+.notice-update__title {
+  margin-bottom: 10px;
+}
+
+.notice-update__item {
+  margin-bottom: 5px;
+}
+
+.notice-update__list {
+  list-style: none;
+}
+
 /* Advertising 상세보기 모달 */
 .advertising-details__title {
   margin-bottom: 10px;
@@ -120,4 +133,17 @@
 .advertising-delete__td {
   padding: 0px;
   width: 50px;
+}
+
+/* Advertising 수정 모달 */
+.advertising-update__title {
+  margin-bottom: 10px;
+}
+
+.advertising-update__item {
+  margin-bottom: 5px;
+}
+
+.advertising-update__list {
+  list-style: none;
 }

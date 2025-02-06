@@ -3,13 +3,13 @@ import "../../Pages/css/Pages.css";
 import "./css/noticeAdvertisingModal.css";
 import AdvertisingRow from "./AdvertisingRow";
 
-const ClassroomDelete = ({ advertising, submit, onClose }) => {
+const AdvertisingDelete = ({ advertising, submit, onClose }) => {
   // 삭제할 공지글 선택 상태 관리
-  const [selectedClassrooms, setSelectedClassrooms] = useState([]);
+  const [selectedAdvertising, setSelectedAdvertising] = useState([]);
 
   // 공지글 선택 체크박스 생성
-  const toggleSelectClassroom = (id) => {
-    setSelectedClassrooms((prev) =>
+  const toggleSelectAdvertising = (id) => {
+    setSelectedAdvertising((prev) =>
       prev.includes(id) ? prev.filter((n) => n !== id) : [...prev, id]
     );
   };
@@ -30,8 +30,8 @@ const ClassroomDelete = ({ advertising, submit, onClose }) => {
                 <td className="advertising-delete__td">
                   <input
                     type="checkbox"
-                    checked={selectedClassrooms.includes(advertisingItem.id)}
-                    onChange={() => toggleSelectClassroom(advertisingItem.id)}
+                    checked={selectedAdvertising.includes(advertisingItem.id)}
+                    onChange={() => toggleSelectAdvertising(advertisingItem.id)}
                     className="advertising-delete__checkbox"
                   />
                 </td>
@@ -59,4 +59,4 @@ const ClassroomDelete = ({ advertising, submit, onClose }) => {
   );
 };
 
-export default ClassroomDelete;
+export default AdvertisingDelete;

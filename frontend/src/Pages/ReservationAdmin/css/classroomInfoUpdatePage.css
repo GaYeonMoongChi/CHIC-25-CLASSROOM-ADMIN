@@ -4,10 +4,10 @@
   margin-bottom: 30px;
 }
 
-.student-info-update__action-button {
-  padding: 5px 10px;
-}
-
 .classroom-info-update__main {
   width: 95%;
+}
+
+.student-info-update__action-button {
+  padding: 5px 10px;
 }

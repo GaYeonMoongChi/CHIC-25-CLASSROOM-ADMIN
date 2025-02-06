@@ -3,7 +3,7 @@ import "./css/classroomStudentModal.css";
 import ClassroomUpdate from "./ClassroomUpdate";
 
 const DetailModal = ({ classroom, onClose }) => {
-  // 수정 모드 상태 관리
+  // 수정 모달 상태 관리
   const [isUpdateMode, setUpdateMode] = useState(false);
   const switchUpdateMode = () => setUpdateMode((prev) => !prev);
 
@@ -32,8 +32,8 @@ const DetailModal = ({ classroom, onClose }) => {
           </ul>
         </main>
 
-        <footer>
-          <button className="update" onClick={switchUpdateMode}>
+        <footer className="classroom-details__footer">
+          <button className="classroom-details__update" onClick={switchUpdateMode}>
             수정
           </button>
         </footer>

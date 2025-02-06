@@ -48,13 +48,11 @@ const AdvertisingPage = () => {
       writer: "관리자",
       startdate: "2025년 1월 8일",
       enddate: "2025년 1월 13일",
-      content:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+      content: "ㅂㅈㄷㄱ쇼ㅕㅑㅐㅔㅁㄴㅇㄹ호ㅓㅏㅣㅋㅌㅊ퓨ㅜㅡ",
     },
   ];
 
   // 삭제 모드
-
   if (isDeleteMode) {
     return (
       <AdvertisingDelete
@@ -151,8 +149,6 @@ const AdvertisingPage = () => {
           </table>
         </main>
       </div>
-
-      <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
 
       {/* 사이드바 컴포넌트 */}
       <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />

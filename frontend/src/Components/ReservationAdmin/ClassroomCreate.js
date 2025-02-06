@@ -9,18 +9,21 @@ const ClassroomCreate = ({ onClose }) => {
           <button className="modal-close" onClick={onClose}>
             ✖
           </button>
-
-          <h1 className="classroom-create__classNumber">강의실 등록</h1>
-          <strong>▪️ 강의실 호수: </strong>
-          <input
-            type="text"
-            className="classroom-create__input"
-            placeholder="강의실 호수 입력 (ex.103)"
-          ></input>
+          <h1 className="classroom-create__title">강의실 등록</h1>
         </header>
 
         <main className="classroom-create__main">
           <ul className="classroom-create__list">
+            <li className="classroom-create__iten">
+              <strong className="classroom-create__label">
+                ▪️ 강의실 호수:{" "}
+              </strong>
+              <input
+                type="text"
+                className="classroom-create__input"
+                placeholder="강의실 호수 입력 (ex.103)"
+              ></input>
+            </li>
             <li className="classroom-create__item">
               <strong className="classroom-create__label">▪️ 강의실명: </strong>
               <input

@@ -7,47 +7,54 @@ const ClassroomUpdate = ({ classroom, submit, onClose }) => {
   const [name, setName] = useState(classroom.name);
   const [explanation, setExplanation] = useState(classroom.explanation);
 
+  if (!classroom) return null;
+
   return (
     <div className="modal-overlay">
       <div className="modal-content">
-        <header className="classroom-details__header">
-          <h1 className="classroom-details__classNumber">
-            <input
-              type="text"
-              value={number}
-              onChange={(e) => setNumber(e.target.value)}
-            />
-          </h1>
+        <header className="classroom-update__header">
           <button className="modal-close" onClick={onClose}>
             ✖
           </button>
+          <h1 className="classroom-update__title">강의실 정보 수정</h1>
         </header>
 
-        <main className="classroom-details__main">
-          <ul className="classroom-details__list">
-            <li className="classroom-details__item">
-              <strong className="classroom-details__label">▪️ 호실명: </strong>
+        <main className="classroom-update__main">
+          <ul className="classroom-update__list">
+            <li className="classroom-update__item">
+              <strong className="classroom-update__label">▪️ 호수: </strong>
+              <input
+                type="text"
+                value={number}
+                onChange={(e) => setNumber(e.target.value)}
+                className="classroom-update__input"
+              />
+            </li>
+            <li className="classroom-update__item">
+              <strong className="classroom-update__label">▪️ 호실명: </strong>
               <input
                 type="text"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
+                className="classroom-update__input"
               />
             </li>
-            <li className="classroom-details__item">
-              <strong className="classroom-details__label">▪️ 설명: </strong>
+            <li className="classroom-update__item">
+              <strong className="classroom-update__label">▪️ 설명: </strong>
               <textarea
                 value={explanation}
                 onChange={(e) => setExplanation(e.target.value)}
+                className="classroom-update__textarea"
               ></textarea>
             </li>
           </ul>
         </main>
 
-        <footer>
-          <button className="update__cancel" onClick={onClose}>
+        <footer className="classroom-update__footer">
+          <button className="classroom-update__cancle" onClick={onClose}>
             취소
           </button>
-          <button className="update__submit" onClick={submit}>
+          <button className="classroom-update__submit" onClick={submit}>
             완료
           </button>
         </footer>
