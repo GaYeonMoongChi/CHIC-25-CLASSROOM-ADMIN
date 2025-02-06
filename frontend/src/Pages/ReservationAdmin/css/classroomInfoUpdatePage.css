@@ -9,5 +9,8 @@
 }
 
 .student-info-update__action-button {
-  padding: 5px 10px;
+  padding: 0px 5px;
+  border-radius: 10px;
+  background-color: black;
+  color: white;
 }
