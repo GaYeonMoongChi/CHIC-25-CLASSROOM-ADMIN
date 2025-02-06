@@ -72,13 +72,13 @@ const AdvertisingPage = () => {
             className="advertising-page__action-button"
             onClick={toggleCreateModal}
           >
-            등록
+            홍보/광고글 생성
           </button>
           <button
             className="advertising-page__action-button"
             onClick={switchDeleteMode}
           >
-            삭제
+            홍보/광고글 삭제
           </button>
         </header>
 

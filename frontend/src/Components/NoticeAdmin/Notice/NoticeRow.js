@@ -7,19 +7,20 @@ const NoticeRow = ({ notice }) => {
 
   return (
     <>
-      <tr className="notice-page__row">
-        <td className="notice-page__table-cell">{notice.date}</td>
-        <td className="notice-page__table-cell">{notice.title}</td>
-        <td className="notice-page__table-cell">{notice.writer}</td>
-        <td className="notice-page__table-cell">
-          <button
-            className="notice-page__details-button"
-            onClick={() => setIsModalOpen(true)}
-          >
-            상세보기
-          </button>
-        </td>
-      </tr>
+      <div className="notice-page__row_div">
+        <tr className="notice-page__row">
+          <td className="notice-page__table-cell">{notice.date}</td>
+          <td className="notice-page__table-cell">{notice.title}</td>
+          <td className="notice-page__table-cell">{notice.writer}</td>
+        </tr>
+
+        <button
+          className="notice-page__details-button"
+          onClick={() => setIsModalOpen(true)}
+        >
+          상세보기
+        </button>
+      </div>
 
       {isModalOpen && (
         <DetailModal notice={notice} onClose={() => setIsModalOpen(false)} />

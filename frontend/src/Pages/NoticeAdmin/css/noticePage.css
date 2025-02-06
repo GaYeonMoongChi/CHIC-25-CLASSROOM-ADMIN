@@ -5,7 +5,10 @@
 }
 
 .notice-page__action-button {
-  padding: 5px 10px;
+  padding: 0px 5px;
+  border-radius: 10px;
+  background-color: black;
+  color: white;
 }
 
 .notice-page__search-list {
@@ -27,8 +30,4 @@
 .notice-page__main {
   width: 95%;
   margin-top: 50px;
-}
-
-.notice-page__table {
-  border: 1px solid #ccc;
 }

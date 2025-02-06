@@ -1,16 +1,35 @@
+.advertising-page__row_div {
+  padding: 20px 30px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: none;
+  border-radius: 10px;
+  background-color: #f5f5f5;
+}
+
+.advertising-page__row {
+  display: flex;
+  gap: 10px;
+}
+
 .advertising-page__table-cell {
-  padding: 0px 15px;
-  border: 1px solid #ccc;
+  border: 1px solid #a2a2a2;
+  padding: 5px 20px;
+  border-radius: 10px;
 }
 
 .advertising-page__details-button {
-  padding: 30px 30px;
-  font-weight: bold;
-  border: 1px solid #ccc;
-  background-color: #dbdbdb;
+  background-color: #3a7bec;
+  border: none;
+  color: white;
+  border-radius: 10px;
+  padding: 7px 10px;
   cursor: pointer;
+  margin-left: auto;
 }
 
 .advertising-page__detail-button:hover {
-  background-color: #ccc;
+  background-color: #254f97;
 }

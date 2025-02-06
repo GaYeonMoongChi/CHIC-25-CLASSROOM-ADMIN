@@ -67,13 +67,13 @@ const NoticePage = () => {
             className="notice-page__action-button"
             onClick={toggleCreateModal}
           >
-            등록
+            공지글 생성
           </button>
           <button
             className="notice-page__action-button"
             onClick={switchDeleteMode}
           >
-            삭제
+            공지글 삭제
           </button>
         </header>
 

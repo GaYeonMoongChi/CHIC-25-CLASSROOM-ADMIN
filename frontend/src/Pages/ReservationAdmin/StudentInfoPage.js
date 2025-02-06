@@ -63,13 +63,13 @@ const StudentInfoPage = () => {
             className="student-info__action-button"
             onClick={toggleCreateModal}
           >
-            등록
+            학생 정보 등록
           </button>
           <button
             className="student-info__action-button"
             onClick={switchDeleteMode}
           >
-            삭제
+            학생 정보 삭제
           </button>
         </header>
 

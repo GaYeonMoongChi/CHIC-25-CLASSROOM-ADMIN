@@ -9,7 +9,7 @@ const NoticeCreate = ({ onClose }) => {
           <button className="modal-close" onClick={onClose}>
             ✖
           </button>
-          <h1 className="notice-create__h1">공지글 등록</h1>
+          <h1 className="notice-create__h1">공지글 생성</h1>
           <strong className="notice-create__label">▪️ 제목: </strong>
           <input
             type="text"
