@@ -4,6 +4,14 @@
   margin-bottom: 30px;
 }
 
+.notice-page__main {
+  width: 95%;
+}
+
+.notice-page__table {
+  width: 100%;
+}
+
 .notice-page__action-button {
   padding: 0px 5px;
   border-radius: 10px;

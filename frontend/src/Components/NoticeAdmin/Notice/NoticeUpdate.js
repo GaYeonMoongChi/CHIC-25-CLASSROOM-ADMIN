@@ -41,15 +41,6 @@ const NoticeUpdate = ({ notice, submit, onClose }) => {
               />
             </li>
             <li className="notice-update__item">
-              <strong className="notice-update__label">▪️ 작성일: </strong>
-              <input
-                type="text"
-                value={date}
-                onChange={(e) => setDate(e.target.value)}
-                className="notice-update__input"
-              />
-            </li>
-            <li className="notice-update__item">
               <strong className="notice-update__label">▪️ 내용: </strong>
               <textarea
                 value={content}
@@ -61,9 +52,6 @@ const NoticeUpdate = ({ notice, submit, onClose }) => {
         </main>
 
         <footer className="notice-update__footer">
-          <button className="notice-update__cancle" onClick={onClose}>
-            취소
-          </button>
           <button className="notice-update__submit" onClick={submit}>
             완료
           </button>

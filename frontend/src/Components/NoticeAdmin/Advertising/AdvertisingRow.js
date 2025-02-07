@@ -10,14 +10,8 @@ const AdvertisingRow = ({ advertising }) => {
       <div className="advertising-page__row_div">
         <tr className="advertising-page__row">
           <td className="advertising-page__table-cell">{advertising.date}</td>
+          <td className="advertising-page__divider"></td>
           <td className="advertising-page__table-cell">{advertising.title}</td>
-          <td className="advertising-page__table-cell">
-            {advertising.startdate}
-          </td>
-          <td className="advertising-page__table-cell">
-            {advertising.enddate}
-          </td>
-          <td className="advertising-page__table-cell">{advertising.writer}</td>
         </tr>
         <button
           className="advertising-page__details-button"

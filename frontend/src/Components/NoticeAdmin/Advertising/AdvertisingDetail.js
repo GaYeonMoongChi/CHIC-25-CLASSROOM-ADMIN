@@ -22,17 +22,23 @@ const DetailModal = ({ advertising, onClose }) => {
               <strong className="advertising-details__label">
                 ▪️ 작성자:{" "}
               </strong>
-              {advertising.writer}
+              <div className="advertising-details__content">
+                {advertising.writer}
+              </div>
             </li>
             <li className="advertising-details__item">
               <strong className="advertising-details__label">
                 ▪️ 작성일:{" "}
               </strong>
-              {advertising.date}
+              <div className="advertising-details__content">
+                {advertising.date}
+              </div>
             </li>
             <li className="advertising-details__item">
               <strong className="advertising-details__label">▪️ 내용: </strong>
-              {advertising.content}
+              <div className="advertising-details__content">
+                {advertising.content}
+              </div>
             </li>
           </ul>
         </main>
