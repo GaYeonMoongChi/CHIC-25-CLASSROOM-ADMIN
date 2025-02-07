@@ -51,9 +51,6 @@ const ClassroomUpdate = ({ classroom, submit, onClose }) => {
         </main>
 
         <footer className="classroom-update__footer">
-          <button className="classroom-update__cancle" onClick={onClose}>
-            취소
-          </button>
           <button className="classroom-update__submit" onClick={submit}>
             완료
           </button>

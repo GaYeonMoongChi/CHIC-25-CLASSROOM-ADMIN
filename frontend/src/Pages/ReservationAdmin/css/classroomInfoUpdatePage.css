@@ -8,6 +8,10 @@
   width: 95%;
 }
 
+.classroom-info-update__table {
+  width: 100%;
+}
+
 .student-info-update__action-button {
   padding: 0px 5px;
   border-radius: 10px;

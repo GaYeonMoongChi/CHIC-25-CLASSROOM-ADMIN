@@ -41,10 +41,7 @@ const StudentCreate = ({ onClose }) => {
           </ul>
         </main>
 
-        <footer className="students-create__cancel">
-          <button className="students-create__cancel" onClick={onClose}>
-            취소
-          </button>
+        <footer className="students-create__footer">
           <button className="students-create__submit" onClick={onClose}>
             완료
           </button>

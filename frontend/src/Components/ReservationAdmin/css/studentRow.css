@@ -15,9 +15,9 @@
 }
 
 .student-info-update__cell {
-  border: 1px solid #a2a2a2;
   padding: 5px 20px;
   border-radius: 10px;
+  font-weight: bold;
 }
 
 .student-info-update__details-button {

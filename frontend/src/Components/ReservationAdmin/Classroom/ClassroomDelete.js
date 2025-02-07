@@ -47,9 +47,6 @@ const ClassroomDelete = ({ classroom, submit, onClose }) => {
       </main>
 
       <footer className="classroom-delete__footer">
-        <button className="classroom-delete__update__cancel" onClick={onClose}>
-          취소
-        </button>
         <button className="classroom-delete__submit" onClick={submit}>
           완료
         </button>

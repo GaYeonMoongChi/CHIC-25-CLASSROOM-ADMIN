@@ -51,9 +51,6 @@ const StudentUdpate = ({ students, submit, onClose }) => {
         </main>
 
         <footer className="students-update__footer">
-          <button className="students-update__cancle" onClick={onClose}>
-            취소
-          </button>
           <button className="students-update__submit" onClick={submit}>
             완료
           </button>

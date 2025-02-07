@@ -31,29 +31,89 @@
 }
 
 /* 강의실 상세보기 모달 */
-.classroom-details__classNumber {
-  margin-bottom: 10px;
-}
-
-.classroom-details__item {
-  margin-bottom: 5px;
+.classroom-details__title {
+  margin-bottom: 25px;
 }
 
 .classroom-details__list {
   list-style: none;
 }
 
+.classroom-details__item {
+  margin-bottom: 5px;
+}
+
+.classroom-details__footer {
+  margin-top: 30px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.classroom-details__update {
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: none;
+  background-color: #3a7bec;
+  color: white;
+  margin-right: 20px;
+  font-weight: bold;
+}
+
+.classroom-details__update:hover {
+  background-color: #254f97;
+}
+
 /* 강의실 등록 모달 */
-.classroom-create__classNumber {
-  margin-bottom: 10px;
+.classroom-create__title {
+  margin-bottom: 25px;
 }
 
 .classroom-create__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 5px;
 }
 
 .classroom-create__list {
   list-style: none;
+}
+
+.classroom-create__input {
+  padding: 10px;
+  width: 87%;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+.classroom-create__textarea {
+  padding: 10px;
+  width: 87%;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  resize: none;
+}
+
+.classroom-create__footer {
+  margin-top: 30px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.classroom-create__submit {
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: none;
+  background-color: #3a7bec;
+  color: white;
+  margin-right: 20px;
+  font-weight: bold;
+}
+
+.classroom-create__submit:hover {
+  background-color: #254f97;
 }
 
 /* 강의실 삭제 모드 */
@@ -68,20 +128,41 @@
 }
 
 .classroom-delete__table {
-  width: 95%;
+  width: 100%;
 }
 
-.classroom-delete__td {
+.classroom-delete__checkbox {
   padding: 0px;
+  margin-left: 10px;
   width: 50px;
+}
+
+.classroom-delete__footer {
+  width: 95%;
+  margin-top: 30px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.classroom-delete__submit {
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: none;
+  background-color: #3a7bec;
+  color: white;
+  margin-right: 20px;
+  font-weight: bold;
 }
 
 /* 강의실 수정 모달 */
 .classroom-update__title {
-  margin-bottom: 10px;
+  margin-bottom: 25px;
 }
 
 .classroom-update__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 5px;
 }
 
@@ -89,30 +170,127 @@
   list-style: none;
 }
 
-/* Student 상세보기 모달 */
-.student-details__title {
-  margin-bottom: 10px;
+.classroom-update__input {
+  padding: 10px;
+  width: 87%;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 10px;
 }
 
-.student-details__item {
-  margin-bottom: 5px;
+.classroom-update__textarea {
+  padding: 10px;
+  width: 87%;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  resize: none;
 }
 
-.student-details__list {
+.classroom-update__footer {
+  margin-top: 30px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.classroom-update__submit {
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: none;
+  background-color: #3a7bec;
+  color: white;
+  margin-right: 20px;
+  font-weight: bold;
+}
+
+.classroom-update__submit:hover {
+  background-color: #254f97;
+}
+
+/* 학생 상세보기 모달 */
+.students-details__title {
+  margin-bottom: 25px;
+}
+
+.students-details__list {
   list-style: none;
 }
 
-/* 학생생 등록 모달 */
-.students-create__classNumber {
-  margin-bottom: 10px;
+.students-details__item {
+  margin-bottom: 5px;
+}
+
+.students-details__footer {
+  margin-top: 30px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.students-details__update {
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: none;
+  background-color: #3a7bec;
+  color: white;
+  margin-right: 20px;
+  font-weight: bold;
+}
+
+.students-details__update:hover {
+  background-color: #254f97;
+}
+
+/* 학생 등록 모달 */
+.students-create__title {
+  margin-bottom: 25px;
 }
 
 .students-create__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 5px;
 }
 
 .students-create__list {
   list-style: none;
+}
+
+.students-create__input {
+  padding: 10px;
+  width: 87%;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+.students-create__textarea {
+  padding: 10px;
+  width: 87%;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  resize: none;
+}
+
+.students-create__footer {
+  margin-top: 30px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.students-create__submit {
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: none;
+  background-color: #3a7bec;
+  color: white;
+  margin-right: 20px;
+  font-weight: bold;
+}
+
+.students-create__submit:hover {
+  background-color: #254f97;
 }
 
 /* 학생 삭제 모드 */
@@ -127,7 +305,7 @@
 }
 
 .students-delete__table {
-  width: 95%;
+  width: 100%;
 }
 
 .students-delete__td {
@@ -135,15 +313,78 @@
   width: 50px;
 }
 
+.students-delete__checkbox {
+  padding: 0px;
+  margin-left: 10px;
+  width: 50px;
+}
+
+.students-delete__footer {
+  width: 95%;
+  margin-top: 30px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.students-delete__submit {
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: none;
+  background-color: #3a7bec;
+  color: white;
+  margin-right: 20px;
+  font-weight: bold;
+}
+
 /* 학생 수정 모달 */
 .students-update__title {
-  margin-bottom: 10px;
+  margin-bottom: 25px;
 }
 
 .students-update__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   margin-bottom: 5px;
 }
 
 .students-update__list {
   list-style: none;
+}
+
+.students-update__input {
+  padding: 10px;
+  width: 87%;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+.students-update__textarea {
+  padding: 10px;
+  width: 87%;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  resize: none;
+}
+
+.students-update__footer {
+  margin-top: 30px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.students-update__submit {
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: none;
+  background-color: #3a7bec;
+  color: white;
+  margin-right: 20px;
+  font-weight: bold;
+}
+
+.students-update__submit:hover {
+  background-color: #254f97;
 }
