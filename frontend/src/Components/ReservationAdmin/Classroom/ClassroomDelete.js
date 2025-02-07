@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import "../../Pages/css/Pages.css";
-import "./css/classroomStudentModal.css";
-import ClassroomRow from "../../Components/ReservationAdmin/ClassroomRow";
+import "../../../Pages/css/Pages.css";
+import "../css/classroomStudentModal.css";
+import ClassroomRow from "../../ReservationAdmin/Classroom/ClassroomRow";
 
 const ClassroomDelete = ({ classroom, submit, onClose }) => {
   // 삭제할 강의실 선택 상태 관리
@@ -47,9 +47,6 @@ const ClassroomDelete = ({ classroom, submit, onClose }) => {
       </main>
 
       <footer className="classroom-delete__footer">
-        <button className="classroom-delete__update__cancel" onClick={onClose}>
-          취소
-        </button>
         <button className="classroom-delete__submit" onClick={submit}>
           완료
         </button>

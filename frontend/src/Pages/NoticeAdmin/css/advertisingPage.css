@@ -4,6 +4,25 @@
   margin-bottom: 30px;
 }
 
+.advertising-page__main {
+  width: 95%;
+}
+
+.advertising-page__thead {
+  padding: 10px 20px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: none;
+  border-radius: 10px;
+  background-color: #f5f5f5;
+}
+
+.advertising-page__table {
+  width: 100%;
+}
+
 .advertising-page__action-button {
   padding: 0px 5px;
   border-radius: 10px;

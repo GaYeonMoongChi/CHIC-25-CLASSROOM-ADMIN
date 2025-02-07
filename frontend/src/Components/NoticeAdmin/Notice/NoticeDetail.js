@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import "./css/noticeAdvertisingModal.css";
-import NoticeUpdate from "../../Components/NoticeAdmin/NoticeUpdate";
+import "../css/noticeAdvertisingModal.css";
+import NoticeUpdate from "./NoticeUpdate";
 
 const DetailModal = ({ notice, onClose }) => {
   // 수정 모달 상태 관리
@@ -23,15 +23,15 @@ const DetailModal = ({ notice, onClose }) => {
           <ul className="notice-details__list">
             <li className="notice-details__item">
               <strong className="notice-details__label">▪️ 작성자: </strong>
-              {notice.writer}
+              <div className="notice-details__content">{notice.writer}</div>
             </li>
             <li className="notice-details__item">
               <strong className="notice-details__label">▪️ 작성일: </strong>
-              {notice.date}
+              <div className="notice-details__content">{notice.date}</div>
             </li>
             <li className="notice-details__item">
               <strong className="notice-details__label">▪️ 내용: </strong>
-              {notice.content}
+              <div className="notice-details__content">{notice.content}</div>
             </li>
           </ul>
         </main>

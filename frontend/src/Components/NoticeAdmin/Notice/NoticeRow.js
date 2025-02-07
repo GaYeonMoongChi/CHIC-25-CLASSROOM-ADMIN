@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import DetailModal from "./NoticeDetail";
-import "./css/noticeRow.css";
+import "../css/noticeRow.css";
 
 const NoticeRow = ({ notice }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -10,8 +10,8 @@ const NoticeRow = ({ notice }) => {
       <div className="notice-page__row_div">
         <tr className="notice-page__row">
           <td className="notice-page__table-cell">{notice.date}</td>
+          <td className="notice-page__divider"></td>
           <td className="notice-page__table-cell">{notice.title}</td>
-          <td className="notice-page__table-cell">{notice.writer}</td>
         </tr>
 
         <button

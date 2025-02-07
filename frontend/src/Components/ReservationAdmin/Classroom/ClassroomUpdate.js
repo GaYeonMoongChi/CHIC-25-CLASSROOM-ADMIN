@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./css/classroomStudentModal.css";
+import "../css/classroomStudentModal.css";
 
 const ClassroomUpdate = ({ classroom, submit, onClose }) => {
   // 수정할 값들의 상태
@@ -51,9 +51,6 @@ const ClassroomUpdate = ({ classroom, submit, onClose }) => {
         </main>
 
         <footer className="classroom-update__footer">
-          <button className="classroom-update__cancle" onClick={onClose}>
-            취소
-          </button>
           <button className="classroom-update__submit" onClick={submit}>
             완료
           </button>

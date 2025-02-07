@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import "../css/Pages.css";
 import "./css/studentInfo.css";
-import StudentRow from "../../Components/ReservationAdmin/StudentRow";
+import StudentRow from "../../Components/ReservationAdmin/Student/StudentRow";
 import Sidebar from "../../Components/ReservationAdmin/ReservationSidebar";
-import StudentCreate from "../../Components/ReservationAdmin/StudentCreate";
-import StudentDelete from "../../Components/ReservationAdmin/StudentDelete";
+import StudentCreate from "../../Components/ReservationAdmin/Student/StudentCreate";
+import StudentDelete from "../../Components/ReservationAdmin/Student/StudentDelete";
 
 const StudentInfoPage = () => {
   // 사이드바 상태 관리

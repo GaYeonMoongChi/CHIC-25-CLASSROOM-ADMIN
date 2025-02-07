@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import "../../Pages/css/Pages.css";
-import "./css/noticeAdvertisingModal.css";
+import "../../../Pages/css/Pages.css";
+import "../css/noticeAdvertisingModal.css";
 import AdvertisingRow from "./AdvertisingRow";
 
 const AdvertisingDelete = ({ advertising, submit, onClose }) => {

@@ -1,10 +1,10 @@
 import "../css/Pages.css";
 import "./css/noticePage.css";
 import Sidebar from "../../Components/NoticeAdmin/NoticeSidebar";
-import NoticeRow from "../../Components/NoticeAdmin/NoticeRow";
+import NoticeRow from "../../Components/NoticeAdmin/Notice/NoticeRow";
 import React, { useState } from "react";
-import NoticeCreate from "../../Components/NoticeAdmin/NoticeCreate";
-import NoticeDelete from "../../Components/NoticeAdmin/NoticeDelete";
+import NoticeCreate from "../../Components/NoticeAdmin/Notice/NoticeCreate";
+import NoticeDelete from "../../Components/NoticeAdmin/Notice/NoticeDelete";
 
 const NoticePage = () => {
   // 사이드바 상태 관리

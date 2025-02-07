@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import "./css/noticeAdvertisingModal.css";
+import "../css/noticeAdvertisingModal.css";
 
 const AdvertisingUpdate = ({ advertising, submit, onClose }) => {
   // 수정할 값들의 상태
   const [title, setTitle] = useState(advertising.title);
   const [writer, setWrite] = useState(advertising.writer);
-  const [date, setDate] = useState(advertising.date);
+  const [startdate, setStartdate] = useState(advertising.startdate);
+  const [enddate, setEnddate] = useState(advertising.enddate);
   const [content, setContent] = useState(advertising.explanation);
 
   if (!advertising) return null;
@@ -23,6 +24,15 @@ const AdvertisingUpdate = ({ advertising, submit, onClose }) => {
         <main className="advertising-update__main">
           <ul className="advertising-update__list">
             <li className="advertising-update__item">
+              <strong className="advertising-update__label">▪️ 작성자: </strong>
+              <input
+                type="text"
+                value={writer}
+                onChange={(e) => setWrite(e.target.value)}
+                className="advertising-update__input"
+              />
+            </li>
+            <li className="advertising-update__item">
               <strong className="advertising-update__label">
                 ▪️ 글 제목:{" "}
               </strong>
@@ -33,22 +43,26 @@ const AdvertisingUpdate = ({ advertising, submit, onClose }) => {
                 className="advertising-update__input"
               />
             </li>
-            <li className="advertising-update__item">
-              <strong className="advertising-update__label">▪️ 작성자: </strong>
+            <li className="advertising-create__item">
+              <strong className="advertising-create__label">
+                ▪️ 적용시작일:
+              </strong>
               <input
-                type="text"
-                value={writer}
-                onChange={(e) => setWrite(e.target.value)}
-                className="advertising-update__input"
+                type="date"
+                className="advertising-create__input"
+                value={startdate}
+                onChange={(e) => setStartdate(e.target.value)}
               />
             </li>
-            <li className="advertising-update__item">
-              <strong className="advertising-update__label">▪️ 작성일: </strong>
+            <li className="advertising-create__item">
+              <strong className="advertising-create__label">
+                ▪️ 적용종료일:
+              </strong>
               <input
-                type="text"
-                value={date}
-                onChange={(e) => setDate(e.target.value)}
-                className="advertising-update__input"
+                type="date"
+                className="advertising-create__input"
+                value={enddate}
+                onChange={(e) => setEnddate(e.target.value)}
               />
             </li>
             <li className="advertising-update__item">
@@ -63,9 +77,6 @@ const AdvertisingUpdate = ({ advertising, submit, onClose }) => {
         </main>
 
         <footer className="advertising-update__footer">
-          <button className="advertising-update__cancle" onClick={onClose}>
-            취소
-          </button>
           <button className="advertising-update__submit" onClick={submit}>
             완료
           </button>

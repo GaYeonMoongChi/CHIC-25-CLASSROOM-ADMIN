@@ -14,3 +14,7 @@
 .student-info__main {
   width: 95%;
 }
+
+.student-info__table {
+  width: 100%;
+}
