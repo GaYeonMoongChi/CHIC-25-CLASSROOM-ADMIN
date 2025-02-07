@@ -23,15 +23,15 @@ const StudentDetailModal = ({ students, onClose }) => {
           <ul className="students-details__list">
             <li className="students-details__item">
               <strong className="students-details__label">▪️ 이름: </strong>
-              {students.name}
+              <div className="students-details__content">{students.name}</div>
             </li>
             <li className="students-details__item">
               <strong className="students-details__label">▪️ 학번: </strong>
-              {students.id}
+              <div className="students-details__content">{students.id}</div>
             </li>
             <li className="students-details__item">
               <strong className="students-details__label">▪️ 전화번호: </strong>
-              {students.number}
+              <div className="students-details__content">{students.number}</div>
             </li>
           </ul>
         </main>

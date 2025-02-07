@@ -25,13 +25,15 @@ const DetailModal = ({ classroom, onClose }) => {
               <strong className="classroom-details__label">
                 ▪️ 강의실명:{" "}
               </strong>
-              {classroom.name}
+              <div className="classroom-details__content">{classroom.name}</div>
             </li>
             <li className="classroom-details__item">
               <strong className="classroom-details__label">
                 ▪️ 강의실 설명:{" "}
               </strong>
-              {classroom.explanation}
+              <div className="classroom-details__content">
+                {classroom.explanation}
+              </div>
             </li>
           </ul>
         </main>
