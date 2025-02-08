@@ -63,18 +63,6 @@ const NoticePage = () => {
       <div className={`div ${isSidebarOpen ? "shifted" : ""}`}>
         <header className="notice-page__header">
           <h1 className="notice-page__title">공지사항</h1>
-          <button
-            className="notice-page__action-button"
-            onClick={toggleCreateModal}
-          >
-            공지글 생성
-          </button>
-          <button
-            className="notice-page__action-button"
-            onClick={switchDeleteMode}
-          >
-            공지글 삭제
-          </button>
         </header>
 
         <nav className="notice-page__search-nav">
@@ -127,15 +115,35 @@ const NoticePage = () => {
           </ul>
         </nav>
 
-        <main className="notice-page__main">
-          <table className="notice-page__table">
-            <tbody>
-              {NoticeList.map((notice, index) => (
-                <NoticeRow key={index} notice={notice} />
-              ))}
-            </tbody>
-          </table>
-        </main>
+        <div className="notice-page__main_div">
+          <main className="notice-page__main">
+            <table className="notice-page__table">
+              <tbody>
+                {NoticeList.map((notice, index) => (
+                  <NoticeRow key={index} notice={notice} />
+                ))}
+              </tbody>
+            </table>
+          </main>
+        </div>
+
+        <footer className="notice-page__footer">
+          <button className="notice-page__action-button">🖊️</button>
+          <div className="notice-page__action-container">
+            <button
+              className="notice-page__action-create"
+              onClick={toggleCreateModal}
+            >
+              글생성
+            </button>
+            <button
+              className="notice-page__action-delete"
+              onClick={switchDeleteMode}
+            >
+              글삭제
+            </button>
+          </div>
+        </footer>
       </div>
 
       {/* 사이드바 컴포넌트 */}

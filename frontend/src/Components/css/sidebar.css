@@ -53,21 +53,22 @@
 
 .sidebar-toggle-btn {
   position: fixed;
-  top: 20px;
+  top: 10px;
   left: 20px;
-  background: black;
-  color: white;
+  background: transparent;
+  color: black;
   border: none;
   padding: 5px 10px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 30px;
+  font-weight: bolder;
   border-radius: 10px;
   z-index: 1100;
   transition: background 0.3s ease;
 }
 
 .sidebar-toggle-btn:hover {
-  background: #797979;
+  background: #f5f5f5;
 }
 
 .sidebar-toggle-btn.hidden {
