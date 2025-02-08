@@ -128,7 +128,7 @@ const NoticePage = () => {
         </div>
 
         <footer className="notice-page__footer">
-          <button className="notice-page__action-button">🖊️</button>
+          <button className="notice-page__action-button">➕</button>
           <div className="notice-page__action-container">
             <button
               className="notice-page__action-create"
