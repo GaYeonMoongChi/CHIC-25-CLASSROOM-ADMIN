@@ -64,14 +64,14 @@
   padding: 10px 20px;
   border-radius: 10px;
   border: none;
-  background-color: #3a7bec;
+  background-color: #10069f;
   color: white;
   margin-right: 20px;
   font-weight: bold;
 }
 
 .notice-details__update:hover {
-  background-color: #254f97;
+  background-color: rgb(18, 39, 75);
 }
 
 /* notice 등록 모달 */
@@ -125,7 +125,7 @@
 }
 
 .notice-create__submit:hover {
-  background-color: #254f97;
+  background-color: rgb(18, 39, 75);
 }
 
 /* notice 삭제 모드 */
@@ -199,7 +199,7 @@
 }
 
 .notice-update__submit:hover {
-  background-color: #254f97;
+  background-color: rgb(18, 39, 75);
 }
 
 /* Advertising 상세보기 모달 */
@@ -243,7 +243,7 @@
 }
 
 .advertising-details__update:hover {
-  background-color: #254f97;
+  background-color: rgb(18, 39, 75);
 }
 
 /* Advertising 등록 모달 */
@@ -297,7 +297,7 @@
 }
 
 .advertising-create__submit:hover {
-  background-color: #254f97;
+  background-color: rgb(18, 39, 75);
 }
 
 /* Advertising 삭제 모드 */
@@ -371,5 +371,5 @@
 }
 
 .advertising-update__submit:hover {
-  background-color: #254f97;
+  background-color: rgb(18, 39, 75);
 }

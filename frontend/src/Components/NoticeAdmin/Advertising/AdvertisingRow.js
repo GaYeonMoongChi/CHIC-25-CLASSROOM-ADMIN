@@ -7,18 +7,15 @@ const AdvertisingRow = ({ advertising }) => {
 
   return (
     <>
-      <div className="advertising-page__row_div">
+      <div
+        className="advertising-page__row_div"
+        onClick={() => setIsModalOpen(true)}
+      >
         <tr className="advertising-page__row">
           <td className="advertising-page__table-cell">{advertising.date}</td>
           <td className="advertising-page__divider"></td>
           <td className="advertising-page__table-cell">{advertising.title}</td>
         </tr>
-        <button
-          className="advertising-page__details-button"
-          onClick={() => setIsModalOpen(true)}
-        >
-          상세보기
-        </button>
       </div>
 
       {isModalOpen && (

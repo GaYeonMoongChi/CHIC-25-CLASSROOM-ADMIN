@@ -1,20 +1,102 @@
 .classroom-info-update__header {
   display: flex;
   gap: 50px;
+  padding-bottom: 30px;
+  padding-top: 30px;
   margin-bottom: 30px;
+  border-bottom: 3px solid #ccc;
+  width: 95%;
+}
+
+.classroom-info-update__main_div {
+  width: 95%;
+  border-top: 2px solid #ccc;
+  border-bottom: 2px solid #ccc;
+  margin-top: 30px;
 }
 
 .classroom-info-update__main {
-  width: 95%;
+  width: 100%;
 }
 
 .classroom-info-update__table {
   width: 100%;
 }
 
-.student-info-update__action-button {
-  padding: 0px 5px;
+.classroom-info-update__footer {
+  position: fixed;
+  bottom: 60px;
+  right: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  z-index: 1000;
+}
+
+.classroom-info-update__action-button {
+  border-radius: 100px;
+  background: #10069f;
+  border: none;
+  font-size: 40px;
+  color: #ffffff;
+  cursor: pointer;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.classroom-info-update__action-button:hover {
+  background-color: rgb(18, 39, 75);
+}
+
+.classroom-info-update__action-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  position: absolute;
+  bottom: 100%;
+  right: 50%;
+  transform: translateX(50%) translateY(10px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+  padding: 10px;
+  background-color: #f5f5f5;
   border-radius: 10px;
-  background-color: black;
-  color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
+}
+
+.classroom-info-update__footer:hover .classroom-info-update__action-container,
+.classroom-info-update__action-button:hover
+  ~ .classroom-info-update__action-container,
+.classroom-info-update__action-container:hover {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(50%) translateY(0);
+}
+
+.classroom-info-update__action-create,
+.classroom-info-update__action-delete {
+  background-color: #ffffff;
+  color: black;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 16px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: bold;
+  text-align: center;
+  width: 100px;
+  transition: background-color 0.3s ease;
+}
+
+.classroom-info-update__action-create:hover,
+.classroom-info-update__action-delete:hover {
+  background-color: #bbb;
 }

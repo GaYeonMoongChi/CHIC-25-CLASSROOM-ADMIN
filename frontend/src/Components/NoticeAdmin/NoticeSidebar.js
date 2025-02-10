@@ -47,16 +47,21 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
           >
             X 닫기
           </button>
+
           <ul id="sidebar-links" className="sidebar-links">
             {links.map((link) => (
-              <li key={link.id}>
+              <li key={link.id} className="sidebar-links__item">
                 <Link id={link.id} to={link.to}>
                   {link.text}
                 </Link>
               </li>
             ))}
           </ul>
-          <LogoutButton />
+
+          {/* 로그아웃 버튼 */}
+          <div className="logout-container">
+            <LogoutButton />
+          </div>
         </aside>
       </div>
     </div>

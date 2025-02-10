@@ -1,11 +1,13 @@
 .advertising-page__row_div {
   padding: 20px 30px;
-  margin-bottom: 10px;
   display: flex;
   align-items: center;
-  gap: 10px;
   border: none;
-  border-radius: 10px;
+  background-color: #ffffff;
+  margin: 10px 10px 10px 10px;
+}
+
+.advertising-page__row_div:hover {
   background-color: #f5f5f5;
 }
 
@@ -17,6 +19,7 @@
 .advertising-page__table-cell {
   padding: 5px 20px;
   border-radius: 10px;
+  cursor: pointer;
 }
 
 .advertising-page__divider {

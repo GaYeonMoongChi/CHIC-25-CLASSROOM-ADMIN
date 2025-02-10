@@ -7,16 +7,13 @@ const ClassroomRow = ({ classroom }) => {
 
   return (
     <>
-      <div className="classroom-info-update__row_div">
+      <div
+        className="classroom-info-update__row_div"
+        onClick={() => setIsModalOpen(true)}
+      >
         <tr className="classroom-info-update__row">
           <td className="classroom-info-update__cell">{classroom.number}</td>
         </tr>
-        <button
-          className="classroom-info-update__details-button"
-          onClick={() => setIsModalOpen(true)}
-        >
-          상세보기
-        </button>
       </div>
 
       {isModalOpen && (

@@ -1,11 +1,13 @@
 .notice-page__row_div {
   padding: 20px 30px;
-  margin-bottom: 10px;
   display: flex;
   align-items: center;
-  gap: 10px;
   border: none;
-  border-radius: 10px;
+  background-color: #ffffff;
+  margin: 10px 10px 10px 10px;
+}
+
+.notice-page__row_div:hover {
   background-color: #f5f5f5;
 }
 
@@ -17,24 +19,11 @@
 .notice-page__table-cell {
   padding: 5px 20px;
   border-radius: 10px;
+  cursor: pointer;
 }
 
 .notice-page__divider {
   width: 2px;
   background-color: #ccc;
   border-radius: 10px;
-}
-
-.notice-page__details-button {
-  background-color: #3a7bec;
-  border: none;
-  color: white;
-  border-radius: 10px;
-  padding: 7px 10px;
-  cursor: pointer;
-  margin-left: auto;
-}
-
-.notice-page__details-button:hover {
-  background-color: #254f97;
 }

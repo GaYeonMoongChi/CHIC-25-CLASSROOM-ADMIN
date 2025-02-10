@@ -7,19 +7,15 @@ const StudentRow = ({ students }) => {
 
   return (
     <>
-      <div className="student-info-update__row_div">
+      <div
+        className="student-info-update__row_div"
+        onClick={() => setIsModalOpen(true)}
+      >
         <tr className="student-info-update__row">
           <td className="student-info-update__cell">
             {students.id} / {students.name}
           </td>
         </tr>
-
-        <button
-          className="student-info-update__details-button"
-          onClick={() => setIsModalOpen(true)}
-        >
-          상세보기
-        </button>
       </div>
 
       {isModalOpen && (

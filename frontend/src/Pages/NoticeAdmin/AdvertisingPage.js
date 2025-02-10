@@ -68,24 +68,12 @@ const AdvertisingPage = () => {
       <div className={`div ${isSidebarOpen ? "shifted" : ""}`}>
         <header className="advertising-page__header">
           <h1 className="advertising-page__title">홍보/광고</h1>
-          <button
-            className="advertising-page__action-button"
-            onClick={toggleCreateModal}
-          >
-            홍보/광고글 생성
-          </button>
-          <button
-            className="advertising-page__action-button"
-            onClick={switchDeleteMode}
-          >
-            홍보/광고글 삭제
-          </button>
         </header>
 
         <nav className="advertising-page__search-nav">
           <ul className="advertising-page__search-list">
             <li className="advertising-page__search-item">
-              작성일
+              <label className="advertising-page__search-label">작성일</label>
               <input
                 type="date"
                 className="advertising-page__search-input"
@@ -93,7 +81,7 @@ const AdvertisingPage = () => {
               />
             </li>
             <li className="advertising-page__search-item">
-              제목
+              <label className="advertising-page__search-label">제목</label>
               <input
                 type="text"
                 className="advertising-page__search-input"
@@ -101,23 +89,7 @@ const AdvertisingPage = () => {
               />
             </li>
             <li className="advertising-page__search-item">
-              적용시작일
-              <input
-                type="date"
-                className="advertising-page__search-input"
-                placeholder="적용시작일 검색"
-              />
-            </li>
-            <li className="advertising-page__search-item">
-              적용종료일
-              <input
-                type="date"
-                className="advertising-page__search-input"
-                placeholder="적용종료일 검색"
-              />
-            </li>
-            <li className="advertising-page__search-item">
-              상태
+              <label className="advertising-page__search-label">상태</label>
               <select
                 name="advertising-status"
                 className="advertising-page__status-select"
@@ -129,7 +101,7 @@ const AdvertisingPage = () => {
               </select>
             </li>
             <li className="advertising-page__search-item">
-              작성자
+              <label className="advertising-page__search-label">작성자</label>
               <input
                 type="text"
                 className="advertising-page__search-input"
@@ -139,15 +111,35 @@ const AdvertisingPage = () => {
           </ul>
         </nav>
 
-        <main className="advertising-page__main">
-          <table className="advertising-page__table">
-            <tbody>
-              {AdvertisingList.map((advertising, index) => (
-                <AdvertisingRow key={index} advertising={advertising} />
-              ))}
-            </tbody>
-          </table>
-        </main>
+        <div className="advertising-page__main_div ">
+          <main className="advertising-page__main">
+            <table className="advertising-page__table">
+              <tbody>
+                {AdvertisingList.map((advertising, index) => (
+                  <AdvertisingRow key={index} advertising={advertising} />
+                ))}
+              </tbody>
+            </table>
+          </main>
+        </div>
+
+        <footer className="advertising-page__footer">
+          <button className="advertising-page__action-button">+</button>
+          <div className="advertising-page__action-container">
+            <button
+              className="advertising-page__action-create"
+              onClick={toggleCreateModal}
+            >
+              글생성
+            </button>
+            <button
+              className="advertising-page__action-delete"
+              onClick={switchDeleteMode}
+            >
+              글삭제
+            </button>
+          </div>
+        </footer>
       </div>
 
       {/* 사이드바 컴포넌트 */}

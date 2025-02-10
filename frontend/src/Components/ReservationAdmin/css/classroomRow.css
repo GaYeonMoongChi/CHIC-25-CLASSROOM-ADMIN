@@ -1,11 +1,13 @@
 .classroom-info-update__row_div {
   padding: 20px 30px;
-  margin-bottom: 10px;
   display: flex;
   align-items: center;
-  gap: 10px;
   border: none;
-  border-radius: 10px;
+  background-color: #ffffff;
+  margin: 10px 10px 10px 10px;
+}
+
+.classroom-info-update__row_div:hover {
   background-color: #f5f5f5;
 }
 
@@ -17,19 +19,5 @@
 .classroom-info-update__cell {
   padding: 5px 20px;
   border-radius: 10px;
-  font-weight: bold;
-}
-
-.classroom-info-update__details-button {
-  background-color: #3a7bec;
-  border: none;
-  color: white;
-  border-radius: 10px;
-  padding: 7px 10px;
   cursor: pointer;
-  margin-left: auto;
-}
-
-.classroom-info-update__details-button:hover {
-  background-color: #254f97;
 }

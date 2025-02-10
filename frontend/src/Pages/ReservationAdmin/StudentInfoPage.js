@@ -59,29 +59,37 @@ const StudentInfoPage = () => {
       <div className={`div ${isSidebarOpen ? "shifted" : ""}`}>
         <header className="student-info__header">
           <h1 className="student-info__title">학생 정보 업데이트</h1>
-          <button
-            className="student-info__action-button"
-            onClick={toggleCreateModal}
-          >
-            학생 정보 등록
-          </button>
-          <button
-            className="student-info__action-button"
-            onClick={switchDeleteMode}
-          >
-            학생 정보 삭제
-          </button>
         </header>
 
-        <main className="student-info__main">
-          <table className="student-info__table">
-            <tbody>
-              {studentInfo.map((students, index) => (
-                <StudentRow key={index} students={students} />
-              ))}
-            </tbody>
-          </table>
-        </main>
+        <div className="student-info__main_div">
+          <main className="student-info__main">
+            <table className="student-info__table">
+              <tbody>
+                {studentInfo.map((students, index) => (
+                  <StudentRow key={index} students={students} />
+                ))}
+              </tbody>
+            </table>
+          </main>
+        </div>
+
+        <footer className="student-info__footer">
+          <button className="student-info__action-button">+</button>
+          <div className="student-info__action-container">
+            <button
+              className="student-info__action-create"
+              onClick={toggleCreateModal}
+            >
+              학생 등록
+            </button>
+            <button
+              className="student-info__action-delete"
+              onClick={switchDeleteMode}
+            >
+              학생 삭제
+            </button>
+          </div>
+        </footer>
       </div>
 
       {/* 사이드바 컴포넌트 */}
