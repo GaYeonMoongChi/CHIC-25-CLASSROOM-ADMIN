@@ -54,7 +54,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
           </button>
           <ul id="sidebar-links" className="sidebar-links">
             {links.map((link) => (
-              <li key={link.id}>
+              <li key={link.id} className="sidebar-links__item">
                 <Link id={link.id} to={link.to}>
                   {link.text}
                 </Link>

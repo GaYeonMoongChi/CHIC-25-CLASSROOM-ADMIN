@@ -7,19 +7,15 @@ const NoticeRow = ({ notice }) => {
 
   return (
     <>
-      <div className="notice-page__row_div">
+      <div
+        className="notice-page__row_div"
+        onClick={() => setIsModalOpen(true)}
+      >
         <tr className="notice-page__row">
           <td className="notice-page__table-cell">{notice.date}</td>
           <td className="notice-page__divider"></td>
           <td className="notice-page__table-cell">{notice.title}</td>
         </tr>
-
-        <button
-          className="notice-page__details-button"
-          onClick={() => setIsModalOpen(true)}
-        >
-          상세보기
-        </button>
       </div>
 
       {isModalOpen && (

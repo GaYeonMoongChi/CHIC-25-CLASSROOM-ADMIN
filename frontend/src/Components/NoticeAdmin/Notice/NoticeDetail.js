@@ -36,11 +36,8 @@ const DetailModal = ({ notice, onClose }) => {
           </ul>
         </main>
 
-        <footer className="students-details__footer">
-          <button
-            className="students-details__update"
-            onClick={switchUpdateMode}
-          >
+        <footer className="notice-details__footer">
+          <button className="notice-details__update" onClick={switchUpdateMode}>
             수정
           </button>
         </footer>

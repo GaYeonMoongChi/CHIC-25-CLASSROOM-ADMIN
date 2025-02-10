@@ -68,12 +68,7 @@ const NoticePage = () => {
         <nav className="notice-page__search-nav">
           <ul className="notice-page__search-list">
             <li className="notice-page__search-item">
-              <label
-                htmlFor="search-date"
-                className="notice-page__search-label"
-              >
-                작성일
-              </label>
+              <label className="notice-page__search-label">작성일</label>
               <input
                 type="date"
                 id="search-date"
@@ -83,18 +78,13 @@ const NoticePage = () => {
               />
             </li>
             <li className="notice-page__search-item">
-              <label
-                htmlFor="search-title"
-                className="notice-page__search-label"
-              >
-                제목
-              </label>
+              <label className="notice-page__search-label">제목</label>
               <input
                 type="text"
                 id="search-title"
                 name="search"
                 className="notice-page__search-input"
-                placeholder="제목 검색"
+                placeholder="공지글 제목으로 검색하세요."
               />
             </li>
             <li className="notice-page__search-item">
@@ -109,7 +99,7 @@ const NoticePage = () => {
                 id="search-author"
                 name="search"
                 className="notice-page__search-input"
-                placeholder="작성자 검색"
+                placeholder="작성자명으로 검색하세요. (ex. 관리자)"
               />
             </li>
           </ul>
@@ -128,7 +118,7 @@ const NoticePage = () => {
         </div>
 
         <footer className="notice-page__footer">
-          <button className="notice-page__action-button">➕</button>
+          <button className="notice-page__action-button">+</button>
           <div className="notice-page__action-container">
             <button
               className="notice-page__action-create"
