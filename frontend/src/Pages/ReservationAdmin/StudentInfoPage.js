@@ -16,8 +16,8 @@ const StudentInfoPage = () => {
   const toggleCreateModal = () => setCreateModalOpen((prev) => !prev);
 
   // 삭제 모드 상태 관리
-  const [isDeleteMode, setDeleteMode] = useState(false);
-  const switchDeleteMode = () => setDeleteMode((prev) => !prev);
+  const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
+  const toggleDeleteModal = () => setDeleteModalOpen((prev) => !prev);
 
   // 강의실 정보 데이터 (임시)
   const studentInfo = [
@@ -42,17 +42,6 @@ const StudentInfoPage = () => {
       number: "010-1234-5678",
     },
   ];
-
-  // 삭제 모드
-  if (isDeleteMode) {
-    return (
-      <StudentDelete
-        students={studentInfo}
-        submit={switchDeleteMode}
-        onClose={switchDeleteMode}
-      />
-    );
-  }
 
   return (
     <div className="div">
@@ -84,7 +73,7 @@ const StudentInfoPage = () => {
             </button>
             <button
               className="student-info__action-delete"
-              onClick={switchDeleteMode}
+              onClick={toggleDeleteModal}
             >
               학생 삭제
             </button>
@@ -97,6 +86,15 @@ const StudentInfoPage = () => {
 
       {/* 등록 모달창 컴포넌트 */}
       {isCreateModalOpen && <StudentCreate onClose={toggleCreateModal} />}
+
+      {/* 삭제 모달창 컴포넌트 */}
+      {isDeleteModalOpen && (
+        <StudentDelete
+          students={studentInfo}
+          submit={toggleDeleteModal}
+          onClose={toggleDeleteModal}
+        />
+      )}
     </div>
   );
 };

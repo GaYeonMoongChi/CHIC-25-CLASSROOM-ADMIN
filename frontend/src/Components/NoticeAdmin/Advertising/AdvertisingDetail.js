@@ -12,10 +12,13 @@ const DetailModal = ({ advertising, onClose }) => {
   return (
     <div className="modal-overlay">
       <div className="modal-content">
-        <button className="modal-close" onClick={onClose}>
-          ✖
-        </button>
-        <h1 className="advertising-details__title">{advertising.title}</h1>
+        <header>
+          <button className="modal-close" onClick={onClose}>
+            ✖
+          </button>
+          <h1 className="advertising-details__title">{advertising.title}</h1>
+        </header>
+
         <main className="advertising-details__main">
           <ul className="advertising-details__list">
             <li className="advertising-details__item">

@@ -127,29 +127,29 @@
   background-color: #254f97;
 }
 
-/* 강의실 삭제 모드 */
-.classroom-delete__header {
-  display: flex;
-  gap: 50px;
-  margin-bottom: 30px;
+/* 강의실 삭제 모달 */
+.classroom-delete__title {
+  margin-bottom: 25px;
+}
+
+.classroom-delete__main_div {
+  width: 95%;
 }
 
 .classroom-delete__main {
-  width: 95%;
+  width: 100%;
 }
 
 .classroom-delete__table {
   width: 100%;
 }
 
-.classroom-delete__checkbox {
+.classroom-delete__td {
   padding: 0px;
-  margin-left: 10px;
   width: 50px;
 }
 
 .classroom-delete__footer {
-  width: 95%;
   margin-top: 30px;
   display: flex;
   justify-content: flex-end;
@@ -159,10 +159,14 @@
   padding: 10px 20px;
   border-radius: 10px;
   border: none;
-  background-color: #3a7bec;
+  background-color: #10069f;
   color: white;
   margin-right: 20px;
   font-weight: bold;
+}
+
+.classroom-delete__submit:hover {
+  background-color: rgb(18, 39, 75);
 }
 
 /* 강의실 수정 모달 */
@@ -316,14 +320,16 @@
 }
 
 /* 학생 삭제 모드 */
-.students-delete__header {
-  display: flex;
-  gap: 50px;
-  margin-bottom: 30px;
+.students-delete__title {
+  margin-bottom: 25px;
+}
+
+.students-delete__main_div {
+  width: 95%;
 }
 
 .students-delete__main {
-  width: 95%;
+  width: 100%;
 }
 
 .students-delete__table {
@@ -335,14 +341,7 @@
   width: 50px;
 }
 
-.students-delete__checkbox {
-  padding: 0px;
-  margin-left: 10px;
-  width: 50px;
-}
-
 .students-delete__footer {
-  width: 95%;
   margin-top: 30px;
   display: flex;
   justify-content: flex-end;
@@ -352,10 +351,14 @@
   padding: 10px 20px;
   border-radius: 10px;
   border: none;
-  background-color: #3a7bec;
+  background-color: #10069f;
   color: white;
   margin-right: 20px;
   font-weight: bold;
+}
+
+.students-delete__submit:hover {
+  background-color: rgb(18, 39, 75);
 }
 
 /* 학생 수정 모달 */

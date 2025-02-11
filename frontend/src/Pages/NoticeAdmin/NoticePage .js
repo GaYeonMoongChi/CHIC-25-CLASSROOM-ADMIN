@@ -16,8 +16,8 @@ const NoticePage = () => {
   const toggleCreateModal = () => setCreateModalOpen((prev) => !prev);
 
   // 삭제 모드 상태 관리
-  const [isDeleteMode, setDeleteMode] = useState(false);
-  const switchDeleteMode = () => setDeleteMode((prev) => !prev);
+  const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
+  const toggleDeleteModal = () => setDeleteModalOpen((prev) => !prev);
 
   // 공지글 데이터 (임시)
   const NoticeList = [
@@ -46,17 +46,6 @@ const NoticePage = () => {
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
     },
   ];
-
-  // 삭제 모드
-  if (isDeleteMode) {
-    return (
-      <NoticeDelete
-        notice={NoticeList}
-        submit={switchDeleteMode}
-        onClose={switchDeleteMode}
-      />
-    );
-  }
 
   return (
     <div className="div">
@@ -128,7 +117,7 @@ const NoticePage = () => {
             </button>
             <button
               className="notice-page__action-delete"
-              onClick={switchDeleteMode}
+              onClick={toggleDeleteModal}
             >
               글삭제
             </button>
@@ -141,6 +130,15 @@ const NoticePage = () => {
 
       {/* 등록 모달창 컴포넌트 */}
       {isCreateModalOpen && <NoticeCreate onClose={toggleCreateModal} />}
+
+      {/* 삭제 모달창 컴포넌트 */}
+      {isDeleteModalOpen && (
+        <NoticeDelete
+          notice={NoticeList}
+          submit={toggleDeleteModal}
+          onClose={toggleDeleteModal}
+        />
+      )}
     </div>
   );
 };
