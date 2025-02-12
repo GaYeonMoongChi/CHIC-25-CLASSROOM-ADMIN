@@ -7,31 +7,75 @@ import AdvertisingCreate from "../../Components/NoticeAdmin/Advertising/Advertis
 import AdvertisingDelete from "../../Components/NoticeAdmin/Advertising/AdvertisingDelete";
 
 const AdvertisingPage = () => {
-  // 사이드바 상태 관리
+  // 사이드바 상태관리
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const toggleSidebar = () => setIsSidebarOpen((prev) => !prev);
 
-  // 등록 모달창 상태 관리
+  // 등록 모달창 상태관리
   const [isCreateModalOpen, setCreateModalOpen] = useState(false);
   const toggleCreateModal = () => setCreateModalOpen((prev) => !prev);
 
-  // 삭제 모드 상태 관리
+  // 삭제 모드 상태관리
   const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
   const toggleDeleteModal = () => setDeleteModalOpen((prev) => !prev);
 
-  // 글제목으로검색 상태 관리
+  // 글제목으로 검색 상태관리
   const [searchTitle, setSearchTitle] = useState("");
 
-  // 작성일로검색 상태 관리
+  // 작성일로 검색 상태관리
   const [searchDate, setSearchDate] = useState("");
 
-  // 작성자명으로검색 상태 관리
+  // 작성자명으로 검색 상태관리
   const [searchWriter, setSearchWriter] = useState("");
+
+  // 글 게시중/게시종료 여부에 따른 검색 상태관리
+  const [searchStatus, setSearchStatus] = useState("적용됨"); // 기본적으로 '적용됨' 상태의 광고글을 볼 수 있게 하기
 
   // 검색창에 값 입력하면 상태 변환
   const onChangeTitle = (e) => setSearchTitle(e.target.value);
   const onChangeDate = (e) => setSearchDate(e.target.value);
   const onChangeWriter = (e) => setSearchWriter(e.target.value);
+  const onChangeStatus = (e) => setSearchStatus(e.target.value);
+
+  // 문자열 날짜를 ISO Date 객체로 변환
+  const parseDate = (dateStr) => {
+    if (!dateStr) return null; // 값이 없으면 null 반환
+
+    const dateParts = dateStr.match(/(\d{4})년 (\d{1,2})월 (\d{1,2})일/);
+    if (!dateParts) {
+      return null; // 변환 실패 시 null 반환
+    }
+
+    const [, year, month, day] = dateParts;
+    return new Date(
+      `${year}-${month.padStart(2, "0")}-${day.padStart(2, "0")}`
+    );
+  };
+
+  // 글 적용 상태 판별 함수
+  const getAdvertisingStatus = (startdate, enddate) => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // 시간을 00:00:00으로 초기화
+
+    const start = parseDate(startdate);
+    const end = parseDate(enddate);
+
+    if (!start || !end || isNaN(start) || isNaN(end)) {
+      console.warn(`날짜 비교 오류 발생: start=${start}, end=${end}`);
+      return "적용종료";
+    }
+
+    // 모든 날짜의 시간을 00:00:00으로 초기화
+    start.setHours(0, 0, 0, 0);
+    end.setHours(23, 59, 59, 999); // 종료 날짜는 하루 끝까지 포함
+
+    if (start > end) {
+      console.warn(`비정상적인 날짜 범위: start=${start}, end=${end}`);
+      return "적용종료";
+    }
+
+    return today >= start && today <= end ? "적용됨" : "적용종료";
+  };
 
   // 공지글 데이터 (임시)
   const AdvertisingList = [
@@ -60,19 +104,33 @@ const AdvertisingPage = () => {
       date: "2025년 1월 8일",
       title: "2025년 탄소 중립 실천 공모전",
       writer: "관리자",
-      startdate: "2025년 1월 8일",
-      enddate: "2025년 1월 13일",
+      startdate: "2025년 1월 23일",
+      enddate: "2025년 3월 20일",
+      content: "ㅂㅈㄷㄱ쇼ㅕㅑㅐㅔㅁㄴㅇㄹ호ㅓㅏㅣㅋㅌㅊ퓨ㅜㅡ",
+    },
+    {
+      id: 3,
+      date: "2025년 1월 8일",
+      title: "2025년 xxx 공모전",
+      writer: "관리자",
+      startdate: "2025년 1월 23일",
+      enddate: "2025년 3월 20일",
       content: "ㅂㅈㄷㄱ쇼ㅕㅑㅐㅔㅁㄴㅇㄹ호ㅓㅏㅣㅋㅌㅊ퓨ㅜㅡ",
     },
   ];
 
-  // 검색 결과 화면에 반영
-  const filteredNotices = AdvertisingList.filter(
-    (item) =>
+  // 검색 결과 필터링
+  const filteredNotices = AdvertisingList.filter((item) => {
+    const status = getAdvertisingStatus(item.startdate, item.enddate);
+    return (
       item.date.toLowerCase().includes(searchDate.toLowerCase()) &&
       item.title.toLowerCase().includes(searchTitle.toLowerCase()) &&
-      item.writer.toLowerCase().includes(searchWriter.toLowerCase())
-  );
+      item.writer.toLowerCase().includes(searchWriter.toLowerCase()) &&
+      (searchStatus === "적용됨"
+        ? status === "적용됨"
+        : status === searchStatus)
+    );
+  });
 
   return (
     <div className="div">
@@ -108,11 +166,11 @@ const AdvertisingPage = () => {
               <select
                 name="advertising-status"
                 className="advertising-page__status-select"
+                onChange={onChangeStatus}
+                value={searchStatus}
               >
-                <option value="exposure" selected>
-                  적용됨
-                </option>
-                <option value="not-exposure">적용종료</option>
+                <option value="적용됨">적용됨</option>
+                <option value="적용종료">적용종료</option>
               </select>
             </li>
             <li className="advertising-page__search-item">
@@ -122,7 +180,7 @@ const AdvertisingPage = () => {
                 className="advertising-page__search-input"
                 placeholder="작성자명으로 검색하세요. (ex. 관리자)"
                 onChange={onChangeWriter}
-                value={onChangeWriter}
+                value={searchWriter}
               />
             </li>
           </ul>
