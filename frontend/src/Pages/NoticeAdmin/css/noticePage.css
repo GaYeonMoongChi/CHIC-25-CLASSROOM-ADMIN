@@ -129,7 +129,6 @@
   padding: 12px 16px;
   cursor: pointer;
   font-size: 15px;
-  font-weight: bold;
   text-align: center;
   width: 100px;
   transition: background-color 0.3s ease;
@@ -138,4 +137,5 @@
 .notice-page__action-create:hover,
 .notice-page__action-delete:hover {
   background-color: #bbb;
+  font-weight: bolder;
 }

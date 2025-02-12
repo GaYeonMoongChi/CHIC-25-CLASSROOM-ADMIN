@@ -89,7 +89,6 @@
   padding: 12px 16px;
   cursor: pointer;
   font-size: 15px;
-  font-weight: bold;
   text-align: center;
   width: 100px;
   transition: background-color 0.3s ease;
@@ -98,4 +97,5 @@
 .student-info__action-create:hover,
 .student-info__action-delete:hover {
   background-color: #bbb;
+  font-weight: bolder;
 }
