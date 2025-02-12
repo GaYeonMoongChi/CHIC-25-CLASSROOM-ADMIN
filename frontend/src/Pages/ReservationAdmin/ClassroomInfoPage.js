@@ -16,8 +16,8 @@ const ClassroomInfoPage = () => {
   const toggleCreateModal = () => setCreateModalOpen((prev) => !prev);
 
   // 삭제 모드 상태 관리
-  const [isDeleteMode, setDeleteMode] = useState(false);
-  const switchDeleteMode = () => setDeleteMode((prev) => !prev);
+  const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
+  const toggleDeleteModal = () => setDeleteModalOpen((prev) => !prev);
 
   // 강의실 정보 데이터 (임시)
   const classroomInfo = [
@@ -43,17 +43,6 @@ const ClassroomInfoPage = () => {
       explanation: "정보융합학부 대학원 강의실 입니다.",
     },
   ];
-
-  // 삭제 모드
-  if (isDeleteMode) {
-    return (
-      <ClassroomDelete
-        classroom={classroomInfo}
-        submit={switchDeleteMode}
-        onClose={switchDeleteMode}
-      />
-    );
-  }
 
   return (
     <div className="div">
@@ -85,7 +74,7 @@ const ClassroomInfoPage = () => {
             </button>
             <button
               className="classroom-info-update__action-delete"
-              onClick={switchDeleteMode}
+              onClick={toggleDeleteModal}
             >
               강의실 삭제
             </button>
@@ -98,6 +87,15 @@ const ClassroomInfoPage = () => {
 
       {/* 등록 모달창 컴포넌트 */}
       {isCreateModalOpen && <ClassroomCreate onClose={toggleCreateModal} />}
+
+      {/* 삭제 모달창 컴포넌트 */}
+      {isDeleteModalOpen && (
+        <ClassroomDelete
+          classroom={classroomInfo}
+          submit={toggleDeleteModal}
+          onClose={toggleDeleteModal}
+        />
+      )}
     </div>
   );
 };

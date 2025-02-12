@@ -1,13 +1,35 @@
 import React, { useState } from "react";
+import axios from "axios";
 import "../css/classroomStudentModal.css";
 
-const StudentUdpate = ({ students, submit, onClose }) => {
+const StudentUpdate = ({ students, onClose }) => {
   // 수정할 값들의 상태
   const [id, setId] = useState(students.id);
   const [name, setName] = useState(students.name);
-  const [number, setNumber] = useState(students.number);
+  const [phone, setPhone] = useState(students.phone);
 
   if (!students) return null;
+
+  // 학생 정보 수정 요청
+  const handleUpdate = async () => {
+    try {
+      const response = await axios.put("/api/students/modify", {
+        id,
+        name,
+        phone,
+      });
+
+      if (response.data.success) {
+        alert("학생 정보가 수정되었습니다.");
+        onClose(); // 학생 수정 완료시, 모달 닫기
+      } else {
+        alert(response.data.message || "학생 정보 수정에 실패했습니다.");
+      }
+    } catch (error) {
+      console.error("학생 정보 수정 오류:", error);
+      alert("학생 정보 수정 중 오류가 발생했습니다.");
+    }
+  };
 
   return (
     <div className="modal-overlay">
@@ -42,16 +64,16 @@ const StudentUdpate = ({ students, submit, onClose }) => {
             <li className="students-update__item">
               <strong className="students-update__label">▪️ 전화번호: </strong>
               <input
-                value={number}
-                onChange={(e) => setNumber(e.target.value)}
-                className="students-update__textarea"
-              ></input>
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                className="students-update__input"
+              />
             </li>
           </ul>
         </main>
 
         <footer className="students-update__footer">
-          <button className="students-update__submit" onClick={submit}>
+          <button className="students-update__submit" onClick={handleUpdate}>
             완료
           </button>
         </footer>
@@ -60,4 +82,4 @@ const StudentUdpate = ({ students, submit, onClose }) => {
   );
 };
 
-export default StudentUdpate;
+export default StudentUpdate;

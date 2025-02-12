@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "../css/Pages.css";
 import "./css/studentInfo.css";
 import StudentRow from "../../Components/ReservationAdmin/Student/StudentRow";
@@ -16,43 +17,25 @@ const StudentInfoPage = () => {
   const toggleCreateModal = () => setCreateModalOpen((prev) => !prev);
 
   // 삭제 모드 상태 관리
-  const [isDeleteMode, setDeleteMode] = useState(false);
-  const switchDeleteMode = () => setDeleteMode((prev) => !prev);
+  const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
+  const toggleDeleteModal = () => setDeleteModalOpen((prev) => !prev);
 
-  // 강의실 정보 데이터 (임시)
-  const studentInfo = [
-    {
-      id: "2022123456",
-      name: "김가연",
-      number: "010-1234-5678",
-    },
-    {
-      id: "2023123123",
-      name: "박서현",
-      number: "010-1234-5678",
-    },
-    {
-      id: "2024123123",
-      name: "정유빈",
-      number: "010-1234-5678",
-    },
-    {
-      id: "2021202032",
-      name: "손아현",
-      number: "010-1234-5678",
-    },
-  ];
+  // 학생 정보 상태 관리
+  const [studentInfo, setStudentInfo] = useState([]);
 
-  // 삭제 모드
-  if (isDeleteMode) {
-    return (
-      <StudentDelete
-        students={studentInfo}
-        submit={switchDeleteMode}
-        onClose={switchDeleteMode}
-      />
-    );
-  }
+  // 학생 데이터 요청
+  useEffect(() => {
+    const fetchStudents = async () => {
+      try {
+        const response = await axios.get("/api/students");
+        setStudentInfo(response.data);
+      } catch (error) {
+        console.error("학생 데이터를 가져오는 중 오류 발생:", error);
+      }
+    };
+
+    fetchStudents();
+  }, []);
 
   return (
     <div className="div">
@@ -84,7 +67,7 @@ const StudentInfoPage = () => {
             </button>
             <button
               className="student-info__action-delete"
-              onClick={switchDeleteMode}
+              onClick={toggleDeleteModal}
             >
               학생 삭제
             </button>
@@ -97,6 +80,15 @@ const StudentInfoPage = () => {
 
       {/* 등록 모달창 컴포넌트 */}
       {isCreateModalOpen && <StudentCreate onClose={toggleCreateModal} />}
+
+      {/* 삭제 모달창 컴포넌트 */}
+      {isDeleteModalOpen && (
+        <StudentDelete
+          students={studentInfo}
+          submit={toggleDeleteModal}
+          onClose={toggleDeleteModal}
+        />
+      )}
     </div>
   );
 };

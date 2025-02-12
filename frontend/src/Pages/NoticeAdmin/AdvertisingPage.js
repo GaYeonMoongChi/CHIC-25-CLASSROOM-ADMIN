@@ -16,8 +16,8 @@ const AdvertisingPage = () => {
   const toggleCreateModal = () => setCreateModalOpen((prev) => !prev);
 
   // 삭제 모드 상태 관리
-  const [isDeleteMode, setDeleteMode] = useState(false);
-  const switchDeleteMode = () => setDeleteMode((prev) => !prev);
+  const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
+  const toggleDeleteModal = () => setDeleteModalOpen((prev) => !prev);
 
   // 공지글 데이터 (임시)
   const AdvertisingList = [
@@ -51,17 +51,6 @@ const AdvertisingPage = () => {
       content: "ㅂㅈㄷㄱ쇼ㅕㅑㅐㅔㅁㄴㅇㄹ호ㅓㅏㅣㅋㅌㅊ퓨ㅜㅡ",
     },
   ];
-
-  // 삭제 모드
-  if (isDeleteMode) {
-    return (
-      <AdvertisingDelete
-        advertising={AdvertisingList}
-        submit={switchDeleteMode}
-        onClose={switchDeleteMode}
-      />
-    );
-  }
 
   return (
     <div className="div">
@@ -134,7 +123,7 @@ const AdvertisingPage = () => {
             </button>
             <button
               className="advertising-page__action-delete"
-              onClick={switchDeleteMode}
+              onClick={toggleDeleteModal}
             >
               글삭제
             </button>
@@ -147,6 +136,15 @@ const AdvertisingPage = () => {
 
       {/* 등록 모달창 컴포넌트 */}
       {isCreateModalOpen && <AdvertisingCreate onClose={toggleCreateModal} />}
+
+      {/* 삭제 모달창 컴포넌트 */}
+      {isDeleteModalOpen && (
+        <AdvertisingDelete
+          advertising={AdvertisingList}
+          submit={toggleDeleteModal}
+          onClose={toggleDeleteModal}
+        />
+      )}
     </div>
   );
 };
