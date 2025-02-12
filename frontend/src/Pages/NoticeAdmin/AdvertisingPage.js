@@ -19,6 +19,20 @@ const AdvertisingPage = () => {
   const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
   const toggleDeleteModal = () => setDeleteModalOpen((prev) => !prev);
 
+  // 글제목으로검색 상태 관리
+  const [searchTitle, setSearchTitle] = useState("");
+
+  // 작성일로검색 상태 관리
+  const [searchDate, setSearchDate] = useState("");
+
+  // 작성자명으로검색 상태 관리
+  const [searchWriter, setSearchWriter] = useState("");
+
+  // 검색창에 값 입력하면 상태 변환
+  const onChangeTitle = (e) => setSearchTitle(e.target.value);
+  const onChangeDate = (e) => setSearchDate(e.target.value);
+  const onChangeWriter = (e) => setSearchWriter(e.target.value);
+
   // 공지글 데이터 (임시)
   const AdvertisingList = [
     {
@@ -52,6 +66,14 @@ const AdvertisingPage = () => {
     },
   ];
 
+  // 검색 결과 화면에 반영
+  const filteredNotices = AdvertisingList.filter(
+    (item) =>
+      item.date.toLowerCase().includes(searchDate.toLowerCase()) &&
+      item.title.toLowerCase().includes(searchTitle.toLowerCase()) &&
+      item.writer.toLowerCase().includes(searchWriter.toLowerCase())
+  );
+
   return (
     <div className="div">
       <div className={`div ${isSidebarOpen ? "shifted" : ""}`}>
@@ -64,9 +86,11 @@ const AdvertisingPage = () => {
             <li className="advertising-page__search-item">
               <label className="advertising-page__search-label">작성일</label>
               <input
-                type="date"
+                type="text"
                 className="advertising-page__search-input"
-                placeholder="작성일 검색"
+                placeholder="[xxxx년 x월 x일] 형식으로 입력해주세요."
+                onChange={onChangeDate}
+                value={searchDate}
               />
             </li>
             <li className="advertising-page__search-item">
@@ -74,7 +98,9 @@ const AdvertisingPage = () => {
               <input
                 type="text"
                 className="advertising-page__search-input"
-                placeholder="제목 검색"
+                placeholder="글제목으로 검색하세요."
+                onChange={onChangeTitle}
+                value={searchTitle}
               />
             </li>
             <li className="advertising-page__search-item">
@@ -94,7 +120,9 @@ const AdvertisingPage = () => {
               <input
                 type="text"
                 className="advertising-page__search-input"
-                placeholder="작성자 검색"
+                placeholder="작성자명으로 검색하세요. (ex. 관리자)"
+                onChange={onChangeWriter}
+                value={onChangeWriter}
               />
             </li>
           </ul>
@@ -104,7 +132,7 @@ const AdvertisingPage = () => {
           <main className="advertising-page__main">
             <table className="advertising-page__table">
               <tbody>
-                {AdvertisingList.map((advertising, index) => (
+                {filteredNotices.map((advertising, index) => (
                   <AdvertisingRow key={index} advertising={advertising} />
                 ))}
               </tbody>

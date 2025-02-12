@@ -19,6 +19,20 @@ const NoticePage = () => {
   const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
   const toggleDeleteModal = () => setDeleteModalOpen((prev) => !prev);
 
+  // 글제목으로검색 상태 관리
+  const [searchTitle, setSearchTitle] = useState("");
+
+  // 작성일로검색 상태 관리
+  const [searchDate, setSearchDate] = useState("");
+
+  // 작성자명으로검색 상태 관리
+  const [searchWriter, setSearchWriter] = useState("");
+
+  // 검색창에 값 입력하면 상태 변환
+  const onChangeTitle = (e) => setSearchTitle(e.target.value);
+  const onChangeDate = (e) => setSearchDate(e.target.value);
+  const onChangeWriter = (e) => setSearchWriter(e.target.value);
+
   // 공지글 데이터 (임시)
   const NoticeList = [
     {
@@ -47,6 +61,14 @@ const NoticePage = () => {
     },
   ];
 
+  // 검색 결과 화면에 반영
+  const filteredNotices = NoticeList.filter(
+    (item) =>
+      item.date.toLowerCase().includes(searchDate.toLowerCase()) &&
+      item.title.toLowerCase().includes(searchTitle.toLowerCase()) &&
+      item.writer.toLowerCase().includes(searchWriter.toLowerCase())
+  );
+
   return (
     <div className="div">
       <div className={`div ${isSidebarOpen ? "shifted" : ""}`}>
@@ -59,21 +81,23 @@ const NoticePage = () => {
             <li className="notice-page__search-item">
               <label className="notice-page__search-label">작성일</label>
               <input
-                type="date"
-                id="search-date"
+                type="text"
                 name="search"
                 className="notice-page__search-input"
-                placeholder="작성일 검색"
+                placeholder="[xxxx년 x월 x일] 형식으로 입력해주세요."
+                onChange={onChangeDate}
+                value={searchDate}
               />
             </li>
             <li className="notice-page__search-item">
               <label className="notice-page__search-label">제목</label>
               <input
                 type="text"
-                id="search-title"
                 name="search"
                 className="notice-page__search-input"
                 placeholder="공지글 제목으로 검색하세요."
+                onChange={onChangeTitle}
+                value={searchTitle}
               />
             </li>
             <li className="notice-page__search-item">
@@ -85,10 +109,11 @@ const NoticePage = () => {
               </label>
               <input
                 type="text"
-                id="search-author"
                 name="search"
                 className="notice-page__search-input"
                 placeholder="작성자명으로 검색하세요. (ex. 관리자)"
+                onChange={onChangeWriter}
+                value={searchWriter}
               />
             </li>
           </ul>
@@ -98,7 +123,7 @@ const NoticePage = () => {
           <main className="notice-page__main">
             <table className="notice-page__table">
               <tbody>
-                {NoticeList.map((notice, index) => (
+                {filteredNotices.map((notice, index) => (
                   <NoticeRow key={index} notice={notice} />
                 ))}
               </tbody>
