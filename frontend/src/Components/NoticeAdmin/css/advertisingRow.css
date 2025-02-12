@@ -9,6 +9,7 @@
 
 .advertising-page__row_div:hover {
   background-color: #f5f5f5;
+  font-weight: bolder;
 }
 
 .advertising-page__row {

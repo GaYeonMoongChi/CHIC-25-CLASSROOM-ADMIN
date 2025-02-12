@@ -34,6 +34,7 @@
 
 .sidebar-close:hover {
   background: #dad8d8;
+  font-weight: bolder;
 }
 
 .sidebar-links {
@@ -49,6 +50,7 @@
 
 .sidebar-links__item:hover {
   background-color: #dad8d8;
+  font-weight: bolder;
 }
 
 .sidebar-links a {
@@ -59,6 +61,7 @@
 
 .sidebar-links a:hover {
   color: #797979;
+  font-weight: bolder;
 }
 
 .sidebar-toggle-btn {
