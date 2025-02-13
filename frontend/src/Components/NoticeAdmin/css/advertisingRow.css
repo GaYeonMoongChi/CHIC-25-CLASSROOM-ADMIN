@@ -1,16 +1,44 @@
-.advertising-page__table-cell {
-  padding: 0px 15px;
-  border: 1px solid #ccc;
+.advertising-page__row_div {
+  padding: 20px 30px;
+  display: flex;
+  align-items: center;
+  border: none;
+  background-color: #ffffff;
+  margin: 10px 10px 10px 10px;
 }
 
-.advertising-page__details-button {
-  padding: 30px 30px;
-  font-weight: bold;
-  border: 1px solid #ccc;
-  background-color: #dbdbdb;
+.advertising-page__row_div:hover {
+  background-color: #f5f5f5;
+  font-weight: bolder;
+}
+
+.advertising-page__row {
+  display: flex;
+  gap: 10px;
+}
+
+.advertising-page__table-cell {
+  padding: 5px 20px;
+  border-radius: 10px;
   cursor: pointer;
 }
 
-.advertising-page__detail-button:hover {
+.advertising-page__divider {
+  width: 2px;
   background-color: #ccc;
+  border-radius: 10px;
+}
+
+.advertising-page__details-button {
+  background-color: #3a7bec;
+  border: none;
+  color: white;
+  border-radius: 10px;
+  padding: 7px 10px;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+.advertising-page__detail-button:hover {
+  background-color: #254f97;
 }

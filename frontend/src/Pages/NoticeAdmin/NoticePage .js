@@ -1,10 +1,10 @@
 import "../css/Pages.css";
 import "./css/noticePage.css";
 import Sidebar from "../../Components/NoticeAdmin/NoticeSidebar";
-import NoticeRow from "../../Components/NoticeAdmin/NoticeRow";
+import NoticeRow from "../../Components/NoticeAdmin/Notice/NoticeRow";
 import React, { useState } from "react";
-import NoticeCreate from "../../Components/NoticeAdmin/NoticeCreate";
-import NoticeDelete from "../../Components/NoticeAdmin/NoticeDelete";
+import NoticeCreate from "../../Components/NoticeAdmin/Notice/NoticeCreate";
+import NoticeDelete from "../../Components/NoticeAdmin/Notice/NoticeDelete";
 
 const NoticePage = () => {
   // 사이드바 상태 관리
@@ -16,8 +16,22 @@ const NoticePage = () => {
   const toggleCreateModal = () => setCreateModalOpen((prev) => !prev);
 
   // 삭제 모드 상태 관리
-  const [isDeleteMode, setDeleteMode] = useState(false);
-  const switchDeleteMode = () => setDeleteMode((prev) => !prev);
+  const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
+  const toggleDeleteModal = () => setDeleteModalOpen((prev) => !prev);
+
+  // 글제목으로검색 상태 관리
+  const [searchTitle, setSearchTitle] = useState("");
+
+  // 작성일로검색 상태 관리
+  const [searchDate, setSearchDate] = useState("");
+
+  // 작성자명으로검색 상태 관리
+  const [searchWriter, setSearchWriter] = useState("");
+
+  // 검색창에 값 입력하면 상태 변환
+  const onChangeTitle = (e) => setSearchTitle(e.target.value);
+  const onChangeDate = (e) => setSearchDate(e.target.value);
+  const onChangeWriter = (e) => setSearchWriter(e.target.value);
 
   // 공지글 데이터 (임시)
   const NoticeList = [
@@ -47,66 +61,43 @@ const NoticePage = () => {
     },
   ];
 
-  // 삭제 모드
-  if (isDeleteMode) {
-    return (
-      <NoticeDelete
-        notice={NoticeList}
-        submit={switchDeleteMode}
-        onClose={switchDeleteMode}
-      />
-    );
-  }
+  // 검색 결과 화면에 반영
+  const filteredNotices = NoticeList.filter(
+    (item) =>
+      item.date.toLowerCase().includes(searchDate.toLowerCase()) &&
+      item.title.toLowerCase().includes(searchTitle.toLowerCase()) &&
+      item.writer.toLowerCase().includes(searchWriter.toLowerCase())
+  );
 
   return (
     <div className="div">
       <div className={`div ${isSidebarOpen ? "shifted" : ""}`}>
         <header className="notice-page__header">
           <h1 className="notice-page__title">공지사항</h1>
-          <button
-            className="notice-page__action-button"
-            onClick={toggleCreateModal}
-          >
-            등록
-          </button>
-          <button
-            className="notice-page__action-button"
-            onClick={switchDeleteMode}
-          >
-            삭제
-          </button>
         </header>
 
         <nav className="notice-page__search-nav">
           <ul className="notice-page__search-list">
             <li className="notice-page__search-item">
-              <label
-                htmlFor="search-date"
-                className="notice-page__search-label"
-              >
-                작성일
-              </label>
+              <label className="notice-page__search-label">작성일</label>
               <input
-                type="date"
-                id="search-date"
+                type="text"
                 name="search"
                 className="notice-page__search-input"
-                placeholder="작성일 검색"
+                placeholder="[xxxx년 x월 x일] 형식으로 입력해주세요."
+                onChange={onChangeDate}
+                value={searchDate}
               />
             </li>
             <li className="notice-page__search-item">
-              <label
-                htmlFor="search-title"
-                className="notice-page__search-label"
-              >
-                제목
-              </label>
+              <label className="notice-page__search-label">제목</label>
               <input
                 type="text"
-                id="search-title"
                 name="search"
                 className="notice-page__search-input"
-                placeholder="제목 검색"
+                placeholder="공지글 제목으로 검색하세요."
+                onChange={onChangeTitle}
+                value={searchTitle}
               />
             </li>
             <li className="notice-page__search-item">
@@ -118,24 +109,45 @@ const NoticePage = () => {
               </label>
               <input
                 type="text"
-                id="search-author"
                 name="search"
                 className="notice-page__search-input"
-                placeholder="작성자 검색"
+                placeholder="작성자명으로 검색하세요. (ex. 관리자)"
+                onChange={onChangeWriter}
+                value={searchWriter}
               />
             </li>
           </ul>
         </nav>
 
-        <main className="notice-page__main">
-          <table className="notice-page__table">
-            <tbody>
-              {NoticeList.map((notice, index) => (
-                <NoticeRow key={index} notice={notice} />
-              ))}
-            </tbody>
-          </table>
-        </main>
+        <div className="notice-page__main_div">
+          <main className="notice-page__main">
+            <table className="notice-page__table">
+              <tbody>
+                {filteredNotices.map((notice, index) => (
+                  <NoticeRow key={index} notice={notice} />
+                ))}
+              </tbody>
+            </table>
+          </main>
+        </div>
+
+        <footer className="notice-page__footer">
+          <button className="notice-page__action-button">+</button>
+          <div className="notice-page__action-container">
+            <button
+              className="notice-page__action-create"
+              onClick={toggleCreateModal}
+            >
+              글생성
+            </button>
+            <button
+              className="notice-page__action-delete"
+              onClick={toggleDeleteModal}
+            >
+              글삭제
+            </button>
+          </div>
+        </footer>
       </div>
 
       {/* 사이드바 컴포넌트 */}
@@ -143,6 +155,15 @@ const NoticePage = () => {
 
       {/* 등록 모달창 컴포넌트 */}
       {isCreateModalOpen && <NoticeCreate onClose={toggleCreateModal} />}
+
+      {/* 삭제 모달창 컴포넌트 */}
+      {isDeleteModalOpen && (
+        <NoticeDelete
+          notice={NoticeList}
+          submit={toggleDeleteModal}
+          onClose={toggleDeleteModal}
+        />
+      )}
     </div>
   );
 };

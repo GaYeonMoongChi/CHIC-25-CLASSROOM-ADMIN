@@ -1,35 +1,147 @@
 .advertising-page__header {
   display: flex;
   gap: 50px;
+  padding-bottom: 30px;
+  padding-top: 30px;
   margin-bottom: 30px;
-}
-
-.advertising-page__action-button {
-  padding: 5px 10px;
+  border-bottom: 3px solid #ccc;
+  width: 95%;
 }
 
 .advertising-page__search-list {
-  display: flex;
-  list-style: none;
-  gap: 50px;
-}
-
-.advertising-page__main {
   width: 95%;
-  margin-top: 50px;
-}
-
-.advertising-page__table {
-  border: 1px solid #ccc;
+  background-color: #f5f5f5;
+  padding: 15px 10px;
+  display: flex;
+  gap: 20px;
 }
 
 .advertising-page__search-item {
+  background-color: #ffffff;
+  border: none;
+  padding: 10px;
   display: flex;
   align-items: center;
   font-weight: bold;
+  width: 30%;
+}
+
+.advertising-page__search-label {
+  width: 20%;
+}
+
+.advertising-page__search-input {
+  padding: 10px;
+  width: 80%;
+  background-color: #ffffff;
+  border-radius: 10px;
+  border: none;
+}
+
+.advertising-page__main_div {
+  width: 95%;
+  border-top: 2px solid #ccc;
+  border-bottom: 2px solid #ccc;
+  margin-top: 30px;
+}
+
+.advertising-page__main {
+  width: 100%;
 }
 
 .advertising-page__search-item > input,
 .advertising-page__search-item > select {
   margin-left: 10px;
+}
+
+.advertising-page__status-select {
+  padding: 10px;
+  width: 60%;
+  background-color: #ffffff;
+  border-radius: 10px;
+  border: none;
+}
+
+.advertising-page__table {
+  width: 100%;
+}
+
+.advertising-page__footer {
+  position: fixed;
+  bottom: 60px;
+  right: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  z-index: 1000;
+}
+
+.advertising-page__action-button {
+  border-radius: 100px;
+  background: #10069f;
+  border: none;
+  font-size: 40px;
+  color: #ffffff;
+  cursor: pointer;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.advertising-page__action-button:hover {
+  background-color: rgb(18, 39, 75);
+}
+
+/* 글생성 / 글삭제 버튼 컨테이너 */
+.advertising-page__action-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  position: absolute;
+  bottom: 100%;
+  right: 50%;
+  transform: translateX(50%) translateY(10px);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+  padding: 10px;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin-bottom: 20px;
+}
+
+/* 호버 시 버튼 컨테이너 표시 */
+.advertising-page__footer:hover .advertising-page__action-container,
+.advertising-page__action-button:hover ~ .advertising-page__action-container,
+.advertising-page__action-container:hover {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(50%) translateY(0);
+}
+
+/* 글 생성 & 삭제 버튼 스타일 */
+.advertising-page__action-create,
+.advertising-page__action-delete {
+  background-color: #ffffff;
+  color: black;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 16px;
+  cursor: pointer;
+  font-size: 15px;
+  text-align: center;
+  width: 100px;
+  transition: background-color 0.3s ease;
+}
+
+.advertising-page__action-create:hover,
+.advertising-page__action-delete:hover {
+  background-color: #bbb;
+  font-weight: bolder;
 }

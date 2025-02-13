@@ -1,5 +1,5 @@
 import React from "react";
-import "./css/noticeAdvertisingModal.css";
+import "../css/noticeAdvertisingModal.css";
 
 const NoticeCreate = ({ onClose }) => {
   return (
@@ -9,17 +9,27 @@ const NoticeCreate = ({ onClose }) => {
           <button className="modal-close" onClick={onClose}>
             ✖
           </button>
-          <h1 className="notice-create__h1">공지글 등록</h1>
-          <strong className="notice-create__label">▪️ 제목: </strong>
-          <input
-            type="text"
-            className="notice-create__title"
-            placeholder="공지 제목을 입력하세요."
-          ></input>
+          <h1 className="notice-create__title">공지글 생성</h1>
         </header>
 
         <main className="notice-create__main">
           <ul className="notice-create__list">
+            <li className="notice-create__item">
+              <strong className="notice-create__label">▪️ 작성자: </strong>
+              <input
+                type="text"
+                className="notice-create__input"
+                placeholder="작성자를 입력하세요. (ex. 관리자, 공지관리자)"
+              />
+            </li>
+            <li className="notice-create__item">
+              <strong className="notice-create__label">▪️ 제목: </strong>
+              <input
+                type="text"
+                className="notice-create__input"
+                placeholder="공지 제목을 입력하세요."
+              ></input>
+            </li>
             <li className="notice-create__item">
               <strong className="notice-create__label">▪️ 내용: </strong>
               <textarea
@@ -40,9 +50,6 @@ const NoticeCreate = ({ onClose }) => {
         </main>
 
         <footer className="notice-create__footer">
-          <button className="notice-create__cancel" onClick={onClose}>
-            취소
-          </button>
           <button className="notice-create__submit" onClick={onClose}>
             완료
           </button>

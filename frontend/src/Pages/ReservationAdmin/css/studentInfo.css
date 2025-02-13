@@ -1,4 +1,4 @@
-.classroom-info-update__header {
+.student-info__header {
   display: flex;
   gap: 50px;
   padding-bottom: 30px;
@@ -8,22 +8,22 @@
   width: 95%;
 }
 
-.classroom-info-update__main_div {
+.student-info__main_div {
   width: 95%;
   border-top: 2px solid #ccc;
   border-bottom: 2px solid #ccc;
   margin-top: 30px;
 }
 
-.classroom-info-update__main {
+.student-info__main {
   width: 100%;
 }
 
-.classroom-info-update__table {
+.student-info__table {
   width: 100%;
 }
 
-.classroom-info-update__footer {
+.student-info__footer {
   position: fixed;
   bottom: 60px;
   right: 80px;
@@ -34,7 +34,7 @@
   z-index: 1000;
 }
 
-.classroom-info-update__action-button {
+.student-info__action-button {
   border-radius: 100px;
   background: #10069f;
   border: none;
@@ -49,11 +49,11 @@
   position: relative;
 }
 
-.classroom-info-update__action-button:hover {
+.student-info__action-button:hover {
   background-color: rgb(18, 39, 75);
 }
 
-.classroom-info-update__action-container {
+.student-info__action-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -72,17 +72,16 @@
   margin-bottom: 20px;
 }
 
-.classroom-info-update__footer:hover .classroom-info-update__action-container,
-.classroom-info-update__action-button:hover
-  ~ .classroom-info-update__action-container,
-.classroom-info-update__action-container:hover {
+.student-info__footer:hover .student-info__action-container,
+.student-info__action-button:hover ~ .student-info__action-container,
+.student-info__action-container:hover {
   opacity: 1;
   visibility: visible;
   transform: translateX(50%) translateY(0);
 }
 
-.classroom-info-update__action-create,
-.classroom-info-update__action-delete {
+.student-info__action-create,
+.student-info__action-delete {
   background-color: #ffffff;
   color: black;
   border: none;
@@ -95,8 +94,8 @@
   transition: background-color 0.3s ease;
 }
 
-.classroom-info-update__action-create:hover,
-.classroom-info-update__action-delete:hover {
+.student-info__action-create:hover,
+.student-info__action-delete:hover {
   background-color: #bbb;
   font-weight: bolder;
 }
