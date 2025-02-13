@@ -23,16 +23,12 @@ const StudentDelete = ({ students, onClose }) => {
     }
 
     try {
-      const response = await axios.post("/api/students/delete", {
-        studentIds: selectedStudents,
+      const response = await axios.delete("/api/students", {
+        data: { studentIds: selectedStudents },
       });
 
-      if (response.data.success) {
-        alert("선택한 학생이 삭제되었습니다.");
-        onClose(); // 학생 삭제 완료시, 모달 닫기
-      } else {
-        alert(response.data.message || "학생 삭제에 실패했습니다.");
-      }
+      alert(response.data.message || "학생 삭제가 완료되었습니다.");
+      onClose();
     } catch (error) {
       console.error("학생 삭제 오류:", error);
       alert("학생 삭제 중 오류가 발생했습니다.");

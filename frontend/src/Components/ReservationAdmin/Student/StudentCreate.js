@@ -17,18 +17,30 @@ const StudentCreate = ({ onClose }) => {
 
   // 학생 등록 요청
   const handleSubmit = async () => {
+    // 모든 항목이 채워지지 않았을 경우 예외처리
     if (!studentData.name || !studentData.id || !studentData.phone) {
       alert("모든 항목을 입력해주세요.");
+      return;
+    }
+
+    // 학번이 잘못된 형식으로 입력되었을 때의 예외처리
+    if (!/^\d{10}$/.test(studentData.id)) {
+      alert("ID는 10자리 숫자로 입력해야 합니다.");
+      return;
+    }
+
+    // 전화번호 형식이 010-0000-0000 형식이 아닐 경우 예외처리
+    if (!/^010-\d{4}-\d{4}$/.test(studentData.phone)) {
+      alert("전화번호는 010-0000-0000 형식이어야 합니다.");
       return;
     }
 
     try {
       const response = await axios.post("/api/students", studentData);
       alert("학생 등록이 완료되었습니다.");
-      // console.log("학생 등록 성공:", response.data);
 
-      // 학생 등록 성공시, 모달 닫기
-      onClose();
+      console.log("학생 등록 성공:", response.data);
+      onClose(); // 학생 등록 성공시, 모달 닫기
     } catch (error) {
       console.error("학생 등록 오류:", error);
       alert("학생 등록에 실패했습니다.");
@@ -75,7 +87,7 @@ const StudentCreate = ({ onClose }) => {
                 type="text"
                 name="phone"
                 className="students-create__input"
-                placeholder="학생의 전화번호를 입력하세요."
+                placeholder="학생의 전화번호를 입력하세요. (010-xxxx-xxxx 형식으로 입력)"
                 value={studentData.phone}
                 onChange={handleChange}
               />
