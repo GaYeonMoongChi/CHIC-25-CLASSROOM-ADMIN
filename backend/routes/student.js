@@ -101,7 +101,7 @@ router.delete('/:id', async (req, res) => {
 
     // 학생 정보 삭제
     await Student.deleteOne({ id });
-    console.log("✅ 학생 정보 삭제 완료:", student);
+    console.log("학생 정보 삭제 완료:", student);
 
     res.json({ message: "학생 정보가 삭제되었습니다.", student });
   } catch (err) {
@@ -112,7 +112,7 @@ router.delete('/:id', async (req, res) => {
 
 // 학생 정보 삭제 (DELETE) 
 router.delete('/:id', async (req, res) => {
-    console.log("🗑️ /api/students/:id DELETE 요청 받음!", req.params.id);
+    console.log("/api/students/:id DELETE 요청 받음!", req.params.id);
   
     const { id } = req.params;
   
