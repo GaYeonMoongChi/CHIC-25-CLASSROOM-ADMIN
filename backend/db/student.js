@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { userDB } = require('./mongoConnection'); // userDB 연결 
 
 const studentSchema = new mongoose.Schema({
   id: {
@@ -19,4 +20,6 @@ const studentSchema = new mongoose.Schema({
   }
 }, { versionKey: false });
 
-module.exports = mongoose.model('Student', studentSchema, 'ic'); // 'ic' 컬렉션 사용
+const Student = userDB.model('Student', studentSchema, 'ic'); // 🔹 user DB 사용
+module.exports = Student;
+
