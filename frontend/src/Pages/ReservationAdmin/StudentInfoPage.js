@@ -8,6 +8,8 @@ import StudentCreate from "../../Components/ReservationAdmin/Student/StudentCrea
 import StudentDelete from "../../Components/ReservationAdmin/Student/StudentDelete";
 
 const StudentInfoPage = () => {
+  // 백앤드 주소
+  const BACKEND_URL = "http://localhost:8000";
   // 사이드바 상태 관리
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const toggleSidebar = () => setIsSidebarOpen((prev) => !prev);
@@ -27,7 +29,7 @@ const StudentInfoPage = () => {
   useEffect(() => {
     const fetchStudents = async () => {
       try {
-        const response = await axios.get("/api/students");
+        const response = await axios.get(`${BACKEND_URL}/api/students`);
         setStudentInfo(response.data);
       } catch (error) {
         console.error("학생 데이터를 가져오는 중 오류 발생:", error);
