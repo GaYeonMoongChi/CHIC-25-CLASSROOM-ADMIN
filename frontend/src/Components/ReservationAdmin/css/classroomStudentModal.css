@@ -9,7 +9,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: 2000;
 }
 
 .modal-content {
@@ -21,7 +21,6 @@
   position: relative;
   max-height: 80vh;
   overflow-y: auto;
-  z-index: 2000;
 }
 
 .modal-close {
@@ -68,14 +67,14 @@
   padding: 10px 20px;
   border-radius: 10px;
   border: none;
-  background-color: #3a7bec;
+  background-color: #10069f;
   color: white;
   margin-right: 20px;
   font-weight: bold;
 }
 
 .classroom-details__update:hover {
-  background-color: #254f97;
+  background-color: rgb(18, 39, 75);
 }
 
 /* 강의실 등록 모달 */
@@ -154,6 +153,9 @@
 }
 
 .classroom-delete__footer {
+  position: sticky;
+  bottom: 0;
+  right: 0;
   margin-top: 30px;
   display: flex;
   justify-content: flex-end;
@@ -165,7 +167,7 @@
   border: none;
   background-color: #10069f;
   color: white;
-  margin-right: 20px;
+  margin-right: 0;
   font-weight: bold;
 }
 
@@ -216,14 +218,14 @@
   padding: 10px 20px;
   border-radius: 10px;
   border: none;
-  background-color: #3a7bec;
+  background-color: #10069f;
   color: white;
   margin-right: 20px;
   font-weight: bold;
 }
 
 .classroom-update__submit:hover {
-  background-color: #254f97;
+  background-color: rgb(18, 39, 75);
 }
 
 /* 학생 상세보기 모달 */
@@ -260,14 +262,14 @@
   padding: 10px 20px;
   border-radius: 10px;
   border: none;
-  background-color: #3a7bec;
+  background-color: #10069f;
   color: white;
   margin-right: 20px;
   font-weight: bold;
 }
 
 .students-details__update:hover {
-  background-color: #254f97;
+  background-color: rgb(18, 39, 75);
 }
 
 /* 학생 등록 모달 */
@@ -346,6 +348,9 @@
 }
 
 .students-delete__footer {
+  position: sticky;
+  bottom: 0;
+  right: 0;
   margin-top: 30px;
   display: flex;
   justify-content: flex-end;
@@ -357,7 +362,7 @@
   border: none;
   background-color: #10069f;
   color: white;
-  margin-right: 20px;
+  margin-right: 0;
   font-weight: bold;
 }
 
@@ -408,12 +413,12 @@
   padding: 10px 20px;
   border-radius: 10px;
   border: none;
-  background-color: #3a7bec;
+  background-color: #10069f;
   color: white;
   margin-right: 20px;
   font-weight: bold;
 }
 
 .students-update__submit:hover {
-  background-color: #254f97;
+  background-color: rgb(18, 39, 75);
 }
