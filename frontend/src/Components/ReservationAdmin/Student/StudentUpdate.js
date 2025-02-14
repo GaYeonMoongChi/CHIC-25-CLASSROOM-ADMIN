@@ -13,15 +13,11 @@ const StudentUpdate = ({ students, onClose }) => {
   // 학생 정보 수정 요청
   const handleUpdate = async () => {
     try {
-      const response = await axios.put("/api/students/modify", {
-        id,
-        name,
-        phone,
-      });
+      const response = await axios.put(`/api/students/${id}`, { name, phone });
 
-      if (response.data.success) {
+      if (response.status === 200) {
         alert("학생 정보가 수정되었습니다.");
-        onClose(); // 학생 수정 완료시, 모달 닫기
+        onClose(); // 학생 수정 완료시, 모달창 닫기
       } else {
         alert(response.data.message || "학생 정보 수정에 실패했습니다.");
       }
@@ -50,6 +46,7 @@ const StudentUpdate = ({ students, onClose }) => {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 className="students-update__input"
+                placeholder="학생의 성명을 입력하세요."
               />
             </li>
             <li className="students-update__item">
@@ -59,6 +56,7 @@ const StudentUpdate = ({ students, onClose }) => {
                 value={id}
                 onChange={(e) => setId(e.target.value)}
                 className="students-update__input"
+                placeholder="학생의 학번을 입력하세요."
               />
             </li>
             <li className="students-update__item">
@@ -67,6 +65,7 @@ const StudentUpdate = ({ students, onClose }) => {
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 className="students-update__input"
+                placeholder="학생의 전화번호를 입력하세요. (010-xxxx-xxxx 형식으로 입력)"
               />
             </li>
           </ul>
