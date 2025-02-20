@@ -11,8 +11,6 @@ router.get('/', async (req, res) => {
       res.status(500).json({ message: '서버 오류', error: err.message });
     }
   });
-  
-  module.exports = router;
 
 
 // 학생 정보 추가하기 (POST)
@@ -86,50 +84,40 @@ router.put('/:id', async (req, res) => {
   });
 
 
-  // 학생 정보 삭제 (DELETE) -> 요청 URL : http://localhost:8000/api/students/2020202020
-router.delete('/:id', async (req, res) => {
-  console.log("🗑️ /api/students/:id DELETE 요청 받음!", req.params.id);
-
-  const { id } = req.params;
-
+  // 여러 학생 정보 삭제 (DELETE) -> 요청 URL : http://localhost:8000/api/students
+  // 배열로 삭제
+router.delete('/', async (req, res) => {
   try {
-    // 1️⃣ 해당 ID의 학생이 존재하는지 확인
-    const student = await Student.findOne({ id });
-    if (!student) {
-      return res.status(404).json({ message: "삭제할 학생 정보를 찾을 수 없습니다." });
+    console.log("/api/students DELETE 요청 받음!", req.body);
+
+    const { ids } = req.body;
+
+    // 요청 검증: 삭제할 ID가 있는지 확인
+    if (!ids || !Array.isArray(ids) || ids.length === 0) {
+      return res.status(400).json({ error: "삭제할 학생 ID 목록이 필요합니다." });
+    }
+
+    // 해당 ID의 학생이 존재하는지 확인
+    const existingStudents = await Student.find({ id: { $in: ids } });
+
+    if (existingStudents.length === 0) {
+      return res.status(404).json({ error: "삭제할 학생 정보를 찾을 수 없습니다." });
     }
 
     // 학생 정보 삭제
-    await Student.deleteOne({ id });
-    console.log("학생 정보 삭제 완료:", student);
+    await Student.deleteMany({ id: { $in: ids } });
 
-    res.json({ message: "학생 정보가 삭제되었습니다.", student });
+    console.log("학생 정보 삭제 완료:", ids);
+
+    res.json({
+      message: "학생 정보가 삭제되었습니다.",
+      deleted_students: ids
+    });
   } catch (err) {
     console.error("학생 정보 삭제 실패:", err);
-    res.status(500).json({ message: '서버 오류', error: err.message });
+    res.status(500).json({ error: '서버 오류' });
   }
 });
 
-// 학생 정보 삭제 (DELETE) 
-router.delete('/:id', async (req, res) => {
-    console.log("/api/students/:id DELETE 요청 받음!", req.params.id);
-  
-    const { id } = req.params;
-  
-    try {
-      // 해당 ID의 학생이 존재하는지 확인
-      const student = await Student.findOne({ id });
-      if (!student) {
-        return res.status(404).json({ message: "삭제할 학생 정보를 찾을 수 없습니다." });
-      }
-  
-      // 학생 정보 삭제
-      await Student.deleteOne({ id });
-      console.log("학생 정보 삭제 완료:", student);
-  
-      res.json({ message: "학생 정보가 삭제되었습니다.", student });
-    } catch (err) {
-      console.error("학생 정보 삭제 실패:", err);
-      res.status(500).json({ message: '서버 오류', error: err.message });
-    }
-  });
+
+module.exports = router;

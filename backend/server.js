@@ -1,7 +1,7 @@
 const express = require("express"); // Express 모듈 불러오기
 const mongoose = require("mongoose"); // Mongoose 모듈 불러오기
 const dotenv = require("dotenv"); // dotenv 모듈 불러오기
-const { userDB, classDB } = require("./db/mongoConnection"); // ✅ 연결 가져오기
+const { userDB, classDB, noticeDB } = require("./db/mongoConnection"); // ✅ 연결 가져오기
 const cors = require("cors"); // CORS 모듈 불러오기
 
 dotenv.config(); // .env 파일의 내용을 로드
@@ -32,6 +32,9 @@ app.use("/api/classrooms", classroomRoutes);
 
 const classRoutes = require("./routes/class");
 app.use("/api/class", classRoutes);
+
+const boardRoutes = require("./routes/board");
+app.use("/api/board", boardRoutes);
 
 // 서버 실행
 app.listen(port, () => {

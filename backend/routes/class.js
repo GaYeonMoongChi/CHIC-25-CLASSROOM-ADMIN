@@ -5,7 +5,7 @@ const Class = require('../db/class'); // Class 모델 불러오기
 // 1. 강의 정보 추가 (POST)
 router.post('/', async (req, res) => {
   try {
-    console.log('📢 /api/classes POST 요청 받음!', req.body);
+    console.log('/api/classes POST 요청 받음!', req.body);
 
     const { class_idx, classroom_idx, class_name, prof_name, class_credit, class_daytime } = req.body;
 
@@ -34,7 +34,7 @@ router.post('/', async (req, res) => {
 // 2. 강의 정보 수정 (PUT)
 router.put('/:class_idx', async (req, res) => {
   try {
-    console.log(`📢 /api/classes/${req.params.class_idx} PUT 요청 받음!`, req.body);
+    console.log(`/api/classes/${req.params.class_idx} PUT 요청 받음`, req.body);
 
     const { class_idx } = req.params;
     const { classroom_idx, class_name, prof_name, class_credit, class_daytime } = req.body;
@@ -64,7 +64,7 @@ router.put('/:class_idx', async (req, res) => {
 // 3. 강의 정보 삭제 (DELETE)
 router.delete('/:class_idx', async (req, res) => {
   try {
-    console.log(`📢 /api/classes/${req.params.class_idx} DELETE 요청 받음!`);
+    console.log(`/api/classes/${req.params.class_idx} DELETE 요청 받음`);
 
     const { class_idx } = req.params;
 
