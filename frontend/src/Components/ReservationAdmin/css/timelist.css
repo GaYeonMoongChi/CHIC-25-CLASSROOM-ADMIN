@@ -2,19 +2,20 @@
   display: flex;
   justify-content: center;
   align-items: start;
-  width: 100%;
+  width: 95%;
 }
 
 .timelist-container {
   display: grid;
   grid-template-columns: 80px repeat(4, 1fr); /* 시간 칸 + 강의실 4개 */
   width: 70%;
+  justify-content: center;
 }
 
 .time-column {
   text-align: right;
   font-size: 14px;
-  padding-right: 10px;
+  padding-right: 30px;
   color: #666;
 }
 

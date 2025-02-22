@@ -10,6 +10,7 @@ const TimeTableItem = ({ TIMELIST, CLASSROOMS, reservations }) => {
   // CLASSROOMS 배열에서 강의실의 인덱스 찾기
   const getRoomIndex = (room) =>
     CLASSROOMS.findIndex((r) => r?.trim() === room?.trim());
+  const slotHeight = 40; // 한 칸의 높이
 
   return (
     <div className="time-table-overlay">
@@ -35,10 +36,10 @@ const TimeTableItem = ({ TIMELIST, CLASSROOMS, reservations }) => {
           return null;
         }
 
-        // 위치 및 크기 계산
-        const top = (startIndex / TIMELIST.length) * 100 + "%";
-        const height = ((endIndex - startIndex) / TIMELIST.length) * 100 + "%";
-        const left = (roomIndex / CLASSROOMS.length) * 100 + "%";
+        // 위치 값 계산
+        const top = startIndex * slotHeight;
+        const height = (endIndex - startIndex) * slotHeight;
+        const left = `calc(${roomIndex} * (100% / ${CLASSROOMS.length}))`;
         const width = `calc(100% / ${CLASSROOMS.length})`;
 
         return (
@@ -47,7 +48,12 @@ const TimeTableItem = ({ TIMELIST, CLASSROOMS, reservations }) => {
             className="reservation-item"
             style={{ top, height, left, width }}
           >
-            <ReserveItem name={name} purpose={purpose} />
+            <ReserveItem
+              name={name}
+              purpose={purpose}
+              start_time={start_time}
+              end_time={end_time}
+            />
           </div>
         );
       })}

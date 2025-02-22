@@ -69,18 +69,26 @@ const RoomReservationStatusPage = () => {
     );
 
   return (
-    <div>
-      {/* 날짜 선택 UI */}
-      <div className="date-picker-container">
-        <input
-          type="date"
-          value={selectedDate.toISOString().split("T")[0]}
-          onChange={(e) => setSelectedDate(new Date(e.target.value))}
-        />
-      </div>
+    <div className="div">
+      <div className={`div ${isSidebarOpen ? "shifted" : ""}`}>
+        <header className="room-reservation-status__header">
+          <h1 className="room-reservation-status__title">
+            강의실 사용 현황 및 예약 현황
+          </h1>
+        </header>
 
-      {/* 타임라인 UI */}
-      <Timelist reservations={filteredReservations} />
+        {/* 날짜 선택 UI */}
+        <div className="date-picker-container">
+          <input
+            type="date"
+            value={selectedDate.toISOString().split("T")[0]}
+            onChange={(e) => setSelectedDate(new Date(e.target.value))}
+          />
+        </div>
+
+        {/* 타임라인 UI */}
+        <Timelist reservations={filteredReservations} />
+      </div>
 
       {/* 사이드바 UI */}
       <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />

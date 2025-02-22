@@ -1,24 +1,24 @@
 .room-reservation-status__header {
+  display: flex;
+  padding-bottom: 30px;
+  padding-top: 30px;
   margin-bottom: 30px;
+  border-bottom: 3px solid #ccc;
+  width: 95%;
 }
 
-.room-reservation-status__column,
-.room-reservation-status__time-slot,
-.room-reservation-status__cell {
-  padding: 10px 60px;
-  border: 1px solid #ccc;
-}
-
+/* 달력 */
 .date-picker-container {
   display: flex;
-  justify-content: center; /* 가운데 정렬 */
+  justify-content: center;
   align-items: center;
   margin: 20px 0;
+  width: 95%;
 }
 
 .date-picker-container input {
-  width: 300px; /* 너비 조정 */
-  height: 40px; /* 높이 조정 */
+  width: 300px;
+  height: 40px;
   font-size: 20px;
   padding: 8px;
   border: 1px solid #ccc;
@@ -28,5 +28,5 @@
 }
 
 .date-picker-container input:hover {
-  border-color: rgb(18, 39, 75); /* 마우스 올리면 테두리 색 변경 */
+  border-color: rgb(18, 39, 75);
 }
