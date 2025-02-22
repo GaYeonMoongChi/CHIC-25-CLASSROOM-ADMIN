@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import "../css/Pages.css";
 import "./css/classroomInfoUpdatePage.css";
 import Sidebar from "../../Components/ReservationAdmin/ReservationSidebar";
@@ -7,6 +8,9 @@ import ClassroomCreate from "../../Components/ReservationAdmin/Classroom/Classro
 import ClassroomDelete from "../../Components/ReservationAdmin/Classroom/ClassroomDelete";
 
 const ClassroomInfoPage = () => {
+  // 백앤드 주소
+  const BACKEND_URL = "http://localhost:8000";
+
   // 사이드바 상태 관리
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const toggleSidebar = () => setIsSidebarOpen((prev) => !prev);
@@ -19,30 +23,22 @@ const ClassroomInfoPage = () => {
   const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
   const toggleDeleteModal = () => setDeleteModalOpen((prev) => !prev);
 
-  // 강의실 정보 데이터 (임시)
-  const classroomInfo = [
-    {
-      number: "103 호",
-      name: "정보융합학부실습실1",
-      explanation: "정보융합학부 실습실입니다. 일반 PC가 구비되어 있습니다.",
-    },
-    {
-      number: "104 호",
-      name: "정보융합학부실습실2",
-      explanation: "iMAC 프로 PC 40대가 구비된 실습실 입니다.",
-    },
-    {
-      number: "205 호",
-      name: "강의실",
-      explanation:
-        "SW융합대학의 강의가 이루어지는 곳입니다. 녹화강의복습시스템이 구비되어 있습니다.",
-    },
-    {
-      number: "705 호",
-      name: "정보융합학부 대학원 강의실",
-      explanation: "정보융합학부 대학원 강의실 입니다.",
-    },
-  ];
+  // 강의실 정보 상태 관리
+  const [classroomInfo, setClassroomInfo] = useState([]);
+
+  // 강의실 데이터 요청
+  useEffect(() => {
+    const fetchStudents = async () => {
+      try {
+        const response = await axios.get(`${BACKEND_URL}/api/classrooms`);
+        setClassroomInfo(response.data);
+      } catch (error) {
+        console.error("강의실 데이터를 가져오는 중 오류 발생:", error);
+      }
+    };
+
+    fetchStudents();
+  }, []);
 
   return (
     <div className="div">
