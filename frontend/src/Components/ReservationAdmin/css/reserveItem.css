@@ -2,7 +2,7 @@
 .reserve-item {
   width: 100%;
   text-align: center;
-  font-size: 10px;
+  font-size: 0.7rem;
 }
 
 /* 예약자 이름 스타일 */
@@ -19,6 +19,6 @@
 
 /* 예약 목적 스타일 */
 .reserve-purpose {
-  font-size: 10px;
+  font-size: 0.6rem;
   color: #555;
 }

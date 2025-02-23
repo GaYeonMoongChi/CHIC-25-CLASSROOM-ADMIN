@@ -6,7 +6,7 @@
   margin-left: 180px;
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1500px) {
   /* PC 화면 */
   .time-table-overlay {
     width: 90%;
@@ -17,12 +17,10 @@
   position: absolute;
   padding: 0;
   margin: 0;
-  background: rgba(0, 123, 255, 0.2);
-  border-left: 5px solid #007bff;
   color: #333;
   text-align: center;
-  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 5px;
 }
