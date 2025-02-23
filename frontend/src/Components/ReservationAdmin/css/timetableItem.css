@@ -2,8 +2,15 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 90%;
+  width: 85%;
   margin-left: 180px;
+}
+
+@media (min-width: 1200px) {
+  /* PC 화면 */
+  .time-table-overlay {
+    width: 90%;
+  }
 }
 
 .reservation-item {

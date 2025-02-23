@@ -60,7 +60,6 @@ const Timelist = ({ reservations }) => {
             ))}
           </React.Fragment>
         ))}
-
         <TimeTableItem
           TIMELIST={TIMELIST}
           CLASSROOMS={CLASSROOMS}
