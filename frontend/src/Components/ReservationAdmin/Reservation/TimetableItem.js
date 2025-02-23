@@ -10,7 +10,9 @@ const TimeTableItem = ({ TIMELIST, CLASSROOMS, reservations }) => {
   // CLASSROOMS 배열에서 강의실의 인덱스 찾기
   const getRoomIndex = (room) =>
     CLASSROOMS.findIndex((r) => r?.trim() === room?.trim());
-  const slotHeight = 40; // 한 칸의 높이
+
+  // 한 칸의 높이
+  const slotHeight = 40;
 
   return (
     <div className="time-table-overlay">
@@ -37,10 +39,10 @@ const TimeTableItem = ({ TIMELIST, CLASSROOMS, reservations }) => {
         }
 
         // 위치 값 계산
-        const top = startIndex * slotHeight;
+        const top = startIndex * slotHeight + 288;
         const height = (endIndex - startIndex) * slotHeight;
-        const left = `calc(${roomIndex} * (100% / ${CLASSROOMS.length}))`;
-        const width = `calc(100% / ${CLASSROOMS.length})`;
+        const width = `calc(95% / ${CLASSROOMS.length} )`;
+        const left = `calc(${roomIndex} * (95% / ${CLASSROOMS.length}))`;
 
         return (
           <div

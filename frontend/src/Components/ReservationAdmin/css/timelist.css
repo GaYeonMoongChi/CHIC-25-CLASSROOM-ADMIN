@@ -8,7 +8,7 @@
 .timelist-container {
   display: grid;
   grid-template-columns: 80px repeat(4, 1fr); /* 시간 칸 + 강의실 4개 */
-  width: 70%;
+  width: 100%;
   justify-content: center;
 }
 

@@ -31,6 +31,24 @@ const reservations = [
     ],
   },
   {
+    roomId: "103호",
+    date: "2025-02-04",
+    reservation: [
+      {
+        name: "김가연",
+        start_time: "10:00",
+        end_time: "10:30",
+        purpose: "정융 개강총회",
+      },
+      {
+        name: "이민수",
+        start_time: "18:00",
+        end_time: "19:30",
+        purpose: "스터디 모임",
+      },
+    ],
+  },
+  {
     roomId: "104호",
     date: "2025-02-04",
     reservation: [
@@ -44,6 +62,42 @@ const reservations = [
         name: "이민수",
         start_time: "11:00",
         end_time: "11:30",
+        purpose: "스터디 모임",
+      },
+    ],
+  },
+  {
+    roomId: "205호",
+    date: "2025-02-04",
+    reservation: [
+      {
+        name: "김가연",
+        start_time: "15:00",
+        end_time: "17:00",
+        purpose: "정융 개강총회",
+      },
+      {
+        name: "이민수",
+        start_time: "12:00",
+        end_time: "13:30",
+        purpose: "스터디 모임",
+      },
+    ],
+  },
+  {
+    roomId: "715호",
+    date: "2025-02-04",
+    reservation: [
+      {
+        name: "김가연",
+        start_time: "13:00",
+        end_time: "15:30",
+        purpose: "정융 개강총회",
+      },
+      {
+        name: "이민수",
+        start_time: "11:00",
+        end_time: "12:30",
         purpose: "스터디 모임",
       },
     ],

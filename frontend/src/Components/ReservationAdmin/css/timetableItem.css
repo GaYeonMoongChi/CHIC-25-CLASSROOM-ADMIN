@@ -2,19 +2,19 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 90%;
+  margin-left: 180px;
 }
 
 .reservation-item {
   position: absolute;
   padding: 0;
   margin: 0;
-  margin-top: 8px;
   background: rgba(0, 123, 255, 0.2);
-  border-left: 3px solid #007bff;
+  border-left: 5px solid #007bff;
   color: #333;
   text-align: center;
-  border-radius: 4px;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
