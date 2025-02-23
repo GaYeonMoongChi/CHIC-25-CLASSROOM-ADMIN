@@ -1,10 +1,32 @@
 .room-reservation-status__header {
+  display: flex;
+  padding-bottom: 30px;
+  padding-top: 30px;
   margin-bottom: 30px;
+  border-bottom: 3px solid #ccc;
+  width: 95%;
 }
 
-.room-reservation-status__column,
-.room-reservation-status__time-slot,
-.room-reservation-status__cell {
-  padding: 10px 60px;
+/* 달력 */
+.date-picker-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+  width: 95%;
+}
+
+.date-picker-container input {
+  width: 300px;
+  height: 40px;
+  font-size: 20px;
+  padding: 8px;
   border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.date-picker-container input:hover {
+  border-color: rgb(18, 39, 75);
 }

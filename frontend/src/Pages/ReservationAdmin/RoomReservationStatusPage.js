@@ -1,13 +1,126 @@
 import React, { useState } from "react";
+import Timelist from "../../Components/ReservationAdmin/Reservation/Timelist";
 import "../css/Pages.css";
 import "./css/roomReservationStatus.css";
-
 import Sidebar from "../../Components/ReservationAdmin/ReservationSidebar";
 
-const RoomReservationStatusPage = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+// 강의실 예약 데이터
+const reservations = [
+  {
+    roomId: "715호",
+    date: "2025-02-03",
+    reservation: [
+      {
+        name: "이민수",
+        start_time: "13:00",
+        end_time: "15:00",
+        purpose: "스터디 모임",
+      },
+    ],
+  },
+  {
+    roomId: "103호",
+    date: "2024-02-03",
+    reservation: [
+      {
+        name: "이민수",
+        start_time: "13:00",
+        end_time: "15:00",
+        purpose: "스터디 모임",
+      },
+    ],
+  },
+  {
+    roomId: "103호",
+    date: "2025-02-04",
+    reservation: [
+      {
+        name: "김가연",
+        start_time: "10:00",
+        end_time: "10:30",
+        purpose: "정융 개강총회",
+      },
+      {
+        name: "이민수",
+        start_time: "18:00",
+        end_time: "19:30",
+        purpose: "스터디 모임",
+      },
+    ],
+  },
+  {
+    roomId: "104호",
+    date: "2025-02-04",
+    reservation: [
+      {
+        name: "김가연",
+        start_time: "15:00",
+        end_time: "17:00",
+        purpose: "정융 개강총회",
+      },
+      {
+        name: "이민수",
+        start_time: "11:00",
+        end_time: "11:30",
+        purpose: "스터디 모임",
+      },
+    ],
+  },
+  {
+    roomId: "205호",
+    date: "2025-02-04",
+    reservation: [
+      {
+        name: "김가연",
+        start_time: "15:00",
+        end_time: "17:00",
+        purpose: "정융 개강총회",
+      },
+      {
+        name: "이민수",
+        start_time: "12:00",
+        end_time: "13:30",
+        purpose: "스터디 모임",
+      },
+    ],
+  },
+  {
+    roomId: "715호",
+    date: "2025-02-04",
+    reservation: [
+      {
+        name: "김가연",
+        start_time: "13:00",
+        end_time: "15:30",
+        purpose: "정융 개강총회",
+      },
+      {
+        name: "이민수",
+        start_time: "11:00",
+        end_time: "12:30",
+        purpose: "스터디 모임",
+      },
+    ],
+  },
+];
 
+const RoomReservationStatusPage = () => {
+  // 선택된 날짜 상태 관리
+  const [selectedDate, setSelectedDate] = useState(new Date());
+
+  // 사이드바 상태 관리
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const toggleSidebar = () => setIsSidebarOpen((prev) => !prev);
+
+  // 선택한 날짜의 예약 데이터 필터링
+  const filteredReservations = reservations
+    .filter((res) => res.date === selectedDate.toISOString().split("T")[0]) // 날짜 필터
+    .flatMap((res) =>
+      res.reservation.map((item) => ({
+        ...item,
+        roomId: res.roomId, // roomId를 개별 예약에 포함
+      }))
+    );
 
   return (
     <div className="div">
@@ -18,64 +131,20 @@ const RoomReservationStatusPage = () => {
           </h1>
         </header>
 
-        <main className="room-reservation-status__main-content">
-          <table className="room-reservation-status__table">
-            <thead>
-              <tr>
-                <th className="room-reservation-status__column"></th>
-                <th className="room-reservation-status__column">103호</th>
-                <th className="room-reservation-status__column">104호</th>
-                <th className="room-reservation-status__column">205호</th>
-                <th className="room-reservation-status__column">715호</th>
-              </tr>
-            </thead>
-            <tbody>
-              {[
-                "9:00",
-                "9:30",
-                "10:00",
-                "10:30",
-                "11:00",
-                "11:30",
-                "12:00",
-                "12:30",
-                "13:00",
-                "13:30",
-                "14:00",
-                "14:30",
-                "15:00",
-                "15:30",
-                "16:00",
-                "16:30",
-                "17:00",
-                "17:30",
-                "18:00",
-                "18:30",
-                "19:00",
-                "19:30",
-                "20:00",
-                "20:30",
-                "21:00",
-                "22:00",
-              ].map((time) => (
-                <tr key={time}>
-                  <th
-                    scope="row"
-                    className="room-reservation-status__time-slot"
-                  >
-                    {time}
-                  </th>
-                  <td className="room-reservation-status__cell"></td>
-                  <td className="room-reservation-status__cell"></td>
-                  <td className="room-reservation-status__cell"></td>
-                  <td className="room-reservation-status__cell"></td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </main>
+        {/* 날짜 선택 UI */}
+        <div className="date-picker-container">
+          <input
+            type="date"
+            value={selectedDate.toISOString().split("T")[0]}
+            onChange={(e) => setSelectedDate(new Date(e.target.value))}
+          />
+        </div>
+
+        {/* 타임라인 UI */}
+        <Timelist reservations={filteredReservations} />
       </div>
 
+      {/* 사이드바 UI */}
       <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
     </div>
   );

@@ -1,0 +1,24 @@
+/* 예약 정보 엔덱스 블럭 */
+.reserve-item {
+  width: 100%;
+  text-align: center;
+  font-size: 0.7rem;
+}
+
+/* 예약자 이름 스타일 */
+.reserve-name {
+  font-weight: bold;
+  display: block;
+}
+
+/* 예약 시간 스타일 */
+.reserve-time {
+  font-weight: bold;
+  display: block;
+}
+
+/* 예약 목적 스타일 */
+.reserve-purpose {
+  font-size: 0.6rem;
+  color: #555;
+}

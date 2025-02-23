@@ -3,6 +3,9 @@ import axios from "axios";
 import "../css/classroomStudentModal.css";
 
 const StudentUpdate = ({ students, onClose }) => {
+  // 백앤드 주소
+  const BACKEND_URL = "http://localhost:8000";
+
   // 수정할 값들의 상태
   const [id, setId] = useState(students.id);
   const [name, setName] = useState(students.name);
@@ -12,12 +15,23 @@ const StudentUpdate = ({ students, onClose }) => {
 
   // 학생 정보 수정 요청
   const handleUpdate = async () => {
+    if (!students.id) {
+      alert("학생의 학번 데이터가 조회되지 않습니다.");
+      return;
+    }
+
     try {
-      const response = await axios.put(`/api/students/${id}`, { name, phone });
+      const response = await axios.put(
+        `${BACKEND_URL}/api/students/${students.id}`,
+        {
+          name,
+          phone,
+        }
+      );
 
       if (response.status === 200) {
         alert("학생 정보가 수정되었습니다.");
-        onClose(); // 학생 수정 완료시, 모달창 닫기
+        onClose();
       } else {
         alert(response.data.message || "학생 정보 수정에 실패했습니다.");
       }
