@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../css/classroomStudentModal.css";
 import StudentUdpate from "./StudentUpdate";
 
-const StudentDetailModal = ({ students, onClose }) => {
+const StudentDetailModal = ({ students, onClose, onUpdate }) => {
   // 수정 모달 상태 관리
   const [isUpdateMode, setUpdateMode] = useState(false);
   const switchUpdateMode = () => setUpdateMode((prev) => !prev);
@@ -31,7 +31,7 @@ const StudentDetailModal = ({ students, onClose }) => {
             </li>
             <li className="students-details__item">
               <strong className="students-details__label">▪️ 전화번호: </strong>
-              <div className="students-details__content">{students.number}</div>
+              <div className="students-details__content">{students.phone}</div>
             </li>
           </ul>
         </main>
@@ -51,6 +51,7 @@ const StudentDetailModal = ({ students, onClose }) => {
           students={students}
           submit={switchUpdateMode}
           onClose={switchUpdateMode}
+          onUpdate={onUpdate}
         />
       )}
     </div>

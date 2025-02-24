@@ -10,6 +10,7 @@ import StudentDelete from "../../Components/ReservationAdmin/Student/StudentDele
 const StudentInfoPage = () => {
   // 백앤드 주소
   const BACKEND_URL = "http://localhost:8000";
+
   // 사이드바 상태 관리
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const toggleSidebar = () => setIsSidebarOpen((prev) => !prev);
@@ -39,6 +40,27 @@ const StudentInfoPage = () => {
     fetchStudents();
   }, []);
 
+  // 등록된 내용 새로고침 없이 업데이트
+  const handleCreateStudent = (newStudent) => {
+    setStudentInfo((prevStudents) => [...prevStudents, newStudent]);
+  };
+
+  // 수정된 내용 새로고침 없이 업데이트
+  const handleUpdateStudent = (updatedStudent) => {
+    setStudentInfo((prevStudents) =>
+      prevStudents.map((student) =>
+        student.id === updatedStudent.id ? updatedStudent : student
+      )
+    );
+  };
+
+  // 삭제된된 내용 새로고침 없이 업데이트
+  const handleDeleteStudents = (deletedStudentIds) => {
+    setStudentInfo((prevStudents) =>
+      prevStudents.filter((student) => !deletedStudentIds.includes(student.id))
+    );
+  };
+
   return (
     <div className="div">
       <div className={`div ${isSidebarOpen ? "shifted" : ""}`}>
@@ -51,7 +73,11 @@ const StudentInfoPage = () => {
             <table className="student-info__table">
               <tbody>
                 {studentInfo.map((students, index) => (
-                  <StudentRow key={index} students={students} />
+                  <StudentRow
+                    key={index}
+                    students={students}
+                    onUpdate={handleUpdateStudent}
+                  />
                 ))}
               </tbody>
             </table>
@@ -81,7 +107,12 @@ const StudentInfoPage = () => {
       <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
 
       {/* 등록 모달창 컴포넌트 */}
-      {isCreateModalOpen && <StudentCreate onClose={toggleCreateModal} />}
+      {isCreateModalOpen && (
+        <StudentCreate
+          onClose={toggleCreateModal}
+          onCreate={handleCreateStudent}
+        />
+      )}
 
       {/* 삭제 모달창 컴포넌트 */}
       {isDeleteModalOpen && (
@@ -89,6 +120,7 @@ const StudentInfoPage = () => {
           students={studentInfo}
           submit={toggleDeleteModal}
           onClose={toggleDeleteModal}
+          onDelete={handleDeleteStudents}
         />
       )}
     </div>

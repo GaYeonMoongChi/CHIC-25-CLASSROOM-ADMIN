@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import StudentDetailModal from "./StudentDetail";
 import "../css/studentRow.css";
 
-const StudentRow = ({ students }) => {
+const StudentRow = ({ students, onUpdate }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
@@ -22,6 +22,7 @@ const StudentRow = ({ students }) => {
         <StudentDetailModal
           students={students}
           onClose={() => setIsModalOpen(false)}
+          onUpdate={onUpdate}
         />
       )}
     </>
