@@ -8,6 +8,10 @@
   width: 95%;
 }
 
+.classroom-info-update__title {
+  font-size: 30px;
+}
+
 .classroom-info-update__main_div {
   width: 95%;
   border-top: 2px solid #ccc;

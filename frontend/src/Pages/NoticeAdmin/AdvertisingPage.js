@@ -134,88 +134,86 @@ const AdvertisingPage = () => {
 
   return (
     <div className="div">
-      <div className={`div ${isSidebarOpen ? "shifted" : ""}`}>
-        <header className="advertising-page__header">
-          <h1 className="advertising-page__title">홍보/광고</h1>
-        </header>
+      <header className="advertising-page__header">
+        <h1 className="advertising-page__title">홍보/광고</h1>
+      </header>
 
-        <nav className="advertising-page__search-nav">
-          <ul className="advertising-page__search-list">
-            <li className="advertising-page__search-item">
-              <label className="advertising-page__search-label">작성일</label>
-              <input
-                type="text"
-                className="advertising-page__search-input"
-                placeholder="[xxxx년 x월 x일] 형식으로 입력해주세요."
-                onChange={onChangeDate}
-                value={searchDate}
-              />
-            </li>
-            <li className="advertising-page__search-item">
-              <label className="advertising-page__search-label">제목</label>
-              <input
-                type="text"
-                className="advertising-page__search-input"
-                placeholder="글제목으로 검색하세요."
-                onChange={onChangeTitle}
-                value={searchTitle}
-              />
-            </li>
-            <li className="advertising-page__search-item">
-              <label className="advertising-page__search-label">상태</label>
-              <select
-                name="advertising-status"
-                className="advertising-page__status-select"
-                onChange={onChangeStatus}
-                value={searchStatus}
-              >
-                <option value="적용됨">적용됨</option>
-                <option value="적용종료">적용종료</option>
-              </select>
-            </li>
-            <li className="advertising-page__search-item">
-              <label className="advertising-page__search-label">작성자</label>
-              <input
-                type="text"
-                className="advertising-page__search-input"
-                placeholder="작성자명으로 검색하세요. (ex. 관리자)"
-                onChange={onChangeWriter}
-                value={searchWriter}
-              />
-            </li>
-          </ul>
-        </nav>
-
-        <div className="advertising-page__main_div ">
-          <main className="advertising-page__main">
-            <table className="advertising-page__table">
-              <tbody>
-                {filteredNotices.map((advertising, index) => (
-                  <AdvertisingRow key={index} advertising={advertising} />
-                ))}
-              </tbody>
-            </table>
-          </main>
-        </div>
-
-        <footer className="advertising-page__footer">
-          <button className="advertising-page__action-button">+</button>
-          <div className="advertising-page__action-container">
-            <button
-              className="advertising-page__action-create"
-              onClick={toggleCreateModal}
+      <nav className="advertising-page__search-nav">
+        <ul className="advertising-page__search-list">
+          <li className="advertising-page__search-item">
+            <label className="advertising-page__search-label">작성일</label>
+            <input
+              type="text"
+              className="advertising-page__search-input"
+              placeholder="[xxxx년 x월 x일] 형식으로 입력해주세요."
+              onChange={onChangeDate}
+              value={searchDate}
+            />
+          </li>
+          <li className="advertising-page__search-item">
+            <label className="advertising-page__search-label">제목</label>
+            <input
+              type="text"
+              className="advertising-page__search-input"
+              placeholder="글제목으로 검색하세요."
+              onChange={onChangeTitle}
+              value={searchTitle}
+            />
+          </li>
+          <li className="advertising-page__search-item">
+            <label className="advertising-page__search-label">상태</label>
+            <select
+              name="advertising-status"
+              className="advertising-page__status-select"
+              onChange={onChangeStatus}
+              value={searchStatus}
             >
-              글생성
-            </button>
-            <button
-              className="advertising-page__action-delete"
-              onClick={toggleDeleteModal}
-            >
-              글삭제
-            </button>
-          </div>
-        </footer>
+              <option value="적용됨">적용됨</option>
+              <option value="적용종료">적용종료</option>
+            </select>
+          </li>
+          <li className="advertising-page__search-item">
+            <label className="advertising-page__search-label">작성자</label>
+            <input
+              type="text"
+              className="advertising-page__search-input"
+              placeholder="작성자명으로 검색하세요. (ex. 관리자)"
+              onChange={onChangeWriter}
+              value={searchWriter}
+            />
+          </li>
+        </ul>
+      </nav>
+
+      <div className="advertising-page__main_div ">
+        <main className="advertising-page__main">
+          <table className="advertising-page__table">
+            <tbody>
+              {filteredNotices.map((advertising, index) => (
+                <AdvertisingRow key={index} advertising={advertising} />
+              ))}
+            </tbody>
+          </table>
+        </main>
       </div>
+
+      <footer className="advertising-page__footer">
+        <button className="advertising-page__action-button">+</button>
+        <div className="advertising-page__action-container">
+          <button
+            className="advertising-page__action-create"
+            onClick={toggleCreateModal}
+          >
+            글생성
+          </button>
+          <button
+            className="advertising-page__action-delete"
+            onClick={toggleDeleteModal}
+          >
+            글삭제
+          </button>
+        </div>
+      </footer>
 
       {/* 사이드바 컴포넌트 */}
       <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />

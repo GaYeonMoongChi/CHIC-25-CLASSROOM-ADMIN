@@ -8,6 +8,10 @@
   width: 95%;
 }
 
+.student-info__title {
+  font-size: 30px;
+}
+
 .student-info__main_div {
   width: 95%;
   border-top: 2px solid #ccc;

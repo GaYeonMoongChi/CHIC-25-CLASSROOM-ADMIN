@@ -24,6 +24,8 @@
 
 .login__header {
   margin-bottom: 20px;
+  border-bottom: 2px solid #ccc;
+  padding: 20px 0px;
 }
 
 .login__title {
@@ -75,7 +77,7 @@
   background-color: #10069f;
   color: white;
   border: none;
-  padding: 5px 10px;
+  padding: 7px 10px;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
@@ -86,4 +88,10 @@
 
 .login__button:hover {
   background-color: rgb(18, 39, 75);
+}
+
+.login__error {
+  margin-top: 10px;
+  color: #10069f;
+  font-size: 13px;
 }

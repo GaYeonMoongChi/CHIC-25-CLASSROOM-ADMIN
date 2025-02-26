@@ -131,11 +131,16 @@ const RoomReservationStatusPage = () => {
         </h1>
       </header>
 
-      {/* 날짜 선택 UI */}
-      <Calendar selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
+      <div className="room-reservation-status__main"> 
+        {/* 날짜 선택 UI */}
+        <Calendar
+          selectedDate={selectedDate}
+          setSelectedDate={setSelectedDate}
+        />
 
-      {/* 타임라인 UI */}
-      <Timelist reservations={filteredReservations} />
+        {/* 타임라인 UI */}
+        <Timelist reservations={filteredReservations} />
+      </div>
 
       {/* 사이드바 UI */}
       <div className="room-reservation-status__sidebar-container">
