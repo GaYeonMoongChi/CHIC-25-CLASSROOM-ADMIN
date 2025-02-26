@@ -7,6 +7,10 @@
   width: 95%;
 }
 
+.room-reservation-status__title {
+  font-size: 30px;
+}
+
 .room-reservation-status__main {
   width: 95%;
 }

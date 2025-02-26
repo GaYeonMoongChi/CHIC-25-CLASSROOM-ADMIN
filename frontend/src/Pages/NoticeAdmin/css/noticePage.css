@@ -8,6 +8,10 @@
   width: 95%;
 }
 
+.notice-page__title {
+  font-size: 30px;
+}
+
 .notice-page__search-list {
   width: 95%;
   background-color: #f5f5f5;
