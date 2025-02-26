@@ -3,6 +3,9 @@ import axios from "axios";
 import "../css/classroomStudentModal.css";
 
 const StudentCreate = ({ onClose }) => {
+  // 백앤드 주소
+  const BACKEND_URL = "http://localhost:8000";
+
   // 학생 입력값 상태 관리
   const [studentData, setStudentData] = useState({
     name: "",
@@ -36,14 +39,30 @@ const StudentCreate = ({ onClose }) => {
     }
 
     try {
-      const response = await axios.post("/api/students", studentData);
+      const response = await axios.post(
+        `${BACKEND_URL}/api/students`,
+        studentData
+      );
       alert("학생 등록이 완료되었습니다.");
 
       console.log("학생 등록 성공:", response.data);
-      onClose(); // 학생 등록 성공시, 모달 닫기
+      handleClose();
     } catch (error) {
       console.error("학생 등록 오류:", error);
       alert("학생 등록에 실패했습니다.");
+    }
+  };
+
+  // 등록 완료시, 입력값 초기화 하고 창 닫기
+  const handleClose = () => {
+    setStudentData({ name: "", id: "", phone: "" });
+    onClose();
+  };
+
+  // 엔터키를 눌러도 등록 할 수 있게 설정
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleSubmit();
     }
   };
 
@@ -68,6 +87,7 @@ const StudentCreate = ({ onClose }) => {
                 placeholder="학생의 성명을 입력하세요."
                 value={studentData.name}
                 onChange={handleChange}
+                onKeyDown={handleKeyDown}
               />
             </li>
             <li className="students-create__item">
@@ -79,6 +99,7 @@ const StudentCreate = ({ onClose }) => {
                 placeholder="학생의 학번을 입력하세요."
                 value={studentData.id}
                 onChange={handleChange}
+                onKeyDown={handleKeyDown}
               />
             </li>
             <li className="students-create__item">
@@ -90,6 +111,7 @@ const StudentCreate = ({ onClose }) => {
                 placeholder="학생의 전화번호를 입력하세요. (010-xxxx-xxxx 형식으로 입력)"
                 value={studentData.phone}
                 onChange={handleChange}
+                onKeyDown={handleKeyDown}
               />
             </li>
           </ul>
