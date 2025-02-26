@@ -2,37 +2,33 @@ import React, { useState } from "react";
 import axios from "axios";
 import "../css/classroomStudentModal.css";
 
-const StudentCreate = ({ onClose }) => {
+const StudentCreate = ({ onClose, onCreate }) => {
   // 백앤드 주소
   const BACKEND_URL = "http://localhost:8000";
 
-  // 학생 입력값 상태 관리
+  // 등록할 내용 상태 관리
   const [studentData, setStudentData] = useState({
     name: "",
     id: "",
     phone: "",
   });
 
-  // 학생 입력값 변경 핸들러
+  // 학생 정보 등록 요청
   const handleChange = (e) => {
     setStudentData({ ...studentData, [e.target.name]: e.target.value });
   };
 
-  // 학생 등록 요청
   const handleSubmit = async () => {
-    // 모든 항목이 채워지지 않았을 경우 예외처리
     if (!studentData.name || !studentData.id || !studentData.phone) {
       alert("모든 항목을 입력해주세요.");
       return;
     }
 
-    // 학번이 잘못된 형식으로 입력되었을 때의 예외처리
     if (!/^\d{10}$/.test(studentData.id)) {
       alert("ID는 10자리 숫자로 입력해야 합니다.");
       return;
     }
 
-    // 전화번호 형식이 010-0000-0000 형식이 아닐 경우 예외처리
     if (!/^010-\d{4}-\d{4}$/.test(studentData.phone)) {
       alert("전화번호는 010-0000-0000 형식이어야 합니다.");
       return;
@@ -43,9 +39,14 @@ const StudentCreate = ({ onClose }) => {
         `${BACKEND_URL}/api/students`,
         studentData
       );
-      alert("학생 등록이 완료되었습니다.");
 
+      alert("학생 등록이 완료되었습니다.");
       console.log("학생 등록 성공:", response.data);
+
+      if (onCreate) {
+        onCreate(response.data);
+      }
+
       handleClose();
     } catch (error) {
       console.error("학생 등록 오류:", error);
@@ -53,13 +54,12 @@ const StudentCreate = ({ onClose }) => {
     }
   };
 
-  // 등록 완료시, 입력값 초기화 하고 창 닫기
   const handleClose = () => {
     setStudentData({ name: "", id: "", phone: "" });
     onClose();
   };
 
-  // 엔터키를 눌러도 등록 할 수 있게 설정
+  // 엔터키 눌러도 등록 완료되게 하기
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
       handleSubmit();
