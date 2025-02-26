@@ -3,6 +3,7 @@ import Timelist from "../../Components/ReservationAdmin/Reservation/Timelist";
 import "../css/Pages.css";
 import "./css/roomReservationStatus.css";
 import Sidebar from "../../Components/ReservationAdmin/ReservationSidebar";
+import Calendar from "../../Components/ReservationAdmin/Reservation/Calendar";
 
 // 강의실 예약 데이터
 const reservations = [
@@ -124,28 +125,22 @@ const RoomReservationStatusPage = () => {
 
   return (
     <div className="div">
-      <div className={`div ${isSidebarOpen ? "shifted" : ""}`}>
-        <header className="room-reservation-status__header">
-          <h1 className="room-reservation-status__title">
-            강의실 사용 현황 및 예약 현황
-          </h1>
-        </header>
+      <header className="room-reservation-status__header">
+        <h1 className="room-reservation-status__title">
+          강의실 사용 현황 및 예약 현황
+        </h1>
+      </header>
 
-        {/* 날짜 선택 UI */}
-        <div className="date-picker-container">
-          <input
-            type="date"
-            value={selectedDate.toISOString().split("T")[0]}
-            onChange={(e) => setSelectedDate(new Date(e.target.value))}
-          />
-        </div>
+      {/* 날짜 선택 UI */}
+      <Calendar selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
 
-        {/* 타임라인 UI */}
-        <Timelist reservations={filteredReservations} />
-      </div>
+      {/* 타임라인 UI */}
+      <Timelist reservations={filteredReservations} />
 
       {/* 사이드바 UI */}
-      <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+      <div className="room-reservation-status__sidebar-container">
+        <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+      </div>
     </div>
   );
 };
