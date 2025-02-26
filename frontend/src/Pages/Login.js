@@ -20,27 +20,33 @@ const Login = () => {
   return (
     <div className="login__wrapper">
       <div className="login">
-      <header className="login__header">
-        <h1 className="login__title">예약 현황 관리자 페이지 로그인</h1>
-      </header>
+        <header className="login__header">
+          {/* 추후 확실한 서비스 이름 정해서 ~서비스 로그인 이런 식으로 적어야겠음 */}
+          <h1 className="login__title">광운대학교 로그인</h1>
+        </header>
 
-      <main className="login__main">
-        <label htmlFor="admin-id" className="login__label">
-          ID:
-        </label>
-        <input
-          id="admin-id"
-          className="login__input"
-          type="text"
-          placeholder="관리자 아이디 입력"
-          value={id}
-          onChange={(e) => setId(e.target.value)}
-        />
-        <button className="login__button" onClick={login}>
-          로그인
-        </button>
-      </main>
-    </div>
+        <main className="login__main">
+          <h2 className="login__h2">로그인</h2>
+
+          <div className="login__id-input">
+            <label htmlFor="admin-id" className="login__label">
+              ID:
+            </label>
+            <input
+              id="admin-id"
+              className="login__input"
+              type="text"
+              placeholder="관리자 아이디를 입력하세요."
+              value={id}
+              onChange={(e) => setId(e.target.value)}
+            />
+          </div>
+
+          <button className="login__button" onClick={login}>
+            로그인
+          </button>
+        </main>
+      </div>
     </div>
   );
 };
