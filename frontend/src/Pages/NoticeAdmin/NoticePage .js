@@ -71,84 +71,82 @@ const NoticePage = () => {
 
   return (
     <div className="div">
-      <div className={`div ${isSidebarOpen ? "shifted" : ""}`}>
-        <header className="notice-page__header">
-          <h1 className="notice-page__title">공지사항</h1>
-        </header>
+      <header className="notice-page__header">
+        <h1 className="notice-page__title">공지사항</h1>
+      </header>
 
-        <nav className="notice-page__search-nav">
-          <ul className="notice-page__search-list">
-            <li className="notice-page__search-item">
-              <label className="notice-page__search-label">작성일</label>
-              <input
-                type="text"
-                name="search"
-                className="notice-page__search-input"
-                placeholder="[xxxx년 x월 x일] 형식으로 입력해주세요."
-                onChange={onChangeDate}
-                value={searchDate}
-              />
-            </li>
-            <li className="notice-page__search-item">
-              <label className="notice-page__search-label">제목</label>
-              <input
-                type="text"
-                name="search"
-                className="notice-page__search-input"
-                placeholder="공지글 제목으로 검색하세요."
-                onChange={onChangeTitle}
-                value={searchTitle}
-              />
-            </li>
-            <li className="notice-page__search-item">
-              <label
-                htmlFor="search-author"
-                className="notice-page__search-label"
-              >
-                작성자
-              </label>
-              <input
-                type="text"
-                name="search"
-                className="notice-page__search-input"
-                placeholder="작성자명으로 검색하세요. (ex. 관리자)"
-                onChange={onChangeWriter}
-                value={searchWriter}
-              />
-            </li>
-          </ul>
-        </nav>
-
-        <div className="notice-page__main_div">
-          <main className="notice-page__main">
-            <table className="notice-page__table">
-              <tbody>
-                {filteredNotices.map((notice, index) => (
-                  <NoticeRow key={index} notice={notice} />
-                ))}
-              </tbody>
-            </table>
-          </main>
-        </div>
-
-        <footer className="notice-page__footer">
-          <button className="notice-page__action-button">+</button>
-          <div className="notice-page__action-container">
-            <button
-              className="notice-page__action-create"
-              onClick={toggleCreateModal}
+      <nav className="notice-page__search-nav">
+        <ul className="notice-page__search-list">
+          <li className="notice-page__search-item">
+            <label className="notice-page__search-label">작성일</label>
+            <input
+              type="text"
+              name="search"
+              className="notice-page__search-input"
+              placeholder="[xxxx년 x월 x일] 형식으로 입력해주세요."
+              onChange={onChangeDate}
+              value={searchDate}
+            />
+          </li>
+          <li className="notice-page__search-item">
+            <label className="notice-page__search-label">제목</label>
+            <input
+              type="text"
+              name="search"
+              className="notice-page__search-input"
+              placeholder="공지글 제목으로 검색하세요."
+              onChange={onChangeTitle}
+              value={searchTitle}
+            />
+          </li>
+          <li className="notice-page__search-item">
+            <label
+              htmlFor="search-author"
+              className="notice-page__search-label"
             >
-              글생성
-            </button>
-            <button
-              className="notice-page__action-delete"
-              onClick={toggleDeleteModal}
-            >
-              글삭제
-            </button>
-          </div>
-        </footer>
+              작성자
+            </label>
+            <input
+              type="text"
+              name="search"
+              className="notice-page__search-input"
+              placeholder="작성자명으로 검색하세요. (ex. 관리자)"
+              onChange={onChangeWriter}
+              value={searchWriter}
+            />
+          </li>
+        </ul>
+      </nav>
+
+      <div className="notice-page__main_div">
+        <main className="notice-page__main">
+          <table className="notice-page__table">
+            <tbody>
+              {filteredNotices.map((notice, index) => (
+                <NoticeRow key={index} notice={notice} />
+              ))}
+            </tbody>
+          </table>
+        </main>
       </div>
+
+      <footer className="notice-page__footer">
+        <button className="notice-page__action-button">+</button>
+        <div className="notice-page__action-container">
+          <button
+            className="notice-page__action-create"
+            onClick={toggleCreateModal}
+          >
+            글생성
+          </button>
+          <button
+            className="notice-page__action-delete"
+            onClick={toggleDeleteModal}
+          >
+            글삭제
+          </button>
+        </div>
+      </footer>
 
       {/* 사이드바 컴포넌트 */}
       <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
