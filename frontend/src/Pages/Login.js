@@ -3,7 +3,10 @@ import { useNavigate } from "react-router-dom";
 import "./css/login.css";
 
 const Login = () => {
-  // 아이디 입력 상태 관리
+  // 백앤드 주소
+  const BACKEND_URL = "http://localhost:8000";
+
+  // 아이디 상태 관리
   const [id, setId] = useState("");
 
   // 예외처리 메세지 상태 관리
@@ -12,7 +15,7 @@ const Login = () => {
   // 페이지 이동
   const navigate = useNavigate();
 
-  const login = () => {
+  const login = async () => {
     // 예외 처리
     if (!id) {
       setErrorMessage("ID를 입력해주세요.");
@@ -20,12 +23,34 @@ const Login = () => {
     }
     setErrorMessage("");
 
-    if (id.startsWith("1")) {
-      navigate(`/Home/Reservation`);
-    } else if (id.startsWith("2")) {
-      navigate(`/Home/Notice`);
-    } else {
-      setErrorMessage("올바른 관리자 아이디를 입력하세요.");
+    try {
+      const response = await fetch(`${BACKEND_URL}/api/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.message || "로그인에 실패했습니다.");
+      }
+
+      // JWT 토큰 저장
+      localStorage.setItem("token", data.token);
+
+      // ID에 따라 페이지 이동
+      if (id.startsWith("1")) {
+        navigate(`/Home/Reservation`);
+      } else if (id.startsWith("2")) {
+        navigate(`/Home/Notice`);
+      } else {
+        setErrorMessage("올바른 관리자 아이디를 입력하세요.");
+      }
+    } catch (error) {
+      setErrorMessage(error.message);
     }
   };
 
@@ -52,7 +77,10 @@ const Login = () => {
               onChange={(e) => setId(e.target.value)}
             />
           </div>
+
+          {/* 에러 메세지 ui */}
           {errorMessage && <p className="login__error">{errorMessage}</p>}
+
           <button className="login__button" onClick={login}>
             로그인
           </button>

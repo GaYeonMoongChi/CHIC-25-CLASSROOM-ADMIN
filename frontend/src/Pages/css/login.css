@@ -18,14 +18,13 @@
   border-radius: 10px;
   width: 100%;
   max-width: 520px;
-  padding: 30px;
   gap: 15px;
 }
 
 .login__header {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   border-bottom: 2px solid #ccc;
-  padding: 20px 0px;
+  padding-bottom: 10px;
 }
 
 .login__title {
@@ -65,7 +64,7 @@
   border: none;
   border-radius: 5px;
   font-size: 16px;
-  background-color: #f5f5f5;
+  background-color: #f0f0f0c0;
 }
 
 .login__input::placeholder {

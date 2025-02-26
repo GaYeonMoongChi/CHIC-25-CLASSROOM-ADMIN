@@ -59,7 +59,7 @@ const TimeTableItem = ({ TIMELIST, CLASSROOMS, reservations }) => {
         const borderLeftColor = colorChart[indexColor];
 
         // 위치 값 계산
-        const top = startIndex * slotHeight + 288;
+        const top = startIndex * slotHeight + 269;
         const height = (endIndex - startIndex) * slotHeight;
         const width = `calc(95% / ${CLASSROOMS.length} )`;
         const left = `calc(${roomIndex} * (95% / ${CLASSROOMS.length}))`;
