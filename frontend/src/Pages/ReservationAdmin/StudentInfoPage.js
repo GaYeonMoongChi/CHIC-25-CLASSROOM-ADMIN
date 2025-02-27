@@ -54,7 +54,7 @@ const StudentInfoPage = () => {
     );
   };
 
-  // 삭제된된 내용 새로고침 없이 업데이트
+  // 삭제된 내용 새로고침 없이 업데이트
   const handleDeleteStudents = (deletedStudentIds) => {
     setStudentInfo((prevStudents) =>
       prevStudents.filter((student) => !deletedStudentIds.includes(student.id))
