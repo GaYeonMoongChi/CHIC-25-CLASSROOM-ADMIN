@@ -39,9 +39,7 @@ const StudentCreate = ({ onClose, onCreate }) => {
         `${BACKEND_URL}/api/students`,
         studentData
       );
-
       alert("학생 등록이 완료되었습니다.");
-      console.log("학생 등록 성공:", response.data);
 
       if (onCreate) {
         onCreate(response.data);

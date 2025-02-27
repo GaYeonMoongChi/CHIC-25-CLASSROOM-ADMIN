@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../css/classroomStudentModal.css";
 import ClassroomUpdate from "./ClassroomUpdate";
 
-const DetailModal = ({ classroom, onClose }) => {
+const DetailModal = ({ classroom, onClose, onUpdate }) => {
   // 수정 모달 상태 관리
   const [isUpdateMode, setUpdateMode] = useState(false);
   const switchUpdateMode = () => setUpdateMode((prev) => !prev);
@@ -53,6 +53,7 @@ const DetailModal = ({ classroom, onClose }) => {
           classroom={classroom}
           submit={switchUpdateMode}
           onClose={switchUpdateMode}
+          onUpdate={onUpdate}
         />
       )}
     </div>
