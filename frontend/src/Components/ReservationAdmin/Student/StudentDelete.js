@@ -43,7 +43,7 @@ const StudentDelete = ({ students, onClose, onDelete }) => {
     }
   };
 
-  // 엔터키 눌러도 등록 완료되게 하기
+  // 엔터키 눌러도 삭제 완료되게 하기
   const handleKeyDown = (e) => {
     if (e.key === "Enter") {
       handleDelete();

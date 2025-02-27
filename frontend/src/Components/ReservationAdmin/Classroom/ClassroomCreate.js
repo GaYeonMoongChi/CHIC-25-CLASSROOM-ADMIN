@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import "../css/classroomStudentModal.css";
 
-const ClassroomCreate = ({ onClose }) => {
+const ClassroomCreate = ({ onClose, onCreate }) => {
   // 백앤드 주소
   const BACKEND_URL = "http://localhost:8000";
 
@@ -37,12 +37,24 @@ const ClassroomCreate = ({ onClose }) => {
       );
       alert("강의실 등록이 완료되었습니다.");
 
-      console.log("강의실 등록 성공:", response.data);
-      onClose(); // 강의실 등록 성공시, 모달 닫기
+      if (onCreate) {
+        onCreate(response.data);
+      }
+
+      handleClose();
     } catch (error) {
       console.error("강의실 등록 오류:", error);
       alert("강의실 등록에 실패했습니다.");
     }
+  };
+
+  const handleClose = () => {
+    setClassroomData({
+      classroom_idx: "",
+      classroom_name: "",
+      classroom_exp: "",
+    });
+    onClose();
   };
 
   return (
