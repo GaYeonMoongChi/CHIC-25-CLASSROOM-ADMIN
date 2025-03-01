@@ -4,7 +4,7 @@ import "../../../Pages/css/Pages.css";
 import "../css/classroomStudentModal.css";
 import ClassRow from "../../ReservationAdmin/Class/ClassRow";
 
-const ClassDelete = ({ classes, submit, onClose, onDelete }) => {
+const ClassDelete = ({ classes, onClose, onDelete }) => {
   // 백앤드 주소
   const BACKEND_URL = "http://localhost:8000";
 
@@ -55,8 +55,8 @@ const ClassDelete = ({ classes, submit, onClose, onDelete }) => {
   if (!classes || !Array.isArray(classes)) return null; // class 배열이 넘어오지 않았거나, 배열이 아닐 경우 예외 처리
 
   return (
-    <div className="modal-overlay">
-      <div className="modal-content">
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <header className="class-delete__header">
           <h1 className="class-delete__title">강의 정보 삭제</h1>
           <button className="modal-close" onClick={onClose}>
@@ -89,7 +89,7 @@ const ClassDelete = ({ classes, submit, onClose, onDelete }) => {
           </main>
         </div>
         <footer className="class-delete__footer">
-          <button className="class-delete__submit" onClick={submit}>
+          <button className="class-delete__submit" onClick={handleDelete}>
             완료
           </button>
         </footer>
