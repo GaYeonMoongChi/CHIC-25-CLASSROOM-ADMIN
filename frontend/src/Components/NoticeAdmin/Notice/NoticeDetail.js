@@ -10,8 +10,8 @@ const DetailModal = ({ notice, onClose, onUpdate }) => {
   if (!notice) return null;
 
   return (
-    <div className="modal-overlay">
-      <div className="modal-content">
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <header className="notice-details__header">
           <button className="modal-close" onClick={onClose}>
             ✖

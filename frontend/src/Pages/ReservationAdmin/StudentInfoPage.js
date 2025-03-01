@@ -26,6 +26,26 @@ const StudentInfoPage = () => {
   // 학생 정보 상태 관리
   const [studentInfo, setStudentInfo] = useState([]);
 
+  // 검색값 상태 관리
+  const [searchId, setSearchId] = useState("");
+  const [searchName, setSearchName] = useState("");
+  const [searchPhone, setSearchPhone] = useState("");
+
+  // 검색창에 값 입력하면 상태 변환
+  const onChangeId = (e) => setSearchId(e.target.value);
+  const onChangeName = (e) => setSearchName(e.target.value);
+  const onChangePhone = (e) => setSearchPhone(e.target.value);
+
+  // 검색 결과 화면에 반영
+  const filteredStudents = studentInfo.filter((student) => {
+    return (
+      (searchId === "" || student.id?.toString().includes(searchId)) &&
+      (searchName === "" ||
+        student.name?.toLowerCase().includes(searchName.toLowerCase())) &&
+      (searchPhone === "" || student.phone?.includes(searchPhone))
+    );
+  });
+
   // 학생 데이터 요청
   useEffect(() => {
     const fetchStudents = async () => {
@@ -67,10 +87,53 @@ const StudentInfoPage = () => {
         <h1 className="student-info__title">학생 정보 업데이트</h1>
       </header>
 
+      <nav className="student-info__search-nav">
+        <ul className="student-info__search-list">
+          <li className="student-info__search-item">
+            <label className="student-info__search-label">학번</label>
+            <input
+              type="text"
+              name="search"
+              className="student-info__search-input"
+              placeholder="학번으로 검색하세요."
+              onChange={onChangeId}
+              value={searchId}
+            />
+          </li>
+          <li className="student-info__search-item">
+            <label className="student-info__search-label">이름</label>
+            <input
+              type="text"
+              name="search"
+              className="student-info__search-input"
+              placeholder="학생 이름으로 검색하세요."
+              onChange={onChangeName}
+              value={searchName}
+            />
+          </li>
+          <li className="student-info__search-item">
+            <label
+              htmlFor="search-author"
+              className="student-info__search-label"
+            >
+              전화번호
+            </label>
+            <input
+              type="text"
+              name="search"
+              className="student-info__search-input"
+              placeholder="전화번호로 검색하세요."
+              onChange={onChangePhone}
+              value={searchPhone}
+            />
+          </li>
+        </ul>
+      </nav>
+
       <div className="student-info__main_div">
         <table className="student-info__table">
           <tbody>
-            {studentInfo.map((students, index) => (
+            {filteredStudents.map((students, index) => (
               <StudentRow
                 key={index}
                 students={students}
