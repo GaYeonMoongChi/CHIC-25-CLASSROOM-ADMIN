@@ -47,18 +47,16 @@ const ClassroomInfoPage = () => {
       </header>
 
       <div className="classroom-info-update__main_div">
-        <main className="classroom-info-update__main">
-          <table className="classroom-info-update__table">
-            <tbody>
-              {classroomInfo.map((classroom, index) => (
-                <ClassroomRow key={index} classroom={classroom} />
-              ))}
-            </tbody>
-          </table>
-        </main>
+        <table className="classroom-info-update__table">
+          <tbody>
+            {classroomInfo.map((classroom, index) => (
+              <ClassroomRow key={index} classroom={classroom} />
+            ))}
+          </tbody>
+        </table>
       </div>
 
-      <footer className="classroom-info-update__footer">
+      <div className="classroom-info-update__footer">
         <button className="classroom-info-update__action-button">+</button>
         <div className="classroom-info-update__action-container">
           <button
@@ -74,7 +72,12 @@ const ClassroomInfoPage = () => {
             강의실 삭제
           </button>
         </div>
-      </footer>
+      </div>
+
+      {/* 사이드바가 열릴 때 표시되는 오버레이 */}
+      {isSidebarOpen && (
+        <div className="sidebar-overlay" onClick={toggleSidebar}></div>
+      )}
 
       {/* 사이드바 컴포넌트 */}
       <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />

@@ -3,8 +3,8 @@ import "../css/noticeAdvertisingModal.css";
 
 const AdvertisingCreate = ({ onClose }) => {
   return (
-    <div className="modal-overlay">
-      <div className="modal-content">
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <header className="advertising-create__header">
           <button className="modal-close" onClick={onClose}>
             ✖
@@ -64,6 +64,16 @@ const AdvertisingCreate = ({ onClose }) => {
                 type="text"
                 className="advertising-create__textarea"
               ></textarea>
+            </li>
+            <li className="advertising-create__item">
+              <strong className="advertising-create__label">
+                ▪️ 이미지파일:{" "}
+              </strong>
+              <input
+                type="file"
+                className="advertising-create__input"
+                placeholder="이미지 파일을 업로드 해주세요."
+              ></input>
             </li>
           </ul>
         </main>

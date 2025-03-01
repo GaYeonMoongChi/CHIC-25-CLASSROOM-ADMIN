@@ -68,22 +68,20 @@ const ClassInfoPage = () => {
       </header>
 
       <div className="class-info-update__main_div">
-        <main className="class-info-update__main">
-          <table className="class-info-update__table">
-            <tbody>
-              {classInfo.map((classes, index) => (
-                <ClassRow
-                  key={index}
-                  classes={classes}
-                  onUpdate={handleUpdateClass}
-                />
-              ))}
-            </tbody>
-          </table>
-        </main>
+        <table className="class-info-update__table">
+          <tbody>
+            {classInfo.map((classes, index) => (
+              <ClassRow
+                key={index}
+                classes={classes}
+                onUpdate={handleUpdateClass}
+              />
+            ))}
+          </tbody>
+        </table>
       </div>
 
-      <footer className="class-info-update__footer">
+      <div className="class-info-update__footer">
         <button className="class-info-update__action-button">+</button>
         <div className="class-info-update__action-container">
           <button
@@ -99,7 +97,12 @@ const ClassInfoPage = () => {
             강의 삭제
           </button>
         </div>
-      </footer>
+      </div>
+
+      {/* 사이드바가 열릴 때 표시되는 오버레이 */}
+      {isSidebarOpen && (
+        <div className="sidebar-overlay" onClick={toggleSidebar}></div>
+      )}
 
       {/* 사이드바 컴포넌트 */}
       <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />

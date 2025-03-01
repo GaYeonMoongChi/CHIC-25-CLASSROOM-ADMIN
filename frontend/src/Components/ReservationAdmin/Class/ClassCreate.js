@@ -68,8 +68,8 @@ const ClassCreate = ({ onClose, onCreate }) => {
   };
 
   return (
-    <div className="modal-overlay">
-      <div className="modal-content">
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <header>
           <button className="modal-close" onClick={onClose}>
             ✖

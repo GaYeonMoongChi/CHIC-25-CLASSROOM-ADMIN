@@ -11,12 +11,12 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
   const links = [
     {
       id: "notice-link",
-      to: "/Home/Notice",
+      to: "/Notice",
       text: "공지사항",
     },
     {
       id: "advertising-link",
-      to: "/Home/Advertising",
+      to: "/Advertising",
       text: "광고/홍보",
     },
   ];

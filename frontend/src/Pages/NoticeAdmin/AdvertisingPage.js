@@ -186,18 +186,16 @@ const AdvertisingPage = () => {
       </nav>
 
       <div className="advertising-page__main_div ">
-        <main className="advertising-page__main">
-          <table className="advertising-page__table">
-            <tbody>
-              {filteredNotices.map((advertising, index) => (
-                <AdvertisingRow key={index} advertising={advertising} />
-              ))}
-            </tbody>
-          </table>
-        </main>
+        <table className="advertising-page__table">
+          <tbody>
+            {filteredNotices.map((advertising, index) => (
+              <AdvertisingRow key={index} advertising={advertising} />
+            ))}
+          </tbody>
+        </table>
       </div>
 
-      <footer className="advertising-page__footer">
+      <div className="advertising-page__footer">
         <button className="advertising-page__action-button">+</button>
         <div className="advertising-page__action-container">
           <button
@@ -213,7 +211,12 @@ const AdvertisingPage = () => {
             글삭제
           </button>
         </div>
-      </footer>
+      </div>
+
+      {/* 사이드바가 열릴 때 표시되는 오버레이 */}
+      {isSidebarOpen && (
+        <div className="sidebar-overlay" onClick={toggleSidebar}></div>
+      )}
 
       {/* 사이드바 컴포넌트 */}
       <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />

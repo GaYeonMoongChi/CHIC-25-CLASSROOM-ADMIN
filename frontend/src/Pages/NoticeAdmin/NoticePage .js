@@ -119,18 +119,16 @@ const NoticePage = () => {
       </nav>
 
       <div className="notice-page__main_div">
-        <main className="notice-page__main">
-          <table className="notice-page__table">
-            <tbody>
-              {filteredNotices.map((notice, index) => (
-                <NoticeRow key={index} notice={notice} />
-              ))}
-            </tbody>
-          </table>
-        </main>
+        <table className="notice-page__table">
+          <tbody>
+            {filteredNotices.map((notice, index) => (
+              <NoticeRow key={index} notice={notice} />
+            ))}
+          </tbody>
+        </table>
       </div>
 
-      <footer className="notice-page__footer">
+      <div className="notice-page__footer">
         <button className="notice-page__action-button">+</button>
         <div className="notice-page__action-container">
           <button
@@ -146,7 +144,16 @@ const NoticePage = () => {
             글삭제
           </button>
         </div>
-      </footer>
+      </div>
+
+      {/* 사이드바가 열릴 때 표시되는 오버레이 */}
+      {isSidebarOpen && (
+        <div
+          className="sidebar-overlay"
+          isOpen={isSidebarOpen}
+          onClick={toggleSidebar}
+        ></div>
+      )}
 
       {/* 사이드바 컴포넌트 */}
       <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
