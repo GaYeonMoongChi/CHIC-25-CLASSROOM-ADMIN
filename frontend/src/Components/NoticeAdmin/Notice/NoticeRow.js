@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import DetailModal from "./NoticeDetail";
 import "../css/noticeRow.css";
 
-const NoticeRow = ({ notice }) => {
+const NoticeRow = ({ notice, onUpdate }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
@@ -19,7 +19,11 @@ const NoticeRow = ({ notice }) => {
       </div>
 
       {isModalOpen && (
-        <DetailModal notice={notice} onClose={() => setIsModalOpen(false)} />
+        <DetailModal
+          notice={notice}
+          onClose={() => setIsModalOpen(false)}
+          onUpdate={onUpdate}
+        />
       )}
     </>
   );

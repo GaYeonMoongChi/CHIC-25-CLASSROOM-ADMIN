@@ -56,7 +56,14 @@ const ClassCreate = ({ onClose, onCreate }) => {
   };
 
   const handleClose = () => {
-    setClassData({ name: "", id: "", phone: "" });
+    setClassData({
+      class_idx: "",
+      classroom_idx: "",
+      class_name: "",
+      prof_name: "",
+      class_credit: "",
+      class_daytime: "",
+    });
     onClose();
   };
 

@@ -1,9 +1,13 @@
 import React, { useState } from "react";
+import axios from "axios";
 import "../../../Pages/css/Pages.css";
 import "../css/noticeAdvertisingModal.css";
 import NoticeRow from "./NoticeRow";
 
-const NoticeDelete = ({ notice, submit, onClose }) => {
+const NoticeDelete = ({ notice, submit, onClose, onDelete }) => {
+  // 백앤드 주소
+  const BACKEND_URL = "http://localhost:8000";
+
   // 삭제할 공지글 선택 상태 관리
   const [selectedNotice, setSelectedNotice] = useState([]);
 
@@ -12,6 +16,38 @@ const NoticeDelete = ({ notice, submit, onClose }) => {
     setSelectedNotice((prev) =>
       prev.includes(id) ? prev.filter((n) => n !== id) : [...prev, id]
     );
+  };
+
+  // 공지글 요청
+  const handleDelete = async () => {
+    if (selectedNotice) {
+      alert("삭제할 공지글을 선택해주세요.");
+      return;
+    }
+
+    try {
+      const response = await axios.delete(`${BACKEND_URL}/api/board`, {
+        data: { ids: selectedNotice },
+      });
+
+      alert(response.data.message || "공지글 삭제가 완료되었습니다.");
+
+      if (onDelete) {
+        onDelete(selectedNotice);
+      }
+
+      onClose();
+    } catch (error) {
+      console.error("공지글 삭제 오류:", error);
+      alert("공지글 삭제 중 오류가 발생했습니다.");
+    }
+  };
+
+  // 엔터키 눌러도 삭제 완료되게 하기
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleDelete();
+    }
   };
 
   if (!notice || !Array.isArray(notice)) return null; // notice 배열이 넘어오지 않았거나, 배열이 아닐 경우 예외 처리
@@ -41,6 +77,7 @@ const NoticeDelete = ({ notice, submit, onClose }) => {
                         checked={selectedNotice.includes(noticeItem.id)}
                         onChange={() => toggleSelectNotice(noticeItem.id)}
                         className="notice-delete__checkbox"
+                        onKeyDown={handleKeyDown}
                       />
                     </td>
                   </tr>

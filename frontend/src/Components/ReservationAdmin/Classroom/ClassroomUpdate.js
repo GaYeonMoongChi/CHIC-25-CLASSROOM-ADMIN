@@ -88,7 +88,6 @@ const ClassroomUpdate = ({ classroom, onClose, onUpdate }) => {
                 value={explanation}
                 onChange={(e) => setExplanation(e.target.value)}
                 className="classroom-update__textarea"
-                onKeyDown={handleKeyDown}
               ></textarea>
             </li>
           </ul>
