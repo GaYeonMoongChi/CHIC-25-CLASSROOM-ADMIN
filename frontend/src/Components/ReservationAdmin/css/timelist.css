@@ -25,7 +25,8 @@
 .room-header {
   text-align: center;
   padding: 30px;
-  font-weight: 400;
+  font-weight: 500;
+  font-size: large;
 }
 
 .time-slot {
