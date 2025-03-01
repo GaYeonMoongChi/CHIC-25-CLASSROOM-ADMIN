@@ -131,7 +131,7 @@ const RoomReservationStatusPage = () => {
         </h1>
       </header>
 
-      <div className="room-reservation-status__main"> 
+      <div className="room-reservation-status__main">
         {/* 날짜 선택 UI */}
         <Calendar
           selectedDate={selectedDate}
@@ -141,6 +141,11 @@ const RoomReservationStatusPage = () => {
         {/* 타임라인 UI */}
         <Timelist reservations={filteredReservations} />
       </div>
+
+      {/* 사이드바가 열릴 때 표시되는 오버레이 */}
+      {isSidebarOpen && (
+        <div className="sidebar-overlay" onClick={toggleSidebar}></div>
+      )}
 
       {/* 사이드바 UI */}
       <div className="room-reservation-status__sidebar-container">

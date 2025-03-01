@@ -3,8 +3,8 @@ import "../css/noticeAdvertisingModal.css";
 
 const NoticeCreate = ({ onClose }) => {
   return (
-    <div className="modal-overlay">
-      <div className="modal-content">
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <header className="notice-create__header">
           <button className="modal-close" onClick={onClose}>
             ✖

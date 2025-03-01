@@ -9,6 +9,7 @@
   transition: left 0.3s ease;
   display: flex;
   flex-direction: column;
+  z-index: 100;
 }
 
 .sidebar-container.open {

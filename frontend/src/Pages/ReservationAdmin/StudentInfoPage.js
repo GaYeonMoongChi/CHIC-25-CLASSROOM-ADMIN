@@ -62,28 +62,26 @@ const StudentInfoPage = () => {
   };
 
   return (
-    <div className="div">
+    <div className={`div ${isSidebarOpen ? "sidebar-open" : ""}`}>
       <header className="student-info__header">
         <h1 className="student-info__title">학생 정보 업데이트</h1>
       </header>
 
       <div className="student-info__main_div">
-        <main className="student-info__main">
-          <table className="student-info__table">
-            <tbody>
-              {studentInfo.map((students, index) => (
-                <StudentRow
-                  key={index}
-                  students={students}
-                  onUpdate={handleUpdateStudent}
-                />
-              ))}
-            </tbody>
-          </table>
-        </main>
+        <table className="student-info__table">
+          <tbody>
+            {studentInfo.map((students, index) => (
+              <StudentRow
+                key={index}
+                students={students}
+                onUpdate={handleUpdateStudent}
+              />
+            ))}
+          </tbody>
+        </table>
       </div>
 
-      <footer className="student-info__footer">
+      <div className="student-info__footer">
         <button className="student-info__action-button">+</button>
         <div className="student-info__action-container">
           <button
@@ -99,7 +97,12 @@ const StudentInfoPage = () => {
             학생 삭제
           </button>
         </div>
-      </footer>
+      </div>
+
+      {/* 사이드바가 열릴 때 표시되는 오버레이 */}
+      {isSidebarOpen && (
+        <div className="sidebar-overlay" onClick={toggleSidebar}></div>
+      )}
 
       {/* 사이드바 컴포넌트 */}
       <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
