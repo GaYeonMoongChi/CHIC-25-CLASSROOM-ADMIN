@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import DetailModal from "./AdvertisingDetail";
 import "../css/advertisingRow.css";
 
-const AdvertisingRow = ({ advertising }) => {
+const AdvertisingRow = ({ advertising, onUpdate }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
@@ -22,6 +22,7 @@ const AdvertisingRow = ({ advertising }) => {
         <DetailModal
           advertising={advertising}
           onClose={() => setIsModalOpen(false)}
+          onUpdate={onUpdate}
         />
       )}
     </>

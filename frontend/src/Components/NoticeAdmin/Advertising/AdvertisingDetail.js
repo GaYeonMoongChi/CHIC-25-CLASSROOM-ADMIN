@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../css/noticeAdvertisingModal.css";
 import AdvertisingUpdate from "./AdvertisingUpdate";
 
-const DetailModal = ({ advertising, onClose }) => {
+const DetailModal = ({ advertising, onClose, onUpdate }) => {
   // 수정 모달 상태 관리
   const [isUpdateMode, setUpdateMode] = useState(false);
   const switchUpdateMode = () => setUpdateMode((prev) => !prev);
@@ -61,6 +61,7 @@ const DetailModal = ({ advertising, onClose }) => {
           advertising={advertising}
           submit={switchUpdateMode}
           onClose={switchUpdateMode}
+          onUpdate={onUpdate}
         />
       )}
     </div>

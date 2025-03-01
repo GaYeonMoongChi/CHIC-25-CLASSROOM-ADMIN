@@ -185,7 +185,7 @@ const AdvertisingPage = () => {
         </ul>
       </nav>
 
-      <div className="advertising-page__main_div ">
+      <div className="advertising-page__main_div">
         <table className="advertising-page__table">
           <tbody>
             {filteredNotices.map((advertising, index) => (

@@ -3,7 +3,7 @@ import axios from "axios";
 import "../css/classroomStudentModal.css";
 
 const StudentUpdate = ({ students, onClose, onUpdate }) => {
-  //백앤드 주소
+  // 백앤드 주소
   const BACKEND_URL = "http://localhost:8000";
 
   // 수정할 값 상태 관리
