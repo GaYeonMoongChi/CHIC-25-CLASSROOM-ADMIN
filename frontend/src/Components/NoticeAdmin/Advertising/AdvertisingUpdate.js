@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import "../css/noticeAdvertisingModal.css";
 
-const AdvertisingUpdate = ({ advertising, submit, onClose, onUpdate }) => {
+const AdvertisingUpdate = ({ advertising, onClose, onUpdate }) => {
   // 백앤드 주소
   const BACKEND_URL = "http://localhost:8000";
 

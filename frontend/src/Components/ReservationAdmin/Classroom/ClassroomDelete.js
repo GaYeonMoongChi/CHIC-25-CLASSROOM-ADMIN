@@ -4,7 +4,7 @@ import "../../../Pages/css/Pages.css";
 import "../css/classroomStudentModal.css";
 import ClassroomRow from "../../ReservationAdmin/Classroom/ClassroomRow";
 
-const ClassroomDelete = ({ classroom, submit, onClose, onDelete }) => {
+const ClassroomDelete = ({ classroom, onClose, onDelete }) => {
   // 백앤드 주소
   const BACKEND_URL = "http://localhost:8000";
 
@@ -23,7 +23,7 @@ const ClassroomDelete = ({ classroom, submit, onClose, onDelete }) => {
   // 강의실 삭제 요청
   const handleDelete = async () => {
     if (setSelectedClassrooms.length === 0) {
-      alert("삭제할 학생을 선택해주세요.");
+      alert("삭제할 강의실을 선택해주세요.");
       return;
     }
 
@@ -32,7 +32,7 @@ const ClassroomDelete = ({ classroom, submit, onClose, onDelete }) => {
         data: { ids: setSelectedClassrooms },
       });
 
-      alert(response.data.message || "학생 삭제가 완료되었습니다.");
+      alert(response.data.message || "강의실 삭제가 완료되었습니다.");
 
       if (onDelete) {
         onDelete(setSelectedClassrooms);
@@ -40,8 +40,8 @@ const ClassroomDelete = ({ classroom, submit, onClose, onDelete }) => {
 
       onClose();
     } catch (error) {
-      console.error("학생 삭제 오류:", error);
-      alert("학생 삭제 중 오류가 발생했습니다.");
+      console.error("강의실 삭제 오류:", error);
+      alert("강의실 삭제 중 오류가 발생했습니다.");
     }
   };
 
@@ -93,7 +93,7 @@ const ClassroomDelete = ({ classroom, submit, onClose, onDelete }) => {
           </main>
         </div>
         <footer className="classroom-delete__footer">
-          <button className="classroom-delete__submit" onClick={submit}>
+          <button className="classroom-delete__submit" onClick={handleDelete}>
             완료
           </button>
         </footer>

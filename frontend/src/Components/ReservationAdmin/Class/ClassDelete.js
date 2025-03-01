@@ -4,7 +4,7 @@ import "../../../Pages/css/Pages.css";
 import "../css/classroomStudentModal.css";
 import ClassRow from "../../ReservationAdmin/Class/ClassRow";
 
-const ClassDelete = ({ classes, submit, onClose, onDelete }) => {
+const ClassDelete = ({ classes, onClose, onDelete }) => {
   // 백앤드 주소
   const BACKEND_URL = "http://localhost:8000";
 
@@ -89,7 +89,7 @@ const ClassDelete = ({ classes, submit, onClose, onDelete }) => {
           </main>
         </div>
         <footer className="class-delete__footer">
-          <button className="class-delete__submit" onClick={submit}>
+          <button className="class-delete__submit" onClick={handleDelete}>
             완료
           </button>
         </footer>

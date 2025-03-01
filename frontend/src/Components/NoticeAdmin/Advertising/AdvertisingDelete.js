@@ -4,7 +4,7 @@ import "../../../Pages/css/Pages.css";
 import "../css/noticeAdvertisingModal.css";
 import AdvertisingRow from "./AdvertisingRow";
 
-const AdvertisingDelete = ({ advertising, submit, onClose, onDelete }) => {
+const AdvertisingDelete = ({ advertising, onClose, onDelete }) => {
   // 백앤드 주소
   const BACKEND_URL = "http://localhost:8000";
 
