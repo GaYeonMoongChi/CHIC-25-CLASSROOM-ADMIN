@@ -4,7 +4,7 @@ import "../../../Pages/css/Pages.css";
 import "../css/noticeAdvertisingModal.css";
 import NoticeRow from "./NoticeRow";
 
-const NoticeDelete = ({ notice, submit, onClose, onDelete }) => {
+const NoticeDelete = ({ notice, onClose, onDelete }) => {
   // 백앤드 주소
   const BACKEND_URL = "http://localhost:8000";
 
@@ -53,8 +53,8 @@ const NoticeDelete = ({ notice, submit, onClose, onDelete }) => {
   if (!notice || !Array.isArray(notice)) return null; // notice 배열이 넘어오지 않았거나, 배열이 아닐 경우 예외 처리
 
   return (
-    <div className="modal-overlay">
-      <div className="modal-content">
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <header className="notice-delete__header">
           <h1 className="notice-delete__title">공지글 삭제</h1>
           <button className="modal-close" onClick={onClose}>
@@ -88,7 +88,7 @@ const NoticeDelete = ({ notice, submit, onClose, onDelete }) => {
         </div>
 
         <footer className="notice-delete__footer">
-          <button className="notice-delete__submit" onClick={submit}>
+          <button className="notice-delete__submit" onClick={handleDelete}>
             완료
           </button>
         </footer>

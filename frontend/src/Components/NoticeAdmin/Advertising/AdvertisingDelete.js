@@ -53,8 +53,8 @@ const AdvertisingDelete = ({ advertising, onClose, onDelete }) => {
   if (!advertising || !Array.isArray(advertising)) return null; // advertising 배열이 넘어오지 않았거나, 배열이 아닐 경우 예외 처리
 
   return (
-    <div className="modal-overlay">
-      <div className="modal-content">
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <header className="advertising-delete__header">
           <h1 className="advertising-delete__title">홍보/광고글 삭제</h1>
           <button className="modal-close" onClick={onClose}>

@@ -54,8 +54,8 @@ const StudentDelete = ({ students, onClose, onDelete }) => {
   if (!students || !Array.isArray(students)) return null;
 
   return (
-    <div className="modal-overlay">
-      <div className="modal-content">
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <header className="students-delete__header">
           <h1 className="students-delete__title">학생 정보 삭제</h1>
           <button className="modal-close" onClick={onClose}>

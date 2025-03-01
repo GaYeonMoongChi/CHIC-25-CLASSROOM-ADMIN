@@ -55,8 +55,8 @@ const ClassroomDelete = ({ classroom, onClose, onDelete }) => {
   if (!classroom || !Array.isArray(classroom)) return null; // classroom 배열이 넘어오지 않았거나, 배열이 아닐 경우 예외 처리
 
   return (
-    <div className="modal-overlay">
-      <div className="modal-content">
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <header className="classroom-delete__header">
           <h1 className="classroom-delete__title">강의실 정보 삭제</h1>
           <button className="modal-close" onClick={onClose}>

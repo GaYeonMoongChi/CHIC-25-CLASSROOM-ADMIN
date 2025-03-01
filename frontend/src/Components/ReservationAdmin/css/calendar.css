@@ -8,14 +8,18 @@
 }
 
 .calendar {
-  width: 200px;
+  width: 150px;
   padding: 10px;
-  border: 2.8px solid #ccc;
-  border-radius: 30px;
+  border: none;
+  border-bottom: 2.7px solid #ccc;
   font-size: 16px;
   text-align: center;
   cursor: pointer;
   transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.calendar:hover {
+  border-bottom: 2.7px solid #797979;
 }
 
 .calendar:focus {
@@ -66,15 +70,15 @@
 }
 
 .react-datepicker__day:hover {
-  background-color: rgba(0, 123, 255, 0.2);
-  border-radius: 50%;
+  background-color: #10069f48 !important;
+  border-radius: 100px !important;
 }
 
 .react-datepicker__day--selected {
-  background-color: #bbbbbb !important;
+  background-color: #10069f !important;
   color: white !important;
   font-weight: bold;
-  border-radius: 50%;
+  border-radius: 100px;
 }
 
 .react-datepicker__day--keyboard-selected,
@@ -93,6 +97,10 @@
 .react-datepicker__day-name:nth-child(1),
 .react-datepicker__day:nth-child(7n + 1) {
   color: red !important;
+}
+
+.react-datepicker__day:nth-child(7n + 1).react-datepicker__day--selected {
+  color: white !important;
 }
 
 .custom-header {
