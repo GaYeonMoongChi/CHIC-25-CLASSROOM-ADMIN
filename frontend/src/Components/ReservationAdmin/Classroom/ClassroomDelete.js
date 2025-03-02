@@ -69,7 +69,7 @@ const ClassroomDelete = ({ classroom, onClose, onDelete }) => {
             <table className="classroom-delete__table">
               <tbody>
                 {classroom.map((classroomItem, index) => (
-                  <tr key={classroomItem.number}>
+                  <tr key={classroomItem.classroom_idx}>
                     <td>
                       <ClassroomRow key={index} classroom={classroomItem} />
                     </td>
@@ -77,10 +77,10 @@ const ClassroomDelete = ({ classroom, onClose, onDelete }) => {
                       <input
                         type="checkbox"
                         checked={selectedClassrooms.includes(
-                          classroomItem.number
+                          classroomItem.classroom_idx
                         )}
                         onChange={() =>
-                          toggleSelectClassroom(classroomItem.number)
+                          toggleSelectClassroom(classroomItem.classroom_idx)
                         }
                         className="classroom-delete__checkbox"
                         onKeyDown={handleKeyDown}

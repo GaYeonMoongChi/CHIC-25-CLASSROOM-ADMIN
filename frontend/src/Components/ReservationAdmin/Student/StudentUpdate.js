@@ -51,8 +51,8 @@ const StudentUpdate = ({ students, onClose, onUpdate }) => {
   };
 
   return (
-    <div className="modal-overlay">
-      <div className="modal-content">
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <header className="students-update__header">
           <button className="modal-close" onClick={onClose}>
             ✖

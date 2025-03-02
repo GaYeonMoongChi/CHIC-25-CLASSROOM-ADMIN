@@ -70,9 +70,7 @@ const ClassroomCreate = ({ onClose, onCreate }) => {
         <main className="classroom-create__main">
           <ul className="classroom-create__list">
             <li className="classroom-create__item">
-              <strong className="classroom-create__label">
-                ▪️ 강의실 호수:{" "}
-              </strong>
+              <strong className="classroom-create__label">▪️ 호수: </strong>
               <input
                 type="text"
                 name="classroom_idx"
@@ -92,9 +90,7 @@ const ClassroomCreate = ({ onClose, onCreate }) => {
               ></input>
             </li>
             <li className="classroom-create__item">
-              <strong className="classroom-create__label">
-                ▪️ 강의실 설명:{" "}
-              </strong>
+              <strong className="classroom-create__label">▪️ 설명: </strong>
               <textarea
                 name="classroom_exp"
                 className="classroom-create__textarea"

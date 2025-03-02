@@ -115,7 +115,7 @@ const NoticeCreate = ({ onClose, onCreate }) => {
               ></textarea>
             </li>
             <li className="notice-create__item">
-              <strong className="notice-create__label">▪️ 이미지 등록: </strong>
+              <strong className="notice-create__label">▪️ 이미지파일: </strong>
               <input
                 type="file"
                 className="notice-create__input"

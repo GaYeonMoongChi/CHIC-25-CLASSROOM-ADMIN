@@ -9,9 +9,10 @@
   cursor: pointer;
   margin-left: auto;
   font-weight: bold;
+  border-radius: 5px 5px 0px 0px;
 }
 
 #logout-button:hover {
-  background-color: #dad8d8;
+  background-color: #f0f4ff;
   font-weight: bolder;
 }

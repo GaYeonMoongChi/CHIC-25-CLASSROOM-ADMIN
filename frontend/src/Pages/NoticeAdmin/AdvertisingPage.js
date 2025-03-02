@@ -86,7 +86,7 @@ const AdvertisingPage = () => {
       writer: "관리자",
       startdate: "2025년 1월 6일",
       enddate: "2025년 1월 13일",
-      content:
+      contents:
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
     },
     {
@@ -96,7 +96,7 @@ const AdvertisingPage = () => {
       writer: "관리자",
       startdate: "2025년 1월 7일",
       enddate: "2025년 1월 13일",
-      content:
+      contents:
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
     },
     {
@@ -106,16 +106,17 @@ const AdvertisingPage = () => {
       writer: "관리자",
       startdate: "2025년 1월 23일",
       enddate: "2025년 3월 20일",
-      content: "ㅂㅈㄷㄱ쇼ㅕㅑㅐㅔㅁㄴㅇㄹ호ㅓㅏㅣㅋㅌㅊ퓨ㅜㅡ",
+      contents: "ㅂㅈㄷㄱ쇼ㅕㅑㅐㅔㅁㄴㅇㄹ호ㅓㅏㅣㅋㅌㅊ퓨ㅜㅡ",
     },
     {
-      id: 3,
-      date: "2025년 1월 8일",
-      title: "2025년 xxx 공모전",
+      id: 4,
+      date: "2025년 3월 2일",
+      title: "🌙인공지능융합대학 학생회 '백야' 신입국원 모집☀",
       writer: "관리자",
       startdate: "2025년 1월 23일",
       enddate: "2025년 3월 20일",
-      content: "ㅂㅈㄷㄱ쇼ㅕㅑㅐㅔㅁㄴㅇㄹ호ㅓㅏㅣㅋㅌㅊ퓨ㅜㅡ",
+      contents:
+        "안녕하세요! 인공지능융합대학 제2대 학생회 '백야'입니다! '백야'에서 2025년을 함께할 신입 국원분들을 모집합니다! 📌 모집대상 : 인공지능융합대학 소속 신입생/재학생 📌 지원요건 : 2025학년도 재학 📌 지원기간: 3/4(화) ~ 3/7(금) 18시까지 📌 면접기간 : 3/10(월) ~ 3/12(수) 18시까지 📌 합격자 발표 : 3/12(수)",
     },
   ];
 
@@ -135,6 +136,8 @@ const AdvertisingPage = () => {
   return (
     <div className="div">
       <header className="advertising-page__header">
+        {/* 사이드바 컴포넌트 */}
+        <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
         <h1 className="advertising-page__title">홍보/광고</h1>
       </header>
 
@@ -217,9 +220,6 @@ const AdvertisingPage = () => {
       {isSidebarOpen && (
         <div className="sidebar-overlay" onClick={toggleSidebar}></div>
       )}
-
-      {/* 사이드바 컴포넌트 */}
-      <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
 
       {/* 등록 모달창 컴포넌트 */}
       {isCreateModalOpen && <AdvertisingCreate onClose={toggleCreateModal} />}

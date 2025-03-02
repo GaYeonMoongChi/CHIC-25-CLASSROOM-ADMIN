@@ -72,6 +72,8 @@ const NoticePage = () => {
   return (
     <div className="div">
       <header className="notice-page__header">
+        {/* 사이드바 컴포넌트 */}
+        <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
         <h1 className="notice-page__title">공지사항</h1>
       </header>
 
@@ -154,9 +156,6 @@ const NoticePage = () => {
           onClick={toggleSidebar}
         ></div>
       )}
-
-      {/* 사이드바 컴포넌트 */}
-      <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
 
       {/* 등록 모달창 컴포넌트 */}
       {isCreateModalOpen && <NoticeCreate onClose={toggleCreateModal} />}

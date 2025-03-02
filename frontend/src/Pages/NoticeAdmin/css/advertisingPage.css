@@ -1,27 +1,27 @@
 .advertising-page__header {
   display: flex;
-  gap: 50px;
   padding-bottom: 30px;
   padding-top: 30px;
-  margin-bottom: 30px;
-  border-bottom: 3px solid #ccc;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #191250;
   width: 95%;
 }
 
 .advertising-page__title {
-  font-size: 30px;
+  font-size: 25px;
 }
 
 .advertising-page__search-list {
   width: 95%;
-  background-color: #f5f5f5;
-  padding: 15px 10px;
+  background-color: #f0f4ff;
+  padding: 20px 20px;
   display: flex;
   gap: 20px;
 }
 
 .advertising-page__search-item {
   background-color: #ffffff;
+  border-radius: 10px;
   border: none;
   padding: 10px;
   display: flex;
@@ -32,21 +32,23 @@
 
 .advertising-page__search-label {
   width: 20%;
+  border-right: 2px solid #7c7c7c;
 }
 
 .advertising-page__search-input {
   padding: 10px;
   width: 80%;
   background-color: #ffffff;
-  border-radius: 10px;
+  border-radius: 5px;
   border: none;
 }
 
 .advertising-page__main_div {
   width: 95%;
-  border-top: 2px solid #ccc;
-  border-bottom: 2px solid #ccc;
-  margin-top: 30px;
+  border-top: 2px solid #191250;
+  border-bottom: 2px solid #191250;
+  margin-top: 20px;
+  margin-bottom: 30px;
 }
 
 .advertising-page__main {
@@ -99,7 +101,6 @@
   background-color: rgb(18, 39, 75);
 }
 
-/* 글생성 / 글삭제 버튼 컨테이너 */
 .advertising-page__action-container {
   display: flex;
   flex-direction: column;
@@ -113,13 +114,12 @@
   visibility: hidden;
   transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
   padding: 10px;
-  background-color: #f5f5f5;
+  background-color: #f0f4ff;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   margin-bottom: 20px;
 }
 
-/* 호버 시 버튼 컨테이너 표시 */
 .advertising-page__footer:hover .advertising-page__action-container,
 .advertising-page__action-button:hover ~ .advertising-page__action-container,
 .advertising-page__action-container:hover {
@@ -128,7 +128,6 @@
   transform: translateX(50%) translateY(0);
 }
 
-/* 글 생성 & 삭제 버튼 스타일 */
 .advertising-page__action-create,
 .advertising-page__action-delete {
   background-color: #ffffff;
@@ -145,7 +144,7 @@
 
 .advertising-page__action-create:hover,
 .advertising-page__action-delete:hover {
-  background-color: #bbb;
+  background-color: #f0f4ff54;
   font-weight: bolder;
 }
 

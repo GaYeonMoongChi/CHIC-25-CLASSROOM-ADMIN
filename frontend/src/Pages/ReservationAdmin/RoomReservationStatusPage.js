@@ -126,9 +126,7 @@ const RoomReservationStatusPage = () => {
   return (
     <div className="div">
       <header className="room-reservation-status__header">
-        <h1 className="room-reservation-status__title">
-          강의실 사용 현황 및 예약 현황
-        </h1>
+        <h1 className="room-reservation-status__title">강의실 예약현황 열람</h1>
       </header>
 
       <div className="room-reservation-status__main">

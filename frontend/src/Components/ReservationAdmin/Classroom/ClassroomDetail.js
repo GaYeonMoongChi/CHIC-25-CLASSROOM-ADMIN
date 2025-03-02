@@ -16,7 +16,9 @@ const DetailModal = ({ classroom, onClose, onUpdate }) => {
           <button className="modal-close" onClick={onClose}>
             ✖
           </button>
-          <h1 className="classroom-details__title">{classroom.number}</h1>
+          <h1 className="classroom-details__title">
+            {classroom.classroom_idx}호
+          </h1>
         </header>
 
         <main className="classroom-details__main">
@@ -25,14 +27,14 @@ const DetailModal = ({ classroom, onClose, onUpdate }) => {
               <strong className="classroom-details__label">
                 ▪️ 강의실명:{" "}
               </strong>
-              <div className="classroom-details__content">{classroom.name}</div>
+              <div className="classroom-details__content">
+                {classroom.classroom_name}
+              </div>
             </li>
             <li className="classroom-details__item">
-              <strong className="classroom-details__label">
-                ▪️ 강의실 설명:{" "}
-              </strong>
+              <strong className="classroom-details__label">▪️ 설명: </strong>
               <div className="classroom-details__content">
-                {classroom.explanation}
+                {classroom.classroom_exp}
               </div>
             </li>
           </ul>
