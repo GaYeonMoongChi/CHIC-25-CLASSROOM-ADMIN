@@ -51,8 +51,8 @@ const AdvertisingUpdate = ({ advertising, onClose, onUpdate }) => {
   if (!advertising) return null;
 
   return (
-    <div className="modal-overlay">
-      <div className="modal-content">
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <header className="advertising-update__header">
           <button className="modal-close" onClick={onClose}>
             ✖

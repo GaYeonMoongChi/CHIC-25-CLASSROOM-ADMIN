@@ -98,7 +98,7 @@ const ClassCreate = ({ onClose, onCreate }) => {
               ></input>
             </li>
             <li className="class-create__item">
-              <strong className="class-create__label">▪️ 강의실 호수: </strong>
+              <strong className="class-create__label">▪️ 호수: </strong>
               <input
                 type="text"
                 name="classroom_idx"

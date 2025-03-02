@@ -40,7 +40,7 @@ const DetailModal = ({ advertising, onClose, onUpdate }) => {
             <li className="advertising-details__item">
               <strong className="advertising-details__label">▪️ 내용: </strong>
               <div className="advertising-details__content">
-                {advertising.content}
+                {advertising.contents}
               </div>
             </li>
           </ul>

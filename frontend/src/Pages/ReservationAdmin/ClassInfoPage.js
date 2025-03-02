@@ -86,7 +86,9 @@ const ClassInfoPage = () => {
   return (
     <div className="div">
       <header className="class-info-update__header">
-        <h1 className="class-info-update__title">강의 정보 업데이트</h1>
+        {/* 사이드바 컴포넌트 */}
+        <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+        <h1 className="class-info-update__title">강의 정보 열람</h1>
       </header>
 
       <nav className="classroom-info__search-nav">
@@ -168,9 +170,6 @@ const ClassInfoPage = () => {
       {isSidebarOpen && (
         <div className="sidebar-overlay" onClick={toggleSidebar}></div>
       )}
-
-      {/* 사이드바 컴포넌트 */}
-      <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
 
       {/* 등록 모달창 컴포넌트 */}
       {isCreateModalOpen && (

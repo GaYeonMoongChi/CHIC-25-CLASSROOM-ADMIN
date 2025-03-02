@@ -12,7 +12,9 @@ const ClassroomRow = ({ classroom, onUpdate }) => {
         onClick={() => setIsModalOpen(true)}
       >
         <tr className="classroom-info-update__row">
-          <td className="classroom-info-update__cell">{classroom.number}호</td>
+          <td className="classroom-info-update__cell">
+            {classroom.classroom_idx}호
+          </td>
         </tr>
       </div>
 
