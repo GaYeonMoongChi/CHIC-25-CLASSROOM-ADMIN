@@ -19,7 +19,7 @@
   text-align: right;
   font-size: 14px;
   padding-right: 35px;
-  color: #666;
+  color: #191250;
 }
 
 .room-header {
@@ -27,6 +27,7 @@
   padding: 30px;
   font-weight: 500;
   font-size: large;
+  color: #191250;
 }
 
 .time-slot {
@@ -41,6 +42,6 @@
   left: 0;
   width: 100%;
   height: 1px;
-  background: #ddd;
+  background: #19125027;
   top: 25%;
 }
