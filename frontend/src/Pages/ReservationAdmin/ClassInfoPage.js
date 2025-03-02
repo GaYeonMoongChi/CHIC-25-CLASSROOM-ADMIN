@@ -26,6 +26,28 @@ const ClassInfoPage = () => {
   // 강의 정보 상태 관리
   const [classInfo, setClassInfo] = useState([]);
 
+  // 검색값 상태 관리
+  const [searchIdx, setSearchIdx] = useState("");
+  const [searchProfName, setSearchProfName] = useState("");
+  const [searchClassName, setSearchClassName] = useState("");
+
+  // 검색창에 값 입력하면 상태 변환
+  const onChangeIdx = (e) => setSearchIdx(e.target.value);
+  const onChangeClassName = (e) => setSearchClassName(e.target.value);
+  const onChangeProfName = (e) => setSearchProfName(e.target.value);
+
+  // 검색 결과 화면에 반영
+  const filteredClassrooms = classInfo.filter((classes) => {
+    return (
+      (searchIdx === "" || classes.class_idx?.toString().includes(searchIdx)) &&
+      (searchClassName === "" ||
+        classes.class_name
+          ?.toLowerCase()
+          .includes(searchClassName.toLowerCase())) &&
+      (searchProfName === "" || classes.prof_name?.includes(searchProfName))
+    );
+  });
+
   // 강의 데이터 요청
   useEffect(() => {
     const fetchStudents = async () => {
@@ -67,10 +89,53 @@ const ClassInfoPage = () => {
         <h1 className="class-info-update__title">강의 정보 업데이트</h1>
       </header>
 
+      <nav className="classroom-info__search-nav">
+        <ul className="classroom-info__search-list">
+          <li className="classroom-info__search-item">
+            <label className="classroom-info__search-label">학정번호</label>
+            <input
+              type="text"
+              name="search"
+              className="classroom-info__search-input"
+              placeholder="학정번호로 검색하세요."
+              onChange={onChangeIdx}
+              value={searchIdx}
+            />
+          </li>
+          <li className="classroom-info__search-item">
+            <label className="classroom-info__search-label">이름</label>
+            <input
+              type="text"
+              name="search"
+              className="classroom-info__search-input"
+              placeholder="강의명으로 검색하세요."
+              onChange={onChangeClassName}
+              value={searchClassName}
+            />
+          </li>
+          <li className="classroom-info__search-item">
+            <label
+              htmlFor="search-author"
+              className="classroom-info__search-label"
+            >
+              교수명
+            </label>
+            <input
+              type="text"
+              name="search"
+              className="classroom-info__search-input"
+              placeholder="교수명으로 검색하세요."
+              onChange={onChangeProfName}
+              value={searchProfName}
+            />
+          </li>
+        </ul>
+      </nav>
+
       <div className="class-info-update__main_div">
         <table className="class-info-update__table">
           <tbody>
-            {classInfo.map((classes, index) => (
+            {filteredClassrooms.map((classes, index) => (
               <ClassRow
                 key={index}
                 classes={classes}
