@@ -11,7 +11,7 @@
   width: 200px;
   padding: 10px;
   border: none;
-  border-bottom: 3px solid #666;
+  border-bottom: 3px solid #191250;
   font-size: 16px;
   text-align: center;
   cursor: pointer;
@@ -20,12 +20,13 @@
 }
 
 .calendar:hover {
-  border-bottom: 3px solid #797979;
-  background-color: #f5f5f5;
+  border-bottom: 3px solid #140f41;
+  background-color: #f0f4ff54;
 }
 
 .calendar:focus {
-  border-color: #797979;
+  border-color: #666;
+  background-color: #f0f4ff54;
   outline: none;
 }
 
