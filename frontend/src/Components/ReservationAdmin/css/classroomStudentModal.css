@@ -36,6 +36,7 @@
 /* 강의실 상세보기 모달 */
 .classroom-details__title {
   margin-bottom: 25px;
+  font-size: 25px;
 }
 
 .classroom-details__list {
@@ -231,6 +232,7 @@
 /* 학생 상세보기 모달 */
 .students-details__title {
   margin-bottom: 25px;
+  font-size: 25px;
 }
 
 .students-details__list {
@@ -426,6 +428,7 @@
 /* 강의 상세보기 모달 */
 .class-details__title {
   margin-bottom: 25px;
+  font-size: 25px;
 }
 
 .class-details__list {

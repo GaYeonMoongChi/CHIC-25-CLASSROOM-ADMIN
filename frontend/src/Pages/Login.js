@@ -58,7 +58,7 @@ const Login = () => {
     <div className="login__wrapper">
       <div className="login">
         <header className="login__header">
-          <h1 className="login__title">광운대학교 로그인</h1>
+          <h1 className="login__title">광운대학교 관리자 페이지 로그인</h1>
         </header>
 
         <main className="login__main">
