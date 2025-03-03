@@ -65,6 +65,12 @@ const reservations = [
         end_time: "16:30",
         purpose: "박재성",
       },
+      {
+        name: "김가연",
+        start_time: "17:00",
+        end_time: "18:00",
+        purpose: "CHIC 개강총회",
+      },
     ],
   },
   {
@@ -88,12 +94,6 @@ const reservations = [
         start_time: "13:30",
         end_time: "15:00",
         purpose: "김현경",
-      },
-      {
-        name: "김가연",
-        start_time: "17:00",
-        end_time: "18:00",
-        purpose: "CHIC 개강총회",
       },
     ],
   },
