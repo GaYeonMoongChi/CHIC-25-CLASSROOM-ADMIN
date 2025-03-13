@@ -1,7 +1,7 @@
 const express = require("express"); // Express 모듈 불러오기
 const mongoose = require("mongoose"); // Mongoose 모듈 불러오기
 const dotenv = require("dotenv"); // dotenv 모듈 불러오기
-const { userDB, classDB, noticeDB } = require("./db/mongoConnection"); // ✅ 연결 가져오기
+const connectDB = require('./db/mongoConnection'); // MongoDB 연결 함수 불러오기
 const cors = require("cors"); // CORS 모듈 불러오기
 
 dotenv.config(); // .env 파일의 내용을 로드
@@ -24,19 +24,35 @@ app.get("/", (req, res) => {
   res.send("서버가 정상적으로 실행 중입니다.");
 });
 
-const studentRoutes = require("./routes/student"); // student 라우트 불러오기
-app.use("/api/students", studentRoutes); // API 경로 등록
+// const studentRoutes = require("./routes/student"); // student 라우트 불러오기
+// app.use("/api/students", studentRoutes); // API 경로 등록
 
-const classroomRoutes = require("./routes/classroom");
-app.use("/api/classrooms", classroomRoutes);
+// const classroomRoutes = require("./routes/classroom");
+// app.use("/api/classrooms", classroomRoutes);
 
-const classRoutes = require("./routes/class");
-app.use("/api/class", classRoutes);
+// const classRoutes = require("./routes/class");
+// app.use("/api/class", classRoutes);
 
-const boardRoutes = require("./routes/board");
-app.use("/api/board", boardRoutes);
+// const boardRoutes = require("./routes/board");
+// app.use("/api/board", boardRoutes);
 
-// 서버 실행
-app.listen(port, () => {
-  console.log(`서버가 http://localhost:${port} 에서 실행 중입니다.`);
+// MongoDB 연결 실행
+connectDB().then(() => {
+  // 라우트 등록 (MongoDB 연결 이후에 실행해야 함)
+  const studentRoutes = require("./routes/student");
+  app.use("/api/students", studentRoutes);
+
+  const classroomRoutes = require("./routes/classroom");
+  app.use("/api/classrooms", classroomRoutes);
+
+  const classRoutes = require("./routes/class");
+  app.use("/api/class", classRoutes);
+
+  const boardRoutes = require("./routes/board");
+  app.use("/api/board", boardRoutes);
+
+  // 서버 실행
+  app.listen(port, () => {
+    console.log(`서버가 http://localhost:${port} 에서 실행 중입니다.`);
+  });
 });

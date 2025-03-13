@@ -5,7 +5,7 @@ const fs = require('fs');
 const router = express.Router();
 const Notice = require('../db/notice');
 
-// ✅ 파일 저장 경로 설정
+// 파일 저장 경로 설정
 const uploadDir = 'uploads';
 if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir);
@@ -57,7 +57,7 @@ router.post('/', upload.single('file'), async (req, res) => {
 // Get > ex) http://localhost:8000/api/board/1001
 router.get('/:notice_idx', async (req, res) => {
     try {
-      console.log(`📢 /api/board/${req.params.notice_idx} GET 요청 받음!`);
+      console.log(`/api/board/${req.params.notice_idx} GET 요청 받음!`);
   
       const notice = await Notice.findOne({ notice_idx: req.params.notice_idx });
   
@@ -80,7 +80,7 @@ router.get('/:notice_idx', async (req, res) => {
 // Delete > ex) http://localhost:8000/api/board/1001
 router.delete('/:notice_idx', async (req, res) => {
     try {
-      console.log(`📢 /api/board/${req.params.notice_idx} DELETE 요청 받음!`);
+      console.log(`/api/board/${req.params.notice_idx} DELETE 요청 받음!`);
   
       const notice = await Notice.findOne({ notice_idx: req.params.notice_idx });
   

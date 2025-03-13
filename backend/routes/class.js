@@ -8,22 +8,24 @@ router.post('/', async (req, res) => {
     console.log('/api/classes POST 요청 받음!', req.body);
 
     const { class_idx, classroom_idx, class_name, prof_name, class_credit, class_daytime } = req.body;
-
-    // 필수 값 확인
     if (!class_idx || !class_name || !prof_name || !class_credit || !class_daytime) {
       return res.status(400).json({ error: '모든 필드를 입력해야 합니다.' });
     }
 
-    // 중복 체크 (PK: class_idx)
     const existingClass = await Class.findOne({ class_idx });
     if (existingClass) {
       return res.status(400).json({ error: '이미 존재하는 강의입니다.' });
     }
 
-    // 새로운 강의 추가
-    const newClass = new Class({ class_idx, classroom_idx, class_name, prof_name, class_credit, class_daytime });
-    await newClass.save();
+    // ✅ 강의 시간 변환
+    const timeData = parseClassDaytime(class_daytime);
 
+    const newClass = new Class({ 
+      class_idx, classroom_idx, class_name, prof_name, class_credit, class_daytime,
+      ...timeData
+    });
+
+    await newClass.save();
     res.status(201).json({ message: '강의가 추가되었습니다.', class: newClass });
   } catch (error) {
     console.error('강의 추가 실패:', error);
@@ -50,10 +52,12 @@ router.put('/:class_idx', async (req, res) => {
     if (class_name !== undefined) existingClass.class_name = class_name;
     if (prof_name !== undefined) existingClass.prof_name = prof_name;
     if (class_credit !== undefined) existingClass.class_credit = class_credit;
-    if (class_daytime !== undefined) existingClass.class_daytime = class_daytime;
+    // if (class_daytime !== undefined) existingClass.class_daytime = class_daytime;
+    if (class_daytime !== undefined) {
+      Object.assign(existingClass, parseClassDaytime(class_daytime));
+    }
 
     await existingClass.save();
-
     res.json({ message: '강의 정보가 수정되었습니다.', class: existingClass });
   } catch (error) {
     console.error('강의 정보 수정 실패:', error);

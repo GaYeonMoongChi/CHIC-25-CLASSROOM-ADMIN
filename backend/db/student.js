@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { userDB } = require('./mongoConnection'); // userDB 연결 
+// const { userDB } = require('./mongoConnection'); // userDB 연결 
 
 const studentSchema = new mongoose.Schema(
   {
@@ -23,5 +23,5 @@ const studentSchema = new mongoose.Schema(
   { versionKey: false }
 );
 
-const Student = userDB.model('Student', studentSchema, 'ic'); // 🔹 user DB 사용
+const Student = global.userDB.model('Student', studentSchema, 'ic'); 
 module.exports = Student;
