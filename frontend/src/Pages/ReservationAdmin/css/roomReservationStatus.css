@@ -1,10 +1,33 @@
 .room-reservation-status__header {
+  display: flex;
+  padding-bottom: 30px;
+  padding-top: 30px;
   margin-bottom: 30px;
+  border-bottom: 2px solid #191250;
+  width: 95%;
 }
 
-.room-reservation-status__column,
-.room-reservation-status__time-slot,
-.room-reservation-status__cell {
-  padding: 10px 60px;
-  border: 1px solid #ccc;
+.room-reservation-status__title {
+  font-size: 25px;
+}
+
+.room-reservation-status__main {
+  width: 95%;
+}
+
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 10;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.sidebar-open .student-info__main_div {
+  pointer-events: none;
+  opacity: 0.5; /* 흐리게 */
+  transition: opacity 0.3s ease-in-out;
 }

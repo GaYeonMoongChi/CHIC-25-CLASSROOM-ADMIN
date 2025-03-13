@@ -7,20 +7,19 @@ import RoomReservationStatusPage from "./Pages/ReservationAdmin/RoomReservationS
 import StudentInfoPage from "./Pages/ReservationAdmin/StudentInfoPage";
 import NoticePage from "./Pages/NoticeAdmin/NoticePage ";
 import AdvertisingPage from "./Pages/NoticeAdmin/AdvertisingPage";
+import ClassInfoPage from "./Pages/ReservationAdmin/ClassInfoPage";
 
 const App = () => {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route
-          path="/Home/Reservation"
-          element={<RoomReservationStatusPage />}
-        />
-        <Route path="/Update/Classroom" element={<ClassroomInfoPage />} />
-        <Route path="/Update/Student" element={<StudentInfoPage />} />
-        <Route path="/Home/Notice" element={<NoticePage />} />
-        <Route path="/Home/Advertising" element={<AdvertisingPage />} />
+        <Route path="/Reservation" element={<RoomReservationStatusPage />} />
+        <Route path="/Classroom" element={<ClassroomInfoPage />} />
+        <Route path="/Student" element={<StudentInfoPage />} />
+        <Route path="/Class" element={<ClassInfoPage />} />
+        <Route path="/Notice" element={<NoticePage />} />
+        <Route path="/Advertising" element={<AdvertisingPage />} />
       </Routes>
     </Router>
   );

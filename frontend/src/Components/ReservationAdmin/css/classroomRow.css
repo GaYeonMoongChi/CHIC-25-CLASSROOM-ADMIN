@@ -8,8 +8,9 @@
 }
 
 .classroom-info-update__row_div:hover {
-  background-color: #f5f5f5;
-  font-weight: bolder;
+  background-color: #f0f4ff;
+  font-weight: bold;
+  border-radius: 5px;
 }
 
 .classroom-info-update__row {

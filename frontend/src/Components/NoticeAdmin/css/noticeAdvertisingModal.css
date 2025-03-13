@@ -33,6 +33,7 @@
 /* notice 상세보기 모달 */
 .notice-details__title {
   margin-bottom: 25px;
+  font-size: 25px;
 }
 
 .notice-details__list {
@@ -52,6 +53,8 @@
   background-color: #f5f5f5;
   border: 1px solid #ccc;
   border-radius: 10px;
+  white-space: pre-line;
+  white-space: pre-wrap;
 }
 
 .notice-details__footer {
@@ -77,6 +80,7 @@
 /* notice 등록 모달 */
 .notice-create__title {
   margin-bottom: 25px;
+  font-size: 25px;
 }
 
 .notice-create__item {
@@ -131,6 +135,7 @@
 /* notice 삭제 모드 */
 .notice-delete__title {
   margin-bottom: 25px;
+  font-size: 25px;
 }
 
 .notice-delete__main_div {
@@ -151,6 +156,9 @@
 }
 
 .notice-delete__footer {
+  position: sticky;
+  bottom: 0;
+  right: 0;
   margin-top: 30px;
   display: flex;
   justify-content: flex-end;
@@ -162,7 +170,7 @@
   border: none;
   background-color: #10069f;
   color: white;
-  margin-right: 20px;
+  margin-right: 0;
   font-weight: bold;
 }
 
@@ -173,6 +181,7 @@
 /* Notice 수정 모달 */
 .notice-update__title {
   margin-bottom: 25px;
+  font-size: 25px;
 }
 
 .notice-update__item {
@@ -227,6 +236,7 @@
 /* Advertising 상세보기 모달 */
 .advertising-details__title {
   margin-bottom: 25px;
+  font-size: 25px;
 }
 
 .advertising-details__list {
@@ -246,6 +256,8 @@
   background-color: #f5f5f5;
   border: 1px solid #ccc;
   border-radius: 10px;
+  white-space: pre-line;
+  white-space: pre-wrap;
 }
 
 .advertising-details__footer {
@@ -271,6 +283,7 @@
 /* Advertising 등록 모달 */
 .advertising-create__title {
   margin-bottom: 25px;
+  font-size: 25px;
 }
 
 .advertising-create__item {
@@ -325,6 +338,7 @@
 /* Advertising 삭제 모달 */
 .advertising-delete__title {
   margin-bottom: 25px;
+  font-size: 25px;
 }
 
 .advertising-delete__main_div {
@@ -345,6 +359,9 @@
 }
 
 .advertising-delete__footer {
+  position: sticky;
+  bottom: 0;
+  right: 0;
   margin-top: 30px;
   display: flex;
   justify-content: flex-end;
@@ -356,7 +373,7 @@
   border: none;
   background-color: #10069f;
   color: white;
-  margin-right: 20px;
+  margin-right: 0;
   font-weight: bold;
 }
 
@@ -367,6 +384,7 @@
 /* Advertising 수정 모달 */
 .advertising-update__title {
   margin-bottom: 25px;
+  font-size: 25px;
 }
 
 .advertising-update__item {

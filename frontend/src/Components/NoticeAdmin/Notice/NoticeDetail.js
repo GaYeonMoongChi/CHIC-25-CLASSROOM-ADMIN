@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../css/noticeAdvertisingModal.css";
 import NoticeUpdate from "./NoticeUpdate";
 
-const DetailModal = ({ notice, onClose }) => {
+const DetailModal = ({ notice, onClose, onUpdate }) => {
   // 수정 모달 상태 관리
   const [isUpdateMode, setUpdateMode] = useState(false);
   const switchUpdateMode = () => setUpdateMode((prev) => !prev);
@@ -10,8 +10,8 @@ const DetailModal = ({ notice, onClose }) => {
   if (!notice) return null;
 
   return (
-    <div className="modal-overlay">
-      <div className="modal-content">
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <header className="notice-details__header">
           <button className="modal-close" onClick={onClose}>
             ✖
@@ -49,6 +49,7 @@ const DetailModal = ({ notice, onClose }) => {
           notice={notice}
           submit={switchUpdateMode}
           onClose={switchUpdateMode}
+          onUpdate={onUpdate}
         />
       )}
     </div>

@@ -1,4 +1,4 @@
-.advertising-page__header {
+.class-info-update__header {
   display: flex;
   padding-bottom: 30px;
   padding-top: 30px;
@@ -7,11 +7,11 @@
   width: 95%;
 }
 
-.advertising-page__title {
+.class-info-update__title {
   font-size: 25px;
 }
 
-.advertising-page__search-list {
+.class-info__search-list {
   width: 95%;
   background-color: #f0f4ff;
   padding: 20px 20px;
@@ -19,7 +19,7 @@
   gap: 20px;
 }
 
-.advertising-page__search-item {
+.class-info__search-item {
   background-color: #ffffff;
   border-radius: 10px;
   border: none;
@@ -27,23 +27,27 @@
   display: flex;
   align-items: center;
   font-weight: bold;
-  width: 30%;
+  width: 40%;
 }
 
-.advertising-page__search-label {
-  width: 20%;
+.class-info__search-item > input {
+  margin-left: 10px;
+}
+
+.class-info__search-label {
+  width: 15%;
   border-right: 2px solid #7c7c7c;
 }
 
-.advertising-page__search-input {
+.class-info__search-input {
   padding: 10px;
   width: 80%;
   background-color: #ffffff;
-  border-radius: 5px;
+  border-radius: 10px;
   border: none;
 }
 
-.advertising-page__main_div {
+.class-info-update__main_div {
   width: 95%;
   border-top: 2px solid #191250;
   border-bottom: 2px solid #191250;
@@ -51,28 +55,11 @@
   margin-bottom: 30px;
 }
 
-.advertising-page__main {
+.class-info-update__table {
   width: 100%;
 }
 
-.advertising-page__search-item > input,
-.advertising-page__search-item > select {
-  margin-left: 10px;
-}
-
-.advertising-page__status-select {
-  padding: 10px;
-  width: 60%;
-  background-color: #ffffff;
-  border-radius: 10px;
-  border: none;
-}
-
-.advertising-page__table {
-  width: 100%;
-}
-
-.advertising-page__footer {
+.class-info-update__footer {
   position: fixed;
   bottom: 60px;
   right: 80px;
@@ -82,7 +69,7 @@
   gap: 10px;
 }
 
-.advertising-page__action-button {
+.class-info-update__action-button {
   border-radius: 100px;
   background: #10069f;
   border: none;
@@ -97,11 +84,11 @@
   position: relative;
 }
 
-.advertising-page__action-button:hover {
+.class-info-update__action-button:hover {
   background-color: rgb(18, 39, 75);
 }
 
-.advertising-page__action-container {
+.class-info-update__action-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -115,21 +102,21 @@
   transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
   padding: 10px;
   background-color: #f0f4ff;
-  border-radius: 10px;
+  border-radius: 5px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   margin-bottom: 20px;
 }
 
-.advertising-page__footer:hover .advertising-page__action-container,
-.advertising-page__action-button:hover ~ .advertising-page__action-container,
-.advertising-page__action-container:hover {
+.class-info-update__footer:hover .class-info-update__action-container,
+.class-info-update__action-button:hover ~ .class-info-update__action-container,
+.class-info-update__action-container:hover {
   opacity: 1;
   visibility: visible;
   transform: translateX(50%) translateY(0);
 }
 
-.advertising-page__action-create,
-.advertising-page__action-delete {
+.class-info-update__action-create,
+.class-info-update__action-delete {
   background-color: #ffffff;
   color: black;
   border: none;
@@ -142,8 +129,8 @@
   transition: background-color 0.3s ease;
 }
 
-.advertising-page__action-create:hover,
-.advertising-page__action-delete:hover {
+.class-info-update__action-create:hover,
+.class-info-update__action-delete:hover {
   background-color: #f0f4ff54;
   font-weight: bolder;
 }
@@ -161,6 +148,6 @@
 
 .sidebar-open .student-info__main_div {
   pointer-events: none;
-  opacity: 0.5;
+  opacity: 0.5; /* 흐리게 */
   transition: opacity 0.3s ease-in-out;
 }

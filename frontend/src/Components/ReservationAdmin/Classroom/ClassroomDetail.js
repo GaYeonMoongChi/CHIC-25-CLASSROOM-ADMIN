@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../css/classroomStudentModal.css";
 import ClassroomUpdate from "./ClassroomUpdate";
 
-const DetailModal = ({ classroom, onClose }) => {
+const DetailModal = ({ classroom, onClose, onUpdate }) => {
   // 수정 모달 상태 관리
   const [isUpdateMode, setUpdateMode] = useState(false);
   const switchUpdateMode = () => setUpdateMode((prev) => !prev);
@@ -10,13 +10,15 @@ const DetailModal = ({ classroom, onClose }) => {
   if (!classroom) return null;
 
   return (
-    <div className="modal-overlay">
-      <div className="modal-content">
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <header className="classroom-details__header">
           <button className="modal-close" onClick={onClose}>
             ✖
           </button>
-          <h1 className="classroom-details__title">{classroom.number}</h1>
+          <h1 className="classroom-details__title">
+            {classroom.classroom_idx}호
+          </h1>
         </header>
 
         <main className="classroom-details__main">
@@ -25,14 +27,14 @@ const DetailModal = ({ classroom, onClose }) => {
               <strong className="classroom-details__label">
                 ▪️ 강의실명:{" "}
               </strong>
-              <div className="classroom-details__content">{classroom.name}</div>
+              <div className="classroom-details__content">
+                {classroom.classroom_name}
+              </div>
             </li>
             <li className="classroom-details__item">
-              <strong className="classroom-details__label">
-                ▪️ 강의실 설명:{" "}
-              </strong>
+              <strong className="classroom-details__label">▪️ 설명: </strong>
               <div className="classroom-details__content">
-                {classroom.explanation}
+                {classroom.classroom_exp}
               </div>
             </li>
           </ul>
@@ -53,6 +55,7 @@ const DetailModal = ({ classroom, onClose }) => {
           classroom={classroom}
           submit={switchUpdateMode}
           onClose={switchUpdateMode}
+          onUpdate={onUpdate}
         />
       )}
     </div>

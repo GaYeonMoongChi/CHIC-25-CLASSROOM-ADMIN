@@ -5,11 +5,6 @@
 }
 
 .div {
-  padding-left: 50px;
   transition: transform 0.3s ease;
-}
-
-.div.shifted {
-  transform: translateX(200px);
-  height: 800px; /*모달창 열린 상태에서 사이드바 열렸을때 화면 깨지는 문제 해결(?)*/
+  padding-left: 100px;
 }

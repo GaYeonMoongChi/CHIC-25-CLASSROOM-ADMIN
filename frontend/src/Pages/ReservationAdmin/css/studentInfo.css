@@ -1,22 +1,58 @@
 .student-info__header {
   display: flex;
-  gap: 50px;
   padding-bottom: 30px;
   padding-top: 30px;
-  margin-bottom: 30px;
-  border-bottom: 3px solid #ccc;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #191250;
   width: 95%;
+}
+
+.student-info__title {
+  font-size: 25px;
+}
+
+.student-info__search-list {
+  width: 95%;
+  background-color: #f0f4ff;
+  padding: 20px 20px;
+  display: flex;
+  gap: 20px;
+}
+
+.student-info__search-item {
+  background-color: #ffffff;
+  border-radius: 10px;
+  border: none;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  width: 40%;
+}
+
+.student-info__search-item > input {
+  margin-left: 10px;
+}
+
+.student-info__search-label {
+  width: 15%;
+  border-right: 2px solid #7c7c7c;
+}
+
+.student-info__search-input {
+  padding: 10px;
+  width: 80%;
+  background-color: #ffffff;
+  border-radius: 5px;
+  border: none;
 }
 
 .student-info__main_div {
   width: 95%;
-  border-top: 2px solid #ccc;
-  border-bottom: 2px solid #ccc;
-  margin-top: 30px;
-}
-
-.student-info__main {
-  width: 100%;
+  border-top: 2px solid #191250;
+  border-bottom: 2px solid #191250;
+  margin-top: 20px;
+  margin-bottom: 30px;
 }
 
 .student-info__table {
@@ -31,7 +67,6 @@
   flex-direction: column;
   align-items: flex-end;
   gap: 10px;
-  z-index: 1000;
 }
 
 .student-info__action-button {
@@ -66,8 +101,8 @@
   visibility: hidden;
   transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
   padding: 10px;
-  background-color: #f5f5f5;
-  border-radius: 10px;
+  background-color: #f0f4ff;
+  border-radius: 5px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   margin-bottom: 20px;
 }
@@ -96,6 +131,23 @@
 
 .student-info__action-create:hover,
 .student-info__action-delete:hover {
-  background-color: #bbb;
+  background-color: #f0f4ff54;
   font-weight: bolder;
+}
+
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 10;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.sidebar-open .student-info__main_div {
+  pointer-events: none;
+  opacity: 0.5; /* 흐리게 */
+  transition: opacity 0.3s ease-in-out;
 }

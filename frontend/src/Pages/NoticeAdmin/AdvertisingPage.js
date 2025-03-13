@@ -81,41 +81,54 @@ const AdvertisingPage = () => {
   const AdvertisingList = [
     {
       id: 1,
-      date: "2025년 1월 6일",
-      title: "2025년 신입생 특별영어과정",
+      date: "2025년 2월 7일",
+      title:
+        "📢 [ ⏰ 전국 최대 규모 대학생 IT 연합 사이드 프로젝트 동아리 UMC 광운대 8기 모집 ⏰ ]",
       writer: "관리자",
-      startdate: "2025년 1월 6일",
-      enddate: "2025년 1월 13일",
-      content:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+      startdate: "2025년 2월 7일",
+      enddate: "2025년 2월 20일",
+      contents:
+        "안녕하세요😊 전국 대학생 연합 IT 프로젝트 동아리 University MakeUs Challenge(UMC) 입니다! 💚UMC💚는 다양한 학교의 친구들과 네트워킹하고, 6개월 간의 열정과 끈기로 성장할 챌린저들과 “실제로 동작하는 서비스를 만들어보자!”라는 목표를 향해 달립니다 🏃 매 기수마다 약 1000명 정도의 학생들이 함께하고 있습니다❤‍🔥",
     },
     {
       id: 2,
       date: "2025년 1월 7일",
-      title: "자율전공학부 재학생 멘토 모집 안내",
+      title: "멋쟁이사자처럼 13기 아기사자 모집 공고",
       writer: "관리자",
-      startdate: "2025년 1월 7일",
-      enddate: "2025년 1월 13일",
-      content:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+      startdate: "2025년 2월 16일",
+      enddate: "2025년 3월 1일",
+      contents:
+        " “GROWL TO WORLD” 멋쟁이사자처럼 대학은 테크 기반의 아이디어 실현을 위해 국내외 121개 대학이 모여 이루어진 국내 최대 규모 IT 연합 동아리입니다.광운대학교 멋쟁이사자처럼에서 13기 아기사자를 모집합니다! 멋쟁이사자처럼에 관심이 있으신 분들은 해당 글을 참고하여 지원해주세요! 추가 문의사항이 있으시다면 아래 연락처로 문의 부탁드립니다 🙏🏻",
     },
     {
       id: 3,
       date: "2025년 1월 8일",
-      title: "2025년 탄소 중립 실천 공모전",
+      title:
+        "🚨 [마감 임박] [코드잇 스프린트] AI / 프론트엔드 / 백엔드 부트캠프 모집 중!",
       writer: "관리자",
       startdate: "2025년 1월 23일",
       enddate: "2025년 3월 20일",
-      content: "ㅂㅈㄷㄱ쇼ㅕㅑㅐㅔㅁㄴㅇㄹ호ㅓㅏㅣㅋㅌㅊ퓨ㅜㅡ",
+      contents:
+        "누적 수강생 1,000명 돌파! 1등 부트캠프 코드잇 스프린트에서 예비 개발자를 찾고 있어요🔍 개발자 커리어, 차곡차곡 제대로 쌓아가고 싶다면? 지금 바로 지원해요 ▶ https://code.it/1LKqoyA",
     },
     {
-      id: 3,
-      date: "2025년 1월 8일",
-      title: "2025년 xxx 공모전",
+      id: 4,
+      date: "2025년 3월 2일",
+      title: "🌙인공지능융합대학 학생회 '백야' 신입국원 모집☀",
       writer: "관리자",
       startdate: "2025년 1월 23일",
       enddate: "2025년 3월 20일",
-      content: "ㅂㅈㄷㄱ쇼ㅕㅑㅐㅔㅁㄴㅇㄹ호ㅓㅏㅣㅋㅌㅊ퓨ㅜㅡ",
+      contents: `안녕하세요! 인공지능융합대학 제2대 학생회 '백야'입니다!'백야'에서 2025년을 함께할 신입 국원분들을 모집합니다!
+      
+      📌 모집대상 : 인공지능융합대학 소속 신입생/재학생
+      📌 지원요건 : 2025학년도 재학
+      📌 지원기간: 3/4(화) ~ 3/7(금) 18시까지
+      📌 면접기간 : 3/10(월) ~ 3/12(수) 18시까지
+      📌 합격자 발표 : 3/12(수)
+      📌 지원방법 : 지원기간 내 구글폼 작성
+      📌 지원 구글폼 : 학부 단톡방 또는 백야 인스타그램 링크트리 참고
+
+  ⚠궁금하신 점은 회장단 연락처, 백야 인스타그램 DM, 백야 오픈채팅방으로 부탁드립니다!`,
     },
   ];
 
@@ -134,91 +147,91 @@ const AdvertisingPage = () => {
 
   return (
     <div className="div">
-      <div className={`div ${isSidebarOpen ? "shifted" : ""}`}>
-        <header className="advertising-page__header">
-          <h1 className="advertising-page__title">홍보/광고</h1>
-        </header>
+      <header className="advertising-page__header">
+        {/* 사이드바 컴포넌트 */}
+        <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+        <h1 className="advertising-page__title">홍보/광고</h1>
+      </header>
 
-        <nav className="advertising-page__search-nav">
-          <ul className="advertising-page__search-list">
-            <li className="advertising-page__search-item">
-              <label className="advertising-page__search-label">작성일</label>
-              <input
-                type="text"
-                className="advertising-page__search-input"
-                placeholder="[xxxx년 x월 x일] 형식으로 입력해주세요."
-                onChange={onChangeDate}
-                value={searchDate}
-              />
-            </li>
-            <li className="advertising-page__search-item">
-              <label className="advertising-page__search-label">제목</label>
-              <input
-                type="text"
-                className="advertising-page__search-input"
-                placeholder="글제목으로 검색하세요."
-                onChange={onChangeTitle}
-                value={searchTitle}
-              />
-            </li>
-            <li className="advertising-page__search-item">
-              <label className="advertising-page__search-label">상태</label>
-              <select
-                name="advertising-status"
-                className="advertising-page__status-select"
-                onChange={onChangeStatus}
-                value={searchStatus}
-              >
-                <option value="적용됨">적용됨</option>
-                <option value="적용종료">적용종료</option>
-              </select>
-            </li>
-            <li className="advertising-page__search-item">
-              <label className="advertising-page__search-label">작성자</label>
-              <input
-                type="text"
-                className="advertising-page__search-input"
-                placeholder="작성자명으로 검색하세요. (ex. 관리자)"
-                onChange={onChangeWriter}
-                value={searchWriter}
-              />
-            </li>
-          </ul>
-        </nav>
-
-        <div className="advertising-page__main_div ">
-          <main className="advertising-page__main">
-            <table className="advertising-page__table">
-              <tbody>
-                {filteredNotices.map((advertising, index) => (
-                  <AdvertisingRow key={index} advertising={advertising} />
-                ))}
-              </tbody>
-            </table>
-          </main>
-        </div>
-
-        <footer className="advertising-page__footer">
-          <button className="advertising-page__action-button">+</button>
-          <div className="advertising-page__action-container">
-            <button
-              className="advertising-page__action-create"
-              onClick={toggleCreateModal}
+      <nav className="advertising-page__search-nav">
+        <ul className="advertising-page__search-list">
+          <li className="advertising-page__search-item">
+            <label className="advertising-page__search-label">작성일</label>
+            <input
+              type="text"
+              className="advertising-page__search-input"
+              placeholder="[xxxx년 x월 x일] 형식으로 입력해주세요."
+              onChange={onChangeDate}
+              value={searchDate}
+            />
+          </li>
+          <li className="advertising-page__search-item">
+            <label className="advertising-page__search-label">제목</label>
+            <input
+              type="text"
+              className="advertising-page__search-input"
+              placeholder="글제목으로 검색하세요."
+              onChange={onChangeTitle}
+              value={searchTitle}
+            />
+          </li>
+          <li className="advertising-page__search-item">
+            <label className="advertising-page__search-label">상태</label>
+            <select
+              name="advertising-status"
+              className="advertising-page__status-select"
+              onChange={onChangeStatus}
+              value={searchStatus}
             >
-              글생성
-            </button>
-            <button
-              className="advertising-page__action-delete"
-              onClick={toggleDeleteModal}
-            >
-              글삭제
-            </button>
-          </div>
-        </footer>
+              <option value="적용됨">적용됨</option>
+              <option value="적용종료">적용종료</option>
+            </select>
+          </li>
+          <li className="advertising-page__search-item">
+            <label className="advertising-page__search-label">작성자</label>
+            <input
+              type="text"
+              className="advertising-page__search-input"
+              placeholder="작성자명으로 검색하세요. (ex. 관리자)"
+              onChange={onChangeWriter}
+              value={searchWriter}
+            />
+          </li>
+        </ul>
+      </nav>
+
+      <div className="advertising-page__main_div">
+        <table className="advertising-page__table">
+          <tbody>
+            {filteredNotices.map((advertising, index) => (
+              <AdvertisingRow key={index} advertising={advertising} />
+            ))}
+          </tbody>
+        </table>
       </div>
 
-      {/* 사이드바 컴포넌트 */}
-      <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+      <div className="advertising-page__footer">
+        <button className="advertising-page__action-button">+</button>
+        <div className="advertising-page__action-container">
+          <button
+            className="advertising-page__action-create"
+            onClick={toggleCreateModal}
+          >
+            글생성
+          </button>
+          <button
+            className="advertising-page__action-delete"
+            onClick={toggleDeleteModal}
+          >
+            글삭제
+          </button>
+        </div>
+      </div>
+
+      {/* 사이드바가 열릴 때 표시되는 오버레이 */}
+      {isSidebarOpen && (
+        <div className="sidebar-overlay" onClick={toggleSidebar}></div>
+      )}
 
       {/* 등록 모달창 컴포넌트 */}
       {isCreateModalOpen && <AdvertisingCreate onClose={toggleCreateModal} />}
