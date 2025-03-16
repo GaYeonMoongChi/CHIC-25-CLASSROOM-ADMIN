@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { noticeDB } = require('./mongoConnection'); // ✅ noticeDB 가져오기
+// const { noticeDB } = require('./mongoConnection'); // noticeDB 가져오기
 
 const noticeSchema = new mongoose.Schema({
   notice_idx: { type: String, required: true, unique: true }, // 홍보물 ID
@@ -13,5 +13,5 @@ const noticeSchema = new mongoose.Schema({
   views: { type: Number, default: 0 } // 조회수
 }, { versionKey: false });
 
-const Notice = noticeDB.model('Notice', noticeSchema, 'board'); // ✅ `board` 컬렉션에 저장
+const Notice = global.noticeDB.model('Notice', noticeSchema, 'board'); // `board` 컬렉션에 저장
 module.exports = Notice;
