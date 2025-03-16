@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Class = require('../db/class'); // Class 모델 불러오기
+const { parseClassDaytime } = require('../utils/classTimeParser'); 
 
 // 1. 강의 정보 추가 (POST)
 router.post('/', async (req, res) => {
@@ -41,21 +42,21 @@ router.put('/:class_idx', async (req, res) => {
     const { class_idx } = req.params;
     const { classroom_idx, class_name, prof_name, class_credit, class_daytime } = req.body;
 
-    // 강의 존재 여부 확인
     const existingClass = await Class.findOne({ class_idx });
     if (!existingClass) {
       return res.status(404).json({ error: '강의 정보를 찾을 수 없습니다.' });
     }
 
-    // 필드별 수정 (빈 값이 아닐 경우에만 변경)
+    if (class_daytime !== undefined) {
+      const timeData = parseClassDaytime(class_daytime);
+      Object.assign(existingClass, timeData);
+    }
+
     if (classroom_idx !== undefined) existingClass.classroom_idx = classroom_idx;
     if (class_name !== undefined) existingClass.class_name = class_name;
     if (prof_name !== undefined) existingClass.prof_name = prof_name;
     if (class_credit !== undefined) existingClass.class_credit = class_credit;
-    // if (class_daytime !== undefined) existingClass.class_daytime = class_daytime;
-    if (class_daytime !== undefined) {
-      Object.assign(existingClass, parseClassDaytime(class_daytime));
-    }
+    if (class_daytime !== undefined) existingClass.class_daytime = class_daytime;
 
     await existingClass.save();
     res.json({ message: '강의 정보가 수정되었습니다.', class: existingClass });

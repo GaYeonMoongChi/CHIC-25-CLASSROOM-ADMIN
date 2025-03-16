@@ -1,5 +1,18 @@
 const mongoose = require('mongoose');
+const dotenv = require('dotenv');
 // const { classDB } = require('./mongoConnection'); // classDB 연결 가져오기
+
+dotenv.config(); // .env 파일 로드
+
+// "class" 데이터베이스 직접 연결
+const classDB = mongoose.createConnection(process.env.MONGO_URI_CLASS, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
+
+// 연결 확인
+classDB.on('connected', () => console.log('MongoDB (class) 연결 완료'));
+classDB.on('error', err => console.error('MongoDB (class) 연결 실패:', err));
 
 const classSchema = new mongoose.Schema({
   class_idx: { type: String, required: true, unique: true }, // 강좌 학정 번호
@@ -30,42 +43,7 @@ const classSchema = new mongoose.Schema({
   fri_end_time: { type: String, default: "" }
 }, { versionKey: false });
 
-const timeTable = {
-  0: ["08:00", "08:45"], 1: ["09:00", "10:15"], 2: ["10:30", "11:45"],
-  3: ["12:00", "13:15"], 4: ["13:30", "14:45"], 5: ["15:00", "16:15"],
-  6: ["16:30", "17:45"], 7: ["18:00", "18:45"], 8: ["18:50", "19:35"],
-  9: ["19:40", "20:25"], 10: ["20:30", "21:15"], 11: ["21:20", "22:05"]
-};
+// const Class = global.classDB.model('Class', classSchema, 'class'); // global.classDB 사용
+const Class = classDB.model('Class', classSchema, 'class'); // classDB 사용
 
-const dayMap = { "월": "mon", "화": "tue", "수": "wed", "목": "thu", "금": "fri" };
-
-function parseClassDaytime(class_daytime) {
-  const result = {
-    week_mon: false, mon_start_time: "", mon_end_time: "",
-    week_tue: false, tue_start_time: "", tue_end_time: "",
-    week_wed: false, wed_start_time: "", wed_end_time: "",
-    week_thu: false, thu_start_time: "", thu_end_time: "",
-    week_fri: false, fri_start_time: "", fri_end_time: ""
-  };
-
-  const sessions = class_daytime.split(", ");
-  for (const session of sessions) {
-    const day = session.charAt(0); // 요일 (월, 화, 수, 목, 금)
-    const periodNumbers = session.slice(1).split(",").map(Number); // 교시 (숫자)
-
-    if (day in dayMap) {
-      const weekField = `week_${dayMap[day]}`;
-      const startField = `${dayMap[day]}_start_time`;
-      const endField = `${dayMap[day]}_end_time`;
-
-      result[weekField] = true;
-      result[startField] = timeTable[periodNumbers[0]][0]; // 시작 시간
-      result[endField] = timeTable[periodNumbers[periodNumbers.length - 1]][1]; // 종료 시간
-    }
-  }
-
-  return result;
-}
-
-const Class = global.classDB.model('Class', classSchema, 'class'); // classDB 사용
 module.exports = Class;
