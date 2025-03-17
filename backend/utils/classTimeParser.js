@@ -7,19 +7,19 @@ function parseClassDaytime(class_daytime) {
   };
 
   const dayMap = { "월": "mon", "화": "tue", "수": "wed", "목": "thu", "금": "fri" };
-  const result = {}; // ✅ 각 요일을 개별적으로 저장할 객체
+  const result = {}; // 각 요일을 개별적으로 저장할 객체
 
   if (!class_daytime || typeof class_daytime !== 'string' || class_daytime.trim() === "") {
-    return result; // ✅ class_daytime이 없으면 그대로 반환
+    return result; // class_daytime이 없으면 그대로 반환
   }
 
   console.log(`🔹 변환 시작: ${class_daytime}`);
 
-  // ✅ 정규식을 사용하여 `요일+숫자` 패턴을 찾음 (ex: "월6", "수5", "금3,4")
+  // 정규식을 사용하여 `요일+숫자` 패턴을 찾기 (ex: "월6", "수5", "금3,4") -> ,다음에 숫자인지 글자인지
   const sessions = class_daytime.match(/[월화수목금]\d+(?:,\d+)*/g);
 
   if (!sessions) {
-    console.warn(`⚠️ 유효하지 않은 데이터: ${class_daytime}`);
+    console.warn(`유효하지 않은 데이터: ${class_daytime}`);
     return result;
   }
 
@@ -28,8 +28,8 @@ function parseClassDaytime(class_daytime) {
     const periodNumbers = session.slice(1).split(",").map(Number).sort(); // 교시 리스트 (ex: ["3", "4"])
 
     if (!dayMap[day] || periodNumbers.length === 0) {
-      console.warn(`⚠️ 잘못된 데이터: ${session}`);
-      return; // ✅ 데이터 이상하면 무시
+      console.warn(`잘못된 데이터: ${session}`);
+      return; // 데이터 이상하면 무시
     }
 
     const weekField = `week_${dayMap[day]}`;
@@ -41,14 +41,14 @@ function parseClassDaytime(class_daytime) {
 
     if (timeTable[startPeriod] && timeTable[endPeriod]) {
       result[weekField] = true;
-      result[startField] = timeTable[startPeriod][0];  // ✅ 요일별 시작 시간 저장
-      result[endField] = timeTable[endPeriod][1];  // ✅ 요일별 종료 시간 저장
+      result[startField] = timeTable[startPeriod][0];  // 요일별 시작 시간 저장
+      result[endField] = timeTable[endPeriod][1];  // 요일별 종료 시간 저장
 
-      console.log(`✅ 변환 성공: ${weekField}, ${startField} = ${result[startField]}, ${endField} = ${result[endField]}`);
+      console.log(`변환 성공: ${weekField}, ${startField} = ${result[startField]}, ${endField} = ${result[endField]}`);
     }
   });
 
-  console.log(`🔹 변환 결과: `, result);
+  console.log(`변환 결과: `, result);
   return result;
 }
 
