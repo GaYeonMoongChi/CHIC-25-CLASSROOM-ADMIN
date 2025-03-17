@@ -18,7 +18,7 @@ router.post('/', async (req, res) => {
       return res.status(400).json({ error: '이미 존재하는 강의입니다.' });
     }
 
-    // ✅ 강의 시간 변환
+    // 강의 시간 변환
     const timeData = parseClassDaytime(class_daytime);
 
     const newClass = new Class({ 
