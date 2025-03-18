@@ -1,18 +1,18 @@
 #logout-button {
-  bottom: 20px;
-  right: 20px;
-  background-color: transparent;
-  border: none;
-  border-bottom: 1px solid black;
+  background-color: #eaf0f7;
   color: black;
-  padding: 5px 5px;
+  border: none;
+  border-radius: 5px;
+  padding: 12px 7px;
   cursor: pointer;
-  margin-left: auto;
+  font-size: 16px;
+  text-align: center;
+  width: 100px;
+  transition: background-color 0.3s ease;
   font-weight: bold;
-  border-radius: 5px 5px 0px 0px;
 }
 
 #logout-button:hover {
-  background-color: #f0f4ff;
-  font-weight: bolder;
+  background-color: #798df3;
+  color: #ffffff;
 }

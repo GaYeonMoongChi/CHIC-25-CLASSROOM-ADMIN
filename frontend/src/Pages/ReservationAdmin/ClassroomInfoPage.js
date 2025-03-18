@@ -6,6 +6,7 @@ import Sidebar from "../../Components/ReservationAdmin/ReservationSidebar";
 import ClassroomRow from "../../Components/ReservationAdmin/Classroom/ClassroomRow";
 import ClassroomCreate from "../../Components/ReservationAdmin/Classroom/ClassroomCreate";
 import ClassroomDelete from "../../Components/ReservationAdmin/Classroom/ClassroomDelete";
+import LogoutButton from "../../Components/LogoutButton";
 
 const ClassroomInfoPage = () => {
   // 백앤드 주소
@@ -89,13 +90,27 @@ const ClassroomInfoPage = () => {
 
   return (
     <div className="div">
-      <header className="classroom-info-update__header">
-        {/* 사이드바 컴포넌트 */}
+      <div className="classroom-info-update__header">
         <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
         <h1 className="classroom-info-update__title">강의실 정보 열람</h1>
-      </header>
+        <div className="classroom-info-update__nav">
+          <button
+            className="classroom-info-update__action-create"
+            onClick={toggleCreateModal}
+          >
+            강의실 등록
+          </button>
+          <button
+            className="classroom-info-update__action-delete"
+            onClick={toggleDeleteModal}
+          >
+            강의실 삭제
+          </button>
+          <LogoutButton />
+        </div>
+      </div>
 
-      <nav className="classroom-info__search-nav">
+      <div className="classroom-info__search-nav">
         <ul className="classroom-info__search-list">
           <li className="classroom-info__search-item">
             <label className="classroom-info__search-label">호수</label>
@@ -136,7 +151,7 @@ const ClassroomInfoPage = () => {
             />
           </li>
         </ul>
-      </nav>
+      </div>
 
       <div className="classroom-info-update__main_div">
         <table className="classroom-info-update__table">
@@ -146,24 +161,6 @@ const ClassroomInfoPage = () => {
             ))}
           </tbody>
         </table>
-      </div>
-
-      <div className="classroom-info-update__footer">
-        <button className="classroom-info-update__action-button">+</button>
-        <div className="classroom-info-update__action-container">
-          <button
-            className="classroom-info-update__action-create"
-            onClick={toggleCreateModal}
-          >
-            강의실 등록
-          </button>
-          <button
-            className="classroom-info-update__action-delete"
-            onClick={toggleDeleteModal}
-          >
-            강의실 삭제
-          </button>
-        </div>
       </div>
 
       {/* 사이드바가 열릴 때 표시되는 오버레이 */}

@@ -5,11 +5,11 @@
   border: none;
   background-color: #ffffff;
   margin: 10px 10px 10px 10px;
+  font-weight: bold;
 }
 
 .classroom-info-update__row_div:hover {
-  background-color: #f0f4ff;
-  font-weight: bold;
+  background-color: #eaf0f7;
   border-radius: 5px;
 }
 

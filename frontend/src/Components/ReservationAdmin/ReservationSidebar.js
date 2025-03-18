@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import "../css/sidebar.css";
 import { useEffect } from "react";
-import LogoutButton from "../LogoutButton";
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
   useEffect(() => {
@@ -66,8 +65,6 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
               </li>
             ))}
           </ul>
-
-          <LogoutButton />
         </aside>
       </div>
     </div>

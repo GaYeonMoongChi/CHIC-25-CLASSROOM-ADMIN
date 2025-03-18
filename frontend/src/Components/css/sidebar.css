@@ -39,7 +39,7 @@
   font-weight: bolder;
 }
 
-.sidebar-links {
+.nav-links {
   list-style: none;
   padding: 0;
   margin: 20px 0 0;
@@ -75,7 +75,7 @@
   background: transparent;
   color: black;
   border: none;
-  padding: 5px 9px;
+  padding: 5px 11px;
   cursor: pointer;
   font-size: 30px;
   font-weight: bold;
@@ -84,8 +84,8 @@
 }
 
 .sidebar-toggle-btn:hover {
-  background-color: #f0f4ff;
-  color: #666;
+  background-color: #798df3;
+  color: #ffffff;
 }
 
 .sidebar-toggle-btn.hidden {
