@@ -32,6 +32,7 @@
   cursor: pointer;
   font-size: 14px;
   border-radius: 5px 5px 0px 0px;
+  margin-bottom: 15px;
 }
 
 .sidebar-close:hover {
@@ -39,7 +40,7 @@
   font-weight: bolder;
 }
 
-.sidebar-links {
+.nav-links {
   list-style: none;
   padding: 0;
   margin: 20px 0 0;
@@ -50,6 +51,7 @@
   margin-bottom: 15px;
   padding: 10px 15px;
   border-radius: 5px;
+  list-style: none;
 }
 
 .sidebar-links__item:hover {
@@ -73,19 +75,18 @@
   top: 25px;
   left: 20px;
   background: transparent;
-  color: black;
+  color: #000000;
   border: none;
-  padding: 5px 9px;
+  padding: 5px 11px;
   cursor: pointer;
-  font-size: 30px;
-  font-weight: bold;
+  font-size: 34px;
+
   border-radius: 5px;
   transition: background 0.3s ease;
 }
 
 .sidebar-toggle-btn:hover {
-  background-color: #f0f4ff;
-  color: #666;
+  color: #4461f2;
 }
 
 .sidebar-toggle-btn.hidden {
