@@ -3,13 +3,16 @@ import { useNavigate } from "react-router-dom";
 import "./css/login.css";
 
 const Login = () => {
-  // 백앤드 주소
+  // 백엔드 주소
   const BACKEND_URL = "http://localhost:8000";
 
   // 아이디 상태 관리
   const [id, setId] = useState("");
 
-  // 예외처리 메세지 상태 관리
+  // 비밀번호 상태 관리
+  const [password, setPassword] = useState("");
+
+  // 예외 처리 메세지 상태 관리
   const [errorMessage, setErrorMessage] = useState("");
 
   // 페이지 이동
@@ -21,6 +24,10 @@ const Login = () => {
       setErrorMessage("ID를 입력해주세요.");
       return;
     }
+    if (!password) {
+      setErrorMessage("비밀번호를 입력해주세요.");
+      return;
+    }
     setErrorMessage("");
 
     try {
@@ -29,7 +36,7 @@ const Login = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ id }),
+        body: JSON.stringify({ id, password }),
       });
 
       const data = await response.json();
@@ -40,15 +47,6 @@ const Login = () => {
 
       // JWT 토큰 저장
       localStorage.setItem("token", data.token);
-
-      // ID에 따라 페이지 이동
-      if (id.startsWith("1")) {
-        navigate(`/Home/Reservation`);
-      } else if (id.startsWith("2")) {
-        navigate(`/Home/Notice`);
-      } else {
-        setErrorMessage("올바른 관리자 아이디를 입력하세요.");
-      }
     } catch (error) {
       setErrorMessage(error.message);
     }
@@ -62,23 +60,36 @@ const Login = () => {
         </header>
 
         <main className="login__main">
-          <h2 className="login__h2">로그인</h2>
+          <div className="login__form">
+            <div className="login__input-group">
+              <label className="login__label" htmlFor="admin-id">
+                ID:
+              </label>
+              <input
+                id="admin-id"
+                className="id__input"
+                type="text"
+                placeholder="광운대학교 메일을 입력하세요."
+                value={id}
+                onChange={(e) => setId(e.target.value)}
+              />
+            </div>
 
-          <div className="login__id-input">
-            <label htmlFor="admin-id" className="login__label">
-              ID:
-            </label>
-            <input
-              id="admin-id"
-              className="login__input"
-              type="text"
-              placeholder="관리자 아이디를 입력하세요."
-              value={id}
-              onChange={(e) => setId(e.target.value)}
-            />
+            <div className="login__input-group">
+              <label className="login__label" htmlFor="admin-password">
+                PASSWORD:
+              </label>
+              <input
+                id="admin-password"
+                className="password__input"
+                type="password"
+                placeholder="비밀번호를 입력하세요."
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
           </div>
 
-          {/* 에러 메세지 ui */}
           {errorMessage && <p className="login__error">{errorMessage}</p>}
 
           <button className="login__button" onClick={login}>

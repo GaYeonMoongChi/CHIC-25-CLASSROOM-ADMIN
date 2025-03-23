@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./css/signin.css";
 
-const Signin = () => {
+const Signup = () => {
   // 백엔드 API 주소
   const BACKEND_URL = "http://localhost:8000";
   const navigate = useNavigate();
@@ -138,4 +138,4 @@ const Signin = () => {
   );
 };
 
-export default Signin;
+export default Signup;
