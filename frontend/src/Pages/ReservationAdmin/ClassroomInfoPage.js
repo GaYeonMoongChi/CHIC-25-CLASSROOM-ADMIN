@@ -97,7 +97,7 @@ const ClassroomInfoPage = () => {
     <div className="div">
       <div className="classroom-info-update__header">
         <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
-        <h1 className="classroom-info-update__title">강의실 정보 열람</h1>
+        <h1 className="classroom-info-update__title">강의실 정보 관리</h1>
         <div className="classroom-info-update__nav">
           <button
             className="classroom-info-update__action-create"

@@ -11,22 +11,17 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
     {
       id: "reservation-status-link",
       to: "/Reservation",
-      text: "강의실 예약현황 열람",
+      text: "강의실 예약현황 관리",
     },
     {
       id: "classroom-update-link",
       to: "/Classroom",
-      text: "강의실 정보 열람",
-    },
-    {
-      id: "student-update-link",
-      to: "/Student",
-      text: "학생 정보 열람",
+      text: "강의실 정보 관리",
     },
     {
       id: "class-update-link",
       to: "/Class",
-      text: "강의 정보 열람",
+      text: "강의 정보 관리",
     },
   ];
 

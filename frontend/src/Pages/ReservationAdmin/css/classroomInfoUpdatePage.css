@@ -15,7 +15,28 @@
 }
 
 .classroom-info-update__title {
-  font-size: 25px;
+  font-size: 27px;
+}
+
+.classroom-info-update__action-create,
+.classroom-info-update__action-delete {
+  background-color: #ffffff;
+  color: black;
+  border: none;
+  border-radius: 30px;
+  padding: 10px 3px;
+  cursor: pointer;
+  font-size: 17px;
+  text-align: center;
+  width: 100px;
+  transition: background-color 0.3s ease;
+  font-weight: bold;
+}
+
+.classroom-info-update__action-create:hover,
+.classroom-info-update__action-delete:hover {
+  background-color: #798df3;
+  color: #ffffff;
 }
 
 .classroom-info__search {
@@ -58,20 +79,28 @@
   background-color: #eaf0f7;
   border: none;
   padding-left: 10px;
+  font-size: 17px;
+  border-radius: 5px;
 }
 
 .classroom-info__search-input::placeholder {
   color: rgb(83, 83, 83);
+  transition: color 0.3s ease;
+}
+
+.classroom-info__search-input:focus {
+  outline: none;
+  background-color: #dee5ec;
 }
 
 .classroom-info-update__main {
   width: 95%;
   margin-top: 30px;
-  border-left: 3px solid #4461f2;
+  border-left: 4px solid #4461f2;
   background-color: #eaf0f7;
   padding-top: 15px;
   padding-bottom: 15px;
-  border-radius: 10px;
+  border-radius: 0px 20px 20px 0px;
 }
 
 .classroom-info__building-name {
@@ -87,27 +116,6 @@
 
 .classroom-info-update__table {
   width: 100%;
-}
-
-.classroom-info-update__action-create,
-.classroom-info-update__action-delete {
-  background-color: #ffffff;
-  color: black;
-  border: none;
-  border-radius: 30px;
-  padding: 7px;
-  cursor: pointer;
-  font-size: 16px;
-  text-align: center;
-  width: 100px;
-  transition: background-color 0.3s ease;
-  font-weight: bold;
-}
-
-.classroom-info-update__action-create:hover,
-.classroom-info-update__action-delete:hover {
-  background-color: #798df3;
-  color: #ffffff;
 }
 
 .sidebar-overlay {
