@@ -1,0 +1,125 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.signin__wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.signin {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 520px;
+  gap: 30px;
+}
+
+.signin__header {
+  margin-bottom: 10px;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 10px;
+}
+
+.signin__title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+.signin__main {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+}
+
+.signin__input-group {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 15px;
+}
+
+.signin__input-group input::placeholder {
+  font-size: 13px;
+}
+
+.signin__input-group label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  width: 20%;
+}
+
+.signin__input-group input {
+  flex: 1;
+  height: 35px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: #f0f0f0c0;
+}
+
+.signin__input-group select {
+  flex: 1;
+  height: 35px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: #f0f0f0c0;
+  cursor: pointer;
+}
+
+.verify-email {
+  height: 35px;
+  padding: 5px 10px;
+  background-color: #10069f;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.verify-email:hover {
+  background-color: #082567;
+}
+
+.signup-btn {
+  background-color: #10069f;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-size: 16px;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.signup-btn:hover {
+  background-color: rgb(18, 39, 75);
+}
+
+.error__block {
+  text-align: center;
+  margin-bottom: 30px;
+  gap: 10px;
+}
+
+.error {
+  color: #10069f;
+  font-size: 14px;
+  display: inline-block;
+}
