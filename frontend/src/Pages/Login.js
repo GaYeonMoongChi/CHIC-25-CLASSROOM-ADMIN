@@ -6,13 +6,9 @@ const Login = () => {
   // 백엔드 주소
   const BACKEND_URL = "http://localhost:8000";
 
-  // 아이디 상태 관리
+  // 상태 관리
   const [id, setId] = useState("");
-
-  // 비밀번호 상태 관리
   const [password, setPassword] = useState("");
-
-  // 예외 처리 메세지 상태 관리
   const [errorMessage, setErrorMessage] = useState("");
 
   // 페이지 이동
@@ -91,6 +87,16 @@ const Login = () => {
           </div>
 
           {errorMessage && <p className="login__error">{errorMessage}</p>}
+
+          <div className="login__links">
+            <a href="/Find-password" className="login__link">
+              비밀번호 찾기
+            </a>
+            <span className="login__divider">|</span>
+            <a href="/signup" className="login__link">
+              회원가입
+            </a>
+          </div>
 
           <button className="login__button" onClick={login}>
             로그인
