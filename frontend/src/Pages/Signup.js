@@ -11,7 +11,7 @@ const Signup = () => {
     name: "",
     adminType: "",
     email: "",
-    password: "",
+    pw: "",
   });
 
   const [isEmailVerified, setIsEmailVerified] = useState(false);
@@ -21,8 +21,8 @@ const Signup = () => {
 
   // 이메일 및 비밀번호 유효성 검사 함수
   const validateEmail = (email) => /^[a-zA-Z0-9._%+-]+@kw\.ac\.kr$/.test(email);
-  const validatePassword = (password) =>
-    /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(password);
+  const validatePassword = (pw) =>
+    /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(pw);
 
   // 입력값 변경 핸들러
   const handleChange = (e) => {
@@ -41,7 +41,7 @@ const Signup = () => {
     }
   };
 
-  // 이메일 중복 확인 및 인증 코드 요청
+  // 이메일 인증 코드 요청
   const handleEmailVerificationRequest = async () => {
     setErrors({});
 
@@ -52,25 +52,6 @@ const Signup = () => {
     }
 
     try {
-      // 이메일 중복 확인 요청
-      const emailCheckResponse = await fetch(
-        `${BACKEND_URL}/manager/register`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email: formData.email }),
-        }
-      );
-
-      const emailCheckData = await emailCheckResponse.json();
-      if (!emailCheckResponse.ok) {
-        setErrors({
-          emailDuplicate:
-            emailCheckData.message || "이미 사용 중인 이메일입니다.",
-        });
-        return; // 중복된 이메일이면 인증 코드 요청 X
-      }
-
       // 이메일 인증 코드 요청
       const response = await fetch(`${BACKEND_URL}/send-code`, {
         method: "POST",
@@ -124,17 +105,18 @@ const Signup = () => {
     e.preventDefault();
     setErrors({});
 
+    // 이메일 중복 확인 검사 예외처리 코드 작성
+
     let newErrors = {};
     if (!formData.name) newErrors.name = "이름을 입력하세요.";
     if (!formData.adminType) newErrors.adminType = "관리자 유형을 선택하세요.";
     if (!validateEmail(formData.email))
       newErrors.email = "광운대학교 이메일(@kw.ac.kr)만 사용 가능합니다.";
-    if (!formData.password) newErrors.password = "비밀번호를 입력하세요.";
+    if (!formData.pw) newErrors.pw = "비밀번호를 입력하세요.";
     if (!isEmailVerified)
       newErrors.emailVerification = "이메일 인증을 완료하세요.";
-    if (!validatePassword(formData.password))
-      newErrors.password =
-        "비밀번호는 최소 8자 이상, 영문+숫자를 포함해야 합니다.";
+    if (!validatePassword(formData.pw))
+      newErrors.pw = "비밀번호는 최소 8자 이상, 영문+숫자를 포함해야 합니다.";
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
@@ -254,23 +236,23 @@ const Signup = () => {
             </div>
 
             <div className="error__block">
-              {errors.password && <p className="error">{errors.password}</p>}
+              {errors.pw && <p className="error">{errors.pw}</p>}
             </div>
 
             {/* 비밀번호 입력 */}
             <div className="signin__input-group">
-              <label htmlFor="password">비밀번호</label>
+              <label htmlFor="pw">비밀번호</label>
               <input
                 type="password"
-                name="password"
-                value={formData.password}
+                name="pw"
+                value={formData.pw}
                 placeholder="비밀번호를 입력하세요."
                 onChange={handleChange}
               />
             </div>
 
             <div className="error__block">
-              {errors.password && <p className="error">{errors.password}</p>}
+              {errors.pw && <p className="error">{errors.pw}</p>}
             </div>
 
             {/* 회원가입 버튼 */}
