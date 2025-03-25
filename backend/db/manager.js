@@ -4,7 +4,12 @@ const bcrypt = require('bcrypt');
 const managerSchema = new mongoose.Schema({
   name: { type: String, required: true },   // 관리자 이름
   email: { type: String, required: true, unique: true }, // 관리자 이메일 (중복 방지)
-  pw: { type: String, required: true }   // 관리자 비밀번호 (bcrypt 암호화)
+  pw: { type: String, required: true },   // 관리자 비밀번호 (bcrypt 암호화)
+  type: { 
+    type: String, 
+    required: true, 
+    enum: ['class_admin', 'ad_admin'] 
+  }
 }, { versionKey: false });
 
 // 비밀번호 저장 전에 암호화 (pre-save hook)

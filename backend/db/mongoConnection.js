@@ -20,7 +20,7 @@ const connectDB = async () => {
 
     // "manager" 데이터베이스 연결
     global.managerDB = mongoose.createConnection(process.env.MONGO_URI_MANAGER);
-    console.log('✅ MongoDB (manager) 연결 완료');
+    console.log('MongoDB (manager) 연결 완료');
 
 
   } catch (error) {
