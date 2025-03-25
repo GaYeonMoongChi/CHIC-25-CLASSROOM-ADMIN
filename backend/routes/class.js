@@ -3,10 +3,10 @@ const router = express.Router();
 const Class = require('../db/class'); // Class 모델 불러오기
 const { parseClassDaytime } = require('../utils/classTimeParser'); 
 
-// 1. 강의 정보 추가 (POST)
+// 강의 정보 추가 (POST)
 router.post('/', async (req, res) => {
   try {
-    console.log('/api/classes POST 요청 받음!', req.body);
+    console.log('/api/class POST 요청 받음!', req.body);
 
     const { class_idx, classroom_idx, class_name, prof_name, class_credit, class_daytime } = req.body;
     if (!class_idx || !class_name || !prof_name || !class_credit || !class_daytime) {
@@ -34,7 +34,7 @@ router.post('/', async (req, res) => {
   }
 });
 
-// 2. 강의 정보 수정 (PUT)
+// 강의 정보 수정 (PUT)
 router.put('/:class_idx', async (req, res) => {
   try {
     console.log(`/api/classes/${req.params.class_idx} PUT 요청 받음`, req.body);
@@ -66,7 +66,34 @@ router.put('/:class_idx', async (req, res) => {
   }
 });
 
-// 3. 강의 정보 삭제 (DELETE)
+// GET /api/class?classroom=103&week=week_mon
+// 강의 정보 조회 (GET) - 특정 강의실과 요일 기준 조회
+router.get('/', async (req, res) => {
+  try {
+    console.log('/api/class GET 요청 받음', req.query);
+
+    const { classroom, week } = req.query; // 요청에서 강의실과 요일 추출
+
+    if (!classroom || !week) {
+      return res.status(400).json({ error: 'classroom과 week(요일)를 지정해야 합니다.' });
+    }
+
+    const query = { classroom_idx: classroom, [week]: true };
+
+    const classes = await Class.find(query);
+    if (classes.length === 0) {
+      return res.status(404).json({ error: '해당 조건에 맞는 강의가 없습니다.' });
+    }
+
+    res.json({ message: '강의 정보 조회 성공', classes });
+  } catch (error) {
+    console.error('강의 조회 실패:', error);
+    res.status(500).json({ error: '서버 오류' });
+  }
+});
+
+
+// 강의 정보 삭제 (DELETE)
 router.delete('/:class_idx', async (req, res) => {
   try {
     console.log(`/api/classes/${req.params.class_idx} DELETE 요청 받음`);

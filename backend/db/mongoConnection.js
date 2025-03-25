@@ -17,6 +17,12 @@ const connectDB = async () => {
     // "notice" 데이터베이스 연결
     global.noticeDB = mongoose.createConnection(process.env.MONGO_URI_NOTICE);
     console.log('MongoDB (notice) 연결 완료');
+
+    // "manager" 데이터베이스 연결
+    global.managerDB = mongoose.createConnection(process.env.MONGO_URI_MANAGER);
+    console.log('✅ MongoDB (manager) 연결 완료');
+
+
   } catch (error) {
     console.error('MongoDB 연결 실패:', error);
     process.exit(1); // 서버 종료
