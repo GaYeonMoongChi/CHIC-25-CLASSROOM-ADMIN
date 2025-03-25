@@ -9,7 +9,7 @@ const Signup = () => {
   // 상태 관리
   const [formData, setFormData] = useState({
     name: "",
-    adminType: "",
+    type: "",
     email: "",
     pw: "",
   });
@@ -109,7 +109,7 @@ const Signup = () => {
 
     let newErrors = {};
     if (!formData.name) newErrors.name = "이름을 입력하세요.";
-    if (!formData.adminType) newErrors.adminType = "관리자 유형을 선택하세요.";
+    if (!formData.type) newErrors.type = "관리자 유형을 선택하세요.";
     if (!validateEmail(formData.email))
       newErrors.email = "광운대학교 이메일(@kw.ac.kr)만 사용 가능합니다.";
     if (!formData.pw) newErrors.pw = "비밀번호를 입력하세요.";
@@ -170,20 +170,18 @@ const Signup = () => {
 
             {/* 관리자 유형 선택 */}
             <div className="signin__input-group">
-              <label htmlFor="adminType">관리자 유형</label>
-              <select
-                name="adminType"
-                value={formData.adminType}
-                onChange={handleChange}
-              >
+              <label htmlFor="type">관리자 유형</label>
+              <select name="type" value={formData.type} onChange={handleChange}>
                 <option value="">관리자 유형을 선택하세요.</option>
-                <option value="class">강의실예약 / 강의실 / 강의 관리자</option>
-                <option value="notice">공지 / 홍보글 관리자</option>
+                <option value="class_admin">
+                  강의실예약 / 강의실 / 강의 관리자
+                </option>
+                <option value="ad_admin">공지 / 홍보글 관리자</option>
               </select>
             </div>
 
             <div className="error__block">
-              {errors.adminType && <p className="error">{errors.adminType}</p>}
+              {errors.type && <p className="error">{errors.type}</p>}
             </div>
 
             {/* 이메일 입력 및 인증 */}
@@ -216,7 +214,11 @@ const Signup = () => {
                   placeholder="광운대학교 웹메일로 전송된 인증번호를 입력해주세요."
                   onChange={(e) => setVerificationCode(e.target.value)}
                 />
-                <button type="button" onClick={handleVerifyCode}>
+                <button
+                  type="button"
+                  onClick={handleVerifyCode}
+                  className="verify-email"
+                >
                   인증 확인
                 </button>
               </div>

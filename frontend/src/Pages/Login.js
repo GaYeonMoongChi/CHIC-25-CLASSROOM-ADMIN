@@ -9,41 +9,41 @@ const Login = () => {
   const navigate = useNavigate();
 
   // 상태 관리
-  const [id, setId] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const [pw, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
   const login = async () => {
     // 예외 처리
-    if (!id) {
+    if (!email) {
       setErrorMessage("ID를 입력해주세요.");
       return;
     }
-    if (!password) {
+    if (!pw) {
       setErrorMessage("비밀번호를 입력해주세요.");
       return;
     }
     setErrorMessage("");
 
+    // 로그인 요청
     try {
       const response = await fetch(`${BACKEND_URL}/api/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ id, password }),
+        body: JSON.stringify({ email: email, pw: pw }),
       });
 
       const data = await response.json();
-
       if (!response.ok) {
-        throw new Error(data.message || "로그인에 실패했습니다.");
+        throw new Error(data.error || "로그인에 실패했습니다.");
       }
 
       // JWT 토큰 저장
-      localStorage.setItem("token", data.token);
+      //localStorage.setItem("token", data.token);
 
-      // TODO: 회원가입했을때 선택한 관리자 유형 페이지로 이동되게 해야 함.
+      navigate(`/Classroom`);
     } catch (error) {
       setErrorMessage(error.message);
     }
@@ -67,8 +67,8 @@ const Login = () => {
                 className="id__input"
                 type="text"
                 placeholder="광운대학교 메일을 입력하세요."
-                value={id}
-                onChange={(e) => setId(e.target.value)}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
 
@@ -81,7 +81,7 @@ const Login = () => {
                 className="password__input"
                 type="password"
                 placeholder="비밀번호를 입력하세요."
-                value={password}
+                value={pw}
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
