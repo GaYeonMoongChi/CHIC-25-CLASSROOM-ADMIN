@@ -43,7 +43,7 @@ const Login = () => {
       // JWT 토큰 저장
       localStorage.setItem("token", data.token);
 
-      // 회원가입했을때 선택한 관리자 유형 페이지로 이동
+      // TODO: 회원가입했을때 선택한 관리자 유형 페이지로 이동되게 해야 함.
     } catch (error) {
       setErrorMessage(error.message);
     }
