@@ -1,18 +1,17 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import "./css/login.css";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   // 백엔드 주소
   const BACKEND_URL = "http://localhost:8000";
 
+  const navigate = useNavigate();
+
   // 상태 관리
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-
-  // 페이지 이동
-  const navigate = useNavigate();
 
   const login = async () => {
     // 예외 처리
@@ -43,6 +42,8 @@ const Login = () => {
 
       // JWT 토큰 저장
       localStorage.setItem("token", data.token);
+
+      // 회원가입했을때 선택한 관리자 유형 페이지로 이동
     } catch (error) {
       setErrorMessage(error.message);
     }
@@ -86,7 +87,11 @@ const Login = () => {
             </div>
           </div>
 
-          {errorMessage && <p className="login__error">{errorMessage}</p>}
+          {errorMessage && (
+            <p className="login__error">
+              {errorMessage} 로그인에 실패했습니다.
+            </p>
+          )}
 
           <div className="login__links">
             <a href="/Find-password" className="login__link">

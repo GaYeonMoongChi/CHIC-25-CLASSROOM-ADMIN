@@ -123,3 +123,7 @@
   font-size: 14px;
   display: inline-block;
 }
+
+.success {
+  color: green;
+}
