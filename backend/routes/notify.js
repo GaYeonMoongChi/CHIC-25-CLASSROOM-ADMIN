@@ -3,6 +3,7 @@ const axios = require('axios');
 const cheerio = require('cheerio');
 const router = express.Router();
 
+// 학교 공지사항 크롤링 하는 부분
 // 크롤링할 학교 홈페이지 공지사항 URL
 const NOTICE_URL = 'https://www.kw.ac.kr/ko/life/notice.jsp';
 
