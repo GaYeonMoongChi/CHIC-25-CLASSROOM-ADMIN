@@ -28,14 +28,19 @@ const NoticePage = () => {
 
   // GET 요청
   useEffect(() => {
-    fetch(`${BACKEND_URL}/notices`)
+    fetch(`${BACKEND_URL}/api/notify/notices`)
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
         }
         return response.json();
       })
-      .then((data) => setNoticeList(data))
+      .then((data) => {
+        console.log(data); // 응답 데이터 확인
+        // data가 배열이 아니라면, 배열 형태로 변환
+        const notices = Array.isArray(data) ? data : data.notices || [];
+        setNoticeList(notices); // notices가 배열이면 배열을 설정, 아니면 빈 배열
+      })
       .catch((error) => setError(error.message));
   }, []);
 

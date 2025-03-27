@@ -13,7 +13,12 @@ const NoticeRow = ({ notice }) => {
 
     try {
       const url = new URL(notice.url); // URL 객체를 생성하여 유효성 검사
-      navigate(url.pathname); // 유효하면 해당 경로로 이동
+
+      if (url.origin === window.location.origin) {
+        navigate(url.pathname); // 동일 도메인인 경우 React Router를 사용
+      } else {
+        window.location.href = notice.url; // 외부 URL인 경우 새 페이지로 이동
+      }
     } catch (error) {
       alert("해당 게시글의 URL 데이터를 받아올 수 없습니다.");
     }
