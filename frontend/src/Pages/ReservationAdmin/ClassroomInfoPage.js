@@ -160,7 +160,6 @@ const ClassroomInfoPage = () => {
 
       <div className="classroom-info-update__main">
         <h2 className="classroom-info__building-name">새빛관</h2>
-        <div className="classroom-info-update__table-div">
           <table className="classroom-info-update__table">
             <tbody>
               {filteredClassrooms.map((classroom, index) => (
@@ -168,7 +167,6 @@ const ClassroomInfoPage = () => {
               ))}
             </tbody>
           </table>
-        </div>
       </div>
 
       {/* 사이드바가 열릴 때 표시되는 오버레이 */}
