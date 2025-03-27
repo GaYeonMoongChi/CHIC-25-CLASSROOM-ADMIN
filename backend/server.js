@@ -20,17 +20,9 @@ app.get("/", (req, res) => {
   res.send("서버가 정상적으로 실행 중입니다.");
 });
 
-// const studentRoutes = require("./routes/student"); // student 라우트 불러오기
-// app.use("/api/students", studentRoutes); // API 경로 등록
-
-// const classroomRoutes = require("./routes/classroom");
-// app.use("/api/classrooms", classroomRoutes);
-
-// const classRoutes = require("./routes/class");
-// app.use("/api/class", classRoutes);
-
-// const boardRoutes = require("./routes/board");
-// app.use("/api/board", boardRoutes);
+// notify 라우트 추가 
+const { router: notifyRoutes, fetchNotices } = require('./routes/notify');
+app.use("/api/notify", notifyRoutes); // 공지사항 API 경로 등록
 
 // MongoDB 연결 실행
 connectDB().then(() => {
@@ -53,5 +45,27 @@ connectDB().then(() => {
   // 서버 실행
   app.listen(port, () => {
     console.log(`서버가 http://localhost:${port} 에서 실행 중입니다.`);
+
+    // 초기 크롤링 실행
+    (async () => {
+      console.log('서버 시작 - 공지사항 초기 크롤링 실행 중...');
+      try {
+          const notices = await fetchNotices();
+          console.log('초기 크롤링 완료:', notices.length, '개');
+      } catch (err) {
+          console.error('초기 크롤링 오류:', err);
+      }
+    })();
+
+    // 5초마다 공지사항 자동 업데이트
+    setInterval(async () => {
+      console.log('공지사항 업데이트 중...');
+      try {
+          const notices = await fetchNotices();
+          console.log('공지사항 업데이트 완료:', notices.length, '개');
+      } catch (err) {
+          console.error('공지사항 업데이트 오류:', err);
+      }
+    }, 5000);
   });
 });
