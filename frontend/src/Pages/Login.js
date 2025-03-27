@@ -1,52 +1,49 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import "./css/login.css";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   // 백엔드 주소
   const BACKEND_URL = "http://localhost:8000";
 
-  // 아이디 상태 관리
-  const [id, setId] = useState("");
-
-  // 비밀번호 상태 관리
-  const [password, setPassword] = useState("");
-
-  // 예외 처리 메세지 상태 관리
-  const [errorMessage, setErrorMessage] = useState("");
-
-  // 페이지 이동
   const navigate = useNavigate();
+
+  // 상태 관리
+  const [email, setEmail] = useState("");
+  const [pw, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const login = async () => {
     // 예외 처리
-    if (!id) {
+    if (!email) {
       setErrorMessage("ID를 입력해주세요.");
       return;
     }
-    if (!password) {
+    if (!pw) {
       setErrorMessage("비밀번호를 입력해주세요.");
       return;
     }
     setErrorMessage("");
 
+    // 로그인 요청
     try {
       const response = await fetch(`${BACKEND_URL}/api/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ id, password }),
+        body: JSON.stringify({ email: email, pw: pw }),
       });
 
       const data = await response.json();
-
       if (!response.ok) {
-        throw new Error(data.message || "로그인에 실패했습니다.");
+        throw new Error(data.error || "로그인에 실패했습니다.");
       }
 
       // JWT 토큰 저장
-      localStorage.setItem("token", data.token);
+      //localStorage.setItem("token", data.token);
+
+      navigate(`/Classroom`);
     } catch (error) {
       setErrorMessage(error.message);
     }
@@ -70,8 +67,8 @@ const Login = () => {
                 className="id__input"
                 type="text"
                 placeholder="광운대학교 메일을 입력하세요."
-                value={id}
-                onChange={(e) => setId(e.target.value)}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
 
@@ -84,13 +81,27 @@ const Login = () => {
                 className="password__input"
                 type="password"
                 placeholder="비밀번호를 입력하세요."
-                value={password}
+                value={pw}
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
           </div>
 
-          {errorMessage && <p className="login__error">{errorMessage}</p>}
+          {errorMessage && (
+            <p className="login__error">
+              {errorMessage} 로그인에 실패했습니다.
+            </p>
+          )}
+
+          <div className="login__links">
+            <a href="/Find-password" className="login__link">
+              비밀번호 찾기
+            </a>
+            <span className="login__divider">|</span>
+            <a href="/signup" className="login__link">
+              회원가입
+            </a>
+          </div>
 
           <button className="login__button" onClick={login}>
             로그인

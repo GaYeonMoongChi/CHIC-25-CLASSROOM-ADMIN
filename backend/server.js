@@ -1,7 +1,7 @@
 const express = require("express"); // Express 모듈 불러오기
 const mongoose = require("mongoose"); // Mongoose 모듈 불러오기
 const dotenv = require("dotenv"); // dotenv 모듈 불러오기
-const connectDB = require('./db/mongoConnection'); // MongoDB 연결 함수 불러오기
+const connectDB = require("./db/mongoConnection"); // MongoDB 연결 함수 불러오기
 const cors = require("cors"); // CORS 모듈 불러오기
 
 dotenv.config(); // .env 파일의 내용을 로드
@@ -10,11 +10,7 @@ const app = express(); // Express 애플리케이션 생성
 const port = 8000; // 서버 포트 설정
 
 // CORS 설정
-app.use(
-  cors({
-    origin: "http://localhost:3000", // 프론트엔드 도메인 허용
-  })
-);
+app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 
 // JSON 데이터 처리를 위한 미들웨어
 app.use(express.json());
@@ -43,8 +39,8 @@ connectDB().then(() => {
   const boardRoutes = require("./routes/board");
   app.use("/api/board", boardRoutes);
 
-  const loginRoutes = require('./routes/login');
-  app.use('/api/login', loginRoutes);  
+  const loginRoutes = require("./routes/login");
+  app.use("/api/login", loginRoutes);
 
   // 서버 실행
   app.listen(port, () => {
