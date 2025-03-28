@@ -29,12 +29,21 @@ async function fetchNotices() {
             }
 
             let link = titleElement.attr('href');
-            let date = $(element).siblings('.board-date').text().trim();
+            let dateText = $(element).siblings('.board-date').text().trim();
 
-            // 작성일이 없는 경우 텍스트에서 날짜 추출
+            // 작성일과 수정일을 정규식으로 추출
+            let dateMatches = dateText.match(/\d{4}-\d{2}-\d{2}/g) || [];
+
+            let date = dateMatches.length > 0 ? dateMatches[0] : ''; // 첫 번째 날짜 = 작성일
+            let update_date = dateMatches.length > 1 ? dateMatches[1] : ''; // 두 번째 날짜 = 수정일
+
+            // 작성일이 없는 경우, 본문에서 날짜 추출
             if (!date) {
-                const dateMatch = $(element).text().match(/(\d{4}-\d{2}-\d{2})/);
-                date = dateMatch ? dateMatch[0] : '';
+                const dateMatch = $(element).text().match(/\d{4}-\d{2}-\d{2}/g);
+                if (dateMatch) {
+                    date = dateMatch[0]; // 첫 번째 날짜를 작성일로 설정
+                    update_date = dateMatch.length > 1 ? dateMatch[1] : ''; // 두 번째 날짜를 수정일로 설정
+                }
             }
 
             // 불필요한 개행 및 공백 제거
@@ -45,13 +54,9 @@ async function fetchNotices() {
                 link = `https://www.kw.ac.kr${link}`;
             }
 
-            // 날짜 형식 확인 (YYYY-MM-DD)
-            const dateRegex = /\d{4}-\d{2}-\d{2}/;
-            date = dateRegex.test(date) ? date.match(dateRegex)[0] : '';
-
             // 유효한 제목, 링크, 날짜가 있는 경우 공지사항 배열에 추가
             if (title && link && date) {
-                notices.push({ title, date, url: link });
+                notices.push({ title, date, update_date, url: link });
             }
         });
 
