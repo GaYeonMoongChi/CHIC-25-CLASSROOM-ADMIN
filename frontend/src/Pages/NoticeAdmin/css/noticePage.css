@@ -1,3 +1,8 @@
+body {
+  background: linear-gradient(to right, #f3f4f6 10%, #ffeedd 30%, #f5f8ff 60%);
+  background-size: 100% 100%; /* 배경 크기 설정 */
+}
+
 .notice-page__header {
   display: flex;
   padding-bottom: 30px;
@@ -9,7 +14,7 @@
 }
 
 .notice-page__title {
-  font-size: 27px;
+  font-size: 30px;
 }
 
 .notice-page__search {
@@ -28,8 +33,10 @@
 }
 
 .notice-page__search-item {
-  background-color: #eaf0f7;
-  border-radius: 30px;
+  background-color: #f5f8ff;
+  color: #000000;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
   border: none;
   padding: 15px 30px;
   display: flex;
@@ -49,7 +56,7 @@
 
 .notice-page__search-input {
   width: 80%;
-  background-color: #eaf0f7;
+  background-color: #f5f8ff;
   border: none;
   padding-left: 10px;
   font-size: 17px;
@@ -63,14 +70,12 @@
 
 .notice-page__search-input:focus {
   outline: none;
-  background-color: #dee5ec;
 }
 
 .notice-page__main {
   width: 95%;
   margin-top: 30px;
-  border-left: 4px solid #4461f2;
-  background-color: #eaf0f7;
+  background-color: transparent;
   padding-top: 15px;
   padding-bottom: 15px;
   border-radius: 0px 20px 20px 0px;
@@ -101,12 +106,14 @@
   width: 100px;
   transition: background-color 0.3s ease;
   font-weight: bold;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .notice-page__action-create:hover,
 .notice-page__action-delete:hover {
   background-color: #798df3;
   color: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .sidebar-overlay {

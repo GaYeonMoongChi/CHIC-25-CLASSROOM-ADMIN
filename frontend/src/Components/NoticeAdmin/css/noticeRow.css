@@ -3,15 +3,16 @@
   display: flex;
   align-items: center;
   border: none;
-  background-color: #e2eaf3;
+  background-color: transparent;
   margin: 10px 10px 10px 10px;
   font-weight: bold;
   border-radius: 30px;
 }
 
 .notice-page__row_div:hover {
-  background-color: #798df3;
-  color: #ffffff;
+  background-color: #f5f8ff;
+  color: #000000;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .notice-page__row {
