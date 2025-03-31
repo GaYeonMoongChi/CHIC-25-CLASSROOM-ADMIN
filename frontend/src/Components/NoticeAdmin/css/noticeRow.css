@@ -1,12 +1,12 @@
 .notice-page__row_div {
-  padding: 10px 20px;
+  padding: 7px 20px;
   display: flex;
   align-items: center;
   border: none;
   background-color: transparent;
   margin: 10px 10px 10px 10px;
   font-weight: bold;
-  border-radius: 30px;
+  border-radius: 10px;
 }
 
 .notice-page__row_div:hover {
@@ -17,17 +17,22 @@
 
 .notice-page__row {
   display: flex;
-  gap: 10px;
+}
+
+.notice-page__label {
+  font-size: 13px;
 }
 
 .notice-page__table-cell {
-  padding: 5px 20px;
+  padding: 5px 15px;
   border-radius: 10px;
   cursor: pointer;
 }
 
-.notice-page__divider {
-  width: 2px;
-  background-color: #ccc;
+.notice-page__table-date {
+  padding: 5px 15px;
   border-radius: 10px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 400;
 }

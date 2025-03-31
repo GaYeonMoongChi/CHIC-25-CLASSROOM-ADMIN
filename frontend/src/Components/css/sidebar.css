@@ -36,7 +36,7 @@
 }
 
 .sidebar-close:hover {
-  background: #eaf0f7;
+  background: #f5f8ff;
   font-weight: bolder;
 }
 
@@ -50,13 +50,13 @@
 .sidebar-links__item {
   margin-bottom: 15px;
   padding: 10px 15px;
-  border-radius: 30px;
+  border-radius: 10px;
   list-style: none;
   font-weight: bold;
 }
 
 .sidebar-links__item:hover {
-  background-color: #eaf0f7;
+  background-color: #f5f8ff;
 }
 
 .sidebar-links a {
@@ -85,7 +85,7 @@
 }
 
 .sidebar-toggle-btn:hover {
-  color: #4461f2;
+  color: #666;
 }
 
 .sidebar-toggle-btn.hidden {

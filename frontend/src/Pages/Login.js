@@ -62,7 +62,8 @@ const Login = () => {
         localStorage.setItem("token", data.token);
 
         // 관리자 type에 따라 다른 페이지로 이동
-        const { type } = data.type; // 백엔드에서 받은 관리자 정보에서 'type'을 추출
+        const { type } = data;
+        console.log(type);
 
         if (type === "class_admin") {
           navigate(`/Classroom`); // 강의실 관리자로 이동
@@ -124,11 +125,11 @@ const Login = () => {
           )}
 
           <div className="login__links">
-            <a href="/Find-password" className="login__link">
+            <a href="/Find-password" className="password-find">
               비밀번호 찾기
             </a>
             <span className="login__divider">|</span>
-            <a href="/signup" className="login__link">
+            <a href="/signup" className="signup-link">
               회원가입
             </a>
           </div>

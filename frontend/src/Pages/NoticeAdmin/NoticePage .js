@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "../css/Pages.css";
 import "./css/noticePage.css";
 import Sidebar from "../../Components/NoticeAdmin/NoticeSidebar";
@@ -9,6 +10,7 @@ import LogoutButton from "../../Components/LogoutButton";
 
 const NoticePage = () => {
   const BACKEND_URL = "http://localhost:8000";
+  const navigate = useNavigate();
 
   // 상태 관리
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -21,13 +23,19 @@ const NoticePage = () => {
   const toggleDeleteModal = () => setDeleteModalOpen((prev) => !prev);
 
   const [searchTitle, setSearchTitle] = useState("");
-  const [searchDate, setSearchDate] = useState("");
+  const [searchDate] = useState("");
 
   const [noticeList, setNoticeList] = useState([]);
   const [error, setError] = useState(null);
 
-  // GET 요청
+  // JWT 토큰 확인 및 리다이렉트
   useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      alert("로그인이 필요합니다."); // 토큰이 없으면 알림창을 띄움
+      navigate("/"); // 로그인 페이지로 리다이렉트
+    }
+
     fetch(`${BACKEND_URL}/api/notify/notices`)
       .then((response) => {
         if (!response.ok) {
@@ -36,13 +44,12 @@ const NoticePage = () => {
         return response.json();
       })
       .then((data) => {
-        console.log(data); // 응답 데이터 확인
-        // data가 배열이 아니라면, 배열 형태로 변환
+        console.log(data);
         const notices = Array.isArray(data) ? data : data.notices || [];
-        setNoticeList(notices); // notices가 배열이면 배열을 설정, 아니면 빈 배열
+        setNoticeList(notices);
       })
       .catch((error) => setError(error.message));
-  }, []);
+  }, [navigate]);
 
   const filteredNotices = noticeList.filter(
     (item) =>
@@ -53,37 +60,14 @@ const NoticePage = () => {
   return (
     <div className="div">
       <div className="notice-page__header">
-        <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
         <h1 className="notice-page__title">공지사항</h1>
         <div className="classroom-info-update__nav">
-          <button
-            className="notice-page__action-create"
-            onClick={toggleCreateModal}
-          >
-            글생성
-          </button>
-          <button
-            className="notice-page__action-delete"
-            onClick={toggleDeleteModal}
-          >
-            글삭제
-          </button>
           <LogoutButton />
         </div>
       </div>
 
       <div className="notice-page__search">
         <ul className="notice-page__search-list">
-          <li className="notice-page__search-item">
-            <label className="notice-page__search-label">작성일</label>
-            <input
-              type="text"
-              className="notice-page__search-input"
-              placeholder="[xxxx년 x월 x일] 형식으로 입력해주세요."
-              onChange={(e) => setSearchDate(e.target.value)}
-              value={searchDate}
-            />
-          </li>
           <li className="notice-page__search-item">
             <label className="notice-page__search-label">제목</label>
             <input

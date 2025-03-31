@@ -26,11 +26,25 @@ const NoticeRow = ({ notice }) => {
 
   return (
     <div className="notice-page__row_div" onClick={handleClick}>
-      <tr className="notice-page__row">
-        <td className="notice-page__table-cell">{notice.date}</td>
-        <td className="notice-page__divider"></td>
-        <td className="notice-page__table-cell">{notice.title}</td>
-      </tr>
+      <table className="notice-page__table">
+        <tbody>
+          <tr className="notice-page__row">
+            <td className="notice-page__table-cell" colSpan="2">
+              {notice.title}
+            </td>
+          </tr>
+          <tr className="notice-page__row">
+            <td className="notice-page__table-date">
+              <span className="notice-page__label">등록일: </span>
+              {notice.date}
+            </td>
+            <td className="notice-page__table-date">
+              <span className="notice-page__label">수정일: </span>
+              {notice.update_date}
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   );
 };

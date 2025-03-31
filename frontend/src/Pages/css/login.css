@@ -14,7 +14,6 @@
 .login {
   display: flex;
   flex-direction: column;
-  background-color: #ffffff;
   border-radius: 10px;
   width: 100%;
   max-width: 520px;
@@ -54,6 +53,7 @@
 .login__label {
   width: 30%;
   text-align: right;
+  font-weight: 500;
 }
 
 .login__label {
@@ -72,7 +72,13 @@
   border: none;
   border-radius: 5px;
   font-size: 16px;
-  background-color: #f0f0f0c0;
+  background-color: #f5f8ff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.id__input:focus,
+.password__input:focus {
+  outline: none;
 }
 
 .login__input::placeholder {
@@ -88,15 +94,23 @@
   margin-top: 30px;
 }
 
-.login__link {
+.signup-link {
   text-decoration: none;
-  color: #10069f;
+  color: #798df3;
   font-size: 14px;
   font-weight: 500;
   transition: color 0.3s ease;
 }
 
-.login__link:hover {
+.password-find {
+  text-decoration: none;
+  color: #000000;
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.signup-link:hover {
   color: #082567;
 }
 
@@ -106,7 +120,7 @@
 }
 
 .login__button {
-  background-color: #10069f;
+  background-color: #798df3;
   color: white;
   border: none;
   padding: 7px 10px;
@@ -114,16 +128,18 @@
   cursor: pointer;
   transition: background-color 0.3s;
   font-size: 16px;
+  font-weight: bold;
   width: 100%;
   margin-top: 45px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .login__button:hover {
-  background-color: rgb(18, 39, 75);
+  background-color: #6078f3;
 }
 
 .login__error {
   margin-top: 10px;
-  color: #10069f;
+  color: #798df3;
   font-size: 13px;
 }
