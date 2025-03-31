@@ -10,7 +10,7 @@ import LogoutButton from "../../Components/LogoutButton";
 
 const ClassroomInfoPage = () => {
   // 백앤드 주소
-  //const BACKEND_URL = "http://localhost:8000";
+  const BACKEND_URL = "http://localhost:8000";
 
   // 강의실 정보 상태 관리
   //const [classroomInfo, setClassroomInfo] = useState([]);
@@ -159,14 +159,14 @@ const ClassroomInfoPage = () => {
       </div>
 
       <div className="classroom-info-update__main">
-        <h2 className="classroom-info__building-name">새빛관</h2>
-          <table className="classroom-info-update__table">
-            <tbody>
-              {filteredClassrooms.map((classroom, index) => (
-                <ClassroomRow key={index} classroom={classroom} />
-              ))}
-            </tbody>
-          </table>
+        <h2 className="classroom-info__building-name">🏢 새빛관</h2>
+        <table className="classroom-info-update__table">
+          <tbody>
+            {filteredClassrooms.map((classroom, index) => (
+              <ClassroomRow key={index} classroom={classroom} />
+            ))}
+          </tbody>
+        </table>
       </div>
 
       {/* 사이드바가 열릴 때 표시되는 오버레이 */}
