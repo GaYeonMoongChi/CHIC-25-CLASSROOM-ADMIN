@@ -191,14 +191,19 @@ router.post("/", async (req, res) => {
     }
 
     // JWT 토큰 생성 (유효기간: 1시간)
-    /*const token = jwt.sign(
-      { id: manager._id, email: manager.email, name: manager.name },
+    const token = jwt.sign(
+      {
+        id: manager._id,
+        email: manager.email,
+        name: manager.name,
+        type: manager.type,
+      },
       process.env.JWT_SECRET,
-      { expiresIn: '1h' }
-    ); */
+      { expiresIn: "1h" }
+    );
 
     console.log(`로그인 성공: ${email}`);
-    res.json({ message: "로그인 성공" });
+    res.json({ message: "로그인 성공", token, type: manager.type });
   } catch (error) {
     console.error("로그인 실패:", error);
     res.status(500).json({ error: "서버 오류" });

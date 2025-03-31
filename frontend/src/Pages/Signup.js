@@ -6,12 +6,13 @@ const Signup = () => {
   const BACKEND_URL = "http://localhost:8000/api/login";
   const navigate = useNavigate();
 
-  // 상태 관리
+  // 비밀번호 입력 상태 관리
   const [formData, setFormData] = useState({
     name: "",
     type: "",
     email: "",
     pw: "",
+    pwConfirm: "",
   });
 
   const [isEmailVerified, setIsEmailVerified] = useState(false);
@@ -105,8 +106,6 @@ const Signup = () => {
     e.preventDefault();
     setErrors({});
 
-    // 이메일 중복 확인 검사 예외처리 코드 작성
-
     let newErrors = {};
     if (!formData.name) newErrors.name = "이름을 입력하세요.";
     if (!formData.type) newErrors.type = "관리자 유형을 선택하세요.";
@@ -117,6 +116,8 @@ const Signup = () => {
       newErrors.emailVerification = "이메일 인증을 완료하세요.";
     if (!validatePassword(formData.pw))
       newErrors.pw = "비밀번호는 최소 8자 이상, 영문+숫자를 포함해야 합니다.";
+    if (formData.pw !== formData.pwConfirm)
+      newErrors.pwConfirm = "비밀번호가 일치하지 않습니다.";
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
@@ -253,8 +254,24 @@ const Signup = () => {
               />
             </div>
 
+            {/* 비밀번호 확인 입력 */}
+            <div className="signin__input-group">
+              <label htmlFor="pwConfirm">비밀번호 확인</label>
+              <input
+                type="password"
+                name="pwConfirm"
+                value={formData.pwConfirm}
+                placeholder="비밀번호를 다시 입력하세요."
+                onChange={handleChange}
+              />
+            </div>
+
             <div className="error__block">
               {errors.pw && <p className="error">{errors.pw}</p>}
+            </div>
+
+            <div className="error__block">
+              {errors.pwConfirm && <p className="error">{errors.pwConfirm}</p>}
             </div>
 
             {/* 회원가입 버튼 */}

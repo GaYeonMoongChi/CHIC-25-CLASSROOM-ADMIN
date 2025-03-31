@@ -8,3 +8,8 @@
   transition: transform 0.3s ease;
   padding-left: 100px;
 }
+
+body {
+  background: linear-gradient(to right, #f3f4f6 10%, #ffeedd 30%, #f5f8ff 60%);
+  background-size: 100% 100%; /* 배경 크기 설정 */
+}
