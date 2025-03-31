@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../css/Pages.css";
 import "./css/noticePage.css";
-import Sidebar from "../../Components/NoticeAdmin/NoticeSidebar";
 import NoticeRow from "../../Components/NoticeAdmin/Notice/NoticeRow";
 import NoticeCreate from "../../Components/NoticeAdmin/Notice/NoticeCreate";
 import NoticeDelete from "../../Components/NoticeAdmin/Notice/NoticeDelete";

@@ -26,11 +26,12 @@
   border-radius: 30px;
   padding: 10px 3px;
   cursor: pointer;
-  font-size: 17px;
+  font-size: 15px;
   text-align: center;
   width: 100px;
   transition: background-color 0.3s ease;
   font-weight: bold;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .classroom-info-update__action-create:hover,
@@ -55,14 +56,16 @@
 }
 
 .classroom-info__search-item {
-  background-color: #eaf0f7;
-  border-radius: 30px;
+  background-color: #f5f8ff;
+  color: #000000;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
   border: none;
   padding: 15px 30px;
   display: flex;
   align-items: center;
   font-weight: bold;
-  width: 40%;
+  width: 100%;
 }
 
 .classroom-info__search-item > input {
@@ -70,17 +73,16 @@
 }
 
 .classroom-info__search-label {
-  width: 90px;
-  border-right: 1px solid rgb(83, 83, 83);
+  width: 20%;
+  border-right: 2px solid #7c7c7c;
 }
 
 .classroom-info__search-input {
   width: 80%;
-  background-color: #eaf0f7;
+  background-color: #f5f8ff;
   border: none;
   padding-left: 10px;
   font-size: 17px;
-  border-radius: 5px;
 }
 
 .classroom-info__search-input::placeholder {
@@ -90,17 +92,15 @@
 
 .classroom-info__search-input:focus {
   outline: none;
-  background-color: #dee5ec;
 }
 
 .classroom-info-update__main {
+  background-color: transparent;
   width: 95%;
   margin-top: 30px;
-  border-left: 4px solid #4461f2;
-  background-color: #eaf0f7;
-  padding-top: 15px;
+  padding-top: 20px;
   padding-bottom: 15px;
-  border-radius: 0px 20px 20px 0px;
+  border-radius: 30px;
 }
 
 .classroom-info__building-name {
