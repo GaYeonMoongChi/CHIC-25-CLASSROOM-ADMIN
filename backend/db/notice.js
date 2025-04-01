@@ -1,17 +1,23 @@
 const mongoose = require('mongoose');
-// const { noticeDB } = require('./mongoConnection'); // noticeDB 가져오기
 
 const noticeSchema = new mongoose.Schema({
-  notice_idx: { type: String, required: true, unique: true }, // 홍보물 ID
-  account_idx: { type: String, required: true }, // 작성자 ID
-  title: { type: String, required: true }, // 제목
-  contents: { type: String }, // 내용 (첨부파일 가능)
-  file_url: { type: String }, // 업로드된 파일 URL
-  createdAt: { type: Date, default: Date.now }, // 생성 시간
-  updatedAt: { type: Date, default: Date.now }, // 수정 시간
-  endtime: { type: Date }, // 종료 시간 (있으면 비활성화)
-  views: { type: Number, default: 0 } // 조회수
+    admin_info_id: { type: String, required: true }, // 관리자 이메일 ID
+    created_at: { type: Date, default: Date.now }, // 생성 시간
+    type: { type: Boolean, required: true }, // 팝업(1) / 고정 게시글(0) -> true는 1 / false는 0
+    start_date: { type: Date, default: null }, // 팝업용 게시글일 경우 시작 날짜 (nullable)
+    end_date: { type: Date, default: null }, // 팝업용 게시글일 경우 종료 날짜 (nullable)
+    title: { type: String, required: true }, 
+    contents: { type: String, required: true } 
 }, { versionKey: false });
 
-const Notice = global.noticeDB.model('Notice', noticeSchema, 'board'); // `board` 컬렉션에 저장
-module.exports = Notice;
+// notice_popup 스키마 (공지사항 확인한 학생 정보 저장)
+const noticePopupSchema = new mongoose.Schema({
+    notice_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Notice', required: true }, // Notice 테이블의 _id
+    student_id: { type: String, required: true } // 학생 ID
+});
+
+// 모델 생성
+const Notice = global.noticeDB.model('Notice', noticeSchema);
+const NoticePopup = mongoose.model('NoticePopup', noticePopupSchema, 'notice_popup');
+
+module.exports = { Notice, NoticePopup };
