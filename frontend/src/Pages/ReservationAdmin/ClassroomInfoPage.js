@@ -95,6 +95,7 @@ const ClassroomInfoPage = () => {
 
   return (
     <div className="div">
+      {/* 헤더 */}
       <div className="classroom-info-update__header">
         <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
         <h1 className="classroom-info-update__title">강의실 정보 관리</h1>
@@ -115,6 +116,7 @@ const ClassroomInfoPage = () => {
         </div>
       </div>
 
+      {/* 검색바 */}
       <div className="classroom-info__search">
         <ul className="classroom-info__search-list">
           <li className="classroom-info__search-item">
@@ -158,6 +160,7 @@ const ClassroomInfoPage = () => {
         </ul>
       </div>
 
+      {/* 강의실 정보 리스트 */}
       <div className="classroom-info-update__main">
         <h2 className="classroom-info__building-name">🏢 새빛관</h2>
         <table className="classroom-info-update__table">
@@ -174,10 +177,10 @@ const ClassroomInfoPage = () => {
         <div className="sidebar-overlay" onClick={toggleSidebar}></div>
       )}
 
-      {/* 등록 모달창 컴포넌트 */}
+      {/* 등록 모달창 */}
       {isCreateModalOpen && <ClassroomCreate onClose={toggleCreateModal} />}
 
-      {/* 삭제 모달창 컴포넌트 */}
+      {/* 삭제 모달창 */}
       {isDeleteModalOpen && (
         <ClassroomDelete
           classroom={classroomInfo}
