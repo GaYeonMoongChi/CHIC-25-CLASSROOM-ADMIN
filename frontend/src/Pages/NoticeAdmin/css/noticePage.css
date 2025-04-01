@@ -12,6 +12,12 @@
   font-size: 27px;
 }
 
+.notice-page__nav {
+  margin-left: auto;
+  display: flex;
+  gap: 30px;
+}
+
 .notice-page__search {
   padding-bottom: 20px;
   border-bottom: 2px solid #dddfdd;

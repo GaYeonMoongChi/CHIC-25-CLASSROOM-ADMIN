@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "../css/noticeAdvertisingModal.css";
+import "../css/noticeModal.css";
 
 const NoticeUpdate = ({ notice, onClose, onUpdate }) => {
   // 백앤드 주소

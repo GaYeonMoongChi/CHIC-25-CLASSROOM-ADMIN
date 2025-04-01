@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
-import "../css/noticeAdvertisingModal.css";
+import "./css/noticeModal.css";
 
 const NoticeCreate = ({ onClose, onCreate }) => {
   // 백앤드 주소
@@ -17,7 +17,7 @@ const NoticeCreate = ({ onClose, onCreate }) => {
     endtime: "",
   });
 
-  // 광고글 등록 요청
+  // 공지글 등록 요청
   const handleChange = (e) => {
     setAdvertisingData({ ...advertisingData, [e.target.name]: e.target.value });
   };
@@ -83,20 +83,10 @@ const NoticeCreate = ({ onClose, onCreate }) => {
           <h1 className="notice-create__title">공지글 생성</h1>
         </header>
 
-        <main className="notice-create__main">
+        {/* 공지글 작성 */}
+        <div className="notice-create__main">
           <ul className="notice-create__list">
             <li className="notice-create__item">
-              <strong className="notice-create__label">▪️ 작성자: </strong>
-              <input
-                type="text"
-                className="notice-create__input"
-                placeholder="작성자를 입력하세요. (ex. 관리자, 공지관리자)"
-                onChange={handleChange}
-                onKeyDown={handleKeyDown}
-              />
-            </li>
-            <li className="notice-create__item">
-              <strong className="notice-create__label">▪️ 제목: </strong>
               <input
                 type="text"
                 className="notice-create__input"
@@ -106,7 +96,15 @@ const NoticeCreate = ({ onClose, onCreate }) => {
               ></input>
             </li>
             <li className="notice-create__item">
-              <strong className="notice-create__label">▪️ 내용: </strong>
+              <select name="notice-type" onChange={handleChange}>
+                <option disabled value="">
+                  공지글 유형을 선택하세요.
+                </option>
+                <option value="notice">고정 게시글</option>
+                <option value="pop-up">팝업</option>
+              </select>
+            </li>
+            <li className="notice-create__item">
               <textarea
                 type="text"
                 className="notice-create__textarea"
@@ -114,23 +112,15 @@ const NoticeCreate = ({ onClose, onCreate }) => {
                 onChange={handleChange}
               ></textarea>
             </li>
-            <li className="notice-create__item">
-              <strong className="notice-create__label">▪️ 이미지파일: </strong>
-              <input
-                type="file"
-                className="notice-create__input"
-                placeholder="이미지 파일을 업로드 해주세요."
-                onChange={handleFileChange}
-              ></input>
-            </li>
           </ul>
-        </main>
 
-        <footer className="notice-create__footer">
-          <button className="notice-create__submit" onClick={handleSubmit}>
-            완료
-          </button>
-        </footer>
+          {/* 등록 완료 버튼 */}
+          <div className="notice-create__submit_div">
+            <button className="notice-create__submit" onClick={handleSubmit}>
+              완료
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );

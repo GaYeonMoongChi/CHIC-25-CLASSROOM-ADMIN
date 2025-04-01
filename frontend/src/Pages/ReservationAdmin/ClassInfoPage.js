@@ -6,6 +6,7 @@ import Sidebar from "../../Components/ReservationAdmin/ReservationSidebar";
 import ClassRow from "../../Components/ReservationAdmin/Class/ClassRow";
 import ClassCreate from "../../Components/ReservationAdmin/Class/ClassCreate";
 import ClassDelete from "../../Components/ReservationAdmin/Class/ClassDelete";
+import LogoutButton from "../../Components/LogoutButton";
 
 const ClassInfoPage = () => {
   // 백앤드 주소
@@ -85,13 +86,29 @@ const ClassInfoPage = () => {
 
   return (
     <div className="div">
-      <header className="class-info-update__header">
-        {/* 사이드바 컴포넌트 */}
+      {/* 헤더 */}
+      <div className="class-info-update__header">
         <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
         <h1 className="class-info-update__title">강의 정보 열람</h1>
-      </header>
+        <div className="class-info-update__nav">
+          <button
+            className="class-info-update__action-create"
+            onClick={toggleCreateModal}
+          >
+            강의 등록
+          </button>
+          <button
+            className="class-info-update__action-delete"
+            onClick={toggleDeleteModal}
+          >
+            강의 삭제
+          </button>
+          <LogoutButton />
+        </div>
+      </div>
 
-      <nav className="classroom-info__search-nav">
+      {/* 검색바 */}
+      <div className="classroom-info__search">
         <ul className="classroom-info__search-list">
           <li className="classroom-info__search-item">
             <label className="classroom-info__search-label">학정번호</label>
@@ -132,9 +149,10 @@ const ClassInfoPage = () => {
             />
           </li>
         </ul>
-      </nav>
+      </div>
 
-      <div className="class-info-update__main_div">
+      {/* 강의정보 리스트 */}
+      <div className="class-info-update__main">
         <table className="class-info-update__table">
           <tbody>
             {filteredClassrooms.map((classes, index) => (
@@ -148,35 +166,17 @@ const ClassInfoPage = () => {
         </table>
       </div>
 
-      <div className="class-info-update__footer">
-        <button className="class-info-update__action-button">+</button>
-        <div className="class-info-update__action-container">
-          <button
-            className="class-info-update__action-create"
-            onClick={toggleCreateModal}
-          >
-            강의 등록
-          </button>
-          <button
-            className="class-info-update__action-delete"
-            onClick={toggleDeleteModal}
-          >
-            강의 삭제
-          </button>
-        </div>
-      </div>
-
       {/* 사이드바가 열릴 때 표시되는 오버레이 */}
       {isSidebarOpen && (
         <div className="sidebar-overlay" onClick={toggleSidebar}></div>
       )}
 
-      {/* 등록 모달창 컴포넌트 */}
+      {/* 등록 모달창 */}
       {isCreateModalOpen && (
         <ClassCreate onClose={toggleCreateModal} onCreate={handleCreateClass} />
       )}
 
-      {/* 삭제 모달창 컴포넌트 */}
+      {/* 삭제 모달창 */}
       {isDeleteModalOpen && (
         <ClassDelete
           classes={classInfo}
