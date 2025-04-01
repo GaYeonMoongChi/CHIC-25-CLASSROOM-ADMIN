@@ -1,9 +1,3 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 .signin__wrapper {
   display: flex;
   justify-content: center;
@@ -14,7 +8,6 @@
 .signin {
   display: flex;
   flex-direction: column;
-  background-color: #ffffff;
   border-radius: 10px;
   width: 100%;
   max-width: 520px;
@@ -48,10 +41,11 @@
 
 .signin__input-group input::placeholder {
   font-size: 13px;
+  color: #aaa;
 }
 
 .signin__input-group label {
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 600;
   color: #333;
   width: 20%;
@@ -61,27 +55,34 @@
   flex: 1;
   height: 35px;
   padding: 10px;
-  border: 1px solid #ccc;
+  border: none;
   border-radius: 5px;
   font-size: 16px;
-  background-color: #f0f0f0c0;
+  background-color: #f5f8ff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .signin__input-group select {
   flex: 1;
   height: 35px;
   padding: 5px;
-  border: 1px solid #ccc;
+  border: none;
   border-radius: 5px;
-  font-size: 16px;
-  background-color: #f0f0f0c0;
+  color: #666;
+  background-color: #f5f8ff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   cursor: pointer;
+}
+
+.signin__input-group input:focus,
+.signin__input-group select:focus {
+  outline: none;
 }
 
 .verify-email {
   height: 35px;
   padding: 5px 10px;
-  background-color: #10069f;
+  background-color: #798df3;
   color: white;
   border: none;
   border-radius: 5px;
@@ -92,24 +93,27 @@
 }
 
 .verify-email:hover {
-  background-color: #082567;
+  background-color: #6078f3;
 }
 
 .signup-btn {
-  background-color: #10069f;
-  color: white;
+  background-color: #eaf1ff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  color: #000000;
   border: none;
   padding: 10px;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
   font-size: 16px;
+  font-weight: bold;
   width: 100%;
   margin-top: 20px;
 }
 
 .signup-btn:hover {
-  background-color: rgb(18, 39, 75);
+  background-color: #798df3;
+  color: #ffffff;
 }
 
 .error__block {
@@ -119,11 +123,11 @@
 }
 
 .error {
-  color: #10069f;
+  color: #798df3;
   font-size: 14px;
   display: inline-block;
 }
 
 .success {
-  color: green;
+  color: #798df3;
 }

@@ -6,7 +6,6 @@ import ClassroomInfoPage from "./Pages/ReservationAdmin/ClassroomInfoPage";
 import RoomReservationStatusPage from "./Pages/ReservationAdmin/RoomReservationStatusPage";
 import StudentInfoPage from "./Pages/ReservationAdmin/StudentInfoPage";
 import NoticePage from "./Pages/NoticeAdmin/NoticePage ";
-import AdvertisingPage from "./Pages/NoticeAdmin/AdvertisingPage";
 import ClassInfoPage from "./Pages/ReservationAdmin/ClassInfoPage";
 import Signup from "./Pages/Signup";
 
@@ -20,7 +19,6 @@ const App = () => {
         <Route path="/Student" element={<StudentInfoPage />} />
         <Route path="/Class" element={<ClassInfoPage />} />
         <Route path="/Notice" element={<NoticePage />} />
-        <Route path="/Advertising" element={<AdvertisingPage />} />
         <Route path="/Signup" element={<Signup />} />
         <Route path="/Find-password" element={<Signup />} />
       </Routes>

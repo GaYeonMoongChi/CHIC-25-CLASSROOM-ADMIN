@@ -1,32 +1,38 @@
 .notice-page__row_div {
-  padding: 10px 20px;
+  padding: 7px 20px;
   display: flex;
   align-items: center;
   border: none;
-  background-color: #e2eaf3;
+  background-color: transparent;
   margin: 10px 10px 10px 10px;
   font-weight: bold;
-  border-radius: 30px;
+  border-radius: 10px;
 }
 
 .notice-page__row_div:hover {
-  background-color: #798df3;
-  color: #ffffff;
+  background-color: #f5f8ff;
+  color: #000000;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .notice-page__row {
   display: flex;
-  gap: 10px;
+}
+
+.notice-page__label {
+  font-size: 13px;
 }
 
 .notice-page__table-cell {
-  padding: 5px 20px;
+  padding: 5px 15px;
   border-radius: 10px;
   cursor: pointer;
 }
 
-.notice-page__divider {
-  width: 2px;
-  background-color: #ccc;
+.notice-page__table-date {
+  padding: 5px 15px;
   border-radius: 10px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 400;
 }

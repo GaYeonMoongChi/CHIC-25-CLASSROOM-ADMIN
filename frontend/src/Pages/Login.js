@@ -41,9 +41,40 @@ const Login = () => {
       }
 
       // JWT 토큰 저장
-      //localStorage.setItem("token", data.token);
+      localStorage.setItem("token", data.token);
 
-      navigate(`/Classroom`);
+      // 로그인 요청
+      try {
+        const response = await fetch(`${BACKEND_URL}/api/login`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email: email, pw: pw }),
+        });
+
+        const data = await response.json();
+        if (!response.ok) {
+          throw new Error(data.error || "로그인에 실패했습니다.");
+        }
+
+        // JWT 토큰 저장
+        localStorage.setItem("token", data.token);
+
+        // 관리자 type에 따라 다른 페이지로 이동
+        const { type } = data;
+        console.log(type);
+
+        if (type === "class_admin") {
+          navigate(`/Classroom`); // 강의실 관리자로 이동
+        } else if (type === "ad_admin") {
+          navigate("/Notice"); // 공지사항 관리자 페이지로 이동
+        } else {
+          setErrorMessage("잘못된 관리자 유형입니다.");
+        }
+      } catch (error) {
+        setErrorMessage(error.message);
+      }
     } catch (error) {
       setErrorMessage(error.message);
     }
@@ -94,11 +125,11 @@ const Login = () => {
           )}
 
           <div className="login__links">
-            <a href="/Find-password" className="login__link">
+            <a href="/Find-password" className="password-find">
               비밀번호 찾기
             </a>
             <span className="login__divider">|</span>
-            <a href="/signup" className="login__link">
+            <a href="/signup" className="signup-link">
               회원가입
             </a>
           </div>
