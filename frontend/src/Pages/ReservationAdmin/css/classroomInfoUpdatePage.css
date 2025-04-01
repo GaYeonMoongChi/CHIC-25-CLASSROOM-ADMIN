@@ -94,6 +94,28 @@
   outline: none;
 }
 
+.react-datepicker__input-container input {
+  width: 80%;
+  background-color: #f5f8ff;
+  border: none;
+  padding-left: 10px;
+  font-size: 17px;
+  cursor: pointer;
+}
+
+.react-datepicker__input-container > input {
+  margin-left: 10px;
+}
+
+.react-datepicker__input-container input::placeholder {
+  color: rgb(83, 83, 83);
+  transition: color 0.3s ease;
+}
+
+.react-datepicker__input-container input:focus {
+  outline: none;
+}
+
 .classroom-info-update__main {
   background-color: transparent;
   width: 95%;
@@ -122,11 +144,5 @@
   height: 100%;
   background-color: rgba(0, 0, 0, 0.4);
   z-index: 10;
-  transition: opacity 0.3s ease-in-out;
-}
-
-.sidebar-open .student-info__main_div {
-  pointer-events: none;
-  opacity: 0.5;
   transition: opacity 0.3s ease-in-out;
 }

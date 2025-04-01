@@ -22,13 +22,13 @@ const CalendarComponent = ({ selectedDate, setSelectedDate }) => {
         }) => (
           <div className="custom-header">
             <button onClick={decreaseMonth} disabled={prevMonthButtonDisabled}>
-              ◀
+              &lt;
             </button>
             <span>
               {date.getFullYear()}년 {date.getMonth() + 1}월
             </span>
             <button onClick={increaseMonth} disabled={nextMonthButtonDisabled}>
-              ▶
+              &gt;
             </button>
           </div>
         )}

@@ -45,3 +45,8 @@
   background: #19125027;
   top: 25%;
 }
+
+.no-result {
+  padding-top: 30px;
+  color: #798df3;
+}
