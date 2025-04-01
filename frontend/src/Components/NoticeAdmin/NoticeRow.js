@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import "../css/noticeRow.css";
+import "./css/noticeRow.css";
 
 const NoticeRow = ({ notice }) => {
   const navigate = useNavigate();

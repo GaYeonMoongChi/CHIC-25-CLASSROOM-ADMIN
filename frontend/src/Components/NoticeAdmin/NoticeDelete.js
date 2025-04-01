@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "../../../Pages/css/Pages.css";
-import "../css/noticeAdvertisingModal.css";
+import "../../Pages/css/Pages.css";
+import "./css/noticeModal.css";
 import NoticeRow from "./NoticeRow";
 
 const NoticeDelete = ({ notice, onClose, onDelete }) => {
@@ -84,14 +84,15 @@ const NoticeDelete = ({ notice, onClose, onDelete }) => {
                 ))}
               </tbody>
             </table>
+
+            {/* 삭제 버튼 */}
+            <div className="notice-notice-delete__submit-div">
+              <button className="notice-delete__submit" onClick={handleDelete}>
+                완료
+              </button>
+            </div>
           </main>
         </div>
-
-        <footer className="notice-delete__footer">
-          <button className="notice-delete__submit" onClick={handleDelete}>
-            완료
-          </button>
-        </footer>
       </div>
     </div>
   );

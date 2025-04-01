@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../css/Pages.css";
 import "./css/noticePage.css";
-import NoticeRow from "../../Components/NoticeAdmin/Notice/NoticeRow";
-import NoticeCreate from "../../Components/NoticeAdmin/Notice/NoticeCreate";
-import NoticeDelete from "../../Components/NoticeAdmin/Notice/NoticeDelete";
+import NoticeRow from "../../Components/NoticeAdmin/NoticeRow";
+import NoticeCreate from "../../Components/NoticeAdmin/NoticeCreate";
+import NoticeDelete from "../../Components/NoticeAdmin/NoticeDelete";
 import LogoutButton from "../../Components/LogoutButton";
 
 const NoticePage = () => {
@@ -60,7 +60,19 @@ const NoticePage = () => {
     <div className="div">
       <div className="notice-page__header">
         <h1 className="notice-page__title">공지사항</h1>
-        <div className="classroom-info-update__nav">
+        <div className="notice-page__nav">
+          <button
+            className="notice-page__action-create"
+            onClick={toggleCreateModal}
+          >
+            공지 등록
+          </button>
+          <button
+            className="notice-page__action-delete"
+            onClick={toggleDeleteModal}
+          >
+            공지 삭제
+          </button>
           <LogoutButton />
         </div>
       </div>
@@ -83,10 +95,10 @@ const NoticePage = () => {
       <div className="notice-page__main">
         {error ? (
           <p className="notice-page__error">
-            서버에서 데이터를 받아오지 못했습니다: {error}
+            서버에서 공지글 데이터를 받아오지 못했습니다: {error}
           </p>
         ) : noticeList.length === 0 ? (
-          <p className="notice-page__empty">등록된 공지사항이 없습니다.</p>
+          <p className="notice-page__empty">등록된 공지글이 없습니다.</p>
         ) : (
           <table className="notice-page__table">
             <tbody>
