@@ -18,6 +18,6 @@ const noticePopupSchema = new mongoose.Schema({
 
 // 모델 생성
 const Notice = global.noticeDB.model('Notice', noticeSchema);
-const NoticePopup = mongoose.model('NoticePopup', noticePopupSchema, 'notice_popup');
+const NoticePopup = global.noticeDB.model('NoticePopup', noticePopupSchema, 'notice_popup');
 
 module.exports = { Notice, NoticePopup };

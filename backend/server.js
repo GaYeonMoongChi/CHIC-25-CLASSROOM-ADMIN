@@ -36,9 +36,6 @@ connectDB().then(() => {
   const classRoutes = require("./routes/class");
   app.use("/api/class", classRoutes);
 
-  const boardRoutes = require("./routes/board");
-  app.use("/api/board", boardRoutes);
-
   const loginRoutes = require("./routes/login");
   app.use("/api/login", loginRoutes);
 
@@ -69,6 +66,6 @@ connectDB().then(() => {
       } catch (err) {
         console.error("공지사항 업데이트 오류:", err);
       }
-    }, 500);
+    }, 10000);
   });
 });

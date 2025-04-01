@@ -70,6 +70,18 @@ router.delete('/:id', async (req, res) => {
     }
 });
 
+// 모든 notice_popup 데이터 가져오기(type이 true인 것만)
+// GET /api/notice/popup
+router.get("/popup", async (req, res) => {
+    try {
+      const popupNotices = await Notice.find({ type: true }).sort({ created_at: -1 }); // 최신순 정렬
+      res.status(200).json(popupNotices);
+    } catch (error) {
+      res.status(500).json({ message: "팝업 공지사항 조회 실패", error: error.message });
+    }
+  });
+  
+
 // 공지사항 전체 조회 (GET)
 router.get('/', async (req, res) => {
     try {
