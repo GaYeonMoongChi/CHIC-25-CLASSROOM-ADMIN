@@ -48,7 +48,7 @@ router.post("/send-code", async (req, res) => {
     const verificationCode = Math.floor(
       100000 + Math.random() * 900000
     ).toString();
-    const expiresAt = Date.now() + 3 * 60 * 1000; // ✅ 유효 시간: 3분
+    const expiresAt = Date.now() + 3 * 60 * 1000; // 유효 시간: 3분
 
     // 인증 코드 저장
     emailVerificationStore.set(email, { code: verificationCode, expiresAt });
