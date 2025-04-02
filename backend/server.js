@@ -31,7 +31,7 @@ connectDB().then(() => {
   app.use("/api/students", studentRoutes);
 
   const classroomRoutes = require("./routes/classroom");
-  app.use("/api/classrooms", classroomRoutes);
+  app.use("/api/classroom", classroomRoutes);
 
   const classRoutes = require("./routes/class");
   app.use("/api/class", classRoutes);

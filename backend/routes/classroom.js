@@ -1,35 +1,76 @@
 const express = require('express');
 const router = express.Router();
-const Classroom = require('../db/classroom'); // Classroom 모델 가져오기
+const Classroom = require('../db/classroom');
 
-// 강의실 정보 추가 (POST) -> http://localhost:8000/api/classrooms
+// 강의실 정보 추가 (POST /api/classroom)
 router.post('/', async (req, res) => {
-  console.log("/api/classrooms POST 요청 받음!", req.body);
-
-  const { classroom_idx, classroom_name, classroom_exp } = req.body;
-
-  try {
-    // 필수 필드 확인
-    if (!classroom_idx || !classroom_name || !classroom_exp) {
-      return res.status(400).json({ message: "모든 필드를 입력해야 합니다." });
+    try {
+        const newClassroom = new Classroom(req.body);
+        await newClassroom.save();
+        res.status(201).json({ message: '강의실 정보 추가 성공', data: newClassroom });
+    } catch (error) {
+        res.status(500).json({ message: '강의실 정보 추가 실패', error: error.message });
     }
+});
 
-    // 기존 강의실 중복 확인
-    const existingClassroom = await Classroom.findOne({ classroom_idx });
-    if (existingClassroom) {
-      return res.status(409).json({ message: "이미 존재하는 강의실입니다." });
+// 강의실 정보 조회 (GET /api/classroom)
+router.get('/', async (req, res) => {
+    try {
+        const classrooms = await Classroom.find();
+        res.status(200).json(classrooms);
+    } catch (error) {
+        res.status(500).json({ message: '강의실 정보 조회 실패', error: error.message });
     }
+});
 
-    // 새 강의실 생성
-    const newClassroom = new Classroom({ classroom_idx, classroom_name, classroom_exp });
-    await newClassroom.save();
-    console.log("강의실 추가 완료:", newClassroom);
+// 특정 강의실 정보 조회 (GET /api/classroom/:building/:room)
+// ex. api/classroom/기념관/203호
+router.get('/:building/:room', async (req, res) => {
+    try {
+        const { building, room } = req.params;
+        const classroom = await Classroom.findOne({ building, room });
 
-    res.status(201).json({ message: "강의실이 추가되었습니다.", classroom: newClassroom });
-  } catch (err) {
-    console.error("강의실 추가 실패:", err);
-    res.status(500).json({ message: "서버 오류", error: err.message });
-  }
+        if (!classroom) {
+            return res.status(404).json({ message: '강의실 정보를 찾을 수 없습니다.' });
+        }
+        res.status(200).json(classroom);
+    } catch (error) {
+        res.status(500).json({ message: '강의실 정보 조회 실패', error: error.message });
+    }
+});
+
+// 강의실 정보 수정 (PUT /api/classroom/:building/:room)
+router.put('/:building/:room', async (req, res) => {
+    try {
+        const { building, room } = req.params;
+        const updatedClassroom = await Classroom.findOneAndUpdate(
+            { building, room }, 
+            req.body, 
+            { new: true }
+        );
+
+        if (!updatedClassroom) {
+            return res.status(404).json({ message: '강의실 정보를 찾을 수 없습니다.' });
+        }
+        res.status(200).json({ message: '강의실 정보 수정 성공', data: updatedClassroom });
+    } catch (error) {
+        res.status(500).json({ message: '강의실 정보 수정 실패', error: error.message });
+    }
+});
+
+// 강의실 정보 삭제 (DELETE /api/classroom/:building/:room)
+router.delete('/:building/:room', async (req, res) => {
+    try {
+        const { building, room } = req.params;
+        const deletedClassroom = await Classroom.findOneAndDelete({ building, room });
+
+        if (!deletedClassroom) {
+            return res.status(404).json({ message: '강의실 정보를 찾을 수 없습니다.' });
+        }
+        res.status(200).json({ message: '강의실 정보 삭제 성공' });
+    } catch (error) {
+        res.status(500).json({ message: '강의실 정보 삭제 실패', error: error.message });
+    }
 });
 
 module.exports = router;
