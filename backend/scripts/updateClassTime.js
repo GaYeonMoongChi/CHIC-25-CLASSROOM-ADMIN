@@ -1,3 +1,6 @@
+// node backend/scripts/updateClassTime.js  # 스크립트 실행
+// 실행시 db에 있는 금5,6 -> start_time과 end_time 분류(해당 기능은 classTimeParser.js에 위치)
+
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const parseClassDaytime = require('../utils/classTimeParser'); // 변환 함수 불러오기
