@@ -78,6 +78,20 @@
   background-color: rgb(18, 39, 75);
 }
 
+.classroom-details__delete {
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: none;
+  background-color: #10069f;
+  color: white;
+  margin-right: 20px;
+  font-weight: bold;
+}
+
+.classroom-details__delete:hover {
+  background-color: rgb(18, 39, 75);
+}
+
 /* 강의실 등록 모달 */
 .classroom-create__title {
   margin-bottom: 25px;
@@ -111,7 +125,7 @@
   resize: none;
 }
 
-.classroom-create__footer {
+.classroom-create__submit_div {
   margin-top: 30px;
   display: flex;
   justify-content: flex-end;
@@ -128,51 +142,6 @@
 }
 
 .classroom-create__submit:hover {
-  background-color: rgb(18, 39, 75);
-}
-
-/* 강의실 삭제 모달 */
-.classroom-delete__title {
-  margin-bottom: 25px;
-}
-
-.classroom-delete__main_div {
-  width: 95%;
-}
-
-.classroom-delete__main {
-  width: 100%;
-}
-
-.classroom-delete__table {
-  width: 100%;
-}
-
-.classroom-delete__td {
-  padding: 0px;
-  width: 50px;
-}
-
-.classroom-delete__footer {
-  position: sticky;
-  bottom: 0;
-  right: 0;
-  margin-top: 30px;
-  display: flex;
-  justify-content: flex-end;
-}
-
-.classroom-delete__submit {
-  padding: 10px 20px;
-  border-radius: 10px;
-  border: none;
-  background-color: #10069f;
-  color: white;
-  margin-right: 0;
-  font-weight: bold;
-}
-
-.classroom-delete__submit:hover {
   background-color: rgb(18, 39, 75);
 }
 
@@ -226,202 +195,6 @@
 }
 
 .classroom-update__submit:hover {
-  background-color: rgb(18, 39, 75);
-}
-
-/* 학생 상세보기 모달 */
-.students-details__title {
-  margin-bottom: 25px;
-  font-size: 25px;
-}
-
-.students-details__list {
-  list-style: none;
-}
-
-.students-details__item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 5px;
-}
-
-.students-details__content {
-  padding: 10px;
-  width: 87%;
-  background-color: #f5f5f5;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-}
-
-.students-details__footer {
-  margin-top: 30px;
-  display: flex;
-  justify-content: flex-end;
-}
-
-.students-details__update {
-  padding: 10px 20px;
-  border-radius: 10px;
-  border: none;
-  background-color: #10069f;
-  color: white;
-  margin-right: 20px;
-  font-weight: bold;
-}
-
-.students-details__update:hover {
-  background-color: rgb(18, 39, 75);
-}
-
-/* 학생 등록 모달 */
-.students-create__title {
-  margin-bottom: 25px;
-}
-
-.students-create__item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 5px;
-}
-
-.students-create__list {
-  list-style: none;
-}
-
-.students-create__input {
-  padding: 10px;
-  width: 87%;
-  background-color: #f5f5f5;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-}
-
-.students-create__textarea {
-  padding: 10px;
-  width: 87%;
-  background-color: #f5f5f5;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  resize: none;
-}
-
-.students-create__footer {
-  margin-top: 30px;
-  display: flex;
-  justify-content: flex-end;
-}
-
-.students-create__submit {
-  padding: 10px 20px;
-  border-radius: 10px;
-  border: none;
-  background-color: #10069f;
-  color: white;
-  margin-right: 20px;
-  font-weight: bold;
-}
-
-.students-create__submit:hover {
-  background-color: rgb(18, 39, 75);
-}
-
-/* 학생 삭제 모달 */
-.students-delete__title {
-  margin-bottom: 25px;
-}
-
-.students-delete__main_div {
-  width: 95%;
-}
-
-.students-delete__main {
-  width: 100%;
-}
-
-.students-delete__table {
-  width: 100%;
-}
-
-.students-delete__td {
-  padding: 0px;
-  width: 50px;
-}
-
-.students-delete__footer {
-  position: sticky;
-  bottom: 0;
-  right: 0;
-  margin-top: 30px;
-  display: flex;
-  justify-content: flex-end;
-}
-
-.students-delete__submit {
-  padding: 10px 20px;
-  border-radius: 10px;
-  border: none;
-  background-color: #10069f;
-  color: white;
-  margin-right: 0;
-  font-weight: bold;
-}
-
-.students-delete__submit:hover {
-  background-color: rgb(18, 39, 75);
-}
-
-/* 학생 수정 모달 */
-.students-update__title {
-  margin-bottom: 25px;
-}
-
-.students-update__item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 5px;
-}
-
-.students-update__list {
-  list-style: none;
-}
-
-.students-update__input {
-  padding: 10px;
-  width: 87%;
-  background-color: #f5f5f5;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-}
-
-.students-update__textarea {
-  padding: 10px;
-  width: 87%;
-  background-color: #f5f5f5;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  resize: none;
-}
-
-.students-update__footer {
-  margin-top: 30px;
-  display: flex;
-  justify-content: flex-end;
-}
-
-.students-update__submit {
-  padding: 10px 20px;
-  border-radius: 10px;
-  border: none;
-  background-color: #10069f;
-  color: white;
-  margin-right: 20px;
-  font-weight: bold;
-}
-
-.students-update__submit:hover {
   background-color: rgb(18, 39, 75);
 }
 
