@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import DetailModal from "./ClassroomDetail";
 import "../css/classroomRow.css";
 
-const ClassroomRow = ({ classroom, onUpdate }) => {
+const ClassroomRooms = ({ classroom, onUpdate }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  /* 건물 호수 (101호, 102호 ...)*/
   return (
     <>
       <div
@@ -12,9 +13,7 @@ const ClassroomRow = ({ classroom, onUpdate }) => {
         onClick={() => setIsModalOpen(true)}
       >
         <tr className="classroom-info-update__row">
-          <td className="classroom-info-update__cell">
-            {classroom.classroom_idx}호
-          </td>
+          <td className="classroom-info-update__cell">{classroom.room}</td>
         </tr>
       </div>
 
@@ -29,4 +28,4 @@ const ClassroomRow = ({ classroom, onUpdate }) => {
   );
 };
 
-export default ClassroomRow;
+export default ClassroomRooms;

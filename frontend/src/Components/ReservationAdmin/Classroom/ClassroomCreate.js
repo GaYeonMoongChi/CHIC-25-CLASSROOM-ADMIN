@@ -8,9 +8,13 @@ const ClassroomCreate = ({ onClose, onCreate }) => {
 
   // 강의실 입력값 상태 관리
   const [classroomData, setClassroomData] = useState({
-    classroom_idx: "",
-    classroom_name: "",
-    classroom_exp: "",
+    building: "",
+    room: "",
+    equipment: "",
+    minNumberOfUsers: "",
+    contactDepartment: "",
+    contactLocation: "",
+    contactNumber: "",
   });
 
   // 강의실 입력값 변경 핸들러
@@ -20,19 +24,19 @@ const ClassroomCreate = ({ onClose, onCreate }) => {
 
   // 강의실 등록 요청
   const handleSubmit = async () => {
-    // 모든 항목이 채워지지 않았을 경우 예외처리
+    // 필수 항목이 채워지지 않았을 경우 예외처리
     if (
-      !classroomData.classroom_idx ||
-      !classroomData.classroom_name ||
-      !classroomData.classroom_exp
+      !classroomData.building ||
+      !classroomData.room ||
+      !classroomData.contactLocation
     ) {
-      alert("모든 항목을 입력해주세요.");
+      alert("필수 항목을 입력해주세요.");
       return;
     }
 
     try {
       const response = await axios.post(
-        `${BACKEND_URL}/api/classrooms`,
+        `${BACKEND_URL}/api/classroom`,
         classroomData
       );
       alert("강의실 등록이 완료되었습니다.");
@@ -50,9 +54,13 @@ const ClassroomCreate = ({ onClose, onCreate }) => {
 
   const handleClose = () => {
     setClassroomData({
-      classroom_idx: "",
-      classroom_name: "",
-      classroom_exp: "",
+      building: "",
+      room: "",
+      equipment: "",
+      minNumberOfUsers: "",
+      contactDepartment: "",
+      contactLocation: "",
+      contactNumber: "",
     });
     onClose();
   };
@@ -60,6 +68,7 @@ const ClassroomCreate = ({ onClose, onCreate }) => {
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+        {/* 헤더 */}
         <header>
           <button className="modal-close" onClick={onClose}>
             ✖
@@ -67,45 +76,93 @@ const ClassroomCreate = ({ onClose, onCreate }) => {
           <h1 className="classroom-create__title">강의실 등록</h1>
         </header>
 
+        {/* 강의실 정보 입력 */}
         <main className="classroom-create__main">
           <ul className="classroom-create__list">
+            <li className="classroom-create__item">
+              <strong className="classroom-create__label">▪️ 건물명: </strong>
+              <input
+                type="text"
+                name="building"
+                className="classroom-create__input"
+                placeholder="건물명을 입력해주세요 (ex. 비마관)"
+                value={classroomData.building}
+                onChange={handleChange}
+              ></input>
+            </li>
             <li className="classroom-create__item">
               <strong className="classroom-create__label">▪️ 호수: </strong>
               <input
                 type="text"
-                name="classroom_idx"
+                name="room"
                 className="classroom-create__input"
                 placeholder="강의실 호수를 입력하세요. (ex.103)"
+                value={classroomData.room}
                 onChange={handleChange}
               ></input>
             </li>
             <li className="classroom-create__item">
-              <strong className="classroom-create__label">▪️ 강의실명: </strong>
+              <strong className="classroom-create__label">▪️ 위치: </strong>
               <input
                 type="text"
-                name="classroom_name"
+                name="contactLocation"
                 className="classroom-create__input"
-                placeholder="강의실명을 입력하세요. (ex.정보융합학부 강의실)"
+                placeholder="ex. 비마관 4층"
+                value={classroomData.contactLocation}
                 onChange={handleChange}
               ></input>
             </li>
             <li className="classroom-create__item">
-              <strong className="classroom-create__label">▪️ 설명: </strong>
+              <strong className="classroom-create__label">▪️ 학과: </strong>
+              <input
+                type="text"
+                name="contactDepartment"
+                className="classroom-create__input"
+                placeholder="ex. 정보융합학부, 전자공학과, ..."
+                value={classroomData.contactDepartment}
+                onChange={handleChange}
+              ></input>
+            </li>
+            <li className="classroom-create__item">
+              <strong className="classroom-create__label">▪️ 수용인원: </strong>
+              <input
+                type="text"
+                name="minNumberOfUsers"
+                className="classroom-create__input"
+                placeholder="강의실의 최소 수용인원을 입력하세요."
+                value={classroomData.minNumberOfUsers}
+                onChange={handleChange}
+              ></input>
+            </li>
+            <li className="classroom-create__item">
+              <strong className="classroom-create__label">▪️ 장비: </strong>
               <textarea
-                name="classroom_exp"
+                name="equipment"
                 className="classroom-create__textarea"
-                placeholder="강의실 설명을 입력하세요. (ex.일반 PC가 50대 구비되어 있습니다.)"
+                placeholder="강의실에 구비되어 있는 장비를 입력하세요."
+                value={classroomData.equipment}
                 onChange={handleChange}
               ></textarea>
             </li>
+            <li className="classroom-create__item">
+              <strong className="classroom-create__label">▪️ 전화번호: </strong>
+              <input
+                type="text"
+                name="contactNumber"
+                className="classroom-create__input"
+                placeholder="강의실 전화번호를 입력하세요."
+                value={classroomData.contactNumber}
+                onChange={handleChange}
+              ></input>
+            </li>
           </ul>
-        </main>
 
-        <footer className="classroom-create__footer">
-          <button className="classroom-create__submit" onClick={handleSubmit}>
-            완료
-          </button>
-        </footer>
+          <div className="classroom-create__submit_div">
+            <button className="classroom-create__submit" onClick={handleSubmit}>
+              완료
+            </button>
+          </div>
+        </main>
       </div>
     </div>
   );
