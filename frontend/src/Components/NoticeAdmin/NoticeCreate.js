@@ -22,10 +22,6 @@ const NoticeCreate = ({ onClose, onCreate }) => {
     setAdvertisingData({ ...advertisingData, [e.target.name]: e.target.value });
   };
 
-  const handleFileChange = (e) => {
-    setAdvertisingData({ ...advertisingData, file_url: e.target.files[0] });
-  };
-
   const handleSubmit = async () => {
     if (!advertisingData.title || !advertisingData.contents) {
       alert("모든 항목을 입력해주세요.");

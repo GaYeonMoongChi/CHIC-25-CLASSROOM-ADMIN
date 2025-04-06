@@ -42,7 +42,7 @@ const ClassroomCreate = ({ onClose, onCreate }) => {
       alert("강의실 등록이 완료되었습니다.");
 
       if (onCreate) {
-        onCreate(response.data);
+        onCreate(response.data.data);
       }
 
       handleClose();

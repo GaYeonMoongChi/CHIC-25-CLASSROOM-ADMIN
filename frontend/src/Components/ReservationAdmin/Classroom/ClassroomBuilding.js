@@ -2,7 +2,7 @@ import React from "react";
 import ClassroomRooms from "./ClassroomRooms";
 import "../css/classroomBuilding.css";
 
-const ClassroomBuilding = ({ classrooms, onUpdate, onCreate }) => {
+const ClassroomBuilding = ({ classrooms, onUpdate }) => {
   // 건물별 그룹핑
   const groupByBuilding = (classrooms) => {
     return classrooms.reduce((acc, classroom) => {
