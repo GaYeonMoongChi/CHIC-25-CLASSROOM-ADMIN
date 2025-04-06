@@ -1,33 +1,44 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "../css/noticeModal.css";
+import "./css/noticeModal.css";
 
 const NoticeUpdate = ({ notice, onClose, onUpdate }) => {
   // 백앤드 주소
   const BACKEND_URL = "http://localhost:8000";
 
   // 수정할 값들의 상태
-  const [title, setTitle] = useState(notice.title);
-  const [contents, setContents] = useState(notice.contents);
+  const [noticeData, setNoticeData] = useState({
+    title: notice?.title || "",
+    contents: notice?.contents || "",
+  });
+
+  useEffect(() => {
+    if (notice) {
+      setNoticeData({
+        title: notice.title,
+        contents: notice.contents,
+      });
+    }
+  }, [notice]);
 
   // 공지글 정보 수정 요청
   const handleUpdate = async () => {
-    if (!notice.id) {
+    if (!notice._id) {
       alert("공지글 데이터가 조회되지 않습니다.");
       return;
     }
 
     try {
       const response = await axios.put(
-        `${BACKEND_URL}/api/board/${notice.notice_idx}`,
-        { title, contents }
+        `${BACKEND_URL}/api/notice/${notice._id}`,
+        noticeData
       );
 
       if (response.status === 200) {
         alert("공지글이 수정되었습니다.");
 
         if (onUpdate) {
-          onUpdate({ id: notice.id, title, contents });
+          onUpdate(response.data.data);
         }
 
         onClose(); // 수정 완료시 모달 닫기
@@ -65,8 +76,10 @@ const NoticeUpdate = ({ notice, onClose, onUpdate }) => {
               <strong className="notice-update__label">▪️ 글 제목: </strong>
               <input
                 type="text"
-                value={title}
-                onChange={(e) => setTitle(e.target.value)}
+                value={noticeData.title}
+                onChange={(e) =>
+                  setNoticeData((prev) => ({ ...prev, title: e.target.value }))
+                }
                 className="notice-update__input"
                 onKeyDown={handleKeyDown}
               />
@@ -74,8 +87,13 @@ const NoticeUpdate = ({ notice, onClose, onUpdate }) => {
             <li className="notice-update__item">
               <strong className="notice-update__label">▪️ 내용: </strong>
               <textarea
-                value={contents}
-                onChange={(e) => setContents(e.target.value)}
+                value={noticeData.contents}
+                onChange={(e) =>
+                  setNoticeData((prev) => ({
+                    ...prev,
+                    contents: e.target.value,
+                  }))
+                }
                 className="notice-update__textarea"
               ></textarea>
             </li>

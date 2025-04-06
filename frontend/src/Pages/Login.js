@@ -3,18 +3,14 @@ import "./css/login.css";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  // 백엔드 주소
   const BACKEND_URL = "http://localhost:8000";
-
   const navigate = useNavigate();
 
-  // 상태 관리
   const [email, setEmail] = useState("");
   const [pw, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
   const login = async () => {
-    // 예외 처리
     if (!email) {
       setErrorMessage("ID를 입력해주세요.");
       return;
@@ -23,57 +19,36 @@ const Login = () => {
       setErrorMessage("비밀번호를 입력해주세요.");
       return;
     }
+
     setErrorMessage("");
 
-    // 로그인 요청
     try {
       const response = await fetch(`${BACKEND_URL}/api/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email: email, pw: pw }),
+        body: JSON.stringify({ email, pw }),
       });
 
       const data = await response.json();
+
       if (!response.ok) {
         throw new Error(data.error || "로그인에 실패했습니다.");
       }
 
-      // JWT 토큰 저장
+      // 로컬스토리지에 필요한 데이터 저장
       localStorage.setItem("token", data.token);
+      localStorage.setItem("admin_info_id", data.admin_info_id);
 
-      // 로그인 요청
-      try {
-        const response = await fetch(`${BACKEND_URL}/api/login`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ email: email, pw: pw }),
-        });
-
-        const data = await response.json();
-        if (!response.ok) {
-          throw new Error(data.error || "로그인에 실패했습니다.");
-        }
-
-        // JWT 토큰 저장
-        localStorage.setItem("token", data.token);
-
-        // 관리자 type에 따라 다른 페이지로 이동
-        const { type } = data;
-        console.log(type);
-
-        if (type === "class_admin") {
-          navigate(`/Classroom`); // 강의실 관리자로 이동
-        } else if (type === "ad_admin") {
-          navigate("/Notice"); // 공지사항 관리자 페이지로 이동
-        } else {
-          setErrorMessage("잘못된 관리자 유형입니다.");
-        }
-      } catch (error) {
-        setErrorMessage(error.message);
+      // 관리자 유형에 따라 페이지 이동
+      const { type } = data;
+      if (type === "class_admin") {
+        navigate("/Classroom");
+      } else if (type === "ad_admin") {
+        navigate("/Notice");
+      } else {
+        setErrorMessage("잘못된 관리자 유형입니다.");
       }
     } catch (error) {
       setErrorMessage(error.message);
@@ -118,11 +93,7 @@ const Login = () => {
             </div>
           </div>
 
-          {errorMessage && (
-            <p className="login__error">
-              {errorMessage} 로그인에 실패했습니다.
-            </p>
-          )}
+          {errorMessage && <p className="login__error">{errorMessage}</p>}
 
           <div className="login__links">
             <a href="/Find-password" className="password-find">

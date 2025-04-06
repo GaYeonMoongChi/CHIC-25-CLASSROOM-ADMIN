@@ -86,7 +86,6 @@ const ClassroomInfoPage = () => {
 
   // 강의실 등록 새로고침 없이 화면에 바로 반영
   const handleClassroomCreate = (newClassroom) => {
-    console.log("✅ 등록된 강의실:", newClassroom);
     setClassroomInfo((prevInfo) => [...prevInfo, newClassroom]);
     setIdx("");
     setBuilding("");

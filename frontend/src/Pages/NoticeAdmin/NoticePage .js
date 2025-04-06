@@ -4,11 +4,13 @@ import "../css/Pages.css";
 import "./css/noticePage.css";
 import NoticeRow from "../../Components/NoticeAdmin/NoticeRow";
 import NoticeCreate from "../../Components/NoticeAdmin/NoticeCreate";
-import NoticeDelete from "../../Components/NoticeAdmin/NoticeDelete";
 import LogoutButton from "../../Components/LogoutButton";
 
 const NoticePage = () => {
+  // 백앤드 주소
   const BACKEND_URL = "http://localhost:8000";
+
+  // 페이지 이동
   const navigate = useNavigate();
 
   // 상태 관리
@@ -18,11 +20,7 @@ const NoticePage = () => {
   const [isCreateModalOpen, setCreateModalOpen] = useState(false);
   const toggleCreateModal = () => setCreateModalOpen((prev) => !prev);
 
-  const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
-  const toggleDeleteModal = () => setDeleteModalOpen((prev) => !prev);
-
   const [searchTitle, setSearchTitle] = useState("");
-  const [searchDate] = useState("");
 
   const [noticeList, setNoticeList] = useState([]);
   const [error, setError] = useState(null);
@@ -35,7 +33,7 @@ const NoticePage = () => {
       navigate("/"); // 로그인 페이지로 리다이렉트
     }
 
-    fetch(`${BACKEND_URL}/api/notify/notices`)
+    fetch(`${BACKEND_URL}/api/notice`)
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
@@ -50,11 +48,43 @@ const NoticePage = () => {
       .catch((error) => setError(error.message));
   }, [navigate]);
 
-  const filteredNotices = noticeList.filter(
-    (item) =>
-      item.date.toLowerCase().includes(searchDate.toLowerCase()) &&
-      item.title.toLowerCase().includes(searchTitle.toLowerCase())
-  );
+  // 검색 기능
+  const filteredNotices =
+    searchTitle.trim() === ""
+      ? noticeList
+      : noticeList.filter(
+          (item) =>
+            item &&
+            item.title?.toLowerCase().includes(searchTitle.toLowerCase())
+        );
+
+  // 수정,삭제 결과 새로고침 없이 화면에 바로 반영
+  const handleNoticeUpdate = (updatedUpdate, title, contents) => {
+    if (!updatedUpdate || !updatedUpdate._id) {
+      // 삭제 요청으로 간주
+      setNoticeList((prevInfo) =>
+        prevInfo.filter(
+          (notice) => notice.title !== title || notice.contents !== contents
+        )
+      );
+    } else {
+      // 수정 요청
+      setNoticeList((prevInfo) =>
+        prevInfo.map((notice) =>
+          notice._id === updatedUpdate._id ? updatedUpdate : notice
+        )
+      );
+    }
+  };
+
+  // 강의실 등록 새로고침 없이 화면에 바로 반영
+  const handleNoticeCreate = (newNotice) => {
+    setNoticeList((prevInfo) => {
+      const updated = [newNotice, ...prevInfo];
+      return updated;
+    });
+    setSearchTitle("");
+  };
 
   return (
     <div className="div">
@@ -66,12 +96,6 @@ const NoticePage = () => {
             onClick={toggleCreateModal}
           >
             공지 등록
-          </button>
-          <button
-            className="notice-page__action-delete"
-            onClick={toggleDeleteModal}
-          >
-            공지 삭제
           </button>
           <LogoutButton />
         </div>
@@ -103,7 +127,11 @@ const NoticePage = () => {
           <table className="notice-page__table">
             <tbody>
               {filteredNotices.map((notice, index) => (
-                <NoticeRow key={index} notice={notice} />
+                <NoticeRow
+                  key={notice._id}
+                  notice={notice}
+                  onUpdate={handleNoticeUpdate}
+                />
               ))}
             </tbody>
           </table>
@@ -113,12 +141,10 @@ const NoticePage = () => {
       {isSidebarOpen && (
         <div className="sidebar-overlay" onClick={toggleSidebar}></div>
       )}
-      {isCreateModalOpen && <NoticeCreate onClose={toggleCreateModal} />}
-      {isDeleteModalOpen && (
-        <NoticeDelete
-          notice={filteredNotices}
-          submit={toggleDeleteModal}
-          onClose={toggleDeleteModal}
+      {isCreateModalOpen && (
+        <NoticeCreate
+          onClose={toggleCreateModal}
+          onCreate={handleNoticeCreate}
         />
       )}
     </div>

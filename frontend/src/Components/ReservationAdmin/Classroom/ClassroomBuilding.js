@@ -15,7 +15,7 @@ const ClassroomBuilding = ({ classrooms, onUpdate }) => {
 
   const grouped = groupByBuilding(classrooms);
 
-  /* 건물명 (비마관, 새빛관 ...) */
+  // 건물명 (비마관, 새빛관 ...)
   return (
     <>
       {Object.entries(grouped).map(([building, rooms]) => (
