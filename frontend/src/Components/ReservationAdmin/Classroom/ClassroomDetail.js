@@ -12,8 +12,6 @@ const DetailModal = ({ classroom, onClose, onUpdate }) => {
 
   if (!classroom) return null;
 
-  if (!classroom) return null;
-
   const displayValue = (value) => {
     if (value === null || value === undefined || value === "" || value === 0) {
       return "정보없음";
@@ -42,7 +40,7 @@ const DetailModal = ({ classroom, onClose, onUpdate }) => {
 
       if (response.ok) {
         alert("강의실 정보가 삭제되었습니다.");
-        onUpdate(null, classroom.building, classroom.room); // ⬅️ building, room 함께 전달
+        onUpdate(null, classroom.building, classroom.room);
         onClose();
       } else {
         alert(`삭제 실패: ${result.message}`);

@@ -3,11 +3,46 @@ import "./css/noticeModal.css";
 import NoticeUpdate from "./NoticeUpdate";
 
 const DetailModal = ({ notice, onClose, onUpdate }) => {
-  // 수정 모달 상태 관리
+  const BACKEND_URL = "http://localhost:8000";
+
+  // 수정 모달 상태
   const [isUpdateMode, setUpdateMode] = useState(false);
   const switchUpdateMode = () => setUpdateMode((prev) => !prev);
 
+  // 로컬 notice 상태 (수정된 값 바로 반영)
+  const [localNotice, setLocalNotice] = useState(notice);
+
   if (!notice) return null;
+
+  // 공지사항 삭제 API
+  const handleDelete = async () => {
+    const confirmDelete = window.confirm(
+      `"${localNotice.title}" 공지사항을 삭제하시겠습니까?`
+    );
+    if (!confirmDelete) return;
+
+    try {
+      const response = await fetch(
+        `${BACKEND_URL}/api/notice/${localNotice._id}`,
+        {
+          method: "DELETE",
+        }
+      );
+
+      const result = await response.json();
+
+      if (response.ok) {
+        alert("공지사항이 삭제되었습니다.");
+        onUpdate(null, localNotice.title, localNotice.contents);
+        onClose(); // 모달 닫기
+      } else {
+        alert(`삭제 실패: ${result.message}`);
+      }
+    } catch (error) {
+      console.error("삭제 중 오류 발생:", error);
+      alert("삭제 중 오류가 발생했습니다.");
+    }
+  };
 
   return (
     <div className="modal-overlay" onClick={onClose}>
@@ -16,42 +51,53 @@ const DetailModal = ({ notice, onClose, onUpdate }) => {
           <button className="modal-close" onClick={onClose}>
             ✖
           </button>
-          <h1 className="notice-details__title">{notice.title}</h1>
+          <h1 className="notice-details__title">{localNotice.title}</h1>
         </header>
 
-        {/* 공지글 본문 */}
         <main className="notice-details__main">
           <ul className="notice-details__list">
             <li className="notice-details__item">
               <strong className="notice-details__label">▪️ 작성일: </strong>
-              <div className="notice-details__content">{notice.date}</div>
-            </li>
-            <li className="notice-details__item">
-              <strong className="notice-details__label">▪️ 수정일: </strong>
               <div className="notice-details__content">
-                {notice.update_date}
+                {localNotice.created_at}
               </div>
             </li>
             <li className="notice-details__item">
               <strong className="notice-details__label">▪️ 내용: </strong>
-              <div className="notice-details__content">{notice.content}</div>
+              <div className="notice-details__content">
+                {localNotice.contents}
+              </div>
             </li>
           </ul>
 
-          {/* 수정 버튼 */}
-          <button className="notice-details__update" onClick={switchUpdateMode}>
-            수정
-          </button>
+          <div className="notice-details__update_div">
+            <button
+              className="notice-details__update"
+              onClick={switchUpdateMode}
+            >
+              수정
+            </button>
+            <button
+              className="classroom-details__delete"
+              onClick={handleDelete}
+            >
+              삭제
+            </button>
+          </div>
         </main>
       </div>
 
       {/* 수정 모달 */}
       {isUpdateMode && (
         <NoticeUpdate
-          notice={notice}
+          notice={localNotice}
           submit={switchUpdateMode}
-          onClose={switchUpdateMode}
-          onUpdate={onUpdate}
+          onUpdate={(updatedData) => {
+            setLocalNotice(updatedData);
+            onUpdate(updatedData);
+            switchUpdateMode();
+          }}
+          onClose={onClose}
         />
       )}
     </div>

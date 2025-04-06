@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import "../css/Pages.css";
 import "./css/classroomInfoUpdatePage.css";
 import Sidebar from "../../Components/ReservationAdmin/ReservationSidebar";
@@ -10,6 +11,9 @@ import LogoutButton from "../../Components/LogoutButton";
 const ClassroomInfoPage = () => {
   // 백앤드 주소
   const BACKEND_URL = "http://localhost:8000";
+
+  // 페이지 이동 네비게이션
+  const navigate = useNavigate();
 
   // 강의실 정보 상태 관리
   const [classroomInfo, setClassroomInfo] = useState([]);
@@ -30,8 +34,15 @@ const ClassroomInfoPage = () => {
   const onChangeIdx = (e) => setIdx(e.target.value);
   const onChangeBuilding = (e) => setBuilding(e.target.value);
 
-  // 강의실 정보 데이터 요청
+  // JWT 토큰 확인 및 리다이렉트
   useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      alert("로그인이 필요합니다."); // 토큰이 없으면 알림창을 띄움
+      navigate("/"); // 로그인 페이지로 리다이렉트
+    }
+
+    // 강의실 정보 데이터 요청
     const fetchClassrooms = async () => {
       try {
         const response = await axios.get(`${BACKEND_URL}/api/classroom`);
@@ -42,7 +53,7 @@ const ClassroomInfoPage = () => {
     };
 
     fetchClassrooms();
-  }, []);
+  }, [navigate]);
 
   // 검색 결과 화면에 반영
   const filteredClassrooms = classroomInfo.filter((classroom) => {
@@ -76,6 +87,8 @@ const ClassroomInfoPage = () => {
   // 강의실 등록 새로고침 없이 화면에 바로 반영
   const handleClassroomCreate = (newClassroom) => {
     setClassroomInfo((prevInfo) => [...prevInfo, newClassroom]);
+    setIdx("");
+    setBuilding("");
   };
 
   return (
@@ -133,7 +146,6 @@ const ClassroomInfoPage = () => {
         <ClassroomBuilding
           classrooms={filteredClassrooms}
           onUpdate={handleClassroomUpdate}
-          onCreate={handleClassroomCreate}
         />
       </div>
 

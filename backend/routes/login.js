@@ -203,7 +203,12 @@ router.post("/", async (req, res) => {
     );
 
     console.log(`로그인 성공: ${email}`);
-    res.json({ message: "로그인 성공", token, type: manager.type });
+    res.json({
+      message: "로그인 성공",
+      token,
+      admin_info_id: manager._id,
+      type: manager.type,
+    });
   } catch (error) {
     console.error("로그인 실패:", error);
     res.status(500).json({ error: "서버 오류" });
