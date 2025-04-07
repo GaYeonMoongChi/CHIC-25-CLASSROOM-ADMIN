@@ -12,7 +12,7 @@ const NoticeCreate = ({ onClose, onCreate }) => {
   // 공지사항 입력값 상태 관리
   const [noticeData, setNoticeData] = useState({
     admin_info_id: adminInfoId,
-    type: "0", // string "0" 이면 false or "1" 이면 true
+    type: "", // string "0" 이면 false or "1" 이면 true
     start_date: new Date(),
     end_date: new Date(),
     title: "",

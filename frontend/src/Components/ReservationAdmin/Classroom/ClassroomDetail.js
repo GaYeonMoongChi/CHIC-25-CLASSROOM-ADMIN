@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../css/classroomStudentModal.css";
+import "../css/reservationModal.css";
 import ClassroomUpdate from "./ClassroomUpdate";
 
 const DetailModal = ({ classroom, onClose, onUpdate }) => {
@@ -51,7 +51,7 @@ const DetailModal = ({ classroom, onClose, onUpdate }) => {
     }
   };
 
-  /* 강의실 상세정보 모달 */
+  // 강의실 상세정보 모달
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
@@ -103,7 +103,7 @@ const DetailModal = ({ classroom, onClose, onUpdate }) => {
           </ul>
         </main>
 
-        <footer className="classroom-details__footer">
+        <div className="classroom-details__update_div">
           <button
             className="classroom-details__update"
             onClick={switchUpdateMode}
@@ -113,7 +113,7 @@ const DetailModal = ({ classroom, onClose, onUpdate }) => {
           <button className="classroom-details__delete" onClick={handleDelete}>
             삭제
           </button>
-        </footer>
+        </div>
       </div>
 
       {isUpdateMode && (

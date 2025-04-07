@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "../css/classroomStudentModal.css";
+import "../css/reservationModal.css";
 
 const StudentUpdate = ({ students, onClose, onUpdate }) => {
   // 백앤드 주소

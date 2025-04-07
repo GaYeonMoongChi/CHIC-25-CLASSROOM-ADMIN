@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "../../../Pages/css/Pages.css";
-import "../css/classroomStudentModal.css";
+import "../css/reservationModal.css";
 import StudentRow from "./StudentRow";
 
 const StudentDelete = ({ students, onClose, onDelete }) => {

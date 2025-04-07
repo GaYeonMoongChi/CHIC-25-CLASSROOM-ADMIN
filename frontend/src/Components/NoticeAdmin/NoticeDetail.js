@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./css/noticeModal.css";
 import NoticeUpdate from "./NoticeUpdate";
 
-const DetailModal = ({ notice, onClose, onUpdate }) => {
+const DetailModal = ({ notice, onClose, onUpdate, formatDate }) => {
   const BACKEND_URL = "http://localhost:8000";
 
   // 수정 모달 상태
@@ -59,7 +59,7 @@ const DetailModal = ({ notice, onClose, onUpdate }) => {
             <li className="notice-details__item">
               <strong className="notice-details__label">▪️ 작성일: </strong>
               <div className="notice-details__content">
-                {localNotice.created_at}
+                {formatDate ? formatDate(notice.created_at) : notice.created_at}
               </div>
             </li>
             <li className="notice-details__item">
@@ -77,29 +77,26 @@ const DetailModal = ({ notice, onClose, onUpdate }) => {
             >
               수정
             </button>
-            <button
-              className="classroom-details__delete"
-              onClick={handleDelete}
-            >
+            <button className="notice-details__delete" onClick={handleDelete}>
               삭제
             </button>
           </div>
         </main>
-      </div>
 
-      {/* 수정 모달 */}
-      {isUpdateMode && (
-        <NoticeUpdate
-          notice={localNotice}
-          submit={switchUpdateMode}
-          onUpdate={(updatedData) => {
-            setLocalNotice(updatedData);
-            onUpdate(updatedData);
-            switchUpdateMode();
-          }}
-          onClose={onClose}
-        />
-      )}
+        {/* 수정 모달 */}
+        {isUpdateMode && (
+          <NoticeUpdate
+            notice={localNotice}
+            submit={switchUpdateMode}
+            onUpdate={(updatedData) => {
+              setLocalNotice(updatedData);
+              onUpdate(updatedData);
+              switchUpdateMode();
+            }}
+            onClose={onClose}
+          />
+        )}
+      </div>
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "../css/classroomStudentModal.css";
+import "../css/reservationModal.css";
 
 const ClassroomUpdate = ({ classroom, onClose, onUpdate }) => {
   const BACKEND_URL = "http://localhost:8000";
@@ -74,28 +74,20 @@ const ClassroomUpdate = ({ classroom, onClose, onUpdate }) => {
           <button className="modal-close" onClick={onClose}>
             ✖
           </button>
-          <div className="classroom-details__title">
-            <input
-              type="text"
-              name="building"
-              value={classroomData.building}
-              onChange={handleChange}
-              className="classroom-update__title-input"
-              onKeyDown={handleKeyDown}
-            />
-            <input
-              type="text"
-              name="room"
-              value={classroomData.room}
-              onChange={handleChange}
-              className="classroom-update__title-input"
-              onKeyDown={handleKeyDown}
-            />
-          </div>
         </header>
 
         <main className="classroom-update__main">
           <ul className="classroom-update__list">
+            <li className="classroom-update__item">
+              <strong className="classroom-update__label">▪️ 건물명: </strong>
+              <input
+                type="text"
+                name="building"
+                value={classroomData.building}
+                onChange={handleChange}
+                className="classroom-update__input"
+              />
+            </li>
             <li className="classroom-update__item">
               <strong className="classroom-update__label">▪️ 호수: </strong>
               <input
@@ -156,13 +148,13 @@ const ClassroomUpdate = ({ classroom, onClose, onUpdate }) => {
               />
             </li>
           </ul>
-        </main>
 
-        <footer className="classroom-update__footer">
-          <button className="classroom-update__submit" onClick={handleUpdate}>
-            완료
-          </button>
-        </footer>
+          <div className="classroom-update__submit_div">
+            <button className="classroom-update__submit" onClick={handleUpdate}>
+              완료
+            </button>
+          </div>
+        </main>
       </div>
     </div>
   );

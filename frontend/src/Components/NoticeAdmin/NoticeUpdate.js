@@ -98,13 +98,13 @@ const NoticeUpdate = ({ notice, onClose, onUpdate }) => {
               ></textarea>
             </li>
           </ul>
-        </main>
 
-        <footer className="notice-update__footer">
-          <button className="notice-update__submit" onClick={handleUpdate}>
-            완료
-          </button>
-        </footer>
+          <div className="notice-update__submit_div">
+            <button className="notice-update__submit" onClick={handleUpdate}>
+              완료
+            </button>
+          </div>
+        </main>
       </div>
     </div>
   );

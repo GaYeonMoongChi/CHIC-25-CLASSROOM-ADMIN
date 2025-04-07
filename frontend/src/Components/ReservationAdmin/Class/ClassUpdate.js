@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "../css/classroomStudentModal.css";
+import "../css/reservationModal.css";
 
 const ClassUpdate = ({ classes, submit, onClose, onUpdate }) => {
   //백앤드 주소
@@ -138,13 +138,13 @@ const ClassUpdate = ({ classes, submit, onClose, onUpdate }) => {
               />
             </li>
           </ul>
-        </main>
 
-        <footer className="class-update__footer">
-          <button className="class-update__submit" onClick={submit}>
-            완료
-          </button>
-        </footer>
+          <div className="class-update__submit_div">
+            <button className="class-update__submit" onClick={submit}>
+              완료
+            </button>
+          </div>
+        </main>
       </div>
     </div>
   );

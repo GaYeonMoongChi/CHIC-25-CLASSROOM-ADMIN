@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../css/classroomStudentModal.css";
+import "../css/reservationModal.css";
 import StudentUdpate from "./StudentUpdate";
 
 const StudentDetailModal = ({ students, onClose, onUpdate }) => {
