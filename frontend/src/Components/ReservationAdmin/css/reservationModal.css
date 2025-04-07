@@ -35,7 +35,7 @@
 
 /* 강의실 상세보기 모달 */
 .classroom-details__title {
-  margin-bottom: 25px;
+  margin-bottom: 50px;
   font-size: 25px;
 }
 
@@ -47,18 +47,24 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 5px;
+  margin-bottom: 15px;
+}
+
+.classroom-details__label {
+  font-weight: 500;
+  width: 12%;
 }
 
 .classroom-details__content {
-  padding: 10px;
-  width: 87%;
-  background-color: #f5f5f5;
-  border: 1px solid #ccc;
+  padding: 15px 10px;
+  width: 100%;
+  background-color: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: none;
   border-radius: 10px;
 }
 
-.classroom-details__footer {
+.classroom-details__update_div {
   margin-top: 30px;
   display: flex;
   justify-content: flex-end;
@@ -68,59 +74,70 @@
   padding: 10px 20px;
   border-radius: 10px;
   border: none;
-  background-color: #10069f;
+  background-color: #6078f3;
   color: white;
   margin-right: 20px;
   font-weight: bold;
 }
 
 .classroom-details__update:hover {
-  background-color: rgb(18, 39, 75);
+  background-color: #415ff7;
 }
 
 .classroom-details__delete {
   padding: 10px 20px;
   border-radius: 10px;
   border: none;
-  background-color: #10069f;
+  background-color: rgb(255, 195, 56);
   color: white;
   margin-right: 20px;
   font-weight: bold;
 }
 
 .classroom-details__delete:hover {
-  background-color: rgb(18, 39, 75);
+  background-color: rgb(255, 184, 17);
 }
 
 /* 강의실 등록 모달 */
 .classroom-create__title {
-  margin-bottom: 25px;
+  margin-bottom: 50px;
+  font-size: 25px;
 }
 
 .classroom-create__item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 5px;
+  margin-bottom: 15px;
+}
+
+.classroom-create__label {
+  font-weight: 500;
+  width: 15%;
 }
 
 .classroom-create__list {
   list-style: none;
+  width: 100%;
+  text-align: left;
 }
 
 .classroom-create__input {
-  padding: 10px;
-  width: 87%;
-  background-color: #f5f5f5;
-  border: 1px solid #ccc;
+  padding: 15px 10px;
+  width: 100%;
+  background-color: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: none;
   border-radius: 10px;
 }
 
 .classroom-create__textarea {
-  padding: 10px;
-  width: 87%;
-  background-color: #f5f5f5;
-  border: 1px solid #ccc;
+  padding: 15px 10px;
+  width: 100%;
+  height: 400px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: none;
   border-radius: 10px;
   resize: none;
 }
@@ -135,26 +152,31 @@
   padding: 10px 20px;
   border-radius: 10px;
   border: none;
-  background-color: #10069f;
+  background-color: #798df3;
   color: white;
   margin-right: 20px;
   font-weight: bold;
 }
 
 .classroom-create__submit:hover {
-  background-color: rgb(18, 39, 75);
+  background-color: #6078f3;
 }
 
 /* 강의실 수정 모달 */
 .classroom-update__title {
-  margin-bottom: 25px;
+  margin-bottom: 50px;
+  font-size: 25px;
 }
 
 .classroom-update__item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 5px;
+  margin-bottom: 15px;
+}
+
+.classroom-update__label {
+  width: 15%;
 }
 
 .classroom-update__list {
@@ -162,23 +184,26 @@
 }
 
 .classroom-update__input {
-  padding: 10px;
-  width: 87%;
-  background-color: #f5f5f5;
-  border: 1px solid #ccc;
+  padding: 15px 10px;
+  width: 100%;
+  background-color: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: none;
   border-radius: 10px;
 }
 
 .classroom-update__textarea {
-  padding: 10px;
-  width: 87%;
-  background-color: #f5f5f5;
-  border: 1px solid #ccc;
+  padding: 15px 10px;
+  width: 100%;
+  height: 400px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: none;
   border-radius: 10px;
   resize: none;
 }
 
-.classroom-update__footer {
+.classroom-update__submit_div {
   margin-top: 30px;
   display: flex;
   justify-content: flex-end;
@@ -188,19 +213,19 @@
   padding: 10px 20px;
   border-radius: 10px;
   border: none;
-  background-color: #10069f;
+  background-color: #798df3;
   color: white;
   margin-right: 20px;
   font-weight: bold;
 }
 
 .classroom-update__submit:hover {
-  background-color: rgb(18, 39, 75);
+  background-color: #6078f3;
 }
 
 /* 강의 상세보기 모달 */
 .class-details__title {
-  margin-bottom: 25px;
+  margin-bottom: 50px;
   font-size: 25px;
 }
 
@@ -212,18 +237,24 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 5px;
+  margin-bottom: 15px;
+}
+
+.class-details__label {
+  font-weight: 500;
+  width: 12%;
 }
 
 .class-details__content {
-  padding: 10px;
-  width: 87%;
-  background-color: #f5f5f5;
-  border: 1px solid #ccc;
+  padding: 15px 10px;
+  width: 100%;
+  background-color: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: none;
   border-radius: 10px;
 }
 
-.class-details__footer {
+.class-details__update_div {
   margin-top: 30px;
   display: flex;
   justify-content: flex-end;
@@ -233,50 +264,60 @@
   padding: 10px 20px;
   border-radius: 10px;
   border: none;
-  background-color: #10069f;
+  background-color: #798df3;
   color: white;
   margin-right: 20px;
   font-weight: bold;
 }
 
 .class-details__update:hover {
-  background-color: rgb(18, 39, 75);
+  background-color: #6078f3;
 }
 
 /* 강의 등록 모달 */
 .class-create__title {
-  margin-bottom: 25px;
+  margin-bottom: 50px;
+  font-size: 25px;
 }
 
 .class-create__item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 5px;
+  margin-bottom: 15px;
+}
+
+.class-create__label {
+  font-weight: 500;
 }
 
 .class-create__list {
   list-style: none;
+  width: 100%;
+  text-align: left;
 }
 
 .class-create__input {
-  padding: 10px;
-  width: 87%;
-  background-color: #f5f5f5;
-  border: 1px solid #ccc;
+  padding: 15px 10px;
+  width: 100%;
+  background-color: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: none;
   border-radius: 10px;
 }
 
 .class-create__textarea {
-  padding: 10px;
-  width: 87%;
-  background-color: #f5f5f5;
-  border: 1px solid #ccc;
+  padding: 15px 10px;
+  width: 100%;
+  height: 400px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: none;
   border-radius: 10px;
   resize: none;
 }
 
-.class-create__footer {
+.class-create__submit_div {
   margin-top: 30px;
   display: flex;
   justify-content: flex-end;
@@ -286,14 +327,14 @@
   padding: 10px 20px;
   border-radius: 10px;
   border: none;
-  background-color: #10069f;
+  background-color: #798df3;
   color: white;
   margin-right: 20px;
   font-weight: bold;
 }
 
 .class-create__submit:hover {
-  background-color: rgb(18, 39, 75);
+  background-color: #6078f3;
 }
 
 /* 강의 삭제 모달 */
@@ -343,14 +384,15 @@
 
 /* 강의 수정 모달 */
 .class-update__title {
-  margin-bottom: 25px;
+  margin-bottom: 50px;
+  font-size: 25px;
 }
 
 .class-update__item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 5px;
+  margin-bottom: 15px;
 }
 
 .class-update__list {
@@ -358,23 +400,25 @@
 }
 
 .class-update__input {
-  padding: 10px;
-  width: 87%;
-  background-color: #f5f5f5;
-  border: 1px solid #ccc;
+  padding: 15px 10px;
+  width: 100%;
+  background-color: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: none;
   border-radius: 10px;
 }
 
 .class-update__textarea {
   padding: 10px;
   width: 87%;
+  height: 400px;
   background-color: #f5f5f5;
   border: 1px solid #ccc;
   border-radius: 10px;
   resize: none;
 }
 
-.class-update__footer {
+.class-update__submit_div {
   margin-top: 30px;
   display: flex;
   justify-content: flex-end;
@@ -384,12 +428,12 @@
   padding: 10px 20px;
   border-radius: 10px;
   border: none;
-  background-color: #10069f;
+  background-color: #798df3;
   color: white;
   margin-right: 20px;
   font-weight: bold;
 }
 
 .class-update__submit:hover {
-  background-color: rgb(18, 39, 75);
+  background-color: #6078f3;
 }

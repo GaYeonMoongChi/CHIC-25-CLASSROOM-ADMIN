@@ -36,3 +36,21 @@
   font-size: 13px;
   font-weight: 400;
 }
+
+.notice-page__type-pop-up {
+  background-color: #bfd9f77c;
+  border-radius: 5px;
+  padding: 3px 5px;
+  margin-right: 10px;
+  font-weight: 500;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.notice-page__type-fix {
+  background-color: #ffe19a75;
+  border-radius: 5px;
+  padding: 3px 5px;
+  margin-right: 10px;
+  font-weight: 500;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}

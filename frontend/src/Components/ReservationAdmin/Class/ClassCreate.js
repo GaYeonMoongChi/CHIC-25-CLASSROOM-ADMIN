@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import "../css/classroomStudentModal.css";
+import "../css/reservationModal.css";
 
 const ClassCreate = ({ onClose, onCreate }) => {
   // 백앤드 주소
@@ -153,13 +153,13 @@ const ClassCreate = ({ onClose, onCreate }) => {
               ></input>
             </li>
           </ul>
-        </main>
 
-        <footer className="class-create__footer">
-          <button className="class-create__submit" onClick={handleSubmit}>
-            완료
-          </button>
-        </footer>
+          <div className="class-create__submit_div">
+            <button className="class-create__submit" onClick={handleSubmit}>
+              완료
+            </button>
+          </div>
+        </main>
       </div>
     </div>
   );

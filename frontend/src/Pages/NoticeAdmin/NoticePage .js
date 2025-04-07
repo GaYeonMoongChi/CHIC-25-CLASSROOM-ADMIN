@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { format } from "date-fns";
 import "../css/Pages.css";
 import "./css/noticePage.css";
 import NoticeRow from "../../Components/NoticeAdmin/NoticeRow";
@@ -13,14 +14,17 @@ const NoticePage = () => {
   // 페이지 이동
   const navigate = useNavigate();
 
-  // 상태 관리
+  // 사이드바 상태 관리
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const toggleSidebar = () => setIsSidebarOpen((prev) => !prev);
 
+  // 모달창 상태 관리
   const [isCreateModalOpen, setCreateModalOpen] = useState(false);
   const toggleCreateModal = () => setCreateModalOpen((prev) => !prev);
 
+  // 검색 입력값 상태 관리
   const [searchTitle, setSearchTitle] = useState("");
+  const [searchType, setSearchType] = useState("");
 
   const [noticeList, setNoticeList] = useState([]);
   const [error, setError] = useState(null);
@@ -33,6 +37,7 @@ const NoticePage = () => {
       navigate("/"); // 로그인 페이지로 리다이렉트
     }
 
+    // 공지사항 데이터 요청
     fetch(`${BACKEND_URL}/api/notice`)
       .then((response) => {
         if (!response.ok) {
@@ -48,20 +53,26 @@ const NoticePage = () => {
       .catch((error) => setError(error.message));
   }, [navigate]);
 
-  // 검색 기능
-  const filteredNotices =
-    searchTitle.trim() === ""
-      ? noticeList
-      : noticeList.filter(
-          (item) =>
-            item &&
-            item.title?.toLowerCase().includes(searchTitle.toLowerCase())
-        );
+  const formatDate = (isoDate) => {
+    return format(new Date(isoDate), "yyyy년 MM월 dd일 HH:mm");
+  };
 
-  // 수정,삭제 결과 새로고침 없이 화면에 바로 반영
+  // 검색 기능
+  const filteredNotices = noticeList.filter((item) => {
+    const matchesTitle =
+      searchTitle.trim() === "" ||
+      item.title?.toLowerCase().includes(searchTitle.toLowerCase());
+
+    const typeString = item.type === true ? "popup" : "fix";
+    const matchesType = searchType === "" || typeString === searchType;
+
+    return matchesTitle && matchesType;
+  });
+
+  // 강의실 수정,삭제 결과 새로고침 없이 화면에 바로 반영
   const handleNoticeUpdate = (updatedUpdate, title, contents) => {
     if (!updatedUpdate || !updatedUpdate._id) {
-      // 삭제 요청으로 간주
+      // 삭제 요청
       setNoticeList((prevInfo) =>
         prevInfo.filter(
           (notice) => notice.title !== title || notice.contents !== contents
@@ -113,6 +124,18 @@ const NoticePage = () => {
               value={searchTitle}
             />
           </li>
+          <li className="notice-page__search-item">
+            <label className="notice-page__search-label">게시글 유형</label>
+            <select
+              className="notice-page__search-input"
+              value={searchType}
+              onChange={(e) => setSearchType(e.target.value)}
+            >
+              <option value="">전체</option>
+              <option value="fix">고정</option>
+              <option value="popup">팝업</option>
+            </select>
+          </li>
         </ul>
       </div>
 
@@ -131,6 +154,7 @@ const NoticePage = () => {
                   key={notice._id}
                   notice={notice}
                   onUpdate={handleNoticeUpdate}
+                  formatDate={formatDate}
                 />
               ))}
             </tbody>

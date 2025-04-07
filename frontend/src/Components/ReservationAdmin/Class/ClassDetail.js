@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../css/classroomStudentModal.css";
+import "../css/reservationModal.css";
 import ClassUpdate from "./ClassUpdate";
 
 const DetailModal = ({ classes, onClose, onUpdate }) => {
@@ -48,13 +48,16 @@ const DetailModal = ({ classes, onClose, onUpdate }) => {
               </div>
             </li>
           </ul>
-        </main>
 
-        <footer className="class-details__footer">
-          <button className="class-details__update" onClick={switchUpdateMode}>
-            수정
-          </button>
-        </footer>
+          <div className="class-details__update_div">
+            <button
+              className="class-details__update"
+              onClick={switchUpdateMode}
+            >
+              수정
+            </button>
+          </div>
+        </main>
       </div>
 
       {isUpdateMode && (
