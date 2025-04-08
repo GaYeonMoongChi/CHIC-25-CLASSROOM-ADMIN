@@ -7,10 +7,14 @@ import ClassRow from "../../Components/ReservationAdmin/Class/ClassRow";
 import ClassCreate from "../../Components/ReservationAdmin/Class/ClassCreate";
 import ClassDelete from "../../Components/ReservationAdmin/Class/ClassDelete";
 import LogoutButton from "../../Components/LogoutButton";
+import { useNavigate } from "react-router-dom";
 
 const ClassInfoPage = () => {
   // 백앤드 주소
   const BACKEND_URL = "http://localhost:8000";
+
+  // 페이지 이동 네비게이션
+  const navigate = useNavigate();
 
   // 사이드바 상태 관리
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -49,19 +53,26 @@ const ClassInfoPage = () => {
     );
   });
 
-  // 강의 데이터 요청
+  // JWT 토큰 확인 및 리다이렉트
   useEffect(() => {
-    const fetchStudents = async () => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      alert("로그인이 필요합니다."); // 토큰이 없으면 알림창을 띄움
+      navigate("/"); // 로그인 페이지로 리다이렉트
+    }
+
+    // 강의 정보 데이터 요청
+    const fetchClasses = async () => {
       try {
-        const response = await axios.get(`${BACKEND_URL}/api/classes`);
+        const response = await axios.get(`${BACKEND_URL}/api/class`);
         setClassInfo(response.data);
       } catch (error) {
-        console.error("강의 데이터를 가져오는 중 오류 발생:", error);
+        console.error("강의실 데이터를 가져오는 중 오류 발생:", error);
       }
     };
 
-    fetchStudents();
-  }, []);
+    fetchClasses();
+  }, [navigate]);
 
   // 등록된 내용 새로고침 없이 업데이트
   const handleCreateClass = (newClasses) => {
@@ -72,7 +83,9 @@ const ClassInfoPage = () => {
   const handleUpdateClass = (updatedStudent) => {
     setClassInfo((prevStudents) =>
       prevStudents.map((classes) =>
-        classes.id === updatedStudent.id ? updatedStudent : classes
+        classes.class_idx === updatedStudent.class_idx
+          ? updatedStudent
+          : classes
       )
     );
   };
@@ -80,7 +93,9 @@ const ClassInfoPage = () => {
   // 삭제된 내용 새로고침 없이 업데이트
   const handleDeleteClass = (deletedStudentIds) => {
     setClassInfo((prevStudents) =>
-      prevStudents.filter((classes) => !deletedStudentIds.includes(classes.id))
+      prevStudents.filter(
+        (classes) => !deletedStudentIds.includes(classes.class_idx)
+      )
     );
   };
 
@@ -89,19 +104,13 @@ const ClassInfoPage = () => {
       {/* 헤더 */}
       <div className="class-info-update__header">
         <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
-        <h1 className="class-info-update__title">강의 정보 열람</h1>
+        <h1 className="class-info-update__title">강의 정보 관리</h1>
         <div className="class-info-update__nav">
           <button
             className="class-info-update__action-create"
             onClick={toggleCreateModal}
           >
             강의 등록
-          </button>
-          <button
-            className="class-info-update__action-delete"
-            onClick={toggleDeleteModal}
-          >
-            강의 삭제
           </button>
           <LogoutButton />
         </div>

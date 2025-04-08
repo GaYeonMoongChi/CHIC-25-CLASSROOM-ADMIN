@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import DetailModal from "./ClassDetail";
 import "../css/classRow.css";
 
+
 const ClassRow = ({ classes, onUpdate }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
