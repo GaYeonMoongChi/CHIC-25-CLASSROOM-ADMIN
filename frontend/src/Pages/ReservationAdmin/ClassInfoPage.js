@@ -3,7 +3,7 @@ import axios from "axios";
 import "../css/Pages.css";
 import "./css/classInfoUpdatePage.css";
 import Sidebar from "../../Components/ReservationAdmin/ReservationSidebar";
-import ClassRow from "../../Components/ReservationAdmin/Class/ClassName";
+import ClassName from "../../Components/ReservationAdmin/Class/ClassName";
 import ClassCreate from "../../Components/ReservationAdmin/Class/ClassCreate";
 import ClassDelete from "../../Components/ReservationAdmin/Class/ClassDelete";
 import LogoutButton from "../../Components/LogoutButton";
@@ -61,11 +61,16 @@ const ClassInfoPage = () => {
       navigate("/"); // 로그인 페이지로 리다이렉트
     }
 
-    // 강의 정보 데이터 요청
     const fetchClasses = async () => {
       try {
         const response = await axios.get(`${BACKEND_URL}/api/class`);
-        setClassInfo(response.data);
+        const data = response.data;
+
+        if (Array.isArray(data.classes)) {
+          setClassInfo(data.classes);
+        } else {
+          console.error("classes가 배열이 아닙니다:", data.classes);
+        }
       } catch (error) {
         console.error("강의실 데이터를 가져오는 중 오류 발생:", error);
       }
@@ -79,24 +84,19 @@ const ClassInfoPage = () => {
     setClassInfo((prevClasses) => [...prevClasses, newClasses]);
   };
 
-  // 수정된 내용 새로고침 없이 업데이트
-  const handleUpdateClass = (updatedStudent) => {
-    setClassInfo((prevStudents) =>
-      prevStudents.map((classes) =>
-        classes.class_idx === updatedStudent.class_idx
-          ? updatedStudent
-          : classes
-      )
-    );
-  };
-
-  // 삭제된 내용 새로고침 없이 업데이트
-  const handleDeleteClass = (deletedStudentIds) => {
-    setClassInfo((prevStudents) =>
-      prevStudents.filter(
-        (classes) => !deletedStudentIds.includes(classes.class_idx)
-      )
-    );
+  // 수정,삭제 결과 새로고침 없이 화면에 바로 반영
+  const handleUpdateClass = (updatedClass, deletedIds) => {
+    if (updatedClass) {
+      setClassInfo((prevClass) =>
+        prevClass.map((classes) =>
+          classes.class_idx === updatedClass.class_idx ? updatedClass : classes
+        )
+      );
+    } else if (deletedIds && deletedIds.length > 0) {
+      setClassInfo((prev) =>
+        prev.filter((cls) => !deletedIds.includes(cls.class_idx))
+      );
+    }
   };
 
   return (
@@ -165,7 +165,7 @@ const ClassInfoPage = () => {
         <table className="class-info-update__table">
           <tbody>
             {filteredClassrooms.map((classes, index) => (
-              <ClassRow
+              <ClassName
                 key={index}
                 classes={classes}
                 onUpdate={handleUpdateClass}
@@ -183,16 +183,6 @@ const ClassInfoPage = () => {
       {/* 등록 모달창 */}
       {isCreateModalOpen && (
         <ClassCreate onClose={toggleCreateModal} onCreate={handleCreateClass} />
-      )}
-
-      {/* 삭제 모달창 */}
-      {isDeleteModalOpen && (
-        <ClassDelete
-          classes={classInfo}
-          submit={toggleDeleteModal}
-          onClose={toggleDeleteModal}
-          onDelete={handleDeleteClass}
-        />
       )}
     </div>
   );

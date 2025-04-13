@@ -1,20 +1,19 @@
-.class-info-update__row_div {
-  padding: 20px 30px;
-  display: flex;
-  align-items: center;
-  border: none;
-  background-color: #ffffff;
-  margin: 10px 10px 10px 10px;
-}
-
-.class-info-update__row_div:hover {
-  background-color: #f0f4ff;
-  font-weight: bolder;
+.class-info-update__row:hover {
+  background-color: #798df3;
+  color: #ffffff;
 }
 
 .class-info-update__row {
-  display: flex;
   gap: 10px;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  border: none;
+  background-color: #f5f8ff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 10px 20px 10px 20px;
+  font-weight: 500;
+  border-radius: 10px;
 }
 
 .class-info-update__cell {

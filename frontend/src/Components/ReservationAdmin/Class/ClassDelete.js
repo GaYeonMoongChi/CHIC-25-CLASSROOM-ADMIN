@@ -22,20 +22,20 @@ const ClassDelete = ({ classes, onClose, onDelete }) => {
 
   // 강의 삭제 요청
   const handleDelete = async () => {
-    if (setSelectedClass.length === 0) {
+    if (selectedClass.length === 0) {
       alert("삭제할 강의을 선택해주세요.");
       return;
     }
 
     try {
       const response = await axios.delete(`${BACKEND_URL}/api/classes`, {
-        data: { ids: setSelectedClass },
+        data: { ids: selectedClass },
       });
 
       alert(response.data.message || "강의 삭제가 완료되었습니다.");
 
       if (onDelete) {
-        onDelete(setSelectedClass);
+        onDelete(selectedClass);
       }
 
       onClose();

@@ -37,16 +37,13 @@ const ClassCreate = ({ onClose, onCreate }) => {
     }
 
     try {
-      const response = await axios.post(
-        `${BACKEND_URL}/api/classes`,
-        classData
-      );
+      const response = await axios.post(`${BACKEND_URL}/api/class`, classData);
       alert("강의 등록이 완료되었습니다.");
 
       console.log("강의 등록 성공:", response.data);
 
       if (onCreate) {
-        onCreate(response.data);
+        onCreate(response.data.class);
       }
       handleClose();
     } catch (error) {
@@ -145,7 +142,7 @@ const ClassCreate = ({ onClose, onCreate }) => {
               <strong className="class-create__label">▪️ 강의시간: </strong>
               <input
                 type="text"
-                name="class_daytimet"
+                name="class_daytime"
                 className="class-create__input"
                 placeholder="강의 시간을 입력하세요. (ex. (월,1),(수,2) 형식으로 입력하세요.)"
                 onChange={handleChange}

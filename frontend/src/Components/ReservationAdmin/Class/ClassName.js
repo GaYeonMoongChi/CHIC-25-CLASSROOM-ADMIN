@@ -8,14 +8,14 @@ const ClassName = ({ classes, onUpdate }) => {
   // ClassDepartment 컴포넌트에서 학과를 그룹핑 한 것에 따라 강의들을 분류하기
   return (
     <>
-      <div
-        className="class-info-update__row_div"
+      <tr
+        className="class-info-update__row"
         onClick={() => setIsModalOpen(true)}
       >
-        <tr className="class-info-update__row">
-          <td className="class-info-update__cell">{classes.name}</td>
-        </tr>
-      </div>
+        <td className="class-info-update__cell">
+          {classes.class_name} ({classes.prof_name})
+        </td>
+      </tr>
 
       {isModalOpen && (
         <DetailModal
