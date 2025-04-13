@@ -66,19 +66,19 @@ router.put('/:class_idx', async (req, res) => {
   }
 });
 
-// GET /api/class?classroom=103&week=week_mon
-// 강의 정보 조회 (GET) - 특정 강의실과 요일 기준 조회
+// GET /api/class?classroom=103&week=week_mon : 특정 강의실&요일
+// GET /api/class : 전체 강의실 조회
+// 강의 정보 조회 (GET) - 특정 강의실과 요일 기준 조회 / 전체 강의 조회
+
 router.get('/', async (req, res) => {
   try {
     console.log('/api/class GET 요청 받음', req.query);
+    const { classroom, week } = req.query;
 
-    const { classroom, week } = req.query; // 요청에서 강의실과 요일 추출
-
-    if (!classroom || !week) {
-      return res.status(400).json({ error: 'classroom과 week(요일)를 지정해야 합니다.' });
+    let query = {};
+    if (classroom && week) {
+      query = { classroom_idx: classroom, [week]: true };
     }
-
-    const query = { classroom_idx: classroom, [week]: true };
 
     const classes = await Class.find(query);
     if (classes.length === 0) {
