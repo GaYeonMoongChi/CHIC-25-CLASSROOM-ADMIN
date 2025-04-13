@@ -3,14 +3,18 @@ import axios from "axios";
 import "../css/Pages.css";
 import "./css/classInfoUpdatePage.css";
 import Sidebar from "../../Components/ReservationAdmin/ReservationSidebar";
-import ClassRow from "../../Components/ReservationAdmin/Class/ClassRow";
+import ClassName from "../../Components/ReservationAdmin/Class/ClassName";
 import ClassCreate from "../../Components/ReservationAdmin/Class/ClassCreate";
 import ClassDelete from "../../Components/ReservationAdmin/Class/ClassDelete";
 import LogoutButton from "../../Components/LogoutButton";
+import { useNavigate } from "react-router-dom";
 
 const ClassInfoPage = () => {
   // 백앤드 주소
   const BACKEND_URL = "http://localhost:8000";
+
+  // 페이지 이동 네비게이션
+  const navigate = useNavigate();
 
   // 사이드바 상태 관리
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -49,39 +53,50 @@ const ClassInfoPage = () => {
     );
   });
 
-  // 강의 데이터 요청
+  // JWT 토큰 확인 및 리다이렉트
   useEffect(() => {
-    const fetchStudents = async () => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      alert("로그인이 필요합니다."); // 토큰이 없으면 알림창을 띄움
+      navigate("/"); // 로그인 페이지로 리다이렉트
+    }
+
+    const fetchClasses = async () => {
       try {
-        const response = await axios.get(`${BACKEND_URL}/api/classes`);
-        setClassInfo(response.data);
+        const response = await axios.get(`${BACKEND_URL}/api/class`);
+        const data = response.data;
+
+        if (Array.isArray(data.classes)) {
+          setClassInfo(data.classes);
+        } else {
+          console.error("classes가 배열이 아닙니다:", data.classes);
+        }
       } catch (error) {
-        console.error("강의 데이터를 가져오는 중 오류 발생:", error);
+        console.error("강의실 데이터를 가져오는 중 오류 발생:", error);
       }
     };
 
-    fetchStudents();
-  }, []);
+    fetchClasses();
+  }, [navigate]);
 
   // 등록된 내용 새로고침 없이 업데이트
   const handleCreateClass = (newClasses) => {
     setClassInfo((prevClasses) => [...prevClasses, newClasses]);
   };
 
-  // 수정된 내용 새로고침 없이 업데이트
-  const handleUpdateClass = (updatedStudent) => {
-    setClassInfo((prevStudents) =>
-      prevStudents.map((classes) =>
-        classes.id === updatedStudent.id ? updatedStudent : classes
-      )
-    );
-  };
-
-  // 삭제된 내용 새로고침 없이 업데이트
-  const handleDeleteClass = (deletedStudentIds) => {
-    setClassInfo((prevStudents) =>
-      prevStudents.filter((classes) => !deletedStudentIds.includes(classes.id))
-    );
+  // 수정,삭제 결과 새로고침 없이 화면에 바로 반영
+  const handleUpdateClass = (updatedClass, deletedIds) => {
+    if (updatedClass) {
+      setClassInfo((prevClass) =>
+        prevClass.map((classes) =>
+          classes.class_idx === updatedClass.class_idx ? updatedClass : classes
+        )
+      );
+    } else if (deletedIds && deletedIds.length > 0) {
+      setClassInfo((prev) =>
+        prev.filter((cls) => !deletedIds.includes(cls.class_idx))
+      );
+    }
   };
 
   return (
@@ -89,19 +104,13 @@ const ClassInfoPage = () => {
       {/* 헤더 */}
       <div className="class-info-update__header">
         <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
-        <h1 className="class-info-update__title">강의 정보 열람</h1>
+        <h1 className="class-info-update__title">강의 정보 관리</h1>
         <div className="class-info-update__nav">
           <button
             className="class-info-update__action-create"
             onClick={toggleCreateModal}
           >
             강의 등록
-          </button>
-          <button
-            className="class-info-update__action-delete"
-            onClick={toggleDeleteModal}
-          >
-            강의 삭제
           </button>
           <LogoutButton />
         </div>
@@ -122,7 +131,7 @@ const ClassInfoPage = () => {
             />
           </li>
           <li className="classroom-info__search-item">
-            <label className="classroom-info__search-label">이름</label>
+            <label className="classroom-info__search-label">강의명</label>
             <input
               type="text"
               name="search"
@@ -156,7 +165,7 @@ const ClassInfoPage = () => {
         <table className="class-info-update__table">
           <tbody>
             {filteredClassrooms.map((classes, index) => (
-              <ClassRow
+              <ClassName
                 key={index}
                 classes={classes}
                 onUpdate={handleUpdateClass}
@@ -174,16 +183,6 @@ const ClassInfoPage = () => {
       {/* 등록 모달창 */}
       {isCreateModalOpen && (
         <ClassCreate onClose={toggleCreateModal} onCreate={handleCreateClass} />
-      )}
-
-      {/* 삭제 모달창 */}
-      {isDeleteModalOpen && (
-        <ClassDelete
-          classes={classInfo}
-          submit={toggleDeleteModal}
-          onClose={toggleDeleteModal}
-          onDelete={handleDeleteClass}
-        />
       )}
     </div>
   );

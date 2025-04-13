@@ -1,18 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../css/reservationModal.css";
 
-const ClassUpdate = ({ classes, submit, onClose, onUpdate }) => {
-  //백앤드 주소
+const ClassUpdate = ({ classes, onClose, onUpdate }) => {
+  // 백앤드 주소
   const BACKEND_URL = "http://localhost:8000";
 
   // 수정할 값들의 상태
-  const [class_idx] = useState(classes.class_idx);
-  const [class_name, setClassName] = useState(classes.class_name);
-  const [classroom_idx, setClassroomIdx] = useState(classes.classroom_idx);
-  const [class_credit, setClassCredit] = useState(classes.class_credit);
-  const [prof_name, setProfName] = useState(classes.prof_name);
-  const [class_daytime, setClassDaytime] = useState(classes.class_daytime);
+  const [classData, setClassData] = useState({
+    class_idx: classes.class_idx,
+    class_name: classes.class_name,
+    class_credit: classes.class_credit,
+    classroom_idx: classes.classroom_idx,
+    prof_name: classes.prof_name,
+    class_daytime: classes.class_daytime,
+  });
+
+  // prop 들어올 때 상태 초기화
+  useEffect(() => {
+    if (classes) {
+      setClassData({
+        class_idx: classes.class_idx || "",
+        class_name: classes.class_name || "",
+        class_credit: classes.class_credit || "",
+        classroom_idx: classes.classroom_idx || "",
+        prof_name: classes.prof_name,
+        class_daytime: classes.class_daytime || "",
+      });
+    }
+  }, [classes]);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setClassData((prev) => ({ ...prev, [name]: value }));
+  };
 
   // 학생 정보 수정 요청
   const handleUpdate = async () => {
@@ -23,30 +44,16 @@ const ClassUpdate = ({ classes, submit, onClose, onUpdate }) => {
 
     try {
       const response = await axios.put(
-        `${BACKEND_URL}/api/classes/${classes.class_idx}`,
-        {
-          classroom_idx,
-          class_name,
-          prof_name,
-          class_credit,
-          class_daytime,
-        }
+        `${BACKEND_URL}/api/class/${classes.class_idx}`,
+        classData
       );
 
       if (response.status === 200) {
         alert("학생 정보가 수정되었습니다.");
-
         if (onUpdate) {
-          onUpdate({
-            classroom_idx,
-            class_name,
-            prof_name,
-            class_credit,
-            class_daytime,
-          });
+          onUpdate(classData, null);
         }
-
-        onClose(); // 수정 완료시 모달 닫기
+        onClose();
       } else {
         alert(response.data.message || "학생 정보 수정에 실패했습니다.");
       }
@@ -66,8 +73,8 @@ const ClassUpdate = ({ classes, submit, onClose, onUpdate }) => {
   if (!classes) return null;
 
   return (
-    <div className="modal-overlay">
-      <div className="modal-content">
+    <div className="modal-overlay" onClick={onClose}>
+      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
         <header className="class-update__header">
           <button className="modal-close" onClick={onClose}>
             ✖
@@ -78,15 +85,18 @@ const ClassUpdate = ({ classes, submit, onClose, onUpdate }) => {
         <main className="class-update__main">
           <ul className="class-update__list">
             <li className="class-create__item">
-              <strong className="class-create__label">▪️ 학정번호: </strong>
-              <div className="class-details__content">{class_idx}</div>
+              <strong className="class-update__label">▪️ 학정번호: </strong>
+              <div className="class-details__content">
+                {classData.class_idx}
+              </div>
             </li>
             <li className="class-update__item">
               <strong className="class-update__label">▪️ 강좌명: </strong>
               <input
                 type="text"
-                value={class_name}
-                onChange={(e) => setClassName(e.target.value)}
+                value={classData.class_name}
+                name="class_name"
+                onChange={handleChange}
                 className="class-update__input"
                 placeholder="강좌명을 입력하세요."
                 onKeyDown={handleKeyDown}
@@ -97,8 +107,9 @@ const ClassUpdate = ({ classes, submit, onClose, onUpdate }) => {
               <strong className="class-update__label">▪️ 강의실 호수: </strong>
               <input
                 type="text"
-                value={classroom_idx}
-                onChange={(e) => setClassroomIdx(e.target.value)}
+                value={classData.classroom_idx}
+                name="classroom_idx"
+                onChange={handleChange}
                 className="class-update__input"
                 placeholder="강의실 호수를 입력하세요. (ex.103)"
                 onKeyDown={handleKeyDown}
@@ -108,19 +119,21 @@ const ClassUpdate = ({ classes, submit, onClose, onUpdate }) => {
               <strong className="class-update__label">▪️ 교수명: </strong>
               <input
                 type="text"
-                value={prof_name}
-                onChange={(e) => setProfName(e.target.value)}
+                value={classData.prof_name}
+                name="prof_name"
+                onChange={handleChange}
                 className="class-update__input"
                 placeholder="교수명을 입력하세요."
                 onKeyDown={handleKeyDown}
-              />{" "}
+              />
             </li>
             <li className="class-update__item">
               <strong className="class-update__label">▪️ 취득학점: </strong>
               <input
                 type="text"
-                value={class_credit}
-                onChange={(e) => setClassCredit(e.target.value)}
+                value={classData.class_credit}
+                name="class_credit"
+                onChange={handleChange}
                 className="class-update__input"
                 placeholder="취득 학점을 입력하세요. (ex. 3)"
                 onKeyDown={handleKeyDown}
@@ -130,17 +143,18 @@ const ClassUpdate = ({ classes, submit, onClose, onUpdate }) => {
               <strong className="class-update__label">▪️ 강의시간: </strong>
               <input
                 type="text"
-                value={class_daytime}
-                onChange={(e) => setClassDaytime(e.target.value)}
+                value={classData.class_daytime}
+                name="class_daytime"
+                onChange={handleChange}
                 className="class-update__input"
-                placeholder="강의 시간을 입력하세요. (ex. (월,1),(수,2) 형식으로 입력하세요.)"
+                placeholder="강의 시간을 입력하세요. (ex. 월,1,수2 형식으로 입력하세요.)"
                 onKeyDown={handleKeyDown}
               />
             </li>
           </ul>
 
           <div className="class-update__submit_div">
-            <button className="class-update__submit" onClick={submit}>
+            <button className="class-update__submit" onClick={handleUpdate}>
               완료
             </button>
           </div>

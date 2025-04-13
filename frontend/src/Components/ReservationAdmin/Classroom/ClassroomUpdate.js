@@ -61,6 +61,7 @@ const ClassroomUpdate = ({ classroom, onClose, onUpdate }) => {
     }
   };
 
+  // 엔터키 눌러도 수정 완료되게 하기
   const handleKeyDown = (e) => {
     if (e.key === "Enter") handleUpdate();
   };
@@ -86,6 +87,7 @@ const ClassroomUpdate = ({ classroom, onClose, onUpdate }) => {
                 value={classroomData.building}
                 onChange={handleChange}
                 className="classroom-update__input"
+                onKeyDown={handleKeyDown}
               />
             </li>
             <li className="classroom-update__item">
@@ -96,6 +98,7 @@ const ClassroomUpdate = ({ classroom, onClose, onUpdate }) => {
                 value={classroomData.room}
                 onChange={handleChange}
                 className="classroom-update__input"
+                onKeyDown={handleKeyDown}
               />
             </li>
             <li className="classroom-update__item">
@@ -106,6 +109,7 @@ const ClassroomUpdate = ({ classroom, onClose, onUpdate }) => {
                 value={classroomData.contactLocation}
                 onChange={handleChange}
                 className="classroom-update__input"
+                onKeyDown={handleKeyDown}
               />
             </li>
             <li className="classroom-update__item">
@@ -116,6 +120,7 @@ const ClassroomUpdate = ({ classroom, onClose, onUpdate }) => {
                 value={classroomData.contactDepartment}
                 onChange={handleChange}
                 className="classroom-update__input"
+                onKeyDown={handleKeyDown}
               />
             </li>
             <li className="classroom-update__item">
@@ -126,6 +131,7 @@ const ClassroomUpdate = ({ classroom, onClose, onUpdate }) => {
                 value={classroomData.minNumberOfUsers}
                 onChange={handleChange}
                 className="classroom-update__input"
+                onKeyDown={handleKeyDown}
               />
             </li>
             <li className="classroom-update__item">
@@ -135,6 +141,7 @@ const ClassroomUpdate = ({ classroom, onClose, onUpdate }) => {
                 value={classroomData.equipment}
                 onChange={handleChange}
                 className="classroom-update__textarea"
+                onKeyDown={handleKeyDown}
               />
             </li>
             <li className="classroom-update__item">
@@ -145,6 +152,7 @@ const ClassroomUpdate = ({ classroom, onClose, onUpdate }) => {
                 value={classroomData.contactNumber}
                 onChange={handleChange}
                 className="classroom-update__input"
+                onKeyDown={handleKeyDown}
               />
             </li>
           </ul>
