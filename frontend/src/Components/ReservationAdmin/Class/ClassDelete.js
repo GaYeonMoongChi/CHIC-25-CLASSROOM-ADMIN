@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import "../../../Pages/css/Pages.css";
 import "../css/reservationModal.css";
-import ClassRow from "../../ReservationAdmin/Class/ClassRow";
+import ClassRow from "./ClassName";
 
 const ClassDelete = ({ classes, onClose, onDelete }) => {
   // 백앤드 주소

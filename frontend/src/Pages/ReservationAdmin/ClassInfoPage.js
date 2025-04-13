@@ -3,7 +3,7 @@ import axios from "axios";
 import "../css/Pages.css";
 import "./css/classInfoUpdatePage.css";
 import Sidebar from "../../Components/ReservationAdmin/ReservationSidebar";
-import ClassRow from "../../Components/ReservationAdmin/Class/ClassRow";
+import ClassRow from "../../Components/ReservationAdmin/Class/ClassName";
 import ClassCreate from "../../Components/ReservationAdmin/Class/ClassCreate";
 import ClassDelete from "../../Components/ReservationAdmin/Class/ClassDelete";
 import LogoutButton from "../../Components/LogoutButton";
@@ -131,7 +131,7 @@ const ClassInfoPage = () => {
             />
           </li>
           <li className="classroom-info__search-item">
-            <label className="classroom-info__search-label">이름</label>
+            <label className="classroom-info__search-label">강의명</label>
             <input
               type="text"
               name="search"
