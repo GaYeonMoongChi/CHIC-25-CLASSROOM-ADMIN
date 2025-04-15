@@ -15,6 +15,9 @@ const ClassPdfUpload = ({
   const [isNewSemester, setIsNewSemester] = useState(false);
   const [pdfFile, setPdfFile] = useState(null);
 
+  // 로딩 상태 관리
+  const [isUploading, setIsUploading] = useState(false);
+
   // PDF 파일 형식이 아닐 경우 예외처리
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -38,15 +41,20 @@ const ClassPdfUpload = ({
   };
 
   const handleSubmit = async () => {
-    // 모든 항목이 입력되지 않았을 경우 예외처리
+    // pdf 파일이 아닐 경우 예외처리
     if (!semester || !pdfFile) {
       alert("학기 정보와 PDF 파일을 모두 입력해주세요.");
       return;
     }
 
-    const isAlreadyRegistered = existingSemesters.includes(semester);
+    // 새 학기 입력하면 형식 검사
+    const semesterRegex = /^\d{4}-[1-2]$/;
+    if (isNewSemester && !semesterRegex.test(semester)) {
+      alert("학기 형식은 'YYYY-1' 또는 'YYYY-2' 여야 합니다. 예: 2025-2");
+      return;
+    }
 
-    // 이미 등록된 학기에 대한 강의계획서 업로드 시도할 경우 메세지 출력
+    const isAlreadyRegistered = existingSemesters.includes(semester);
     if (isAlreadyRegistered) {
       const confirmOverwrite = window.confirm(
         `${semester} 학기에는 이미 업로드된 자료가 있습니다. 덮어쓰시겠습니까?`
@@ -58,6 +66,7 @@ const ClassPdfUpload = ({
     formData.append("pdf", pdfFile);
 
     try {
+      setIsUploading(true);
       const response = await axios.post(
         `${BACKEND_URL}/api/pdf-upload/${semester}`,
         formData,
@@ -67,19 +76,23 @@ const ClassPdfUpload = ({
           },
         }
       );
-
       alert("강의 등록이 완료되었습니다.");
       console.log("강의 등록 성공:", response.data);
 
-      // 업로드 완료 후 콜백 실행
-      if (onUploadComplete) {
-        onUploadComplete(semester);
+      // pdf 파일 내용 불러오는 key (수정필요)
+      const { classes } = response.data;
+
+      // 새학기 select option에 추가
+      if (onUploadComplete && classes) {
+        onUploadComplete(semester, classes);
       }
 
       handleClose();
     } catch (error) {
       console.error("강의 등록 오류:", error);
       alert("강의 등록에 실패했습니다.");
+    } finally {
+      setIsUploading(false);
     }
   };
 
@@ -148,16 +161,25 @@ const ClassPdfUpload = ({
                 onChange={handleFileChange}
                 className="class-create__input"
               />
-              {pdfFile && <p>선택된 파일: {pdfFile.name}</p>}
             </li>
           </ul>
 
           <div className="class-create__submit_div">
-            <button className="class-create__submit" onClick={handleSubmit}>
+            <button
+              className={`class-create__submit ${
+                isUploading ? "disabled" : ""
+              }`}
+              onClick={handleSubmit}
+              disabled={isUploading}
+            >
               완료
             </button>
           </div>
         </main>
+
+        {isUploading && (
+          <div className="uploading-text">강의 데이터 등록 중...</div>
+        )}
       </div>
     </div>
   );

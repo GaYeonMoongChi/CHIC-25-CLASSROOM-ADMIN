@@ -338,6 +338,12 @@
   background-color: #6078f3;
 }
 
+.class-create__submit.disabled {
+  opacity: 0.6;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
 /* 강의 삭제 모달 */
 .class-delete__title {
   margin-bottom: 25px;
