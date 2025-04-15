@@ -86,16 +86,22 @@ const ClassInfoPage = () => {
   }, [navigate]);
 
   // 학기 선택 항목들 생성
-  const handleUploadComplete = (uploadedSemester) => {
+  const handleUploadComplete = (uploadedSemester, parsedClasses = []) => {
+    // 1. 학기 목록에 없는 경우만 추가
     setSemesterList((prev) => {
       const newList = prev.includes(uploadedSemester)
         ? prev
         : [...prev, uploadedSemester];
-      return newList.sort((a, b) => (a < b ? 1 : -1)); // 최신 순 정렬
+      return newList.sort((a, b) => (a < b ? 1 : -1)); // 최신순
     });
 
-    setSelectedSemester(uploadedSemester); // 업로드된 학기를 선택
-    fetchClasses(); // 강의 정보 새로고침
+    // 2. 선택 학기 변경
+    setSelectedSemester(uploadedSemester);
+
+    // 3. 새로 업로드된 강의 목록 반영
+    if (parsedClasses.length > 0) {
+      setClassInfo((prev) => [...prev, ...parsedClasses]);
+    }
   };
 
   // 새로고침 없이 등록, 수정, 삭제 내용 화면에 반영
