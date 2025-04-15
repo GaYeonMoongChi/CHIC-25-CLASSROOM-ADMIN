@@ -37,13 +37,6 @@ const ClassInfoPage = () => {
   const onChangeClassName = (e) => setSearchClassName(e.target.value);
   const onChangeProfName = (e) => setSearchProfName(e.target.value);
 
-  // 학기 선택값, 입력값
-  const [semesterList, setSemesterList] = useState([]);
-  const [selectedSemester, setSelectedSemester] = useState("");
-  const handleSemesterChange = (e) => {
-    setSelectedSemester(e.target.value);
-  };
-
   const fetchClasses = async () => {
     // 강의 데이터 요청
     try {
@@ -52,20 +45,6 @@ const ClassInfoPage = () => {
 
       if (Array.isArray(data.classes)) {
         setClassInfo(data.classes);
-
-        const semesters = Array.from(
-          new Set(data.classes.map((cls) => cls.semester))
-        );
-
-        // 학기를 내림차순 정렬 (예: 2025-2 > 2025-1 > 2024-2 ...)
-        semesters.sort((a, b) => (a < b ? 1 : -1));
-
-        setSemesterList(semesters);
-
-        // 최신 학기를 기본 선택
-        if (semesters.length > 0) {
-          setSelectedSemester(semesters[0]);
-        }
       } else {
         console.error("classes가 배열이 아닙니다:", data.classes);
       }
@@ -84,25 +63,6 @@ const ClassInfoPage = () => {
 
     fetchClasses();
   }, [navigate]);
-
-  // 학기 선택 항목들 생성
-  const handleUploadComplete = (uploadedSemester, parsedClasses = []) => {
-    // 1. 학기 목록에 없는 경우만 추가
-    setSemesterList((prev) => {
-      const newList = prev.includes(uploadedSemester)
-        ? prev
-        : [...prev, uploadedSemester];
-      return newList.sort((a, b) => (a < b ? 1 : -1)); // 최신순
-    });
-
-    // 2. 선택 학기 변경
-    setSelectedSemester(uploadedSemester);
-
-    // 3. 새로 업로드된 강의 목록 반영
-    if (parsedClasses.length > 0) {
-      setClassInfo((prev) => [...prev, ...parsedClasses]);
-    }
-  };
 
   // 새로고침 없이 등록, 수정, 삭제 내용 화면에 반영
   const handleCreateClass = (newClass) => {
@@ -126,11 +86,10 @@ const ClassInfoPage = () => {
   // 검색 필터링
   const filteredClasses = classInfo.filter((cls) => {
     return (
-      cls.semester === selectedSemester &&
-      (searchClassName === "" ||
-        cls.class_name
-          ?.toLowerCase()
-          .includes(searchClassName.toLowerCase())) &&
+        (searchClassName === "" ||
+          cls.class_name
+            ?.toLowerCase()
+            .includes(searchClassName.toLowerCase())) &&
       (searchProfName === "" || cls.prof_name?.includes(searchProfName))
     );
   });
@@ -152,7 +111,7 @@ const ClassInfoPage = () => {
             className="class-info-update__action-create"
             onClick={togglePdfModal}
           >
-            강의계획서 등록
+            시간표 파일 등록
           </button>
           <LogoutButton />
         </div>
@@ -161,20 +120,6 @@ const ClassInfoPage = () => {
       {/* 검색바 */}
       <div className="classroom-info__search">
         <ul className="classroom-info__search-list">
-          <li className="classroom-info__search-item">
-            <label className="classroom-info__search-label">학기</label>
-            <select
-              value={selectedSemester}
-              onChange={handleSemesterChange}
-              className="classroom-info__search-select"
-            >
-              {semesterList.map((semester) => (
-                <option key={semester} value={semester}>
-                  {semester}
-                </option>
-              ))}
-            </select>
-          </li>
           <li className="classroom-info__search-item">
             <label className="classroom-info__search-label">강의명</label>
             <input
@@ -226,13 +171,7 @@ const ClassInfoPage = () => {
       )}
 
       {/* PDF 업로드 모달 */}
-      {isPdfModalOpen && (
-        <ClassPdfUpload
-          onClose={togglePdfModal}
-          onUploadComplete={handleUploadComplete}
-          existingSemesters={semesterList}
-        />
-      )}
+      {isPdfModalOpen && <ClassPdfUpload onClose={togglePdfModal} />}
     </div>
   );
 };

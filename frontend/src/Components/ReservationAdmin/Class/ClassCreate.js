@@ -144,7 +144,7 @@ const ClassCreate = ({ onClose, onCreate }) => {
                 type="text"
                 name="class_daytime"
                 className="class-create__input"
-                placeholder="강의 시간을 입력하세요. (ex. (월,1),(수,2) 형식으로 입력하세요.)"
+                placeholder="강의 시간을 입력하세요. (ex. 월1,수2 형식으로 입력하세요.)"
                 onChange={handleChange}
                 onKeyDown={handleKeyDown}
               ></input>
