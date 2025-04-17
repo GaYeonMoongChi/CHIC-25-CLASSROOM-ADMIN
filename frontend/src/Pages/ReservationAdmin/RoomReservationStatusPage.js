@@ -5,7 +5,7 @@ import "./css/roomReservationStatus.css";
 import Sidebar from "../../Components/ReservationAdmin/ReservationSidebar";
 import Calendar from "../../Components/ReservationAdmin/Reservation/Calendar";
 
-// 강의실 예약 데이터
+// 강의실 예약 데이터 (추후 삭제)
 const reservations = [
   {
     roomId: "715호",
@@ -100,7 +100,7 @@ const reservations = [
 ];
 
 const RoomReservationStatusPage = () => {
-  // 선택된 날짜 상태 관리
+  // 필터링 되는 값들 상태 관리
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [searchRoom, setSearchRoom] = useState("");
 
@@ -108,9 +108,7 @@ const RoomReservationStatusPage = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const toggleSidebar = () => setIsSidebarOpen((prev) => !prev);
 
-  // TODO: 건물명 검색 기능 추가
-
-  // 강의실 검색 기능
+  // 강의실 검색 기능 => 이것도 수정해야됨. 강의실 호수 데이터 서버에서 받아서 ~
   const searchClassroom = (searchTerm) =>
     ["103", "104", "205", "715"].filter((classroom) =>
       classroom.includes(searchTerm)
@@ -141,7 +139,7 @@ const RoomReservationStatusPage = () => {
 
       <div className="room-reservation-status__search">
         <ul className="room-reservation-status__search-list">
-          {/* 강의실 검색 */}
+          {/* 강의실 검색 (건물 선택할 수 잇게 할까.. + 호수로 검색) */}
           <li className="room-reservation-status__search-item">
             <label className="room-reservation-status__search-label">
               강의실 검색
@@ -154,7 +152,7 @@ const RoomReservationStatusPage = () => {
               value={searchRoom}
             />
           </li>
-          {/* 날짜 검색 */}
+          {/* 날짜 검색 (라이브러리 지울까말까 고민중) */}
           <li className="room-reservation-status__search-item">
             <label className="room-reservation-status__search-label">
               날짜 검색
