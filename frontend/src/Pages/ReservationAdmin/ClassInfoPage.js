@@ -3,93 +3,144 @@ import axios from "axios";
 import "../css/Pages.css";
 import "./css/classInfoUpdatePage.css";
 import Sidebar from "../../Components/ReservationAdmin/ReservationSidebar";
-import ClassRow from "../../Components/ReservationAdmin/Class/ClassRow";
+import ClassName from "../../Components/ReservationAdmin/Class/ClassName";
 import ClassCreate from "../../Components/ReservationAdmin/Class/ClassCreate";
-import ClassDelete from "../../Components/ReservationAdmin/Class/ClassDelete";
+import ClassPdfUpload from "../../Components/ReservationAdmin/Class/ClassPdfUpload";
 import LogoutButton from "../../Components/LogoutButton";
+import { useNavigate } from "react-router-dom";
 
 const ClassInfoPage = () => {
-  // 백앤드 주소
+  // 백앤드 주소 | 네비게이트 상수 선언
   const BACKEND_URL = "http://localhost:8000";
+  const navigate = useNavigate();
 
-  // 사이드바 상태 관리
+  // 사이드바
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const toggleSidebar = () => setIsSidebarOpen((prev) => !prev);
 
-  // 등록 모달창 상태 관리
+  // 강의 개별 등록 모달
   const [isCreateModalOpen, setCreateModalOpen] = useState(false);
   const toggleCreateModal = () => setCreateModalOpen((prev) => !prev);
 
-  // 삭제 모드 상태 관리
-  const [isDeleteModalOpen, setDeleteModalOpen] = useState(false);
-  const toggleDeleteModal = () => setDeleteModalOpen((prev) => !prev);
+  // 강의계획서 업로드 모달
+  const [isPdfModalOpen, setPdfModalOpen] = useState(false);
+  const togglePdfModal = () => setPdfModalOpen((prev) => !prev);
 
-  // 강의 정보 상태 관리
+  // 강의 데이터
   const [classInfo, setClassInfo] = useState([]);
 
-  // 검색값 상태 관리
-  const [searchIdx, setSearchIdx] = useState("");
+  // 검색값 (강의명, 교수명)
   const [searchProfName, setSearchProfName] = useState("");
   const [searchClassName, setSearchClassName] = useState("");
 
-  // 검색창에 값 입력하면 상태 변환
-  const onChangeIdx = (e) => setSearchIdx(e.target.value);
+  // 검색 입력값 (강의명, 교수명)
   const onChangeClassName = (e) => setSearchClassName(e.target.value);
   const onChangeProfName = (e) => setSearchProfName(e.target.value);
 
-  // 검색 결과 화면에 반영
-  const filteredClassrooms = classInfo.filter((classes) => {
+  // 학기 선택값, 입력값
+  const [semesterList, setSemesterList] = useState([]);
+  const [selectedSemester, setSelectedSemester] = useState("");
+  const handleSemesterChange = (e) => {
+    setSelectedSemester(e.target.value);
+  };
+
+  const fetchClasses = async () => {
+    // 강의 데이터 요청
+    try {
+      const response = await axios.get(`${BACKEND_URL}/api/class`);
+      const data = response.data;
+
+      if (Array.isArray(data.classes)) {
+        setClassInfo(data.classes);
+
+        const semesters = Array.from(
+          new Set(data.classes.map((cls) => cls.semester))
+        );
+
+        // 학기를 내림차순 정렬 (예: 2025-2 > 2025-1 > 2024-2 ...)
+        semesters.sort((a, b) => (a < b ? 1 : -1));
+
+        setSemesterList(semesters);
+
+        // 최신 학기를 기본 선택
+        if (semesters.length > 0) {
+          setSelectedSemester(semesters[0]);
+        }
+      } else {
+        console.error("classes가 배열이 아닙니다:", data.classes);
+      }
+    } catch (error) {
+      console.error("강의실 데이터를 가져오는 중 오류 발생:", error);
+    }
+  };
+
+  // token 없으면 로그인 페이지로 리다이렉트
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      alert("로그인이 필요합니다.");
+      navigate("/");
+    }
+
+    fetchClasses();
+  }, [navigate]);
+
+  // 학기 선택 항목들 생성
+  const handleUploadComplete = (uploadedSemester, parsedClasses = []) => {
+    // 1. 학기 목록에 없는 경우만 추가
+    setSemesterList((prev) => {
+      const newList = prev.includes(uploadedSemester)
+        ? prev
+        : [...prev, uploadedSemester];
+      return newList.sort((a, b) => (a < b ? 1 : -1)); // 최신순
+    });
+
+    // 2. 선택 학기 변경
+    setSelectedSemester(uploadedSemester);
+
+    // 3. 새로 업로드된 강의 목록 반영
+    if (parsedClasses.length > 0) {
+      setClassInfo((prev) => [...prev, ...parsedClasses]);
+    }
+  };
+
+  // 새로고침 없이 등록, 수정, 삭제 내용 화면에 반영
+  const handleCreateClass = (newClass) => {
+    setClassInfo((prevClasses) => [...prevClasses, newClass]);
+  };
+
+  const handleUpdateClass = (updatedClass, deletedIds) => {
+    if (updatedClass) {
+      setClassInfo((prevClass) =>
+        prevClass.map((cls) =>
+          cls.class_idx === updatedClass.class_idx ? updatedClass : cls
+        )
+      );
+    } else if (deletedIds && deletedIds.length > 0) {
+      setClassInfo((prev) =>
+        prev.filter((cls) => !deletedIds.includes(cls.class_idx))
+      );
+    }
+  };
+
+  // 검색 필터링
+  const filteredClasses = classInfo.filter((cls) => {
     return (
-      (searchIdx === "" || classes.class_idx?.toString().includes(searchIdx)) &&
+      cls.semester === selectedSemester &&
       (searchClassName === "" ||
-        classes.class_name
+        cls.class_name
           ?.toLowerCase()
           .includes(searchClassName.toLowerCase())) &&
-      (searchProfName === "" || classes.prof_name?.includes(searchProfName))
+      (searchProfName === "" || cls.prof_name?.includes(searchProfName))
     );
   });
-
-  // 강의 데이터 요청
-  useEffect(() => {
-    const fetchStudents = async () => {
-      try {
-        const response = await axios.get(`${BACKEND_URL}/api/classes`);
-        setClassInfo(response.data);
-      } catch (error) {
-        console.error("강의 데이터를 가져오는 중 오류 발생:", error);
-      }
-    };
-
-    fetchStudents();
-  }, []);
-
-  // 등록된 내용 새로고침 없이 업데이트
-  const handleCreateClass = (newClasses) => {
-    setClassInfo((prevClasses) => [...prevClasses, newClasses]);
-  };
-
-  // 수정된 내용 새로고침 없이 업데이트
-  const handleUpdateClass = (updatedStudent) => {
-    setClassInfo((prevStudents) =>
-      prevStudents.map((classes) =>
-        classes.id === updatedStudent.id ? updatedStudent : classes
-      )
-    );
-  };
-
-  // 삭제된 내용 새로고침 없이 업데이트
-  const handleDeleteClass = (deletedStudentIds) => {
-    setClassInfo((prevStudents) =>
-      prevStudents.filter((classes) => !deletedStudentIds.includes(classes.id))
-    );
-  };
 
   return (
     <div className="div">
       {/* 헤더 */}
       <div className="class-info-update__header">
         <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
-        <h1 className="class-info-update__title">강의 정보 열람</h1>
+        <h1 className="class-info-update__title">강의 정보 관리</h1>
         <div className="class-info-update__nav">
           <button
             className="class-info-update__action-create"
@@ -98,10 +149,10 @@ const ClassInfoPage = () => {
             강의 등록
           </button>
           <button
-            className="class-info-update__action-delete"
-            onClick={toggleDeleteModal}
+            className="class-info-update__action-create"
+            onClick={togglePdfModal}
           >
-            강의 삭제
+            강의계획서 등록
           </button>
           <LogoutButton />
         </div>
@@ -111,18 +162,21 @@ const ClassInfoPage = () => {
       <div className="classroom-info__search">
         <ul className="classroom-info__search-list">
           <li className="classroom-info__search-item">
-            <label className="classroom-info__search-label">학정번호</label>
-            <input
-              type="text"
-              name="search"
-              className="classroom-info__search-input"
-              placeholder="학정번호로 검색하세요."
-              onChange={onChangeIdx}
-              value={searchIdx}
-            />
+            <label className="classroom-info__search-label">학기</label>
+            <select
+              value={selectedSemester}
+              onChange={handleSemesterChange}
+              className="classroom-info__search-select"
+            >
+              {semesterList.map((semester) => (
+                <option key={semester} value={semester}>
+                  {semester}
+                </option>
+              ))}
+            </select>
           </li>
           <li className="classroom-info__search-item">
-            <label className="classroom-info__search-label">이름</label>
+            <label className="classroom-info__search-label">강의명</label>
             <input
               type="text"
               name="search"
@@ -133,12 +187,7 @@ const ClassInfoPage = () => {
             />
           </li>
           <li className="classroom-info__search-item">
-            <label
-              htmlFor="search-author"
-              className="classroom-info__search-label"
-            >
-              교수명
-            </label>
+            <label className="classroom-info__search-label">교수명</label>
             <input
               type="text"
               name="search"
@@ -155,8 +204,8 @@ const ClassInfoPage = () => {
       <div className="class-info-update__main">
         <table className="class-info-update__table">
           <tbody>
-            {filteredClassrooms.map((classes, index) => (
-              <ClassRow
+            {filteredClasses.map((classes, index) => (
+              <ClassName
                 key={index}
                 classes={classes}
                 onUpdate={handleUpdateClass}
@@ -166,23 +215,22 @@ const ClassInfoPage = () => {
         </table>
       </div>
 
-      {/* 사이드바가 열릴 때 표시되는 오버레이 */}
+      {/* 오버레이 */}
       {isSidebarOpen && (
         <div className="sidebar-overlay" onClick={toggleSidebar}></div>
       )}
 
-      {/* 등록 모달창 */}
+      {/* 등록 모달 */}
       {isCreateModalOpen && (
         <ClassCreate onClose={toggleCreateModal} onCreate={handleCreateClass} />
       )}
 
-      {/* 삭제 모달창 */}
-      {isDeleteModalOpen && (
-        <ClassDelete
-          classes={classInfo}
-          submit={toggleDeleteModal}
-          onClose={toggleDeleteModal}
-          onDelete={handleDeleteClass}
+      {/* PDF 업로드 모달 */}
+      {isPdfModalOpen && (
+        <ClassPdfUpload
+          onClose={togglePdfModal}
+          onUploadComplete={handleUploadComplete}
+          existingSemesters={semesterList}
         />
       )}
     </div>

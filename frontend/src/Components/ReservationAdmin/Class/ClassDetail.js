@@ -3,11 +3,44 @@ import "../css/reservationModal.css";
 import ClassUpdate from "./ClassUpdate";
 
 const DetailModal = ({ classes, onClose, onUpdate }) => {
+  // 백앤드 주소
+  const BACKEND_URL = "http://localhost:8000";
+
   // 수정 모달 상태 관리
   const [isUpdateMode, setUpdateMode] = useState(false);
   const switchUpdateMode = () => setUpdateMode((prev) => !prev);
 
   if (!classes) return null;
+
+  // 강의 삭제 요청 api
+  const handleDelete = async () => {
+    const confirmDelete = window.confirm(
+      `${classes.class_name} 강의를 삭제하시겠습니까?`
+    );
+    if (!confirmDelete) return;
+
+    try {
+      const response = await fetch(
+        `${BACKEND_URL}/api/class/${encodeURIComponent(classes.class_idx)}`,
+        {
+          method: "DELETE",
+        }
+      );
+
+      const result = await response.json();
+
+      if (response.ok) {
+        alert("강의실 정보가 삭제되었습니다.");
+        onUpdate(null, [classes.class_idx]);
+        onClose();
+      } else {
+        alert(`삭제 실패: ${result.message}`);
+      }
+    } catch (error) {
+      console.error("삭제 중 오류 발생:", error);
+      alert("삭제 중 오류가 발생했습니다.");
+    }
+  };
 
   return (
     <div className="modal-overlay" onClick={onClose}>
@@ -44,7 +77,7 @@ const DetailModal = ({ classes, onClose, onUpdate }) => {
             <li className="class-details__item">
               <strong className="class-details__label">▪️ 강의시간: </strong>
               <div className="class-details__content">
-                {classes.class_daytimet}
+                {classes.class_daytime}
               </div>
             </li>
           </ul>
@@ -55,6 +88,12 @@ const DetailModal = ({ classes, onClose, onUpdate }) => {
               onClick={switchUpdateMode}
             >
               수정
+            </button>
+            <button
+              className="classroom-details__delete"
+              onClick={handleDelete}
+            >
+              삭제
             </button>
           </div>
         </main>
