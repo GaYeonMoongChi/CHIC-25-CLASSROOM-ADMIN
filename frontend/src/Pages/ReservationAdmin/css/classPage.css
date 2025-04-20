@@ -55,24 +55,6 @@
   border-radius: 10px;
 }
 
-.classroom-info__search-select {
-  width: 80%;
-  background-color: #f5f8ff;
-  border: none;
-  padding-left: 10px;
-  font-size: 17px;
-  margin-left: 10px;
-}
-
-.classroom-info__search-select::placeholder {
-  color: rgb(83, 83, 83);
-  transition: color 0.3s ease;
-}
-
-.classroom-info__search-select:focus {
-  outline: none;
-}
-
 .class-info__search-item {
   background-color: #f5f8ff;
   color: #000000;

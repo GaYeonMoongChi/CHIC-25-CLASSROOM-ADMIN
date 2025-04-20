@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../css/reservationModal.css";
 
-const ClassUpdate = ({ classes, onClose, onUpdate }) => {
+const ClassUpdate = ({ classes, onClose, onUpdate, semester }) => {
   // 백앤드 주소
-  const BACKEND_URL = "http://localhost:8000";
+  const BACKEND_URL = "http://localhost:8000/api/class";
 
   // 수정할 값들의 상태
   const [classData, setClassData] = useState({
@@ -44,7 +44,7 @@ const ClassUpdate = ({ classes, onClose, onUpdate }) => {
 
     try {
       const response = await axios.put(
-        `${BACKEND_URL}/api/class/${classes.class_idx}`,
+        `${BACKEND_URL}/${semester}/${classes.class_idx}`,
         classData
       );
 

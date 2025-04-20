@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import axios from "axios";
 import "../css/reservationModal.css";
 
-const ClassCreate = ({ onClose, onCreate }) => {
+const ClassCreate = ({ onClose, onCreate, semester }) => {
   // 백앤드 주소
-  const BACKEND_URL = "http://localhost:8000";
+  const BACKEND_URL = "http://localhost:8000/api/class";
 
   // 강의 입력값 상태 관리
   const [classData, setClassData] = useState({
@@ -14,6 +14,7 @@ const ClassCreate = ({ onClose, onCreate }) => {
     prof_name: "",
     class_credit: "",
     class_daytime: "",
+    semester: semester || "", // 기본값 == prop로 받은 값
   });
 
   // 강의 입력값 변경 핸들러
@@ -30,14 +31,18 @@ const ClassCreate = ({ onClose, onCreate }) => {
       !classData.class_name ||
       !classData.prof_name ||
       !classData.class_credit ||
-      !classData.class_daytime
+      !classData.class_daytime ||
+      !classData.semester
     ) {
       alert("모든 항목을 입력해주세요.");
       return;
     }
 
     try {
-      const response = await axios.post(`${BACKEND_URL}/api/class`, classData);
+      const response = await axios.post(
+        `${BACKEND_URL}/${semester}`,
+        classData
+      );
       alert("강의 등록이 완료되었습니다.");
 
       console.log("강의 등록 성공:", response.data);
@@ -83,6 +88,19 @@ const ClassCreate = ({ onClose, onCreate }) => {
 
         <main className="classr-create__main">
           <ul className="class-create__list">
+            <li className="class-create__item">
+              <strong className="class-create__label">▪️ 학기: </strong>
+              <input
+                type="text"
+                name="semester"
+                className="class-create__input"
+                placeholder="학기를 입력하세요. (ex. 2025-1)"
+                value={classData.semester}
+                onChange={handleChange}
+                onKeyDown={handleKeyDown}
+              />
+            </li>
+
             <li className="class-create__item">
               <strong className="class-create__label">▪️ 학정번호: </strong>
               <input
