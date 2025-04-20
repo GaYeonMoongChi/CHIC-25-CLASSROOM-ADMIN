@@ -1,4 +1,4 @@
-.room-reservation-status__header {
+.reservation-status__header {
   display: flex;
   padding-bottom: 30px;
   padding-top: 30px;
@@ -8,21 +8,42 @@
   align-items: center;
 }
 
-.room-reservation-status__title {
+.reservation-status__nav {
+  margin-left: auto;
+  display: flex;
+  gap: 30px;
+}
+
+.reservation-status__nav button {
+  background-color: #ffffff;
+  color: black;
+  border: none;
+  border-radius: 30px;
+  padding: 10px 3px;
+  cursor: pointer;
+  font-size: 15px;
+  text-align: center;
+  width: 100px;
+  transition: background-color 0.3s ease;
+  font-weight: bold;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.reservation-status__title {
   font-size: 27px;
 }
 
-.room-reservation-status__main {
+.reservation-status__main {
   width: 95%;
 }
 
-.room-reservation-status__search {
+.reservation-status__search {
   padding-bottom: 20px;
   border-bottom: 2px solid #dddfdd;
   width: 95%;
 }
 
-.room-reservation-status__search-list {
+.reservation-status__search-list {
   width: 100%;
   background-color: transparent;
   padding: 20px 20px;
@@ -30,7 +51,7 @@
   gap: 20px;
   border-radius: 10px;
 }
-.room-reservation-status__search-item {
+.reservation-status__search-item {
   background-color: #f5f8ff;
   color: #000000;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -43,16 +64,16 @@
   width: 100%;
 }
 
-.room-reservation-status__search-item > input {
+.reservation-status__search-item > input {
   margin-left: 10px;
 }
 
-.room-reservation-status__search-label {
+.reservation-status__search-label {
   width: 25%;
   border-right: 2px solid #7c7c7c;
 }
 
-.room-reservation-status__search-input {
+.reservation-status__search-input {
   width: 60%;
   background-color: #f5f8ff;
   border: none;
@@ -60,12 +81,12 @@
   font-size: 17px;
 }
 
-.room-reservation-status__search-input::placeholder {
+.reservation-status__search-input::placeholder {
   color: rgb(83, 83, 83);
   transition: color 0.3s ease;
 }
 
-.room-reservation-status__search-input:focus {
+.reservation-status__search-input:focus {
   outline: none;
 }
 
