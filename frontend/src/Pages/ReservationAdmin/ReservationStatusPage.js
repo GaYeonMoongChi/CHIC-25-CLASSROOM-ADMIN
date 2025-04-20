@@ -5,6 +5,8 @@ import Timetable from "../../Components/ReservationAdmin/Reservation/TimeTable";
 import "../css/Pages.css";
 import "./css/roomReservationStatus.css";
 import Sidebar from "../../Components/ReservationAdmin/ReservationSidebar";
+import NewReservation from "../../Components/ReservationAdmin/Reservation/NewReservation";
+import LogoutButton from "../../Components/LogoutButton";
 
 const RoomReservationStatusPage = () => {
   // 백앤드 주소
@@ -19,14 +21,17 @@ const RoomReservationStatusPage = () => {
   // 필터링 되는 값들 상태 관리
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [searchRoom, setSearchRoom] = useState("");
+  const [searchBuilding, setBuilding] = useState("");
+  const onChangeBuilding = (e) => setBuilding(e.target.value);
 
   // 사이드바 상태 관리
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const toggleSidebar = () => setIsSidebarOpen((prev) => !prev);
 
-  // 건물명 입력 상태 관리
-  const [searchBuilding, setBuilding] = useState("");
-  const onChangeBuilding = (e) => setBuilding(e.target.value);
+  // 새 예약 모달 상태
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
 
   // 강의실 사용 정보 데이터
   const [reservationsInfo, setReservationsInfo] = useState([]);
@@ -71,51 +76,53 @@ const RoomReservationStatusPage = () => {
   return (
     <div className="div">
       {/* 헤더 */}
-      <header className="room-reservation-status__header">
-        <h1 className="room-reservation-status__title">강의실 예약현황 열람</h1>
-      </header>
+      <div className="reservation-status__header">
+        <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+        <h1 className="reservation-status__title">강의실 정보 관리</h1>
+        <div className="reservation-status__nav">
+          {/* TODO: 새 예약이 몇 개 있는지 수도 표시하면 좋을 듯. or 새 예약이 있으면 점으로만 표시*/}
+          <button onClick={openModal}>새 예약</button>
+          <LogoutButton />
+        </div>
+      </div>
 
-      <div className="room-reservation-status__search">
-        <ul className="room-reservation-status__search-list">
-          <li className="room-reservation-status__search-item">
+      <div className="reservation-status__search">
+        <ul className="reservation-status__search-list">
+          <li className="reservation-status__search-item">
             <label
               htmlFor="search-author"
-              className="room-reservation-status__search-label"
+              className="reservation-status__search-label"
             >
               건물명
             </label>
             <input
               type="text"
               name="search"
-              className="room-reservation-status__search-input"
+              className="reservation-status__search-input"
               placeholder="건물명으로 검색하세요."
               onChange={onChangeBuilding}
               value={searchBuilding}
             />
           </li>
-          <li className="room-reservation-status__search-item">
-            <label className="room-reservation-status__search-label">
-              강의실 검색
-            </label>
+          <li className="reservation-status__search-item">
+            <label className="reservation-status__search-label">호수</label>
             <input
               type="text"
-              className="room-reservation-status__search-input"
+              className="reservation-status__search-input"
               placeholder="강의실 호수를 입력하세요."
               onChange={onChangeRoom}
               value={searchRoom}
             />
           </li>
-          <li className="room-reservation-status__search-item">
-            <label className="room-reservation-status__search-label">
-              날짜 검색
-            </label>
+          <li className="reservation-status__search-item">
+            <label className="reservation-status__search-label">날짜</label>
             <input type="date" />
           </li>
         </ul>
       </div>
 
       {/* 타임 테이블*/}
-      <div className="room-reservation-status__main">
+      <div className="reservation-status__main">
         <Timetable reservations={filteredReservations} />
       </div>
 
@@ -124,10 +131,7 @@ const RoomReservationStatusPage = () => {
         <div className="sidebar-overlay" onClick={toggleSidebar}></div>
       )}
 
-      {/* 사이드바 */}
-      <div className="room-reservation-status__sidebar-container">
-        <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
-      </div>
+      {isModalOpen && <NewReservation onClose={closeModal} />}
     </div>
   );
 };
