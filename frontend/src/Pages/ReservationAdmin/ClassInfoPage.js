@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../css/Pages.css";
-import "./css/classInfoUpdatePage.css";
+import "./css/classPage.css";
 import Sidebar from "../../Components/ReservationAdmin/ReservationSidebar";
 import ClassName from "../../Components/ReservationAdmin/Class/ClassName";
 import ClassCreate from "../../Components/ReservationAdmin/Class/ClassCreate";
@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 
 const ClassInfoPage = () => {
   // 백앤드 주소 | 네비게이트 상수 선언
-  const BACKEND_URL = "http://localhost:8000";
+  const BACKEND_URL = "http://localhost:8000/api/class";
   const navigate = useNavigate();
 
   // 사이드바
@@ -26,8 +26,11 @@ const ClassInfoPage = () => {
   const [isPdfModalOpen, setPdfModalOpen] = useState(false);
   const togglePdfModal = () => setPdfModalOpen((prev) => !prev);
 
-  // 강의 데이터
+  // 강의 데이터, 학기 데이터
   const [classInfo, setClassInfo] = useState([]);
+  const [semester, setSemester] = useState([]);
+
+  const [semesterList, setSemesterList] = useState([]);
 
   // 검색값 (강의명, 교수명)
   const [searchProfName, setSearchProfName] = useState("");
@@ -37,40 +40,38 @@ const ClassInfoPage = () => {
   const onChangeClassName = (e) => setSearchClassName(e.target.value);
   const onChangeProfName = (e) => setSearchProfName(e.target.value);
 
-  // 학기 선택값, 입력값
-  const [semesterList, setSemesterList] = useState([]);
-  const [selectedSemester, setSelectedSemester] = useState("");
-  const handleSemesterChange = (e) => {
-    setSelectedSemester(e.target.value);
-  };
-
   const fetchClasses = async () => {
     // 강의 데이터 요청
     try {
-      const response = await axios.get(`${BACKEND_URL}/api/class`);
+      const response = await axios.get(`${BACKEND_URL}/${semester}`);
       const data = response.data;
+
+      console.log("받아온 강의 데이터:", data);
 
       if (Array.isArray(data.classes)) {
         setClassInfo(data.classes);
-
-        const semesters = Array.from(
-          new Set(data.classes.map((cls) => cls.semester))
-        );
-
-        // 학기를 내림차순 정렬 (예: 2025-2 > 2025-1 > 2024-2 ...)
-        semesters.sort((a, b) => (a < b ? 1 : -1));
-
-        setSemesterList(semesters);
-
-        // 최신 학기를 기본 선택
-        if (semesters.length > 0) {
-          setSelectedSemester(semesters[0]);
-        }
       } else {
         console.error("classes가 배열이 아닙니다:", data.classes);
       }
     } catch (error) {
       console.error("강의실 데이터를 가져오는 중 오류 발생:", error);
+    }
+  };
+
+  // 학기 데이터 요청
+  const fetchSemester = async () => {
+    try {
+      const response = await axios.get(`${BACKEND_URL}/collections`);
+      const data = response.data;
+
+      console.log("받아온 학기 데이터:", data);
+
+      if (Array.isArray(data.collections) && data.collections.length > 0) {
+        setSemester(data.collections[0]); // 최신 학기를 default로 화면에 띄움.
+        setSemesterList(data.collections);
+      }
+    } catch (error) {
+      console.error("학기 목록을 가져오는 중 오류 발생:", error);
     }
   };
 
@@ -82,27 +83,14 @@ const ClassInfoPage = () => {
       navigate("/");
     }
 
-    fetchClasses();
+    fetchSemester();
   }, [navigate]);
 
-  // 학기 선택 항목들 생성
-  const handleUploadComplete = (uploadedSemester, parsedClasses = []) => {
-    // 1. 학기 목록에 없는 경우만 추가
-    setSemesterList((prev) => {
-      const newList = prev.includes(uploadedSemester)
-        ? prev
-        : [...prev, uploadedSemester];
-      return newList.sort((a, b) => (a < b ? 1 : -1)); // 최신순
-    });
-
-    // 2. 선택 학기 변경
-    setSelectedSemester(uploadedSemester);
-
-    // 3. 새로 업로드된 강의 목록 반영
-    if (parsedClasses.length > 0) {
-      setClassInfo((prev) => [...prev, ...parsedClasses]);
+  useEffect(() => {
+    if (semester) {
+      fetchClasses();
     }
-  };
+  }, [semester]);
 
   // 새로고침 없이 등록, 수정, 삭제 내용 화면에 반영
   const handleCreateClass = (newClass) => {
@@ -126,7 +114,6 @@ const ClassInfoPage = () => {
   // 검색 필터링
   const filteredClasses = classInfo.filter((cls) => {
     return (
-      cls.semester === selectedSemester &&
       (searchClassName === "" ||
         cls.class_name
           ?.toLowerCase()
@@ -134,6 +121,11 @@ const ClassInfoPage = () => {
       (searchProfName === "" || cls.prof_name?.includes(searchProfName))
     );
   });
+
+  // 학기 선택 핸들러
+  const handleSemesterChange = (e) => {
+    setSemester(e.target.value);
+  };
 
   return (
     <div className="div">
@@ -152,7 +144,7 @@ const ClassInfoPage = () => {
             className="class-info-update__action-create"
             onClick={togglePdfModal}
           >
-            강의계획서 등록
+            시간표 파일 등록
           </button>
           <LogoutButton />
         </div>
@@ -162,19 +154,26 @@ const ClassInfoPage = () => {
       <div className="classroom-info__search">
         <ul className="classroom-info__search-list">
           <li className="classroom-info__search-item">
-            <label className="classroom-info__search-label">학기</label>
-            <select
-              value={selectedSemester}
-              onChange={handleSemesterChange}
-              className="classroom-info__search-select"
+            <label
+              htmlFor="semester-select"
+              className="classroom-info__search-label"
             >
-              {semesterList.map((semester) => (
-                <option key={semester} value={semester}>
-                  {semester}
+              학기
+            </label>
+            <select
+              id="semester-select"
+              className="classroom-info__search-input"
+              value={semester}
+              onChange={handleSemesterChange}
+            >
+              {semesterList.map((sem, idx) => (
+                <option key={idx} value={sem}>
+                  {sem}
                 </option>
               ))}
             </select>
           </li>
+
           <li className="classroom-info__search-item">
             <label className="classroom-info__search-label">강의명</label>
             <input
@@ -186,6 +185,7 @@ const ClassInfoPage = () => {
               value={searchClassName}
             />
           </li>
+
           <li className="classroom-info__search-item">
             <label className="classroom-info__search-label">교수명</label>
             <input
@@ -209,6 +209,7 @@ const ClassInfoPage = () => {
                 key={index}
                 classes={classes}
                 onUpdate={handleUpdateClass}
+                semester={semester}
               />
             ))}
           </tbody>
@@ -222,17 +223,15 @@ const ClassInfoPage = () => {
 
       {/* 등록 모달 */}
       {isCreateModalOpen && (
-        <ClassCreate onClose={toggleCreateModal} onCreate={handleCreateClass} />
+        <ClassCreate
+          onClose={toggleCreateModal}
+          onCreate={handleCreateClass}
+          semester={semester}
+        />
       )}
 
       {/* PDF 업로드 모달 */}
-      {isPdfModalOpen && (
-        <ClassPdfUpload
-          onClose={togglePdfModal}
-          onUploadComplete={handleUploadComplete}
-          existingSemesters={semesterList}
-        />
-      )}
+      {isPdfModalOpen && <ClassPdfUpload onClose={togglePdfModal} />}
     </div>
   );
 };

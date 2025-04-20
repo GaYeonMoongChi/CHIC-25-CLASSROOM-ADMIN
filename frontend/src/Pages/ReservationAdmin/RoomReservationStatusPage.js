@@ -1,105 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import Timetable from "../../Components/ReservationAdmin/Reservation/TimeTable";
 import "../css/Pages.css";
 import "./css/roomReservationStatus.css";
 import Sidebar from "../../Components/ReservationAdmin/ReservationSidebar";
-import Calendar from "../../Components/ReservationAdmin/Reservation/Calendar";
-
-// 강의실 예약 데이터 (추후 삭제)
-const reservations = [
-  {
-    roomId: "715호",
-    date: "2025-02-03",
-    reservation: [
-      {
-        name: "이민수",
-        start_time: "13:00",
-        end_time: "15:00",
-        purpose: "스터디 모임",
-      },
-    ],
-  },
-  {
-    roomId: "103호",
-    date: "2024-02-03",
-    reservation: [
-      {
-        name: "이민수",
-        start_time: "13:00",
-        end_time: "15:00",
-        purpose: "스터디 모임",
-      },
-    ],
-  },
-  {
-    roomId: "103호",
-    date: "2025-03-04",
-    reservation: [
-      {
-        name: "객체지향프로그래밍",
-        start_time: "10:30",
-        end_time: "12:00",
-        purpose: "김준석",
-      },
-      {
-        name: "컴퓨터그래픽스",
-        start_time: "13:30",
-        end_time: "15:00",
-        purpose: "김동준",
-      },
-    ],
-  },
-  {
-    roomId: "205호",
-    date: "2025-03-04",
-    reservation: [
-      {
-        name: "컴퓨터네트워크",
-        start_time: "12:00",
-        end_time: "13:30",
-        purpose: "박재성",
-      },
-      {
-        name: "컴퓨터네트워크",
-        start_time: "15:00",
-        end_time: "16:30",
-        purpose: "박재성",
-      },
-      {
-        name: "김가연",
-        start_time: "17:00",
-        end_time: "18:00",
-        purpose: "CHIC 개강총회",
-      },
-    ],
-  },
-  {
-    roomId: "715호",
-    date: "2025-03-04",
-    reservation: [
-      {
-        name: "이민수",
-        start_time: "18:00",
-        end_time: "19:30",
-        purpose: "스터디 모임",
-      },
-    ],
-  },
-  {
-    roomId: "104호",
-    date: "2025-03-04",
-    reservation: [
-      {
-        name: "인터랙티브미디어개론",
-        start_time: "13:30",
-        end_time: "15:00",
-        purpose: "김현경",
-      },
-    ],
-  },
-];
 
 const RoomReservationStatusPage = () => {
+  // 백앤드 주소
+  const BACKEND_URL = "http://localhost:8000";
+
+  // 페이지 이동 네비게이션
+  const navigate = useNavigate();
+
+  // 강의실 정보 상태 관리
+  const [classroomInfo, setClassroomInfo] = useState([]);
+
   // 필터링 되는 값들 상태 관리
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [searchRoom, setSearchRoom] = useState("");
@@ -108,11 +24,12 @@ const RoomReservationStatusPage = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const toggleSidebar = () => setIsSidebarOpen((prev) => !prev);
 
-  // 강의실 검색 기능 => 이것도 수정해야됨. 강의실 호수 데이터 서버에서 받아서 ~
-  const searchClassroom = (searchTerm) =>
-    ["103", "104", "205", "715"].filter((classroom) =>
-      classroom.includes(searchTerm)
-    );
+  // 건물명 입력 상태 관리
+  const [searchBuilding, setBuilding] = useState("");
+  const onChangeBuilding = (e) => setBuilding(e.target.value);
+
+  // 강의실 사용 정보 데이터
+  const [reservationsInfo, setReservationsInfo] = useState([]);
 
   // 검색어 변경 핸들러
   const onChangeRoom = (event) => {
@@ -120,7 +37,7 @@ const RoomReservationStatusPage = () => {
   };
 
   // 날짜 및 강의실 검색 필터링
-  const filteredReservations = reservations
+  const filteredReservations = reservationsInfo
     .filter((res) => res.date === selectedDate.toISOString().split("T")[0])
     .filter((res) => searchRoom === "" || res.roomId.includes(searchRoom))
     .flatMap((res) =>
@@ -129,6 +46,27 @@ const RoomReservationStatusPage = () => {
         roomId: res.roomId,
       }))
     );
+
+  // JWT 토큰 확인 및 리다이렉트
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      alert("로그인이 필요합니다.");
+      navigate("/");
+    }
+
+    // 강의실 정보 데이터 요청
+    const fetchClassrooms = async () => {
+      try {
+        const response = await axios.get(`${BACKEND_URL}/api/classroom`);
+        setClassroomInfo(response.data);
+      } catch (error) {
+        console.error("강의실 데이터를 가져오는 중 오류 발생:", error);
+      }
+    };
+
+    fetchClassrooms();
+  }, [navigate]);
 
   return (
     <div className="div">
@@ -139,7 +77,22 @@ const RoomReservationStatusPage = () => {
 
       <div className="room-reservation-status__search">
         <ul className="room-reservation-status__search-list">
-          {/* 강의실 검색 (건물 선택할 수 잇게 할까.. + 호수로 검색) */}
+          <li className="room-reservation-status__search-item">
+            <label
+              htmlFor="search-author"
+              className="room-reservation-status__search-label"
+            >
+              건물명
+            </label>
+            <input
+              type="text"
+              name="search"
+              className="room-reservation-status__search-input"
+              placeholder="건물명으로 검색하세요."
+              onChange={onChangeBuilding}
+              value={searchBuilding}
+            />
+          </li>
           <li className="room-reservation-status__search-item">
             <label className="room-reservation-status__search-label">
               강의실 검색
@@ -147,20 +100,16 @@ const RoomReservationStatusPage = () => {
             <input
               type="text"
               className="room-reservation-status__search-input"
-              placeholder="강의실 번호를 입력하세요."
+              placeholder="강의실 호수를 입력하세요."
               onChange={onChangeRoom}
               value={searchRoom}
             />
           </li>
-          {/* 날짜 검색 (라이브러리 지울까말까 고민중) */}
           <li className="room-reservation-status__search-item">
             <label className="room-reservation-status__search-label">
               날짜 검색
             </label>
-            <Calendar
-              selectedDate={selectedDate}
-              setSelectedDate={setSelectedDate}
-            />
+            <input type="date" />
           </li>
         </ul>
       </div>

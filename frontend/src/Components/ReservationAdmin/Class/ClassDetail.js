@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import "../css/reservationModal.css";
 import ClassUpdate from "./ClassUpdate";
 
-const DetailModal = ({ classes, onClose, onUpdate }) => {
+const DetailModal = ({ classes, onClose, onUpdate, semester }) => {
   // 백앤드 주소
-  const BACKEND_URL = "http://localhost:8000";
+  const BACKEND_URL = "http://localhost:8000/api/class";
 
   // 수정 모달 상태 관리
   const [isUpdateMode, setUpdateMode] = useState(false);
@@ -21,7 +21,7 @@ const DetailModal = ({ classes, onClose, onUpdate }) => {
 
     try {
       const response = await fetch(
-        `${BACKEND_URL}/api/class/${encodeURIComponent(classes.class_idx)}`,
+        `${BACKEND_URL}/${semester}/${encodeURIComponent(classes.class_idx)}`,
         {
           method: "DELETE",
         }
@@ -105,6 +105,7 @@ const DetailModal = ({ classes, onClose, onUpdate }) => {
           submit={switchUpdateMode}
           onClose={switchUpdateMode}
           onUpdate={onUpdate}
+          semester={semester}
         />
       )}
     </div>
