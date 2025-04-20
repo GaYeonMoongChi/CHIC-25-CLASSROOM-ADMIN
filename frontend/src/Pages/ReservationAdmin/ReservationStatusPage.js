@@ -116,7 +116,7 @@ const RoomReservationStatusPage = () => {
           </li>
           <li className="reservation-status__search-item">
             <label className="reservation-status__search-label">날짜</label>
-            <input type="date" />
+            <input type="date" className="reservation-status__search-input" />
           </li>
         </ul>
       </div>
