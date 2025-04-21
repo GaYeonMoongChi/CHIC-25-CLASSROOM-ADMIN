@@ -1,4 +1,5 @@
 // 강의 계획서에서 학정번호만 추출해서 저장
+// 폐기 예정
 
 // class_idx만 추출해서 저장하는 함수
 const mongoose = require('mongoose');
