@@ -6,9 +6,9 @@ dotenv.config(); // .env 파일 로드
 // MongoDB 연결 함수
 const connectDB = async () => {
   try {
-    // "user" 데이터베이스 연결
-    global.userDB = mongoose.createConnection(process.env.MONGO_URI_USER);
-    console.log('MongoDB (user) 연결 완료');
+    // "student" 데이터베이스 연결
+    global.studentDB = mongoose.createConnection(process.env.MONGO_URI_STUDENT);
+    console.log('MongoDB (student) 연결 완료');
 
     // "classroom" 데이터베이스 연결
     global.classDB = mongoose.createConnection(process.env.MONGO_URI_CLASS);
