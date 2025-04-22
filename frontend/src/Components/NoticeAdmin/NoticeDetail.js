@@ -1,9 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./css/noticeModal.css";
 import NoticeUpdate from "./NoticeUpdate";
 
 const DetailModal = ({ notice, onClose, onUpdate, formatDate }) => {
+  // 백앤드 주소
   const BACKEND_URL = "http://localhost:8000";
+
+  // 모달 열릴 때 스크롤 금지되도록 설정
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, []);
 
   // 수정 모달 상태
   const [isUpdateMode, setUpdateMode] = useState(false);

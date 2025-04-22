@@ -15,9 +15,6 @@ const RoomReservationStatusPage = () => {
   // 페이지 이동 네비게이션
   const navigate = useNavigate();
 
-  // 강의실 정보 상태 관리
-  const [classroomInfo, setClassroomInfo] = useState([]);
-
   // 필터링 되는 값들 상태 관리
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [searchRoom, setSearchRoom] = useState("");
@@ -59,18 +56,6 @@ const RoomReservationStatusPage = () => {
       alert("로그인이 필요합니다.");
       navigate("/");
     }
-
-    // 강의실 정보 데이터 요청
-    const fetchClassrooms = async () => {
-      try {
-        const response = await axios.get(`${BACKEND_URL}/api/classroom`);
-        setClassroomInfo(response.data);
-      } catch (error) {
-        console.error("강의실 데이터를 가져오는 중 오류 발생:", error);
-      }
-    };
-
-    fetchClassrooms();
   }, [navigate]);
 
   return (
@@ -78,10 +63,12 @@ const RoomReservationStatusPage = () => {
       {/* 헤더 */}
       <div className="reservation-status__header">
         <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
-        <h1 className="reservation-status__title">강의실 정보 관리</h1>
+        <h1 className="reservation-status__title">강의실 예약현황</h1>
         <div className="reservation-status__nav">
           {/* TODO: 새 예약이 몇 개 있는지 수도 표시하면 좋을 듯. or 새 예약이 있으면 점으로만 표시*/}
-          <button onClick={openModal}>새 예약 <span>5</span></button>
+          <button onClick={openModal}>
+            새 예약 <span>5</span>
+          </button>
           <LogoutButton />
         </div>
       </div>

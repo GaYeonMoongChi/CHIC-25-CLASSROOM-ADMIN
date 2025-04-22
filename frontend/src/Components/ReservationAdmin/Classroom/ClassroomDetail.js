@@ -6,11 +6,14 @@ const DetailModal = ({ classroom, onClose, onUpdate }) => {
   // 백앤드 주소
   const BACKEND_URL = "http://localhost:8000";
 
+  // 모달 열릴 때 스크롤 금지되도록 설정
   useEffect(() => {
-    if (classroom) {
-      console.log("DetailModal opened with classroom:", classroom);
-    }
-  }, [classroom]);
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, []);
 
   // 수정 모달 상태 관리
   const [isUpdateMode, setUpdateMode] = useState(false);

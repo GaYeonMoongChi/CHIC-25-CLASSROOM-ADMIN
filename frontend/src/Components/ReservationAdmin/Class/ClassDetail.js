@@ -1,10 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../css/reservationModal.css";
 import ClassUpdate from "./ClassUpdate";
 
 const DetailModal = ({ classes, onClose, onUpdate, semester }) => {
   // 백앤드 주소
   const BACKEND_URL = "http://localhost:8000/api/class";
+
+  // 모달 열릴 때 스크롤 금지되도록 설정
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, []);
 
   // 수정 모달 상태 관리
   const [isUpdateMode, setUpdateMode] = useState(false);
