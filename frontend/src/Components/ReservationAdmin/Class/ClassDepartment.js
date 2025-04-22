@@ -1,29 +1,59 @@
-import React from "react";
-import "../css/classroomRow.css";
+import React, { useState } from "react";
+import "../css/classroomBuilding.css";
+import ClassName from "./ClassName";
 
-const ClassroomRooms = ({ classes, onUpdate }) => {
-  // 학과별 그룹핑 : ClassCollege에서 그룹핑된 단과대명에 맞는 학과가 뜨게 하기.
+const ClassDepartment = ({ classes, onUpdate }) => {
+  const [openDepartments, setOpenDepartments] = useState({});
+
+  // 단과대별 그룹핑
   const groupByDepartment = (classes) => {
-    return classes.reduce((acc, classes) => {
-      const department = classes.department || "기타";
+    return classes.reduce((acc, classItem) => {
+      const department = classItem.department || "기타";
       if (!acc[department]) acc[department] = [];
-      acc[department].push(classes);
+      acc[department].push(classItem);
       return acc;
     }, {});
   };
 
   const grouped = groupByDepartment(classes);
 
-  /* 과 이름 (정보융합학부, 전자공학과) */
+  const toggleDepartment = (department) => {
+    setOpenDepartments((prev) => ({
+      ...prev,
+      [department]: !prev[department],
+    }));
+  };
+
   return (
     <>
-      <div className="classroom-info-update__row_div">
-        <tr className="classroom-info-update__row">
-          <td className="classroom-info-update__cell">{classes.department}</td>
-        </tr>
-      </div>
+      {Object.entries(grouped).map(([department, departmentNames]) => (
+        <div key={department} className="classroom-info-update__building-block">
+          <div className="classroom-info__building-header">
+            <h2 className="classroom-info__building-name">📚 {department}</h2>
+            <button
+              className="toggle-button"
+              onClick={() => toggleDepartment(department)}
+            >
+              {openDepartments[department] ? "▲" : "▼"}
+            </button>
+          </div>
+          {openDepartments[department] && (
+            <table className="classroom-info-update__table">
+              <tbody>
+                {departmentNames.map((classItem) => (
+                  <ClassName
+                    key={classItem.departmentName}
+                    classes={classItem}
+                    onUpdate={onUpdate}
+                  />
+                ))}
+              </tbody>
+            </table>
+          )}
+        </div>
+      ))}
     </>
   );
 };
 
-export default ClassroomRooms;
+export default ClassDepartment;

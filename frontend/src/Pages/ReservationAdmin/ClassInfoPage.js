@@ -3,7 +3,7 @@ import axios from "axios";
 import "../css/Pages.css";
 import "./css/classPage.css";
 import Sidebar from "../../Components/ReservationAdmin/ReservationSidebar";
-import ClassName from "../../Components/ReservationAdmin/Class/ClassName";
+import ClassDepartment from "../../Components/ReservationAdmin/Class/ClassDepartment";
 import ClassCreate from "../../Components/ReservationAdmin/Class/ClassCreate";
 import ClassPdfUpload from "../../Components/ReservationAdmin/Class/ClassPdfUpload";
 import LogoutButton from "../../Components/LogoutButton";
@@ -202,18 +202,10 @@ const ClassInfoPage = () => {
 
       {/* 강의정보 리스트 */}
       <div className="class-info-update__main">
-        <table className="class-info-update__table">
-          <tbody>
-            {filteredClasses.map((classes, index) => (
-              <ClassName
-                key={index}
-                classes={classes}
-                onUpdate={handleUpdateClass}
-                semester={semester}
-              />
-            ))}
-          </tbody>
-        </table>
+        <ClassDepartment
+          classes={filteredClasses}
+          onUpdate={handleUpdateClass}
+        />
       </div>
 
       {/* 오버레이 */}
