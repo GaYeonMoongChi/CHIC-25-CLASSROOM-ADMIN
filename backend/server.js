@@ -27,8 +27,8 @@ app.get("/", (req, res) => {
 // MongoDB 연결 실행
 connectDB().then(() => {
   // 라우트 등록 (MongoDB 연결 이후에 실행해야 함)
-  const studentRoutes = require("./routes/student");
-  app.use("/api/students", studentRoutes);
+  // const studentRoutes = require("./routes/student");
+  // app.use("/api/students", studentRoutes);
 
   const classroomRoutes = require("./routes/classroom");
   app.use("/api/classroom", classroomRoutes);
@@ -44,6 +44,9 @@ connectDB().then(() => {
 
   const pdfUploadRoutes = require("./routes/pdfUpload");
   app.use("/api/pdf-upload", pdfUploadRoutes);
+
+  const appointmentstatusRoutes = require("./routes/appointment_status");
+  app.use("/api/appointment-status", appointmentstatusRoutes);
 
   // 서버 실행
   app.listen(port, () => {
