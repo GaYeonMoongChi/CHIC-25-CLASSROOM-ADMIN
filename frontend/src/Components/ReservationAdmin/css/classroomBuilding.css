@@ -1,3 +1,16 @@
 .classroom-info-update__building-block {
   margin-bottom: 40px;
 }
+
+.classroom-info__building-header {
+  display: flex;
+  align-items: center;
+}
+
+.toggle-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-left: 50px;
+}

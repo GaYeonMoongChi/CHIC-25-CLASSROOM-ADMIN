@@ -1,10 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./css/noticeModal.css";
 
 const NoticeCreate = ({ onClose, onCreate }) => {
   // 백앤드 주소
   const BACKEND_URL = "http://localhost:8000";
+
+  // 모달 열릴 때 스크롤 금지되도록 설정
+    useEffect(() => {
+      document.body.style.overflow = "hidden";
+  
+      return () => {
+        document.body.style.overflow = "auto";
+      };
+    }, []);
 
   // 관리자 아이디 가져오기
   const adminInfoId = localStorage.getItem("admin_info_id");

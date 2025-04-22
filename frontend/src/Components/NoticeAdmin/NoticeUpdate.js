@@ -6,6 +6,15 @@ const NoticeUpdate = ({ notice, onClose, onUpdate }) => {
   // 백앤드 주소
   const BACKEND_URL = "http://localhost:8000";
 
+  // 모달 열릴 때 스크롤 금지되도록 설정
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, []);
+
   // 수정할 값들의 상태
   const [noticeData, setNoticeData] = useState({
     title: notice?.title || "",

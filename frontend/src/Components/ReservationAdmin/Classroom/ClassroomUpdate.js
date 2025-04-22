@@ -5,6 +5,15 @@ import "../css/reservationModal.css";
 const ClassroomUpdate = ({ classroom, onClose, onUpdate }) => {
   const BACKEND_URL = "http://localhost:8000";
 
+  // 모달 열릴 때 스크롤 금지되도록 설정
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, []);
+
   // 수정할 값들의 상태
   const [classroomData, setClassroomData] = useState({
     building: "",
@@ -101,19 +110,11 @@ const ClassroomUpdate = ({ classroom, onClose, onUpdate }) => {
                 onKeyDown={handleKeyDown}
               />
             </li>
+
             <li className="classroom-update__item">
-              <strong className="classroom-update__label">▪️ 위치: </strong>
-              <input
-                type="text"
-                name="contactLocation"
-                value={classroomData.contactLocation}
-                onChange={handleChange}
-                className="classroom-update__input"
-                onKeyDown={handleKeyDown}
-              />
-            </li>
-            <li className="classroom-update__item">
-              <strong className="classroom-update__label">▪️ 학과: </strong>
+              <strong className="classroom-update__label">
+                ▪️ 관리부서 / 학과:{" "}
+              </strong>
               <input
                 type="text"
                 name="contactDepartment"
@@ -136,11 +137,12 @@ const ClassroomUpdate = ({ classroom, onClose, onUpdate }) => {
             </li>
             <li className="classroom-update__item">
               <strong className="classroom-update__label">▪️ 비품: </strong>
-              <textarea
+              <input
+                type="text"
                 name="equipment"
                 value={classroomData.equipment}
                 onChange={handleChange}
-                className="classroom-update__textarea"
+                className="classroom-update__input"
                 onKeyDown={handleKeyDown}
               />
             </li>
