@@ -6,6 +6,8 @@ const pdfParse = require('pdf-parse');
 const { parseAndSaveClassIdxFromPDF } = require('../utils/pdfParser');
 
 const upload = multer({ dest: 'uploads/' });
+// 폐기 예정
+
 
 // POST /api/pdf-upload/:semester
 // http://localhost:8000/api/pdf-upload/2025-1
