@@ -1,3 +1,5 @@
+// 수정 예정
+
 const mongoose = require('mongoose');
 // const { userDB } = require('./mongoConnection'); // userDB 연결 
 
@@ -23,5 +25,5 @@ const studentSchema = new mongoose.Schema(
   { versionKey: false }
 );
 
-const Student = global.userDB.model('Student', studentSchema, 'ic'); 
+const Student = global.userDB.model('Student', studentSchema, 'student'); 
 module.exports = Student;
