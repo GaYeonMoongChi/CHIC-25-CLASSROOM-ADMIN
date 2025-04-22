@@ -1,10 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../css/reservationModal.css";
 import ClassroomUpdate from "./ClassroomUpdate";
 
 const DetailModal = ({ classroom, onClose, onUpdate }) => {
   // 백앤드 주소
   const BACKEND_URL = "http://localhost:8000";
+
+  useEffect(() => {
+    if (classroom) {
+      console.log("DetailModal opened with classroom:", classroom);
+    }
+  }, [classroom]);
 
   // 수정 모달 상태 관리
   const [isUpdateMode, setUpdateMode] = useState(false);
@@ -67,13 +73,9 @@ const DetailModal = ({ classroom, onClose, onUpdate }) => {
         <main className="classroom-details__main">
           <ul className="classroom-details__list">
             <li className="classroom-details__item">
-              <strong className="classroom-details__label">▪️ 위치: </strong>
-              <div className="classroom-details__content">
-                {displayValue(classroom.contactLocation)}
-              </div>
-            </li>
-            <li className="classroom-details__item">
-              <strong className="classroom-details__label">▪️ 학과: </strong>
+              <strong className="classroom-details__label">
+                ▪️ 관리부서 / 학과:{" "}
+              </strong>
               <div className="classroom-details__content">
                 {displayValue(classroom.contactDepartment)}
               </div>

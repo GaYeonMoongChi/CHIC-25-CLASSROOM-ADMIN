@@ -52,7 +52,7 @@
 
 .classroom-details__label {
   font-weight: 500;
-  width: 12%;
+  width: 20%;
 }
 
 .classroom-details__content {
@@ -113,7 +113,7 @@
 
 .classroom-create__label {
   font-weight: 500;
-  width: 15%;
+  width: 20%;
 }
 
 .classroom-create__list {
@@ -176,7 +176,7 @@
 }
 
 .classroom-update__label {
-  width: 15%;
+  width: 20%;
 }
 
 .classroom-update__list {

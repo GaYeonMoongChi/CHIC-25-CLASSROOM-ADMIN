@@ -102,23 +102,14 @@ const ClassroomCreate = ({ onClose, onCreate }) => {
               ></input>
             </li>
             <li className="classroom-create__item">
-              <strong className="classroom-create__label">▪️ 위치: </strong>
-              <input
-                type="text"
-                name="contactLocation"
-                className="classroom-create__input"
-                placeholder="ex. 비마관 4층"
-                value={classroomData.contactLocation}
-                onChange={handleChange}
-              ></input>
-            </li>
-            <li className="classroom-create__item">
-              <strong className="classroom-create__label">▪️ 학과: </strong>
+              <strong className="classroom-create__label">
+                ▪️ 관리부서 / 학과:{" "}
+              </strong>
               <input
                 type="text"
                 name="contactDepartment"
                 className="classroom-create__input"
-                placeholder="ex. 정보융합학부, 전자공학과, ..."
+                placeholder="ex. 정보융합학부, 전자공학과, MOOC센터..."
                 value={classroomData.contactDepartment}
                 onChange={handleChange}
               ></input>
@@ -136,13 +127,14 @@ const ClassroomCreate = ({ onClose, onCreate }) => {
             </li>
             <li className="classroom-create__item">
               <strong className="classroom-create__label">▪️ 장비: </strong>
-              <textarea
+              <input
+                type="text"
                 name="equipment"
-                className="classroom-create__textarea"
+                className="classroom-create__input"
                 placeholder="강의실에 구비되어 있는 장비를 입력하세요."
                 value={classroomData.equipment}
                 onChange={handleChange}
-              ></textarea>
+              ></input>
             </li>
             <li className="classroom-create__item">
               <strong className="classroom-create__label">▪️ 전화번호: </strong>
