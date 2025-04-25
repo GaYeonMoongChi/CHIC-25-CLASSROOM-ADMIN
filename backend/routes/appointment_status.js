@@ -9,10 +9,7 @@ const moment = require('moment');
 const dotenv = require('dotenv');
 dotenv.config();
 
-const studentDB = mongoose.createConnection(process.env.MONGO_URI_STUDENT, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
+const studentDB = mongoose.createConnection(process.env.MONGO_URI_STUDENT);
 
 const studentSchema = new mongoose.Schema({
   studentId: String,

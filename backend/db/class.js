@@ -3,13 +3,10 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 // MongoDB 연결
-const classDB = mongoose.createConnection(process.env.MONGO_URI_CLASS, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
+const classDB = mongoose.createConnection(process.env.MONGO_URI_CLASS);
 
-classDB.on('connected', () => console.log('MongoDB (class) 연결 완료'));
-classDB.on('error', err => console.error('MongoDB (class) 연결 실패:', err));
+// classDB.on('connected', () => console.log('MongoDB (class) 연결 완료'));
+// classDB.on('error', err => console.error('MongoDB (class) 연결 실패:', err));
 
 // 스키마 정의
 const classSchema = new mongoose.Schema({
