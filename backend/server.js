@@ -20,16 +20,9 @@ app.get("/", (req, res) => {
   res.send("서버가 정상적으로 실행 중입니다.");
 });
 
-// notify 라우트 추가
-// const { router: notifyRoutes, fetchNotices } = require("./routes/notify");
-// app.use("/api/notify", notifyRoutes); // 공지사항 API 경로 등록
-
 // MongoDB 연결 실행
 connectDB().then(() => {
   // 라우트 등록 (MongoDB 연결 이후에 실행해야 함)
-  // const studentRoutes = require("./routes/student");
-  // app.use("/api/students", studentRoutes);
-
   const classroomRoutes = require("./routes/classroom");
   app.use("/api/classroom", classroomRoutes);
 
@@ -41,9 +34,6 @@ connectDB().then(() => {
 
   const noticeRoutes = require("./routes/notice");
   app.use("/api/notice", noticeRoutes);
-
-  const pdfUploadRoutes = require("./routes/pdfUpload");
-  app.use("/api/pdf-upload", pdfUploadRoutes);
 
   const appointmentstatusRoutes = require("./routes/appointment_status");
   app.use("/api/appointment-status", appointmentstatusRoutes);
