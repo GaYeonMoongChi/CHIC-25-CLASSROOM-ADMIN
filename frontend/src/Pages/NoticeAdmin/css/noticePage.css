@@ -10,6 +10,13 @@
 
 .notice-page__title {
   font-size: 27px;
+  display: flex;
+  align-items: center;
+}
+
+.notice-page__title img {
+  width: 45px;
+  margin-right: 15px;
 }
 
 .notice-page__nav {

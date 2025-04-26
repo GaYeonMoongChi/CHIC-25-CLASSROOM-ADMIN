@@ -7,6 +7,7 @@ import Sidebar from "../../Components/ReservationAdmin/ReservationSidebar";
 import ClassroomBuilding from "../../Components/ReservationAdmin/Classroom/ClassroomBuilding";
 import ClassroomCreate from "../../Components/ReservationAdmin/Classroom/ClassroomCreate";
 import LogoutButton from "../../Components/LogoutButton";
+import KW_logo from "../../Image/KW_logo.svg";
 
 const ClassroomInfoPage = () => {
   // 백앤드 주소
@@ -96,7 +97,10 @@ const ClassroomInfoPage = () => {
       {/* 헤더 */}
       <div className="classroom-info-update__header">
         <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
-        <h1 className="classroom-info-update__title">강의실 정보 관리</h1>
+        <h1 className="classroom-info-update__title">
+          <img src={KW_logo} alt="🏫" />
+          강의실 정보 관리
+        </h1>
         <div className="classroom-info-update__nav">
           <button
             className="classroom-info-update__action-create"

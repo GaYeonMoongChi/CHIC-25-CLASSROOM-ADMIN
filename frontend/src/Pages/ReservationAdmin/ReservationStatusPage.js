@@ -7,6 +7,7 @@ import "./css/roomReservationStatus.css";
 import Sidebar from "../../Components/ReservationAdmin/ReservationSidebar";
 import NewReservation from "../../Components/ReservationAdmin/Reservation/NewReservation";
 import LogoutButton from "../../Components/LogoutButton";
+import KW_logo from "../../Image/KW_logo.svg";
 
 const RoomReservationStatusPage = () => {
   // 백앤드 주소
@@ -63,7 +64,10 @@ const RoomReservationStatusPage = () => {
       {/* 헤더 */}
       <div className="reservation-status__header">
         <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
-        <h1 className="reservation-status__title">강의실 예약현황</h1>
+        <h1 className="reservation-status__title">
+          <img src={KW_logo} alt="⏰" />
+          강의실 예약현황
+        </h1>
         <div className="reservation-status__nav">
           {/* TODO: 새 예약이 몇 개 있는지 수도 표시하면 좋을 듯. or 새 예약이 있으면 점으로만 표시*/}
           <button onClick={openModal}>

@@ -8,6 +8,7 @@ import ClassCreate from "../../Components/ReservationAdmin/Class/ClassCreate";
 import ClassPdfUpload from "../../Components/ReservationAdmin/Class/ClassPdfUpload";
 import LogoutButton from "../../Components/LogoutButton";
 import { useNavigate } from "react-router-dom";
+import KW_logo from "../../Image/KW_logo.svg";
 
 const ClassInfoPage = () => {
   // 백앤드 주소 | 네비게이트 상수 선언
@@ -132,7 +133,10 @@ const ClassInfoPage = () => {
       {/* 헤더 */}
       <div className="class-info-update__header">
         <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
-        <h1 className="class-info-update__title">강의 정보 관리</h1>
+        <h1 className="class-info-update__title">
+          <img src={KW_logo} alt="🧑‍🏫" />
+          강의 정보 관리
+        </h1>
         <div className="class-info-update__nav">
           <button
             className="class-info-update__action-create"
