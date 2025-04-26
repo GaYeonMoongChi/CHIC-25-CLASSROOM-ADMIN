@@ -8,7 +8,7 @@ const { exec } = require('child_process');
 
 const router = express.Router();
 
-// 📂 uploads 대신 temp 폴더 사용
+// uploads 대신 temp 폴더 사용
 const tempDir = path.join(__dirname, '..', 'temp');
 if (!fs.existsSync(tempDir)) {
   fs.mkdirSync(tempDir);
@@ -39,10 +39,10 @@ router.post('/upload', upload.single('pdf'), async (req, res) => {
   }
 
   const tempFilePath = path.resolve(file.path); // 파일 경로
-  console.log(`✅ PDF 임시 저장 완료: ${tempFilePath}`);
+  console.log(`PDF 임시 저장 완료: ${tempFilePath}`);
 
   const scriptDir = path.join(__dirname, '..', 'python');
-  const pdfplumberPath = path.join(scriptDir, 'pdfplumber.py');
+  const pdfplumberPath = path.join(scriptDir, 'pdf_plumber.py');
   const klasLecturePath = path.join(scriptDir, 'klas_lecture.py');
 
   const nodeScript1 = path.join(__dirname, '..', 'scripts', 'updateClassTime.js');
@@ -54,11 +54,11 @@ router.post('/upload', upload.single('pdf'), async (req, res) => {
 
   exec(command, (error, stdout, stderr) => {
     if (error) {
-      console.error('❌ PDF 파싱 실패:', error.message);
+      console.error('PDF 파싱 실패:', error.message);
       fs.unlinkSync(tempFilePath); // 파일 삭제
       return res.status(500).json({ error: 'PDF 파싱 실패', detail: error.message });
     }
-    console.log('📄 PDF 파싱 결과:\n', stdout);
+    console.log('PDF 파싱 결과:\n', stdout);
 
     const step2 = `${PYTHON_CMD} "${klasLecturePath}" "${semester}"`;
     const step3 = `node "${nodeScript1}" ${semester}`;
@@ -66,30 +66,30 @@ router.post('/upload', upload.single('pdf'), async (req, res) => {
 
     exec(step2, (err2, stdout2) => {
       if (err2) {
-        console.error('❌ KLAS 크롤링 실패:', err2.message);
+        console.error('KLAS 크롤링 실패:', err2.message);
         fs.unlinkSync(tempFilePath);
         return res.status(500).json({ error: 'Klas 크롤링 실패', detail: err2.message });
       }
-      console.log('📚 KLAS 크롤링 결과:\n', stdout2);
+      console.log('KLAS 크롤링 결과:\n', stdout2);
 
       exec(step3, (err3, stdout3) => {
         if (err3) {
-          console.error('❌ 강의 시간 업데이트 실패:', err3.message);
+          console.error('강의 시간 업데이트 실패:', err3.message);
           fs.unlinkSync(tempFilePath);
           return res.status(500).json({ error: '강의 시간 업데이트 실패', detail: err3.message });
         }
-        console.log('⏰ 강의시간 업데이트 결과:\n', stdout3);
+        console.log('강의시간 업데이트 결과:\n', stdout3);
 
         exec(step4, (err4, stdout4) => {
           fs.unlinkSync(tempFilePath); // 모든 과정 끝나고 삭제
 
           if (err4) {
-            console.error('❌ 강의실 정보 업데이트 실패:', err4.message);
+            console.error('강의실 정보 업데이트 실패:', err4.message);
             return res.status(500).json({ error: '강의실 정보 업데이트 실패', detail: err4.message });
           }
-          console.log('🏫 강의실 정보 업데이트 결과:\n', stdout4);
+          console.log('강의실 정보 업데이트 결과:\n', stdout4);
 
-          res.json({ message: `${semester} PDF 업로드 및 전체 파이프라인 완료` });
+          res.json({ message: `{semester} PDF 업로드 및 전체 파이프라인 완료` });
         });
       });
     });
