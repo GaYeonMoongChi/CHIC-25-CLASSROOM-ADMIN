@@ -16,6 +16,14 @@ if len(sys.argv) < 3:
 pdf_path = sys.argv[1]
 semester = sys.argv[2]
 
+# 현재 스크립트가 있는 디렉토리 (python 폴더)
+base_dir = os.path.dirname(os.path.abspath(__file__))
+
+# 여기에 수정
+klas_lecture_path = os.path.join(base_dir, "klas_lecture.py")
+updateClassTime_path = os.path.join(base_dir, "..", "scripts", "updateClassTime.js")
+updateClassroom_path = os.path.join(base_dir, "..", "scripts", "updateClassroom.js")
+
 client = MongoClient(os.getenv("MONGO_URI"))
 db = client["class"]
 
@@ -112,22 +120,23 @@ with pdfplumber.open(pdf_path) as pdf:
 # 저장
 if all_data:
     collection.insert_many(all_data)
-    print(f"✅ {len(all_data)}개의 강의 정보가 [{semester}] 컬렉션에 저장되었습니다.")
+    print(f"{len(all_data)}개의 강의 정보가 [{semester}] 컬렉션에 저장되었습니다.")
 else:
-    print("❌ 저장할 데이터가 없습니다.")
+    print("저장할 데이터가 없습니다.")
     sys.exit(0)
 
 # -------------------------
 # 💡 이후 단계 자동 실행
 # -------------------------
 
-print("\n📦 KLAS 강의실 정보 크롤링 시작...")
-subprocess.run(["python", "klas_lecture.py", semester], check=True)
 
-print("\n⏰ 강의시간 파싱 (updateClassTime.js)...")
-subprocess.run(["node", "../scripts/updateClassTime.js", semester], check=True)
+print("\nKLAS 강의실 정보 크롤링 시작...")
+subprocess.run(["python", klas_lecture_path, semester], check=True)
 
-print("\n🏫 강의실 정보 분리 (updateClassroom.js)...")
-subprocess.run(["node", "../scripts/updateClassroom.js", semester], check=True)
+print("\n강의시간 파싱 (updateClassTime.js)...")
+subprocess.run(["node", updateClassTime_path, semester], check=True)
+
+print("\n강의실 정보 분리 (updateClassroom.js)...")
+subprocess.run(["node", updateClassroom_path, semester], check=True)
 
 print("\n 전체 작업 완료!")
