@@ -6,6 +6,7 @@ import "./css/noticePage.css";
 import NoticeRow from "../../Components/NoticeAdmin/NoticeRow";
 import NoticeCreate from "../../Components/NoticeAdmin/NoticeCreate";
 import LogoutButton from "../../Components/LogoutButton";
+import KW_logo from "../../Image/KW_logo.svg";
 
 const NoticePage = () => {
   // 백앤드 주소
@@ -100,7 +101,10 @@ const NoticePage = () => {
   return (
     <div className="div">
       <div className="notice-page__header">
-        <h1 className="notice-page__title">공지사항</h1>
+        <h1 className="notice-page__title">
+          <img src={KW_logo} alt="🧑‍🏫" />
+          공지사항
+        </h1>
         <div className="notice-page__nav">
           <button
             className="notice-page__action-create"

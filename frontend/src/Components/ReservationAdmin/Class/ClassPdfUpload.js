@@ -33,18 +33,34 @@ const ClassPdfUpload = ({ onClose }) => {
   };
 
   const handleSubmit = async () => {
-    // pdf 파일이 아닐 경우 예외처리
     if (!semester || !pdfFile) {
       alert("학기 정보와 PDF 파일을 모두 입력해주세요.");
       return;
     }
 
-    const formData = new FormData();
-    formData.append("pdf", pdfFile);
-
     try {
       setIsUploading(true);
-      const response = await axios.post(
+
+      // 입력 학기에 대한 기존 파일 존재 여부 확인
+      const checkResponse = await axios.get(
+        `${BACKEND_URL}/api/pdf-exists/${semester}`
+      );
+
+      if (checkResponse.data.exists) {
+        const confirmReplace = window.confirm(
+          "이미 해당 학기의 강의 계획서가 존재합니다.\n기존 파일이 삭제되고 새 파일로 교체됩니다.\n계속 진행하시겠습니까?"
+        );
+        if (!confirmReplace) {
+          setIsUploading(false);
+          return;
+        }
+      }
+
+      // pdf 파일 업로드
+      const formData = new FormData();
+      formData.append("pdf", pdfFile);
+
+      const uploadResponse = await axios.post(
         `${BACKEND_URL}/api/pdf-upload/${semester}`,
         formData,
         {
@@ -53,8 +69,9 @@ const ClassPdfUpload = ({ onClose }) => {
           },
         }
       );
+
       alert("강의 등록이 완료되었습니다.");
-      console.log("강의 등록 성공:", response.data);
+      console.log("강의 등록 성공:", uploadResponse.data);
 
       handleClose();
     } catch (error) {

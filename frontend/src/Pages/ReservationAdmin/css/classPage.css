@@ -16,6 +16,13 @@
 
 .class-info-update__title {
   font-size: 27px;
+  display: flex;
+  align-items: center;
+}
+
+.class-info-update__title img {
+  width: 45px;
+  margin-right: 15px;
 }
 
 .class-info-update__action-create,

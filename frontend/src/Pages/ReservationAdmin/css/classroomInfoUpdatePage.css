@@ -16,6 +16,13 @@
 
 .classroom-info-update__title {
   font-size: 27px;
+  display: flex;
+  align-items: center;
+}
+
+.classroom-info-update__title img {
+  width: 45px;
+  margin-right: 15px;
 }
 
 .classroom-info-update__action-create,
