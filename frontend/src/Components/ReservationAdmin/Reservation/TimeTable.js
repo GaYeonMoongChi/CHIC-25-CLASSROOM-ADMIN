@@ -1,30 +1,48 @@
 import React from "react";
 import "../css/timelist.css";
 
-const TimeTable = ({ reservations }) => {
+const TimeTable = ({ reservations, loading }) => {
+  console.log("timetable: ", reservations);
   return (
     <div className="timetable-div">
-      <table className="timetable-table">
-        <tbody>
-          {reservations && reservations.length > 0 ? (
-            reservations.map((reservation, index) => (
-              <tr key={index}>
-                {/* 예약시간, 사용형태, 강의명(예약명), 사용자명(교수명) + 예약자 번호까지 표시해야 할 듯 이것도 Row 만들어가지고 Detail 모달창 새로 만들어야 되나*/}
-                <td>{reservation.time}</td>
-                <td>{reservation.course}</td>
-                <td>{reservation.event}</td>
-                <td>{reservation.username}</td>
+      {loading ? (
+        <div className="loading-message">로딩 중...</div>
+      ) : (
+        <table className="timetable-table">
+          <tbody>
+            {reservations && reservations.length > 0 ? (
+              reservations.map((item, index) =>
+                item.reservation.map((r, subIndex) => (
+                  <tr key={`${index}-${subIndex}`}>
+                    {r.tag === "class" && (
+                      <>
+                        <td>{r.start_time}</td>
+                        <td>{r.end_time}</td>
+                        <td>{r.class_name}</td>
+                        <td>{r.prof_name}</td>
+                      </>
+                    )}
+                    {r.tag === "reserve" && (
+                      <>
+                        <td>{r.reserve_start_time}</td>
+                        <td>{r.reserve_end_time}</td>
+                        <td>{r.purpose}</td>
+                        <td>{r.name}</td>
+                      </>
+                    )}
+                  </tr>
+                ))
+              )
+            ) : (
+              <tr>
+                <td className="no-result" colSpan="4">
+                  등록된 강의실 일정이 없습니다.
+                </td>
               </tr>
-            ))
-          ) : (
-            <tr>
-              <td className="no-result" colSpan="4">
-                등록된 강의실 일정이 없습니다.
-              </td>
-            </tr>
-          )}
-        </tbody>
-      </table>
+            )}
+          </tbody>
+        </table>
+      )}
     </div>
   );
 };

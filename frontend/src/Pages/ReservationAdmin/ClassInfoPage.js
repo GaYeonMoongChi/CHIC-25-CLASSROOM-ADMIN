@@ -30,7 +30,6 @@ const ClassInfoPage = () => {
   // 강의 데이터, 학기 데이터
   const [classInfo, setClassInfo] = useState([]);
   const [semester, setSemester] = useState([]);
-
   const [semesterList, setSemesterList] = useState([]);
 
   // 검색값 (강의명, 교수명)
