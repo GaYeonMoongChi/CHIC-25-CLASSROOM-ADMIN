@@ -1,4 +1,8 @@
 // routes/pdfUpload.js
+// http://localhost:8000/api/upload
+// Body : form - data
+// Key : Value = pdf(file) : upload file = semester : 0000-0
+
 
 const express = require('express');
 const multer = require('multer');

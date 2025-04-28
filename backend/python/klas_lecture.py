@@ -22,7 +22,7 @@ collection_name = sys.argv[1]
 load_dotenv()
 
 # MongoDB 연결
-client = MongoClient(os.getenv("MONGO_URI"))
+client = MongoClient(os.getenv("MONGO_URI_CLASS"))
 db = client["class"]
 collection = db[collection_name]
 

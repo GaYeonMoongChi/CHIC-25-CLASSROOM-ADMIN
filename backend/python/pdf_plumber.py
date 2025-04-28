@@ -8,9 +8,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# [PDF경로]와 [semester]를 인자로 받음
 if len(sys.argv) < 3:
-    print("사용법: python pdfplumber.py [파일경로] [학기명 예: 2025-1]")
+    print("사용법: python pdf_plumber.py [파일경로] [학기명 예: 2025-1]")
     sys.exit(1)
 
 pdf_path = sys.argv[1]
@@ -18,17 +17,21 @@ semester = sys.argv[2]
 
 # 현재 스크립트가 있는 디렉토리 (python 폴더)
 base_dir = os.path.dirname(os.path.abspath(__file__))
-
-# 여기에 수정
 klas_lecture_path = os.path.join(base_dir, "klas_lecture.py")
 updateClassTime_path = os.path.join(base_dir, "..", "scripts", "updateClassTime.js")
 updateClassroom_path = os.path.join(base_dir, "..", "scripts", "updateClassroom.js")
 
-client = MongoClient(os.getenv("MONGO_URI"))
+# 1. MongoDB 연결
+print(f"[1] MongoDB connecting...")
+client = MongoClient(os.getenv("MONGO_URI_CLASS"))
 db = client["class"]
+print(f"[1-1] MongoDB connect success")
 
-# 기존 collection 삭제
+# 2. PDF 열기
+print(f"[2] PDF opening: {pdf_path}")
+
 if semester in db.list_collection_names():
+    print(f"[2-1] original {semester} collection delete")
     db[semester].drop()
 
 collection = db[semester]
@@ -48,11 +51,9 @@ def extract_department_and_major(title):
             return {"department": parts[0]}
     return {}
 
-# 학정번호 유효성 검사
 def is_valid_class_idx(class_idx):
     return re.fullmatch(r"[A-Z0-9]{4}-\d-\d{4}-\d{2}", class_idx) is not None
 
-# 강의 데이터 추출
 def extract_classes_from_table(table, metadata):
     results = []
     for row in table:
@@ -82,7 +83,8 @@ def extract_classes_from_table(table, metadata):
             results.append(entry)
     return results
 
-# PDF 처리
+# 3. PDF 처리 시작
+print(f"[3] PDF parsing start")
 all_data = []
 last_metadata = {}
 
@@ -90,7 +92,7 @@ with pdfplumber.open(pdf_path) as pdf:
     for page_number, page in enumerate(pdf.pages):
         text = page.extract_text()
         if not text:
-            print(f"{page_number+1}페이지: 텍스트 없음")
+            print(f"[3-1] {page_number+1}page: no text")
             continue
 
         lines = text.split("\n")
@@ -103,7 +105,7 @@ with pdfplumber.open(pdf_path) as pdf:
         })
 
         if not tables:
-            print(f"{page_number+1}페이지: 테이블 없음")
+            print(f"[3-2] {page_number+1} page: no table")
             continue
 
         current_metadata = last_metadata.copy()
@@ -117,26 +119,15 @@ with pdfplumber.open(pdf_path) as pdf:
             extracted = extract_classes_from_table(cleaned, current_metadata)
             all_data.extend(extracted)
 
-# 저장
+print(f"[3-3] total data parsing - total {len(all_data)}data")
+
+# 4. MongoDB 저장
 if all_data:
+    print(f"[4] MongoDB saving start...")
     collection.insert_many(all_data)
-    print(f"{len(all_data)}개의 강의 정보가 [{semester}] 컬렉션에 저장되었습니다.")
+    print(f"[4-1] {len(all_data)} number [{semester}] collection save success")
 else:
-    print("저장할 데이터가 없습니다.")
+    print(f"[4-2] no saving data.")
     sys.exit(0)
 
-# -------------------------
-# 💡 이후 단계 자동 실행
-# -------------------------
-
-
-print("\nKLAS 강의실 정보 크롤링 시작...")
-subprocess.run(["python", klas_lecture_path, semester], check=True)
-
-print("\n강의시간 파싱 (updateClassTime.js)...")
-subprocess.run(["node", updateClassTime_path, semester], check=True)
-
-print("\n강의실 정보 분리 (updateClassroom.js)...")
-subprocess.run(["node", updateClassroom_path, semester], check=True)
-
-print("\n 전체 작업 완료!")
+print("\n total processing success !!")
