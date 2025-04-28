@@ -134,7 +134,7 @@ const ClassInfoPage = () => {
         <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
         <h1 className="class-info-update__title">
           <img src={KW_logo} alt="🧑‍🏫" />
-          강의 정보 관리
+          KW 강의 정보 관리
         </h1>
         <div className="class-info-update__nav">
           <button
