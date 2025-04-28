@@ -9,7 +9,8 @@ import NewReservation from "../../Components/ReservationAdmin/Reservation/NewRes
 import LogoutButton from "../../Components/LogoutButton";
 import KW_logo from "../../Image/KW_logo.svg";
 import moment from "moment";
-import { debounce } from "lodash"; // lodash의 debounce 사용
+import { debounce } from "lodash";
+import BuildingRooms from "../../Components/ReservationAdmin/Reservation/BuildingRooms";
 
 const RoomReservationStatusPage = () => {
   // 백앤드 주소
@@ -26,11 +27,9 @@ const RoomReservationStatusPage = () => {
   const [semesterList, setSemesterList] = useState([]);
 
   const [searchDate, setSearchDate] = useState(today);
-  const [searchRoom, setSearchRoom] = useState("102");
+  const [searchRoom, setSearchRoom] = useState("102호");
   const [searchBuilding, setBuilding] = useState("새빛관");
-
-  // 로딩 상태
-  const [isLoading, setLoading] = useState(false);
+  const [availableRooms, setAvailableRooms] = useState([]);
 
   // 사이드바 상태 관리
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -48,28 +47,22 @@ const RoomReservationStatusPage = () => {
   const onChangeRoom = (event) => {
     setSearchRoom(event.target.value);
   };
-  const onChangeBuilding = (e) => setBuilding(e.target.value);
+  const onChangeBuilding = (e) => {
+    const selectedBuilding = e.target.value;
+    setBuilding(selectedBuilding);
+
+    if (BuildingRooms[selectedBuilding]) {
+      setAvailableRooms(BuildingRooms[selectedBuilding]);
+      setSearchRoom(BuildingRooms[selectedBuilding][0]);
+    } else {
+      setAvailableRooms([]);
+      setSearchRoom(""); // 초기화
+    }
+  };
   const onChangeDate = (e) => setSearchDate(e.target.value);
   const handleSemesterChange = (e) => {
     setSemester(e.target.value);
   };
-
-  // 날짜, 건물명, 강의실로 필터링
-  const filteredReservations = reservationsInfo
-    .filter(
-      (res) =>
-        (searchBuilding === "" || res.building?.includes(searchBuilding)) &&
-        (searchRoom === "" || res.roomId?.includes(searchRoom))
-    )
-    .flatMap((res) =>
-      res.reservation
-        .filter((item) => !searchDate || item.date === searchDate) // 빈 문자열 처리
-        .map((item) => ({
-          ...item,
-          roomId: res.roomId,
-          building: res.building,
-        }))
-    );
 
   // 학기 데이터 요청
   const fetchSemester = async () => {
@@ -80,7 +73,7 @@ const RoomReservationStatusPage = () => {
       console.log("받아온 학기 데이터:", data);
 
       if (Array.isArray(data.collections) && data.collections.length > 0) {
-        setSemester(data.collections[0]); // 첫 번째 값을 선택
+        setSemester(data.collections[1]); // 두 번째 값을 선택 (2025-2)
         setSemesterList(data.collections);
       }
     } catch (error) {
@@ -89,42 +82,47 @@ const RoomReservationStatusPage = () => {
   };
 
   // 강의실 사용 현황 데이터 요청 (Default: '2025-2', '새빛관', '102', today)
-  const fetchReservations = useCallback(
-    debounce(async () => {
-      if (!semester) return;
-      setLoading(true); // 로딩 시작
-      try {
-        const response = await axios.get(
-          `${BACKEND_URL}/appointment-status/${semester}?building=${searchBuilding}&room=${searchRoom}&date=${searchDate}`
-        );
+  const fetchReservations = useCallback(async () => {
+    if (!semester) return;
+    try {
+      const response = await axios.get(
+        `${BACKEND_URL}/appointment-status/${semester}?building=${searchBuilding}&room=${searchRoom}&date=${searchDate}`
+      );
 
-        // 응답 데이터 구조 확인
-        console.log("응답 데이터:", response.data);
-        console.log("예약 데이터(results):", response.data.results);
+      console.log("응답 데이터:", response.data);
+      const results = response.data.results || [];
 
-        // 예약 데이터가 있으면 reservationsInfo에 설정
-        const results = response.data.results || [];
+      setReservationsInfo([
+        {
+          roomId: searchRoom,
+          building: searchBuilding,
+          reservation: results,
+        },
+      ]);
+    } catch (error) {
+      console.error("예약 현황 불러오기 실패:", error);
+    }
+  }, [semester, searchBuilding, searchRoom, searchDate]);
 
-        setReservationsInfo([
-          {
-            roomId: searchRoom,
-            building: searchBuilding,
-            reservation: results,
-          },
-        ]);
-      } catch (error) {
-        console.error("예약 현황 불러오기 실패:", error);
-      } finally {
-        setLoading(false); // 로딩 끝
-      }
-    }, 500),
-    [semester, searchBuilding, searchRoom, searchDate]
-  );
-
-  // 강의실 현황 데이터 요청
   useEffect(() => {
-    fetchReservations();
+    const debouncedFetch = debounce(() => {
+      fetchReservations();
+    }, 500);
+
+    debouncedFetch();
+
+    return () => {
+      debouncedFetch.cancel();
+    };
   }, [fetchReservations]);
+
+  useEffect(() => {
+    if (BuildingRooms[searchBuilding]) {
+      const rooms = BuildingRooms[searchBuilding];
+      setAvailableRooms(rooms);
+      setSearchRoom(rooms[0]);
+    }
+  }, []);
 
   // JWT 토큰 확인 및 리다이렉트
   useEffect(() => {
@@ -136,9 +134,6 @@ const RoomReservationStatusPage = () => {
 
     fetchSemester();
   }, [navigate]);
-
-  console.log("Filtered Reservations:", filteredReservations);
-  console.log("Loading Status:", isLoading);
 
   return (
     <div className="div">
@@ -182,30 +177,49 @@ const RoomReservationStatusPage = () => {
           </li>
           <li className="reservation-status__search-item">
             <label
-              htmlFor="search-author"
+              htmlFor="building-select"
               className="reservation-status__search-label"
             >
               건물명
             </label>
-            <input
-              type="text"
-              name="search"
+            <select
+              id="building-select"
               className="reservation-status__search-input"
-              placeholder="건물명으로 검색하세요."
-              onChange={onChangeBuilding}
               value={searchBuilding}
-            />
+              onChange={onChangeBuilding}
+            >
+              <option disabled value="">
+                건물을 선택하세요
+              </option>
+              <option value="기념관">기념관</option>
+              <option value="비마관">비마관</option>
+              <option value="화도관">화도관</option>
+              <option value="한울관">한울관</option>
+              <option value="누리관">누리관</option>
+              <option value="참빛관">참빛관</option>
+              <option value="새빛관">새빛관</option>
+            </select>
           </li>
           <li className="reservation-status__search-item">
             <label className="reservation-status__search-label">호수</label>
-            <input
-              type="text"
+            <select
               className="reservation-status__search-input"
-              placeholder="강의실 호수를 입력하세요."
-              onChange={onChangeRoom}
               value={searchRoom}
-            />
+              onChange={onChangeRoom}
+              disabled={availableRooms.length === 0} // 방이 없으면 select 비활성화
+            >
+              {availableRooms.length > 0 ? (
+                availableRooms.map((room, idx) => (
+                  <option key={idx} value={room}>
+                    {room}
+                  </option>
+                ))
+              ) : (
+                <option value="">선택할 수 있는 강의실이 없습니다</option>
+              )}
+            </select>
           </li>
+
           <li className="reservation-status__search-item">
             <label className="reservation-status__search-label">날짜</label>
             <input
@@ -221,7 +235,12 @@ const RoomReservationStatusPage = () => {
 
       {/* 타임 테이블*/}
       <div className="reservation-status__main">
-        <Timetable reservations={reservationsInfo} loading={isLoading} />
+        <Timetable
+          reservations={reservationsInfo}
+          date={searchDate}
+          building={searchBuilding}
+          roomId={searchRoom}
+        />
       </div>
 
       {/* 사이드바가 열릴 때 표시되는 오버레이 */}
