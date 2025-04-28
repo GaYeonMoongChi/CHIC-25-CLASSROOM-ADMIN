@@ -1,21 +1,71 @@
 import React from "react";
-import "../css/timelist.css";
+import "../css/timetable.css";
 
-const TimeTable = ({ reservations }) => {
+const TimeTable = ({ reservations, date, building, roomId }) => {
+  // 날짜 형식 변환
+  const formatDate = (dateString) => {
+    if (!dateString) return "";
+    const [year, month, day] = dateString.split("-");
+    return `${year}년 ${parseInt(month)}월 ${parseInt(day)}일`;
+  };
+
+  const totalReservationCount = reservations.reduce(
+    (acc, item) => acc + item.reservation.length,
+    0
+  );
+
   return (
     <div className="timetable-div">
+      {/* 테이블 제목 */}
+      <span className="table-title">
+        [{building} {roomId}] {formatDate(date)} 강의실 이용 시간표
+      </span>
+
+      {/* 테이블 메인 */}
       <table className="timetable-table">
         <tbody>
-          {reservations && reservations.length > 0 ? (
-            reservations.map((reservation, index) => (
-              <tr key={index}>
-                {/* 예약시간, 사용형태, 강의명(예약명), 사용자명(교수명) + 예약자 번호까지 표시해야 할 듯 이것도 Row 만들어가지고 Detail 모달창 새로 만들어야 되나*/}
-                <td>{reservation.time}</td>
-                <td>{reservation.course}</td>
-                <td>{reservation.event}</td>
-                <td>{reservation.username}</td>
-              </tr>
-            ))
+          {reservations &&
+          reservations.length > 0 &&
+          totalReservationCount > 0 ? (
+            reservations.map((item, index) => {
+              // 1. 각 item의 reservation을 정렬
+              const sortedReservations = [...item.reservation].sort((a, b) => {
+                const aTime =
+                  a.tag === "class" ? a.start_time : a.reserve_start_time;
+                const bTime =
+                  b.tag === "class" ? b.start_time : b.reserve_start_time;
+                return aTime.localeCompare(bTime); // 문자열 시간 비교
+              });
+
+              return sortedReservations.map((r, subIndex) => (
+                <tr key={`${index}-${subIndex}`}>
+                  {r.tag === "class" && (
+                    <>
+                      <td className="time">
+                        {r.start_time} - {r.end_time}
+                      </td>
+                      <td className="type">
+                        <span className="class_type">강의</span>
+                      </td>
+                      <td className="title">{r.class_name}</td>
+                      <td className="name">{r.prof_name}</td>
+                    </>
+                  )}
+                  {r.tag === "reserve" && (
+                    <>
+                      <td className="time">
+                        {r.reserve_start_time} - {r.reserve_end_time}
+                      </td>
+                      <td className="type">
+                        <span className="reservation_type">예약</span>
+                      </td>
+                      <td className="title">{r.purpose}</td>
+                      <td className="name">{r.name}</td>
+                    </>
+                  )}
+                </tr>
+              ));
+            })
           ) : (
             <tr>
               <td className="no-result" colSpan="4">

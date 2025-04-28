@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "../css/classroomBuilding.css";
 import ClassName from "./ClassName";
+import Keyboard_arrow_down from "../../../Image/Keyboard_arrow_down.svg";
+import Keyboard_arrow_up from "../../../Image/Keyboard_arrow_up.svg";
 
 const ClassDepartment = ({ classes, onUpdate }) => {
   const [openDepartments, setOpenDepartments] = useState({});
@@ -28,15 +30,30 @@ const ClassDepartment = ({ classes, onUpdate }) => {
     <>
       {Object.entries(grouped).map(([department, departmentNames]) => (
         <div key={department} className="classroom-info-update__building-block">
-          <div className="classroom-info__building-header">
-            <h2 className="classroom-info__building-name">📚 {department}</h2>
+          <div
+            className="classroom-info__building-header"
+            onClick={() => toggleDepartment(department)}
+          >
+            <h2 className="classroom-info__building-name">🧑‍🏫 {department}</h2>
             <button
               className="toggle-button"
-              onClick={() => toggleDepartment(department)}
+              onClick={(e) => {
+                e.stopPropagation();
+                toggleDepartment(department);
+              }}
             >
-              {openDepartments[department] ? "▲" : "▼"}
+              <img
+                src={
+                  openDepartments[department]
+                    ? Keyboard_arrow_up
+                    : Keyboard_arrow_down
+                }
+                alt="Toggle Arrow"
+                className="toggle-arrow"
+              />
             </button>
           </div>
+
           {openDepartments[department] && (
             <table className="classroom-info-update__table">
               <tbody>

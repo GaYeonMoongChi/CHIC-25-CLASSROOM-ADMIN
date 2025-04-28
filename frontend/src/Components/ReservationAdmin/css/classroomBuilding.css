@@ -5,6 +5,13 @@
 .classroom-info__building-header {
   display: flex;
   align-items: center;
+  cursor: pointer;
+  border-radius: 10px;
+  padding: 15px 10px;
+}
+
+.classroom-info__building-header:hover {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .toggle-button {
@@ -12,5 +19,8 @@
   border: none;
   cursor: pointer;
   font-size: 1rem;
-  margin-left: 50px;
+}
+
+.toggle-arrow {
+  width: 25px;
 }
