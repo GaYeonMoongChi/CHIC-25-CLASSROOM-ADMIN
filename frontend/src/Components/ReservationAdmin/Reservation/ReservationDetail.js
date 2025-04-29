@@ -2,9 +2,6 @@ import React, { useState, useEffect } from "react";
 import "../css/reservationModal.css";
 
 const ReservationDetail = ({ classroom, onClose, onUpdate }) => {
-  // 백앤드 주소
-  const BACKEND_URL = "http://localhost:8000";
-
   // 모달 열릴 때 스크롤 금지되도록 설정
   useEffect(() => {
     document.body.style.overflow = "hidden";

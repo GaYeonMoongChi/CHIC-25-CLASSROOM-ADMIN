@@ -164,7 +164,7 @@ const RoomReservationStatusPage = () => {
             </label>
             <select
               id="semester-select"
-              className="classroom-info__search-input"
+              className="reservation-status__search-input"
               value={semester}
               onChange={handleSemesterChange}
             >
