@@ -8,6 +8,14 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+
+def safe_print(msg: str):
+    try:
+        sys.stdout.buffer.write((msg + '\n').encode('utf-8'))
+        sys.stdout.flush()
+    except Exception as e:
+        pass  # 에러 무시
+
 if len(sys.argv) < 3:
     print("사용법: python pdf_plumber.py [파일경로] [학기명 예: 2025-1]")
     sys.exit(1)
@@ -28,7 +36,7 @@ db = client["class"]
 print(f"[1-1] MongoDB connect success")
 
 # 2. PDF 열기
-print(f"[2] PDF opening: {pdf_path}")
+safe_print(f"[2] PDF opening: {pdf_path}")
 
 if semester in db.list_collection_names():
     print(f"[2-1] original {semester} collection delete")
