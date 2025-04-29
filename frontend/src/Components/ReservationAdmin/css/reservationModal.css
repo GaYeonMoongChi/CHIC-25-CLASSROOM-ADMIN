@@ -88,7 +88,7 @@
   padding: 10px 20px;
   border-radius: 10px;
   border: none;
-  background-color: rgb(255, 195, 56);
+  background-color: rgb(255, 209, 101);
   color: white;
   margin-right: 20px;
   font-weight: bold;
@@ -342,51 +342,6 @@
   opacity: 0.6;
   pointer-events: none;
   cursor: not-allowed;
-}
-
-/* 강의 삭제 모달 */
-.class-delete__title {
-  margin-bottom: 25px;
-}
-
-.class-delete__main_div {
-  width: 95%;
-}
-
-.class-delete__main {
-  width: 100%;
-}
-
-.class-delete__table {
-  width: 100%;
-}
-
-.class-delete__td {
-  padding: 0px;
-  width: 50px;
-}
-
-.class-delete__footer {
-  position: sticky;
-  bottom: 0;
-  right: 0;
-  margin-top: 30px;
-  display: flex;
-  justify-content: flex-end;
-}
-
-.class-delete__submit {
-  padding: 10px 20px;
-  border-radius: 10px;
-  border: none;
-  background-color: #10069f;
-  color: white;
-  margin-right: 0;
-  font-weight: bold;
-}
-
-.class-delete__submit:hover {
-  background-color: rgb(18, 39, 75);
 }
 
 /* 강의 수정 모달 */
