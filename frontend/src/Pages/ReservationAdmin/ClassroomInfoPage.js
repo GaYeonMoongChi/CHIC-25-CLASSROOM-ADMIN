@@ -33,7 +33,10 @@ const ClassroomInfoPage = () => {
 
   // 검색창에 값 입력하면 상태 변환
   const onChangeIdx = (e) => setIdx(e.target.value);
-  const onChangeBuilding = (e) => setBuilding(e.target.value);
+  const onChangeBuilding = (e) => {
+    setBuilding(e.target.value);
+    setIdx(""); // 건물 변경 시 호수 초기화
+  };
 
   // JWT 토큰 확인 및 리다이렉트
   useEffect(() => {
@@ -56,10 +59,22 @@ const ClassroomInfoPage = () => {
     fetchClassrooms();
   }, [navigate]);
 
+  // 건물 목록 (중복 제거)
+  const buildingList = [...new Set(classroomInfo.map((c) => c.building))];
+
+  // 선택된 건물에 맞는 호수 목록
+  const roomList = searchBuilding
+    ? classroomInfo
+        .filter((c) => c.building === searchBuilding)
+        .map((c) => c.room)
+        .filter((room, idx, self) => self.indexOf(room) === idx) // 중복 제거
+        .sort((a, b) => a - b) // 정렬 (옵션)
+    : [];
+
   // 검색 결과 화면에 반영
   const filteredClassrooms = classroomInfo.filter((classroom) => {
     return (
-      (searchIdx === "" || classroom.room?.toString().includes(searchIdx)) &&
+      (searchIdx === "" || classroom.room?.toString() === searchIdx) &&
       (searchBuilding === "" || classroom.building?.includes(searchBuilding))
     );
   });
@@ -99,7 +114,7 @@ const ClassroomInfoPage = () => {
         <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
         <h1 className="classroom-info-update__title">
           <img src={KW_logo} alt="🏫" />
-          강의실 정보 관리
+          KW 강의실 정보 관리
         </h1>
         <div className="classroom-info-update__nav">
           <button
@@ -115,32 +130,39 @@ const ClassroomInfoPage = () => {
       {/* 강의실 검색바 */}
       <div className="classroom-info__search">
         <ul className="classroom-info__search-list">
+          {/* 건물명 선택 */}
           <li className="classroom-info__search-item">
-            <label
-              htmlFor="search-author"
-              className="classroom-info__search-label"
-            >
-              건물명
-            </label>
-            <input
-              type="text"
-              name="search"
+            <label className="classroom-info__search-label">건물명</label>
+            <select
               className="classroom-info__search-input"
-              placeholder="건물명으로 검색하세요."
-              onChange={onChangeBuilding}
               value={searchBuilding}
-            />
+              onChange={onChangeBuilding}
+            >
+              <option value="">전체</option>
+              {buildingList.map((building) => (
+                <option key={building} value={building}>
+                  {building}
+                </option>
+              ))}
+            </select>
           </li>
+
+          {/* 호수 선택 */}
           <li className="classroom-info__search-item">
             <label className="classroom-info__search-label">호수</label>
-            <input
-              type="text"
-              name="search"
+            <select
               className="classroom-info__search-input"
-              placeholder="강의실 호수로 검색하세요."
-              onChange={onChangeIdx}
               value={searchIdx}
-            />
+              onChange={onChangeIdx}
+              disabled={!searchBuilding} // 건물 먼저 선택해야 활성화
+            >
+              <option value="">전체</option>
+              {roomList.map((room) => (
+                <option key={room} value={room}>
+                  {room}
+                </option>
+              ))}
+            </select>
           </li>
         </ul>
       </div>

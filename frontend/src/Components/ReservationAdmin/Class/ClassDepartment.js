@@ -3,6 +3,7 @@ import "../css/classroomBuilding.css";
 import ClassName from "./ClassName";
 import Keyboard_arrow_down from "../../../Image/Keyboard_arrow_down.svg";
 import Keyboard_arrow_up from "../../../Image/Keyboard_arrow_up.svg";
+import Book from "../../../Image/Book.svg";
 
 const ClassDepartment = ({ classes, onUpdate }) => {
   const [openDepartments, setOpenDepartments] = useState({});
@@ -34,7 +35,9 @@ const ClassDepartment = ({ classes, onUpdate }) => {
             className="classroom-info__building-header"
             onClick={() => toggleDepartment(department)}
           >
-            <h2 className="classroom-info__building-name">🧑‍🏫 {department}</h2>
+            <h2 className="building-name">
+              <img src={Book} alt="📖" /> {department}
+            </h2>
             <button
               className="toggle-button"
               onClick={(e) => {

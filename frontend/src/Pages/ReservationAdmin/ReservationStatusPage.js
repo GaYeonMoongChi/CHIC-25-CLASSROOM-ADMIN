@@ -142,7 +142,7 @@ const RoomReservationStatusPage = () => {
         <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
         <h1 className="reservation-status__title">
           <img src={KW_logo} alt="⏰" />
-          강의실 예약현황
+          KW 강의실 예약현황
         </h1>
         <div className="reservation-status__nav">
           {/* TODO: 새 예약이 몇 개 있는지 수도 표시하면 좋을 듯. or 새 예약이 있으면 점으로만 표시*/}
