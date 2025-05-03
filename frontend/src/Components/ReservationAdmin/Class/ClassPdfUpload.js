@@ -1,10 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import "../css/reservationModal.css";
+import Calendar from "./Calendar";
 
 const ClassPdfUpload = ({ onClose }) => {
   // 백앤드 주소
   const BACKEND_URL = "http://localhost:8000";
+
+  const [startDate, setStartDate] = useState(null); // 개강
+  const [endDate, setEndDate] = useState(null); // 종강
 
   // 모달 열릴 때 스크롤 금지되도록 설정
   useEffect(() => {
@@ -33,34 +37,29 @@ const ClassPdfUpload = ({ onClose }) => {
   };
 
   const handleSubmit = async () => {
-    if (!semester || !file) {
-      alert("학기 정보와 PDF 파일을 모두 입력해주세요.");
+    if (!semester || !file || !startDate || !endDate) {
+      alert("학기, 개강일, 종강일, PDF 파일을 모두 입력해주세요.");
       return;
     }
 
     try {
       setIsUploading(true);
 
-      // pdf 파일 업로드
       const formData = new FormData();
       formData.append("pdf", file);
       formData.append("semester", semester);
-
-      console.log(formData);
+      formData.append("start_date", startDate);
+      formData.append("end_date", endDate);
 
       const uploadResponse = await axios.post(
         `${BACKEND_URL}/api/upload`,
         formData,
         {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
+          headers: { "Content-Type": "multipart/form-data" },
         }
       );
 
       alert("강의 등록이 완료되었습니다.");
-      console.log("강의 등록 성공:", uploadResponse.data);
-
       handleClose();
     } catch (error) {
       console.error("강의 등록 오류:", error);
@@ -98,12 +97,33 @@ const ClassPdfUpload = ({ onClose }) => {
               <strong className="class-create__label">▪️ 년도-학기: </strong>
               <input
                 type="text"
-                placeholder=" '2025-2' 형식으로 입력하세요."
+                placeholder=" '2025-1', '2025-2', '2025-여름', '2025-겨울' 형식으로 입력하세요."
                 value={semester}
                 onChange={(e) => setSemester(e.target.value)}
                 onKeyDown={handleKeyDown}
                 className="class-create__input"
               />
+            </li>
+
+            <li className="class-create__item">
+              <strong className="class-create__label">▪️ 개강 - 종강일:</strong>
+              <div className="date-range-row">
+                <Calendar
+                  onChange={setStartDate}
+                  selectedDate={startDate}
+                  onDateChange={(formattedDate) => {
+                    console.log(formattedDate);
+                  }}
+                />
+                <span>-</span>
+                <Calendar
+                  onChange={setEndDate}
+                  selectedDate={endDate}
+                  onDateChange={(formattedDate) => {
+                    console.log(formattedDate);
+                  }}
+                />
+              </div>
             </li>
 
             <li className="class-create__item">
