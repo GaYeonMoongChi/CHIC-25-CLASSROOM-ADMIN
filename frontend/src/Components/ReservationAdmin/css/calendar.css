@@ -1,3 +1,12 @@
+.react-datepicker-wrapper {
+  padding: 15px 10px;
+  width: 100%;
+  background-color: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: none;
+  border-radius: 10px;
+}
+
 .custom-header button {
   background-color: transparent;
   color: #798df3;
@@ -56,4 +65,26 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2) !important;
   border-radius: 30px !important;
   color: #ffffff !important;
+}
+
+.react-datepicker__input-container input {
+  width: 80%;
+  background-color: #fff;
+  border: none;
+  padding-left: 10px;
+  font-size: 17px;
+  cursor: pointer;
+}
+
+.react-datepicker__input-container > input {
+  margin-left: 10px;
+}
+
+.react-datepicker__input-container input::placeholder {
+  color: rgb(83, 83, 83);
+  transition: color 0.3s ease;
+}
+
+.react-datepicker__input-container input:focus {
+  outline: none;
 }

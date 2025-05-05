@@ -1,4 +1,4 @@
-const buildingRooms = {
+const BuildingRooms = {
   기념관: [
     "201호",
     "202호",
@@ -90,4 +90,4 @@ const buildingRooms = {
   새빛관: ["101호", "102호"],
 };
 
-export default buildingRooms;
+export default BuildingRooms;
