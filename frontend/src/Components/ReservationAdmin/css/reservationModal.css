@@ -40,15 +40,19 @@
   font-size: 25px;
 }
 
+.classroom-details__main {
+  height: 70%;
+}
 .classroom-details__list {
   list-style: none;
+  height: 100%;
 }
 
 .classroom-details__item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 15px;
+  margin-bottom: 30px;
 }
 
 .classroom-details__label {
@@ -89,14 +93,14 @@
   padding: 10px 20px;
   border-radius: 10px;
   border: none;
-  background-color: rgb(255, 209, 101);
+  background-color: #334080;
   color: white;
   margin-right: 20px;
   font-weight: bold;
 }
 
 .classroom-details__delete:hover {
-  background-color: rgb(255, 184, 17);
+  background-color: #2a3468;
 }
 
 /* 강의실 등록 모달 */
@@ -109,7 +113,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 15px;
+  margin-bottom: 30px;
 }
 
 .classroom-create__label {
@@ -117,9 +121,14 @@
   width: 20%;
 }
 
+.classroom-create__main {
+  height: 70%;
+}
+
 .classroom-create__list {
   list-style: none;
   width: 100%;
+  height: 100%;
   text-align: left;
 }
 
@@ -173,7 +182,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 15px;
+  margin-bottom: 30px;
 }
 
 .classroom-update__label {
@@ -230,15 +239,20 @@
   font-size: 25px;
 }
 
+.class-details__main {
+  height: 70%;
+}
+
 .class-details__list {
   list-style: none;
+  height: 100%;
 }
 
 .class-details__item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 15px;
+  margin-bottom: 30px;
 }
 
 .class-details__label {
@@ -369,11 +383,16 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 15px;
+  margin-bottom: 30px;
+}
+
+.class-update__main {
+  height: 70%;
 }
 
 .class-update__list {
   list-style: none;
+  height: 100%;
 }
 
 .class-update__input {
@@ -440,7 +459,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 15px;
+  margin-bottom: 30px;
 }
 
 .reservation-details__label {
@@ -481,12 +500,12 @@
   padding: 10px 20px;
   border-radius: 10px;
   border: none;
-  background-color: rgb(255, 209, 101);
+  background-color: #334080;
   color: white;
   margin-right: 20px;
   font-weight: bold;
 }
 
 .reservation-details__delete:hover {
-  background-color: rgb(255, 184, 17);
+  background-color: #2a3468;
 }

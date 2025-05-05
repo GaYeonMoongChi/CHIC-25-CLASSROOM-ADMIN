@@ -40,6 +40,9 @@ const RoomReservationStatusPage = () => {
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
+  // 새 예약 상태
+  const [newReservations, setNewReservations] = useState([]);
+
   // 강의실 사용 정보 데이터
   const [reservationsInfo, setReservationsInfo] = useState([]);
 
@@ -150,7 +153,33 @@ const RoomReservationStatusPage = () => {
     }
 
     fetchSemester();
+    fetchNewReservations();
   }, [navigate]);
+
+  // 새 예약 가져오기 (API 연동)
+  const fetchNewReservations = async () => {
+    try {
+      const response = await axios.get(`${BACKEND_URL}/appointment/new`);
+      setNewReservations(response.data); // 데이터 형식은 추후 조정
+    } catch (error) {
+      console.error("새 예약 가져오기 실패:", error);
+    }
+  };
+
+  // 새 예약 확인 (읽음 처리)
+  const markAsChecked = async (reservationId) => {
+    try {
+      // API로 읽음 처리 요청 (여기선 예시, 추후 경로/방식 수정 가능)
+      await axios.post(`${BACKEND_URL}/appointment/new/${reservationId}/check`);
+
+      // 프론트엔드에서도 즉시 반영
+      setNewReservations((prev) =>
+        prev.filter((reservation) => reservation.id !== reservationId)
+      );
+    } catch (error) {
+      console.error("예약 확인 처리 실패:", error);
+    }
+  };
 
   return (
     <div className="div">
@@ -162,9 +191,8 @@ const RoomReservationStatusPage = () => {
           KW 강의실 사용현황
         </h1>
         <div className="reservation-status__nav">
-          {/* TODO: 새 예약이 몇 개 있는지 수도 표시하면 좋을 듯. or 새 예약이 있으면 점으로만 표시*/}
           <button onClick={openModal}>
-            새 예약 <span>5</span>
+            새 예약 <span>{newReservations.length}</span>
           </button>
           <LogoutButton />
         </div>
@@ -265,7 +293,9 @@ const RoomReservationStatusPage = () => {
         <div className="sidebar-overlay" onClick={toggleSidebar}></div>
       )}
 
-      {isModalOpen && <NewReservation onClose={closeModal} />}
+      {isModalOpen && (
+        <NewReservation onClose={closeModal} onCheck={markAsChecked} />
+      )}
     </div>
   );
 };

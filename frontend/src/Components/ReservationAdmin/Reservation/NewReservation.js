@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import "../css/reservationModal.css";
 
-const NewReservation = ({ onClose, reservation }) => {
-  // 새 예약 알림 모달
+const NewReservation = ({ onClose, reservation = [], onCheck }) => {
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
@@ -15,10 +14,31 @@ const NewReservation = ({ onClose, reservation }) => {
 
         <main className="new-reservation__main">
           <ul className="new-reservation__list">
-            <li className="new-reservation__item">
-              <strong className="new-reservation__label">새빛관 102호</strong>
-              <p className="new-reservation__content">예약자명~ </p>
-            </li>
+            {reservation.length === 0 ? (
+              <li className="new-reservation__item">
+                <p className="new-reservation__content">
+                  새로운 예약이 없습니다.
+                </p>
+              </li>
+            ) : (
+              reservation.map((item) => (
+                <li key={item.id} className="new-reservation__item">
+                  <strong className="new-reservation__label">
+                    {item.building} {item.room}
+                  </strong>
+                  <p className="new-reservation__content">
+                    예약자: {item.name} <br />
+                    날짜: {item.date} {item.time}
+                  </p>
+                  <button
+                    className="new-reservation__check-button"
+                    onClick={() => onCheck(item.id)}
+                  >
+                    확인
+                  </button>
+                </li>
+              ))
+            )}
           </ul>
         </main>
       </div>

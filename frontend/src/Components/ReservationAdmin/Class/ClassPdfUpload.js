@@ -119,7 +119,7 @@ const ClassPdfUpload = ({ onClose }) => {
           <button className="modal-close" onClick={onClose}>
             ✖
           </button>
-          <h1 className="class-create__title">강의 계획서 업로드</h1>
+          <h1 className="class-create__title">시간표 PDF 파일 업로드</h1>
         </header>
 
         <main className="class-create__main">
