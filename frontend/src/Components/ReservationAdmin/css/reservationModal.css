@@ -425,3 +425,68 @@
   margin-left: 10px;
   margin-right: 10px;
 }
+
+/* 강의실 사용현황 상세보기 모달 */
+.reservation-details__title {
+  margin-bottom: 50px;
+  font-size: 25px;
+}
+
+.reservation-details__list {
+  list-style: none;
+}
+
+.reservation-details__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.reservation-details__label {
+  font-weight: 500;
+  width: 20%;
+}
+
+.reservation-details__content {
+  padding: 15px 10px;
+  width: 100%;
+  background-color: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: none;
+  border-radius: 10px;
+}
+
+.reservation-details__update_div {
+  margin-top: 30px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.reservation-details__update {
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: none;
+  background-color: #6078f3;
+  color: white;
+  margin-right: 20px;
+  font-weight: bold;
+}
+
+.reservation-details__update:hover {
+  background-color: #415ff7;
+}
+
+.reservation-details__delete {
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: none;
+  background-color: rgb(255, 209, 101);
+  color: white;
+  margin-right: 20px;
+  font-weight: bold;
+}
+
+.reservation-details__delete:hover {
+  background-color: rgb(255, 184, 17);
+}

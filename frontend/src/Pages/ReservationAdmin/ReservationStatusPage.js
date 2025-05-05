@@ -64,17 +64,34 @@ const RoomReservationStatusPage = () => {
     setSemester(e.target.value);
   };
 
+  // 학기 정렬 (ex. ["2025-겨울", "2025-2", "2025-여름", "2025-1", "2024-겨울", "2024-1"])
+  const sortSemesterList = (list) => {
+    const semesterOrder = { 겨울: 4, 2: 3, 여름: 2, 1: 1 };
+
+    return [...list].sort((a, b) => {
+      const [aYear, aSem] = a.split("-");
+      const [bYear, bSem] = b.split("-");
+
+      // 연도 비교 (내림차순: 큰 연도 먼저)
+      if (parseInt(aYear) !== parseInt(bYear)) {
+        return parseInt(bYear) - parseInt(aYear);
+      }
+
+      // 학기 비교 (겨울 > 2 > 여름 > 1 순으로)
+      return semesterOrder[bSem] - semesterOrder[aSem];
+    });
+  };
+
   // 학기 데이터 요청
   const fetchSemester = async () => {
     try {
       const response = await axios.get(`${BACKEND_URL}/class/collections`);
       const data = response.data;
 
-      console.log("받아온 학기 데이터:", data);
-
       if (Array.isArray(data.collections) && data.collections.length > 0) {
-        setSemester(data.collections[1]); // 두 번째 값을 선택 (2025-2)
-        setSemesterList(data.collections);
+        const sortedList = sortSemesterList(data.collections);
+        setSemesterList(sortedList);
+        setSemester(sortedList[0]);
       }
     } catch (error) {
       console.error("학기 목록을 가져오는 중 오류 발생:", error);
