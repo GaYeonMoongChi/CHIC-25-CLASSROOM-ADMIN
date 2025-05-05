@@ -44,7 +44,7 @@ const Login = () => {
       // 관리자 유형에 따라 페이지 이동
       const { type } = data;
       if (type === "class_admin") {
-        navigate("/Classroom");
+        navigate("/Reservation");
       } else if (type === "ad_admin") {
         navigate("/Notice");
       } else {

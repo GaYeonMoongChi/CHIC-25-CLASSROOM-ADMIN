@@ -3,6 +3,8 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "../css/calendar.css";
 
+import { ko } from "date-fns/locale";
+
 // Date 데이터를 text 형식으로 변환
 const formatDate = (date) => {
   if (!date) return "";
@@ -43,6 +45,7 @@ const Calendar = ({ selectedDate, onChange, onDateChange }) => {
       onChange={handleChange}
       customInput={<CustomInput />}
       dateFormat="yyyy-MM-dd"
+      locale={ko}
       onCalendarOpen={() => setIsOpen(true)}
       onCalendarClose={() => setIsOpen(false)}
     />

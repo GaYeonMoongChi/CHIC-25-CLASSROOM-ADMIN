@@ -46,8 +46,6 @@ const ClassInfoPage = () => {
       const response = await axios.get(`${BACKEND_URL}/${semester}`);
       const data = response.data;
 
-      console.log("받아온 강의 데이터:", data);
-
       if (Array.isArray(data.classes)) {
         setClassInfo(data.classes);
       } else {
@@ -64,15 +62,32 @@ const ClassInfoPage = () => {
       const response = await axios.get(`${BACKEND_URL}/collections`);
       const data = response.data;
 
-      console.log("받아온 학기 데이터:", data);
-
       if (Array.isArray(data.collections) && data.collections.length > 0) {
-        setSemester(data.collections[0]); // 최신 학기를 default로 화면에 띄움.
-        setSemesterList(data.collections);
+        const sortedList = sortSemesterList(data.collections);
+        setSemesterList(sortedList);
+        setSemester(sortedList[0]);
       }
     } catch (error) {
       console.error("학기 목록을 가져오는 중 오류 발생:", error);
     }
+  };
+
+  // 학기 정렬 (ex. ["2025-겨울", "2025-2", "2025-여름", "2025-1", "2024-겨울", "2024-1"])
+  const sortSemesterList = (list) => {
+    const semesterOrder = { 겨울: 4, 2: 3, 여름: 2, 1: 1 };
+
+    return [...list].sort((a, b) => {
+      const [aYear, aSem] = a.split("-");
+      const [bYear, bSem] = b.split("-");
+
+      // 연도 비교 (내림차순: 큰 연도 먼저)
+      if (parseInt(aYear) !== parseInt(bYear)) {
+        return parseInt(bYear) - parseInt(aYear);
+      }
+
+      // 학기 비교 (겨울 > 2 > 여름 > 1 순으로)
+      return semesterOrder[bSem] - semesterOrder[aSem];
+    });
   };
 
   // token 없으면 로그인 페이지로 리다이렉트
