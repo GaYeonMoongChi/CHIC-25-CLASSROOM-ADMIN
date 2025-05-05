@@ -281,11 +281,15 @@
   font-size: 25px;
 }
 
+.class-create__main {
+  height: 70%;
+}
+
 .class-create__item {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 15px;
+  margin-bottom: 30px;
 }
 
 .class-create__label {
