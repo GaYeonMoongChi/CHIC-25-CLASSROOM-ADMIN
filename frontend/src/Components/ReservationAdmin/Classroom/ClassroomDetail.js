@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../css/reservationModal.css";
 import ClassroomUpdate from "./ClassroomUpdate";
+import School from "../../../Image/School.svg";
 
 const DetailModal = ({ classroom, onClose, onUpdate }) => {
   // 백앤드 주소
@@ -21,6 +22,7 @@ const DetailModal = ({ classroom, onClose, onUpdate }) => {
 
   if (!classroom) return null;
 
+  // 데이터 없으면 '정보없음' 띄우기
   const displayValue = (value) => {
     if (value === null || value === undefined || value === "" || value === 0) {
       return "정보없음";
@@ -60,7 +62,6 @@ const DetailModal = ({ classroom, onClose, onUpdate }) => {
     }
   };
 
-  // 강의실 상세정보 모달
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
@@ -69,6 +70,7 @@ const DetailModal = ({ classroom, onClose, onUpdate }) => {
             ✖
           </button>
           <h1 className="classroom-details__title">
+            <img className="school_image" src={School} alt="🏢" />{" "}
             {displayValue(classroom.building)} {displayValue(classroom.room)}
           </h1>
         </header>

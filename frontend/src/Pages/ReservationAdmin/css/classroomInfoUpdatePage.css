@@ -18,6 +18,7 @@
   font-size: 27px;
   display: flex;
   align-items: center;
+  text-align: center;
 }
 
 .classroom-info-update__title img {
@@ -33,7 +34,7 @@
   border-radius: 30px;
   padding: 10px 3px;
   cursor: pointer;
-  font-size: 15px;
+  font-size: 16px;
   text-align: center;
   width: 100px;
   transition: background-color 0.3s ease;
@@ -113,6 +114,14 @@
 .classroom-info__building-name {
   font-size: 20px;
   padding-left: 40px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+}
+
+.school-image {
+  width: 30px;
 }
 
 .classroom-info-update__table {

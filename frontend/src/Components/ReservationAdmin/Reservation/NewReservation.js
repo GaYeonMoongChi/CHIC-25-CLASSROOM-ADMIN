@@ -1,5 +1,6 @@
 import React from "react";
-import "../css/reservationModal.css";
+import "../css/newReservation.css";
+import Calender from "../../../Image/Calender.svg";
 
 const NewReservation = ({ onClose, reservation = [], onCheck }) => {
   return (
@@ -9,7 +10,9 @@ const NewReservation = ({ onClose, reservation = [], onCheck }) => {
           <button className="modal-close" onClick={onClose}>
             ✖
           </button>
-          <h1 className="new-reservation__title">새 예약</h1>
+          <h1 className="new-reservation__title">
+            <img className="calender-image" src={Calender} alt="📅" /> 새 예약
+          </h1>
         </header>
 
         <main className="new-reservation__main">

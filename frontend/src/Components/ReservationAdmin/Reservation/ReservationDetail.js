@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../css/reservationModal.css";
+import Calender from "../../../Image/Calender.svg";
 
 const ReservationDetail = ({ rowData, onClose }) => {
   // 모달 열릴 때 스크롤 금지
@@ -28,6 +29,7 @@ const ReservationDetail = ({ rowData, onClose }) => {
             ✖
           </button>
           <h1 className="reservation-details__title">
+            <img className="calender-image" src={Calender} alt="📅" />
             {isClass ? rowData.class_name : rowData.purpose}
           </h1>
         </header>

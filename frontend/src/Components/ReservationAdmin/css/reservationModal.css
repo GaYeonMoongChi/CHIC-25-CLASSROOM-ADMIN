@@ -38,6 +38,14 @@
 .classroom-details__title {
   margin-bottom: 50px;
   font-size: 25px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+}
+
+.school_image {
+  width: 30px;
 }
 
 .classroom-details__main {
@@ -107,6 +115,10 @@
 .classroom-create__title {
   margin-bottom: 50px;
   font-size: 25px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
 }
 
 .classroom-create__item {
@@ -176,6 +188,14 @@
 .classroom-update__title {
   margin-bottom: 50px;
   font-size: 25px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+}
+
+.classroom-update__main {
+  height: 70%;
 }
 
 .classroom-update__item {
@@ -191,6 +211,7 @@
 
 .classroom-update__list {
   list-style: none;
+  height: 100%;
 }
 
 .classroom-update__input {
@@ -237,6 +258,14 @@
 .class-details__title {
   margin-bottom: 50px;
   font-size: 25px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+}
+
+.book-image {
+  width: 30px;
 }
 
 .class-details__main {
@@ -293,6 +322,10 @@
 .class-create__title {
   margin-bottom: 50px;
   font-size: 25px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
 }
 
 .class-create__main {
@@ -372,6 +405,10 @@
 .class-update__title {
   margin-bottom: 50px;
   font-size: 25px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
 }
 
 .class-update__label {
@@ -449,6 +486,14 @@
 .reservation-details__title {
   margin-bottom: 50px;
   font-size: 25px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+}
+
+.calender-image {
+  width: 30px;
 }
 
 .reservation-details__list {

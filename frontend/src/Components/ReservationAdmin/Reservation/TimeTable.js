@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../css/timetable.css";
 import ReservationDetail from "./ReservationDetail";
+import Calender from "../../../Image/Calender.svg";
 
 const TimeTable = ({ reservations, date, building, roomId }) => {
   // 날짜 형식 변환
@@ -37,7 +38,8 @@ const TimeTable = ({ reservations, date, building, roomId }) => {
     <div className="timetable-div">
       {/* 테이블 제목 */}
       <span className="table-title">
-        [{building} {roomId}] {formatDate(date)} 강의실 이용 시간표
+        [{building} {roomId}] {formatDate(date)} 강의실 이용 시간표{" "}
+        <img className="calender_image" src={Calender} alt="📅" />
       </span>
 
       {/* 테이블 메인 */}

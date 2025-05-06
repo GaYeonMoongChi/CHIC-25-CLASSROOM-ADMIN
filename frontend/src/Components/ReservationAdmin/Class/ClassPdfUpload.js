@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import "../css/reservationModal.css";
 import Calendar from "./Calendar";
+import Book from "../../../Image/Book.svg";
 
 const ClassPdfUpload = ({ onClose }) => {
   // 백앤드 주소
@@ -119,7 +120,10 @@ const ClassPdfUpload = ({ onClose }) => {
           <button className="modal-close" onClick={onClose}>
             ✖
           </button>
-          <h1 className="class-create__title">시간표 PDF 파일 업로드</h1>
+          <h1 className="class-create__title">
+            <img className="book-image" src={Book} alt="📖" />
+            시간표 PDF 파일 업로드
+          </h1>
         </header>
 
         <main className="class-create__main">
