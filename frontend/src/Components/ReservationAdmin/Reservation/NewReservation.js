@@ -27,13 +27,17 @@ const NewReservation = ({
     setIsDetailModalOpen(false);
   };
 
-  // ✅ 전체 확인 버튼 클릭 시 호출
+  // 전체 확인 버튼 클릭 시, 모든 new 예약이 checked 예약으로
   const handleCheckAll = async () => {
+    const confirmed = window.confirm(
+      "정말 모든 새 예약을 확인 처리하시겠습니까?"
+    );
+    if (!confirmed) return;
+
     try {
-      await axios.post("/api/reserve/check-all"); // 프록시 설정된 경우
+      await axios.post("/api/reserve/check-all");
       alert("모든 새 예약을 확인 처리했습니다.");
 
-      // 갱신을 원하면 상위에서 내려준 함수 호출
       if (fetchNewReservations) {
         fetchNewReservations();
       }
@@ -54,7 +58,7 @@ const NewReservation = ({
             <img className="calender-image" src={Calender} alt="📅" /> 새 예약
           </h1>
 
-          {/* ✅ 전체 확인 버튼 추가 */}
+          {/* 전체 확인 버튼 */}
           {reservation.length > 0 && (
             <button
               className="new-reservation__check-all"

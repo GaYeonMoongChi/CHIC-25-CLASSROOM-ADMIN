@@ -48,9 +48,6 @@
   width: 30px;
 }
 
-.classroom-details__main {
-  height: 70%;
-}
 .classroom-details__list {
   list-style: none;
   height: 100%;
@@ -87,28 +84,30 @@
   padding: 10px 20px;
   border-radius: 10px;
   border: none;
-  background-color: #6078f3;
-  color: white;
+  background-color: white;
+  color: #798df3;
   margin-right: 20px;
   font-weight: bold;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .classroom-details__update:hover {
-  background-color: #415ff7;
+  background-color: #798df349;
 }
 
 .classroom-details__delete {
   padding: 10px 20px;
   border-radius: 10px;
   border: none;
-  background-color: #334080;
-  color: white;
+  background-color: white;
+  color: #e89baa;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   margin-right: 20px;
   font-weight: bold;
 }
 
 .classroom-details__delete:hover {
-  background-color: #2a3468;
+  background-color: #e89baa52;
 }
 
 /* 강의실 등록 모달 */
@@ -131,10 +130,6 @@
 .classroom-create__label {
   font-weight: 500;
   width: 20%;
-}
-
-.classroom-create__main {
-  height: 70%;
 }
 
 .classroom-create__list {
@@ -174,14 +169,15 @@
   padding: 10px 20px;
   border-radius: 10px;
   border: none;
-  background-color: #798df3;
-  color: white;
+  background-color: white;
+  color: #798df3;
   margin-right: 20px;
   font-weight: bold;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .classroom-create__submit:hover {
-  background-color: #6078f3;
+  background-color: #798df349;
 }
 
 /* 강의실 수정 모달 */
@@ -192,10 +188,6 @@
   align-items: center;
   text-align: center;
   gap: 10px;
-}
-
-.classroom-update__main {
-  height: 70%;
 }
 
 .classroom-update__item {
@@ -244,14 +236,15 @@
   padding: 10px 20px;
   border-radius: 10px;
   border: none;
-  background-color: #798df3;
-  color: white;
+  background-color: white;
+  color: #798df3;
   margin-right: 20px;
   font-weight: bold;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .classroom-update__submit:hover {
-  background-color: #6078f3;
+  background-color: #798df349;
 }
 
 /* 강의 상세보기 모달 */
@@ -266,10 +259,6 @@
 
 .book-image {
   width: 30px;
-}
-
-.class-details__main {
-  height: 70%;
 }
 
 .class-details__list {
@@ -308,14 +297,15 @@
   padding: 10px 20px;
   border-radius: 10px;
   border: none;
-  background-color: #798df3;
-  color: white;
+  background-color: white;
+  color: #798df3;
   margin-right: 20px;
   font-weight: bold;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .class-details__update:hover {
-  background-color: #6078f3;
+  background-color: #798df349;
 }
 
 /* 강의 등록 모달 */
@@ -326,10 +316,6 @@
   align-items: center;
   text-align: center;
   gap: 10px;
-}
-
-.class-create__main {
-  height: 70%;
 }
 
 .class-create__item {
@@ -385,14 +371,15 @@
   padding: 10px 20px;
   border-radius: 10px;
   border: none;
-  background-color: #798df3;
-  color: white;
+  background-color: white;
+  color: #798df3;
   margin-right: 20px;
   font-weight: bold;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .class-create__submit:hover {
-  background-color: #6078f3;
+  background-color: #798df349;
 }
 
 .class-create__submit.disabled {
@@ -421,10 +408,6 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 30px;
-}
-
-.class-update__main {
-  height: 70%;
 }
 
 .class-update__list {
@@ -461,14 +444,15 @@
   padding: 10px 20px;
   border-radius: 10px;
   border: none;
-  background-color: #798df3;
-  color: white;
+  background-color: white;
+  color: #798df3;
   margin-right: 20px;
   font-weight: bold;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .class-update__submit:hover {
-  background-color: #6078f3;
+  background-color: #798df349;
 }
 
 .date-range-row {
@@ -531,26 +515,28 @@
   padding: 10px 20px;
   border-radius: 10px;
   border: none;
-  background-color: #6078f3;
-  color: white;
+  background-color: white;
+  color: #798df3;
   margin-right: 20px;
   font-weight: bold;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .reservation-details__update:hover {
-  background-color: #415ff7;
+  background-color: #798df349;
 }
 
 .reservation-details__delete {
   padding: 10px 20px;
   border-radius: 10px;
   border: none;
-  background-color: #334080;
-  color: white;
+  background-color: white;
+  color: #e89baa;
   margin-right: 20px;
   font-weight: bold;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .reservation-details__delete:hover {
-  background-color: #2a3468;
+  background-color: #e89baa52;
 }
