@@ -169,18 +169,18 @@ const ClassInfoPage = () => {
       </div>
 
       {/* 검색바 */}
-      <div className="classroom-info__search">
-        <ul className="classroom-info__search-list">
-          <li className="classroom-info__search-item">
+      <div className="class-info__search">
+        <ul className="class-info__search-list">
+          <li className="class-info__search-item">
             <label
               htmlFor="semester-select"
-              className="classroom-info__search-label"
+              className="class-info__search-label"
             >
               학기
             </label>
             <select
               id="semester-select"
-              className="classroom-info__search-input"
+              className="class-info__search-input"
               value={semester}
               onChange={handleSemesterChange}
             >
@@ -192,12 +192,12 @@ const ClassInfoPage = () => {
             </select>
           </li>
 
-          <li className="classroom-info__search-item">
-            <label className="classroom-info__search-label">강의명</label>
+          <li className="class-info__search-item">
+            <label className="class-info__search-label">강의명</label>
             <input
               type="text"
               name="search"
-              className="classroom-info__search-input"
+              className="class-info__search-input"
               placeholder="강의명으로 검색하세요."
               onChange={onChangeClassName}
               value={searchClassName}
