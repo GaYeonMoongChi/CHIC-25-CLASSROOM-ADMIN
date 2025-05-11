@@ -21,10 +21,15 @@ const TimeTable = ({ reservations, date, building, roomId }) => {
   const [selectedRowData, setSelectedRowData] = useState(null);
 
   const openDetailModal = (rowData) => {
+    const startTime =
+      rowData.tag === "class" ? rowData.start_time : rowData.reserve_start_time;
+    const endTime =
+      rowData.tag === "class" ? rowData.end_time : rowData.reserve_end_time;
     setSelectedRowData({
       ...rowData,
       building,
       roomId,
+      timeRange: `${startTime} - ${endTime}`,
     });
     setDetailModalOpen(true);
   };

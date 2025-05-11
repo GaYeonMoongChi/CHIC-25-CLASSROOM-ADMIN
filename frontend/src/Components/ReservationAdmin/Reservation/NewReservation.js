@@ -1,8 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import "../css/newReservation.css";
 import Calender from "../../../Image/Calender.svg";
+import ReservationDetail from "../Reservation/ReservationDetail";
 
 const NewReservation = ({ onClose, reservation = [], onCheck }) => {
+  const [selectedReservation, setSelectedReservation] = useState(null);
+  const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
+
+  const openDetailModal = (item) => {
+    setSelectedReservation(item);
+    setIsDetailModalOpen(true);
+  };
+
+  const closeDetailModal = () => {
+    setSelectedReservation(null);
+    setIsDetailModalOpen(false);
+  };
+
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
@@ -18,32 +32,33 @@ const NewReservation = ({ onClose, reservation = [], onCheck }) => {
         <main className="new-reservation__main">
           <ul className="new-reservation__list">
             {reservation.length === 0 ? (
-              <li className="new-reservation__item">
-                <p className="new-reservation__content">
-                  새로운 예약이 없습니다.
-                </p>
-              </li>
+              <p className="new-reservation__none-reservation">
+                새로운 예약이 없습니다.
+              </p>
             ) : (
-              reservation.map((item) => (
-                <li key={item.id} className="new-reservation__item">
-                  <strong className="new-reservation__label">
-                    {item.building} {item.room}
-                  </strong>
-                  <p className="new-reservation__content">
-                    예약자: {item.name} <br />
-                    날짜: {item.date} {item.time}
-                  </p>
-                  <button
-                    className="new-reservation__check-button"
-                    onClick={() => onCheck(item.id)}
-                  >
-                    확인
-                  </button>
-                </li>
+              reservation.map((item, idx) => (
+                <table key={idx} className="new-reservation__table">
+                  <tbody>
+                    <tr onClick={() => openDetailModal(item)}>
+                      <td>{item.date}</td>
+                      <td>
+                        {item.building} {item.room}
+                      </td>
+                      <td>{item.purpose}</td>
+                    </tr>
+                  </tbody>
+                </table>
               ))
             )}
           </ul>
         </main>
+
+        {isDetailModalOpen && selectedReservation && (
+          <ReservationDetail
+            rowData={selectedReservation}
+            onClose={closeDetailModal}
+          />
+        )}
       </div>
     </div>
   );

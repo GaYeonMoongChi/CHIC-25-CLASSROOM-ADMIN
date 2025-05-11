@@ -169,7 +169,7 @@ const RoomReservationStatusPage = () => {
   // 새 예약 확인 (읽음 처리)
   const markAsChecked = async (reservationId) => {
     try {
-      // API로 읽음 처리 요청 (여기선 예시, 추후 경로/방식 수정 가능)
+      // API로 읽음 처리 요청 (여기선 예시, 추후 경로/방식 수정)
       await axios.post(`${BACKEND_URL}/appointment/new/${reservationId}/check`);
 
       // 프론트엔드에서도 즉시 반영

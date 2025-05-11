@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import "../css/reservationModal.css";
 import Calender from "../../../Image/Calender.svg";
 
@@ -30,13 +30,22 @@ const ReservationDetail = ({ rowData, onClose }) => {
           </button>
           <h1 className="reservation-details__title">
             <img className="calender-image" src={Calender} alt="📅" />
-            {isClass ? rowData.class_name : rowData.purpose}
+            {isClass ? rowData.class_name : rowData.purpose} /{" "}
+            {isClass ? rowData.prof_name : rowData.name}
           </h1>
         </header>
 
         <main className="reservation-details__main">
           <ul className="reservation-details__list">
-            {/* 공통: 강의실 빌딩 / 호수 */}
+            {/* 공통: 이용시간, 강의실 빌딩 / 호수 */}
+            <li className="reservation-details__item">
+              <strong className="reservation-details__label">
+                ▪️ 이용 시간:
+              </strong>
+              <div className="reservation-details__content">
+                {rowData.timeRange}
+              </div>
+            </li>
             <li className="reservation-details__item">
               <strong className="reservation-details__label">▪️ 강의실:</strong>
               <div className="reservation-details__content">
@@ -49,18 +58,18 @@ const ReservationDetail = ({ rowData, onClose }) => {
               <>
                 <li className="reservation-details__item">
                   <strong className="reservation-details__label">
-                    ▪️ 교수명:
+                    ▪️ 강의명:
                   </strong>
                   <div className="reservation-details__content">
-                    {rowData.prof_name}
+                    {rowData.class_name}
                   </div>
                 </li>
                 <li className="reservation-details__item">
                   <strong className="reservation-details__label">
-                    ▪️ 강의 시간:
+                    ▪️ 교수명:
                   </strong>
                   <div className="reservation-details__content">
-                    {rowData.start_time} - {rowData.end_time}
+                    {rowData.prof_name}
                   </div>
                 </li>
               </>
@@ -71,6 +80,14 @@ const ReservationDetail = ({ rowData, onClose }) => {
               <>
                 <li className="reservation-details__item">
                   <strong className="reservation-details__label">
+                    ▪️ 예약목적:
+                  </strong>
+                  <div className="reservation-details__content">
+                    {rowData.purpose}
+                  </div>
+                </li>
+                <li className="reservation-details__item">
+                  <strong className="reservation-details__label">
                     ▪️ 예약자명:
                   </strong>
                   <div className="reservation-details__content">
@@ -79,18 +96,10 @@ const ReservationDetail = ({ rowData, onClose }) => {
                 </li>
                 <li className="reservation-details__item">
                   <strong className="reservation-details__label">
-                    ▪️ 예약자 전화번호:
+                    ▪️ 예약자 연락처:
                   </strong>
                   <div className="reservation-details__content">
-                    {rowData.phone ?? "-"}
-                  </div>
-                </li>
-                <li className="reservation-details__item">
-                  <strong className="reservation-details__label">
-                    ▪️ 예약 시간:
-                  </strong>
-                  <div className="reservation-details__content">
-                    {rowData.reserve_start_time} - {rowData.reserve_end_time}
+                    {rowData.phone ?? "정보없음"}
                   </div>
                 </li>
               </>

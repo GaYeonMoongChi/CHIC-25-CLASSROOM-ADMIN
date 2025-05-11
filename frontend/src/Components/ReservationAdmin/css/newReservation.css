@@ -10,3 +10,7 @@
 .calender-image {
   width: 30px;
 }
+
+.new-reservation__none-reservation {
+  color: #798df3;
+}
