@@ -17,7 +17,7 @@ def safe_print(msg: str):
         pass  # 에러 무시
 
 if len(sys.argv) < 3:
-    print("사용법: python pdf_plumber.py [파일경로] [학기명 예: 2025-1]")
+    print("사용법: python pdf_plumber.py [학기명 예: 2025-1]")
     sys.exit(1)
 
 pdf_path = sys.argv[1]
