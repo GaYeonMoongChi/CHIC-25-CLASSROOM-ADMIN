@@ -67,7 +67,7 @@ const RoomReservationStatusPage = () => {
     setSemester(e.target.value);
   };
 
-  // 학기 정렬 (ex. ["2025-겨울", "2025-2", "2025-여름", "2025-1", "2024-겨울", "2024-1"])
+  // 학기 정렬 (ex. ["2025-겨울", "2025-2", "2025-여름", "2025-1", "2024-겨울", "2024-2"])
   const sortSemesterList = (list) => {
     const semesterOrder = { 겨울: 4, 2: 3, 여름: 2, 1: 1 };
 
@@ -156,25 +156,22 @@ const RoomReservationStatusPage = () => {
     fetchNewReservations();
   }, [navigate]);
 
-  // 새 예약 가져오기 (API 연동)
+  // 새 예약 가져오기
   const fetchNewReservations = async () => {
     try {
-      const response = await axios.get(`${BACKEND_URL}/appointment/new`);
-      setNewReservations(response.data); // 데이터 형식은 추후 조정
+      const response = await axios.get(`${BACKEND_URL}/reserve/check`);
+      setNewReservations(response.data?.data || []);
     } catch (error) {
-      console.error("새 예약 가져오기 실패:", error);
+      console.error("새 예약 불러오기 실패:", error);
     }
   };
 
   // 새 예약 확인 (읽음 처리)
   const markAsChecked = async (reservationId) => {
     try {
-      // API로 읽음 처리 요청 (여기선 예시, 추후 경로/방식 수정)
-      await axios.post(`${BACKEND_URL}/appointment/new/${reservationId}/check`);
-
-      // 프론트엔드에서도 즉시 반영
+      await axios.post(`${BACKEND_URL}/reserve/${reservationId}/check`);
       setNewReservations((prev) =>
-        prev.filter((reservation) => reservation.id !== reservationId)
+        prev.filter((reservation) => reservation._id !== reservationId)
       );
     } catch (error) {
       console.error("예약 확인 처리 실패:", error);
@@ -294,7 +291,12 @@ const RoomReservationStatusPage = () => {
       )}
 
       {isModalOpen && (
-        <NewReservation onClose={closeModal} onCheck={markAsChecked} />
+        <NewReservation
+          onClose={closeModal}
+          onCheck={markAsChecked}
+          reservation={newReservations}
+          fetchNewReservations={fetchNewReservations}
+        />
       )}
     </div>
   );
