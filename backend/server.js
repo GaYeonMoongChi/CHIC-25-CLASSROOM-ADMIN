@@ -38,6 +38,9 @@ connectDB().then(() => {
   const appointmentstatusRoutes = require("./routes/appointment_status");
   app.use("/api/appointment-status", appointmentstatusRoutes);
 
+  const reserveCheck = require('./routes/reserveCheck');
+  app.use('/api/reserve', reserveCheck);
+
   const uploadPdfRoute = require('./routes/pdfupload');
   app.use('/api', uploadPdfRoute);
 

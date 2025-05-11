@@ -10,8 +10,11 @@ const uri = process.env.MONGO_URI_CLASS;
 
 // 학기 인자 확인
 const semester = process.argv[2];
-if (!semester || !/^\d{4}-\d$/.test(semester)) {
-  console.error('학기 형식이 올바르지 않습니다. 예: 2025-1');
+const isStandardFormat = /^\d{4}-\d$/.test(semester);
+const isSeasonFormat = /^\d{4}-[\u3131-\uD79D]{2}$/.test(semester); // 한글 2자
+
+if (!semester || (!isStandardFormat && !isSeasonFormat)) {
+  console.error('학기 형식이 올바르지 않습니다. 예: 2025-1 또는 2025-여름');
   process.exit(1);
 }
 

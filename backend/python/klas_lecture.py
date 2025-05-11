@@ -11,6 +11,14 @@ from selenium.webdriver.chrome.service import Service
 from selenium.common.exceptions import UnexpectedAlertPresentException, NoAlertPresentException, ElementNotInteractableException
 from pymongo.errors import CursorNotFound
 from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.options import Options
+
+chrome_options = Options()
+chrome_options.add_argument("--headless")
+chrome_options.add_argument("--disable-gpu")
+chrome_options.add_argument("--window-size=1920,1080")
+chrome_options.add_argument("--no-sandbox")
+chrome_options.add_argument("--disable-dev-shm-usage")
 
 # 인자 체크
 if len(sys.argv) < 2:
@@ -27,7 +35,7 @@ db = client["class"]
 collection = db[collection_name]
 
 # Selenium 웹드라이버 설정
-driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
+driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
 
 def handle_alert():
     try:
