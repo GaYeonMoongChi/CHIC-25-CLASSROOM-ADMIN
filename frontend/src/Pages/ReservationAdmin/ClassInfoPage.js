@@ -147,7 +147,7 @@ const ClassInfoPage = () => {
             className="class-info-update__action-create"
             onClick={togglePdfModal}
           >
-            시간표 파일 등록
+            시간표 등록
           </button>
           <LogoutButton />
         </div>

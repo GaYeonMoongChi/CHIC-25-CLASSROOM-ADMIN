@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import "../css/timetable.css";
+import ReservationDetail from "./ReservationDetail";
 
 const TimeTable = ({ reservations, date, building, roomId }) => {
   // 날짜 형식 변환
@@ -13,6 +14,24 @@ const TimeTable = ({ reservations, date, building, roomId }) => {
     (acc, item) => acc + item.reservation.length,
     0
   );
+
+  // 모달 상태 + 선택한 row 데이터 상태
+  const [isDetailModalOpen, setDetailModalOpen] = useState(false);
+  const [selectedRowData, setSelectedRowData] = useState(null);
+
+  const openDetailModal = (rowData) => {
+    setSelectedRowData({
+      ...rowData,
+      building,
+      roomId,
+    });
+    setDetailModalOpen(true);
+  };
+
+  const closeDetailModal = () => {
+    setSelectedRowData(null);
+    setDetailModalOpen(false);
+  };
 
   return (
     <div className="timetable-div">
@@ -28,17 +47,19 @@ const TimeTable = ({ reservations, date, building, roomId }) => {
           reservations.length > 0 &&
           totalReservationCount > 0 ? (
             reservations.map((item, index) => {
-              // 1. 각 item의 reservation을 정렬
               const sortedReservations = [...item.reservation].sort((a, b) => {
                 const aTime =
                   a.tag === "class" ? a.start_time : a.reserve_start_time;
                 const bTime =
                   b.tag === "class" ? b.start_time : b.reserve_start_time;
-                return aTime.localeCompare(bTime); // 문자열 시간 비교
+                return aTime.localeCompare(bTime);
               });
 
               return sortedReservations.map((r, subIndex) => (
-                <tr key={`${index}-${subIndex}`}>
+                <tr
+                  key={`${index}-${subIndex}`}
+                  onClick={() => openDetailModal(r)}
+                >
                   {r.tag === "class" && (
                     <>
                       <td className="time">
@@ -75,6 +96,14 @@ const TimeTable = ({ reservations, date, building, roomId }) => {
           )}
         </tbody>
       </table>
+
+      {/* 디테일 모달 */}
+      {isDetailModalOpen && (
+        <ReservationDetail
+          onClose={closeDetailModal}
+          rowData={selectedRowData} // 선택한 row 데이터 넘기기
+        />
+      )}
     </div>
   );
 };
