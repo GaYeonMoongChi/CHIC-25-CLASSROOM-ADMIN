@@ -10,8 +10,11 @@ dotenv.config();
 
 // 인자로 학기명 받기
 const semester = process.argv[2];
-if (!semester || !/^\d{4}-\d$/.test(semester)) {
-  console.error('학기 형식 오류: 예) node updateClassTime.js 2025-1');
+const isStandardFormat = /^\d{4}-\d$/.test(semester);
+const isSeasonFormat = /^\d{4}-[\u3131-\uD79D]{2}$/.test(semester); // 한글 2자
+
+if (!semester || (!isStandardFormat && !isSeasonFormat)) {
+  console.error('학기 형식 오류: 예) 2025-1 또는 2025-여름');
   process.exit(1);
 }
 
@@ -47,7 +50,7 @@ const updateClassTimes = async () => {
     console.log(`${semester} 업데이트 완료`);
     process.exit(0);
   } catch (error) {
-    console.error(' 업데이트 실패:', error);
+    console.error('업데이트 실패:', error);
     process.exit(1);
   }
 };

@@ -13,7 +13,7 @@ function parseClassDaytime(class_daytime) {
     return result; // class_daytime이 없으면 그대로 반환
   }
 
-  console.log(`🔹 변환 시작: ${class_daytime}`);
+  console.log(`변환 시작: ${class_daytime}`);
 
   // 정규식을 사용하여 `요일+숫자` 패턴을 찾기 (ex: "월6", "수5", "금3,4") -> ,다음에 숫자인지 글자인지
   const sessions = class_daytime.match(/[월화수목금]\d+(?:,\d+)*/g);
