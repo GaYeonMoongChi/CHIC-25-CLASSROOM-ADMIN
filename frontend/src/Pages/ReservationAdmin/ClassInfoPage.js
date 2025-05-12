@@ -204,12 +204,12 @@ const ClassInfoPage = () => {
             />
           </li>
 
-          <li className="classroom-info__search-item">
-            <label className="classroom-info__search-label">교수명</label>
+          <li className="class-info__search-item">
+            <label className="class-info__search-label">교수명</label>
             <input
               type="text"
               name="search"
-              className="classroom-info__search-input"
+              className="class-info__search-input"
               placeholder="교수명으로 검색하세요."
               onChange={onChangeProfName}
               value={searchProfName}

@@ -197,10 +197,10 @@ const RoomReservationStatusPage = () => {
 
       <div className="reservation-status__search">
         <ul className="reservation-status__search-list">
-          <li className="classroom-info__search-item">
+          <li className="reservation-status__search-item">
             <label
               htmlFor="semester-select"
-              className="classroom-info__search-label"
+              className="reservation-status__search-label"
             >
               학기
             </label>
