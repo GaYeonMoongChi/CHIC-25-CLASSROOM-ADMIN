@@ -1,10 +1,21 @@
 .new-reservation__title {
-  margin-bottom: 50px;
   font-size: 25px;
   display: flex;
   align-items: center;
   text-align: center;
   gap: 10px;
+  margin-bottom: 10px;
+}
+
+.new-reservation__header p {
+  margin-bottom: 50px;
+  padding-left: 50px;
+  font-size: 13px;
+}
+
+.new-reservation__header p strong {
+  font-size: bold;
+  color: #798df3;
 }
 
 .calender-image {
@@ -13,4 +24,76 @@
 
 .new-reservation__none-reservation {
   color: #798df3;
+}
+
+.new-reservation__check-all {
+  background-color: white;
+  color: #798df3;
+  border: none;
+  border-radius: 30px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 13px;
+  text-align: center;
+  width: 100px;
+  transition: background-color 0.3s ease;
+  font-weight: 500;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-left: 10px;
+}
+
+.new-reservation__check-all:hover {
+  background-color: #798df349;
+}
+
+.new-reservation__table {
+  width: 80%;
+  margin: 0 auto;
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 0 1px;
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.377);
+  padding: 10px 15px;
+}
+
+.new-reservation__table tr {
+  background-color: #f9f9f9;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.new-reservation__image {
+  width: 15px;
+  margin-right: 10px;
+}
+
+.new-reservation__table td {
+  border: none;
+  padding: 8px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+
+.new-reservation__date {
+  width: 100%;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.new-reservation__purpose {
+  font-weight: 500;
+}
+.new-reservation__badge {
+  width: 100%;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.new-reservation__badge img {
+  width: 3px;
 }

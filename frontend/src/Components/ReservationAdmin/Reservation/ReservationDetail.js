@@ -37,25 +37,27 @@ const ReservationDetail = ({ rowData, onClose }) => {
 
         <main className="reservation-details__main">
           <ul className="reservation-details__list">
-            {/* 공통: 이용시간, 강의실 빌딩 / 호수 */}
-            <li className="reservation-details__item">
-              <strong className="reservation-details__label">
-                ▪️ 이용 시간:
-              </strong>
-              <div className="reservation-details__content">
-                {rowData.timeRange}
-              </div>
-            </li>
-            <li className="reservation-details__item">
-              <strong className="reservation-details__label">▪️ 강의실:</strong>
-              <div className="reservation-details__content">
-                {rowData.building} {rowData.roomId}
-              </div>
-            </li>
-
             {/* 강의인 경우 */}
             {isClass && (
               <>
+                <li className="reservation-details__item">
+                  <strong className="reservation-details__label">
+                    ▪️ 이용 시간:
+                  </strong>
+                  <div className="reservation-details__content">
+                    {rowData.timeRange}
+                  </div>
+                </li>
+                <li className="reservation-details__item">
+                  <strong className="reservation-details__label">
+                    ▪️ 강의실:
+                  </strong>
+                  <div className="reservation-details__content">
+                    {rowData.building && rowData.roomId
+                      ? `${rowData.building} ${rowData.roomId}`
+                      : "정보없음"}
+                  </div>
+                </li>
                 <li className="reservation-details__item">
                   <strong className="reservation-details__label">
                     ▪️ 강의명:
@@ -80,6 +82,23 @@ const ReservationDetail = ({ rowData, onClose }) => {
               <>
                 <li className="reservation-details__item">
                   <strong className="reservation-details__label">
+                    ▪️ 이용 시간:
+                  </strong>
+                  <div className="reservation-details__content">
+                    {rowData.reserve_date} ({rowData.reserve_start_time}~
+                    {rowData.reserve_end_time})
+                  </div>
+                </li>
+                <li className="reservation-details__item">
+                  <strong className="reservation-details__label">
+                    ▪️ 강의실:
+                  </strong>
+                  <div className="reservation-details__content">
+                    {rowData.building} {rowData.roomId}
+                  </div>
+                </li>
+                <li className="reservation-details__item">
+                  <strong className="reservation-details__label">
                     ▪️ 예약목적:
                   </strong>
                   <div className="reservation-details__content">
@@ -91,7 +110,15 @@ const ReservationDetail = ({ rowData, onClose }) => {
                     ▪️ 예약자명:
                   </strong>
                   <div className="reservation-details__content">
-                    {rowData.name}
+                    {rowData.name ?? "정보없음"} ({rowData.student_id})
+                  </div>
+                </li>
+                <li className="reservation-details__item">
+                  <strong className="reservation-details__label">
+                    ▪️ 총 사용자 수:
+                  </strong>
+                  <div className="reservation-details__content">
+                    {rowData.participant_count}
                   </div>
                 </li>
                 <li className="reservation-details__item">

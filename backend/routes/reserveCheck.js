@@ -11,18 +11,18 @@ mongoose.connect(process.env.MONGO_URI_CLASS, {});
 const reserveSchema = new mongoose.Schema({}, { strict: false });
 const Reserve = mongoose.model("reserve", reserveSchema, "reserve");
 
-// GET /api/reserve/new
-// 1. 새 예약 목록 조회 (status가 'new'이거나 존재하지 않는 문서)
+// GET /api/reserve/check
+// 1. 모든 예약 목록 조회 (status 관계없이)
 // 2. 읽음 처리는 하지 않음 (순수 조회용)
-router.get("/new", async (req, res) => {
+router.get("/check", async (req, res) => {
   try {
-    const newReservations = await Reserve.find({
-      $or: [{ status: { $exists: false } }, { status: "new" }],
-    });
+    const allReservations = await Reserve.find({});
 
-    res.json(newReservations);
+    console.log("🔍 전체 예약 목록 조회 결과:", allReservations); // 콘솔 출력
+
+    res.json({ data: allReservations });
   } catch (error) {
-    console.error("새 예약 목록 조회 실패:", error);
+    console.error("전체 예약 목록 조회 실패:", error);
     res.status(500).json({ error: "조회 실패", detail: error.message });
   }
 });

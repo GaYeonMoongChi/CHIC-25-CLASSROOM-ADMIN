@@ -156,11 +156,13 @@ const RoomReservationStatusPage = () => {
     fetchNewReservations();
   }, [navigate]);
 
-  // 새 예약 가져오기
+  // 예약 리스트 가져오기
   const fetchNewReservations = async () => {
     try {
       const response = await axios.get(`${BACKEND_URL}/reserve/check`);
-      setNewReservations(response.data?.data || []);
+      const data = response.data?.data || [];
+
+      setNewReservations(data);
     } catch (error) {
       console.error("새 예약 불러오기 실패:", error);
     }
@@ -171,7 +173,9 @@ const RoomReservationStatusPage = () => {
     try {
       await axios.post(`${BACKEND_URL}/reserve/${reservationId}/check`);
       setNewReservations((prev) =>
-        prev.filter((reservation) => reservation._id !== reservationId)
+        prev.map((r) =>
+          r._id === reservationId ? { ...r, status: "checked" } : r
+        )
       );
     } catch (error) {
       console.error("예약 확인 처리 실패:", error);
@@ -189,7 +193,10 @@ const RoomReservationStatusPage = () => {
         </h1>
         <div className="reservation-status__nav">
           <button onClick={openModal}>
-            새 예약 <span>{newReservations.length}</span>
+            새 예약{" "}
+            <span>
+              {newReservations.filter((item) => item.status === "new").length}
+            </span>
           </button>
           <LogoutButton />
         </div>
