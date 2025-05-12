@@ -99,11 +99,11 @@ const NoticePage = () => {
   };
 
   return (
-    <div className="div">
+    <div className="notice-div">
       <div className="notice-page__header">
         <h1 className="notice-page__title">
           <img src={KW_logo} alt="🧑‍🏫" />
-          공지사항
+          KW 공지사항
         </h1>
         <div className="notice-page__nav">
           <button

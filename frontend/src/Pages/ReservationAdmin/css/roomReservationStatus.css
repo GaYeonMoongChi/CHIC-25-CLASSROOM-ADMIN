@@ -3,7 +3,6 @@
   padding-bottom: 30px;
   padding-top: 30px;
   margin-bottom: 20px;
-  border-bottom: 2px solid #dddfdd;
   width: 95%;
   align-items: center;
 }
@@ -19,14 +18,18 @@
   color: black;
   border: none;
   border-radius: 30px;
-  padding: 10px 3px;
+  padding: 12px 7px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 15px;
   text-align: center;
   width: 100px;
   transition: background-color 0.3s ease;
   font-weight: bold;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.reservation-status__nav button:hover {
+  background-color: #798df349;
 }
 
 .reservation-status__title {
@@ -60,9 +63,9 @@
 }
 
 .reservation-status__search-item {
-  background-color: transparent;
+  background-color: white;
   color: #000000;
-  border-radius: 10px;
+  border-radius: 20px;
   border: none;
   padding: 10px 15px;
   display: flex;
@@ -76,9 +79,14 @@
 }
 
 .reservation-status__search-label {
-  font-size: 17px;
-  width: 25%;
-  border-right: 2px solid #7c7c7c;
+  font-size: 16px;
+  width: 20%;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 100%;
 }
 
 .reservation-status__search-input {

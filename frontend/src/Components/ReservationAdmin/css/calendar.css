@@ -4,6 +4,7 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   /*폰트도 지정해줘야 할 듯*/
   border-radius: 20px;
+  z-index: 1000;
 }
 
 .react-datepicker-wrapper {
