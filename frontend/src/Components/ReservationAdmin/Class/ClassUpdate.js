@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../css/reservationModal.css";
+import Book from "../../../Image/Book.svg";
 
 const ClassUpdate = ({ classes, onClose, onUpdate, semester }) => {
   // 백앤드 주소
@@ -79,7 +80,11 @@ const ClassUpdate = ({ classes, onClose, onUpdate, semester }) => {
           <button className="modal-close" onClick={onClose}>
             ✖
           </button>
-          <h1 className="class-update__title">강의 정보 수정</h1>
+          <h1 className="class-update__title">
+            {" "}
+            <img className="book-image" src={Book} alt="📖" />
+            강의 정보 수정
+          </h1>
         </header>
 
         <main className="class-update__main">

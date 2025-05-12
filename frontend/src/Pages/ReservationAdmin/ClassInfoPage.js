@@ -46,8 +46,6 @@ const ClassInfoPage = () => {
       const response = await axios.get(`${BACKEND_URL}/${semester}`);
       const data = response.data;
 
-      console.log("받아온 강의 데이터:", data);
-
       if (Array.isArray(data.classes)) {
         setClassInfo(data.classes);
       } else {
@@ -64,15 +62,32 @@ const ClassInfoPage = () => {
       const response = await axios.get(`${BACKEND_URL}/collections`);
       const data = response.data;
 
-      console.log("받아온 학기 데이터:", data);
-
       if (Array.isArray(data.collections) && data.collections.length > 0) {
-        setSemester(data.collections[0]); // 최신 학기를 default로 화면에 띄움.
-        setSemesterList(data.collections);
+        const sortedList = sortSemesterList(data.collections);
+        setSemesterList(sortedList);
+        setSemester(sortedList[0]);
       }
     } catch (error) {
       console.error("학기 목록을 가져오는 중 오류 발생:", error);
     }
+  };
+
+  // 학기 정렬 (ex. ["2025-겨울", "2025-2", "2025-여름", "2025-1", "2024-겨울", "2024-1"])
+  const sortSemesterList = (list) => {
+    const semesterOrder = { 겨울: 4, 2: 3, 여름: 2, 1: 1 };
+
+    return [...list].sort((a, b) => {
+      const [aYear, aSem] = a.split("-");
+      const [bYear, bSem] = b.split("-");
+
+      // 연도 비교 (내림차순: 큰 연도 먼저)
+      if (parseInt(aYear) !== parseInt(bYear)) {
+        return parseInt(bYear) - parseInt(aYear);
+      }
+
+      // 학기 비교 (겨울 > 2 > 여름 > 1 순으로)
+      return semesterOrder[bSem] - semesterOrder[aSem];
+    });
   };
 
   // token 없으면 로그인 페이지로 리다이렉트
@@ -154,18 +169,18 @@ const ClassInfoPage = () => {
       </div>
 
       {/* 검색바 */}
-      <div className="classroom-info__search">
-        <ul className="classroom-info__search-list">
-          <li className="classroom-info__search-item">
+      <div className="class-info__search">
+        <ul className="class-info__search-list">
+          <li className="class-info__search-item">
             <label
               htmlFor="semester-select"
-              className="classroom-info__search-label"
+              className="class-info__search-label"
             >
               학기
             </label>
             <select
               id="semester-select"
-              className="classroom-info__search-input"
+              className="class-info__search-input"
               value={semester}
               onChange={handleSemesterChange}
             >
@@ -177,24 +192,24 @@ const ClassInfoPage = () => {
             </select>
           </li>
 
-          <li className="classroom-info__search-item">
-            <label className="classroom-info__search-label">강의명</label>
+          <li className="class-info__search-item">
+            <label className="class-info__search-label">강의명</label>
             <input
               type="text"
               name="search"
-              className="classroom-info__search-input"
+              className="class-info__search-input"
               placeholder="강의명으로 검색하세요."
               onChange={onChangeClassName}
               value={searchClassName}
             />
           </li>
 
-          <li className="classroom-info__search-item">
-            <label className="classroom-info__search-label">교수명</label>
+          <li className="class-info__search-item">
+            <label className="class-info__search-label">교수명</label>
             <input
               type="text"
               name="search"
-              className="classroom-info__search-input"
+              className="class-info__search-input"
               placeholder="교수명으로 검색하세요."
               onChange={onChangeProfName}
               value={searchProfName}

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../css/reservationModal.css";
 import ClassUpdate from "./ClassUpdate";
+import Book from "../../../Image/Book.svg";
 
 const DetailModal = ({ classes, onClose, onUpdate, semester }) => {
   // 백앤드 주소
@@ -58,7 +59,10 @@ const DetailModal = ({ classes, onClose, onUpdate, semester }) => {
           <button className="modal-close" onClick={onClose}>
             ✖
           </button>
-          <h1 className="class-details__title">{classes.class_name}</h1>
+          <h1 className="class-details__title">
+            <img className="book-image" src={Book} alt="📖" />
+            {classes.class_name}
+          </h1>
         </header>
 
         <main className="class-details__main">

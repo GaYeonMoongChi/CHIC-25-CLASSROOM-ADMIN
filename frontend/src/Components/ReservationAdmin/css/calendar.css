@@ -1,3 +1,11 @@
+.react-datepicker {
+  border: none;
+  background-color: #f3f4f6;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  /*폰트도 지정해줘야 할 듯*/
+  border-radius: 20px;
+}
+
 .react-datepicker-wrapper {
   padding: 15px 10px;
   width: 100%;
@@ -5,6 +13,47 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border: none;
   border-radius: 10px;
+  cursor: pointer;
+}
+
+.react-datepicker-wrapper:hover {
+  background-color: #f3f4f6;
+  font-weight: 500;
+}
+
+.react-datepicker__triangle {
+  border: none !important;
+  fill: transparent !important;
+  color: transparent !important;
+  stroke: none !important;
+}
+
+.react-datepicker__navigation {
+  padding: 0;
+}
+
+h2.react-datepicker__current-month {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.react-datepicker__day-names {
+  background-color: #798df3;
+  padding: 0;
+  margin: 0;
+  font-size: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.react-datepicker__day-name {
+  padding: 0;
+  line-height: 1rem;
+  font-weight: bold;
+  color: #f3f4f6;
+}
+
+.react-datepicker__day-name:last-child {
+  border: none;
 }
 
 .custom-header button {
@@ -21,19 +70,13 @@
 }
 
 .react-datepicker__header {
-  background-color: #f5f8ff;
+  background-color: #fff;
   border-bottom: none;
+  padding: 0;
 }
 
 .react-datepicker__month-container {
-  background-color: #f5f8ff;
-}
-
-.react-datepicker {
-  border: none;
-  padding: 10px 10px;
-  background-color: #f5f8ff;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
 }
 
 .react-datepicker__day--today {
@@ -47,24 +90,22 @@
   color: #ffffff;
 }
 
-.react-datepicker__day--selected:hover {
-  background-color: #798df3 !important;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2) !important;
-  border-radius: 30px !important;
-  color: #ffffff !important;
+.react-datepicker__day:not([aria-disabled="true"]):hover,
+.react-datepicker__month-text:not([aria-disabled="true"]):hover,
+.react-datepicker__quarter-text:not([aria-disabled="true"]):hover,
+.react-datepicker__year-text:not([aria-disabled="true"]):hover {
+  border-radius: 30px;
+  background-color: #798df355;
 }
 
-.react-datepicker__day--today {
+.react-datepicker__day--today:not(.react-datepicker__day--selected) {
   background-color: #798df370;
   border-radius: 30px;
   color: #ffffff;
 }
 
-.react-datepicker__day--today:hover {
-  background-color: #798df3 !important;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2) !important;
-  border-radius: 30px !important;
-  color: #ffffff !important;
+.react-datepicker__day--today:not(.react-datepicker__day--selected):hover {
+  background-color: #798df3;
 }
 
 .react-datepicker__input-container input {

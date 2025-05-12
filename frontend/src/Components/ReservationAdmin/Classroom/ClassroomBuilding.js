@@ -1,6 +1,7 @@
 import React from "react";
 import ClassroomRooms from "./ClassroomRooms";
 import "../css/classroomBuilding.css";
+import School from "../../../Image/School.svg";
 
 const ClassroomBuilding = ({ classrooms, onUpdate }) => {
   // 건물별 그룹핑
@@ -20,7 +21,9 @@ const ClassroomBuilding = ({ classrooms, onUpdate }) => {
     <>
       {Object.entries(grouped).map(([building, rooms]) => (
         <div key={building} className="classroom-info-update__building-block">
-          <h2 className="classroom-info__building-name">🏢 {building}</h2>
+          <h2 className="classroom-info__building-name">
+            <img className="school-image" src={School} alt="🏫" /> {building}
+          </h2>
           <table className="classroom-info-update__table">
             <tbody>
               {rooms.map((room) => (

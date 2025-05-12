@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../css/reservationModal.css";
+import School from "../../../Image/School.svg";
 
 const ClassroomCreate = ({ onClose, onCreate }) => {
   // 백앤드 주소
@@ -82,7 +83,10 @@ const ClassroomCreate = ({ onClose, onCreate }) => {
           <button className="modal-close" onClick={onClose}>
             ✖
           </button>
-          <h1 className="classroom-create__title">강의실 등록</h1>
+          <h1 className="classroom-create__title">
+            <img className="book-image" src={School} alt="📖" />
+            강의실 등록
+          </h1>
         </header>
 
         {/* 강의실 정보 입력 */}

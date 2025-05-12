@@ -1,52 +1,72 @@
-// routes/reserve.js
-
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const mongoose = require('mongoose');
-const dotenv = require('dotenv');
+const mongoose = require("mongoose");
+const dotenv = require("dotenv");
 
 dotenv.config();
 
-// MongoDB 연결
-mongoose.connect(process.env.MONGO_URI_CLASS, {
-});
+// 0. MongoDB 연결
+mongoose.connect(process.env.MONGO_URI_CLASS, {});
 
 const reserveSchema = new mongoose.Schema({}, { strict: false });
-const Reserve = mongoose.model('reserve', reserveSchema, 'reserve');
+const Reserve = mongoose.model("reserve", reserveSchema, "reserve");
 
 // GET /api/reserve/check
-// 새 예약창에서 호출 → new로 간주된 예약들을 조회하고, status를 checked로 업데이트
-router.get('/check', async (req, res) => {
+// 1. 모든 예약 목록 조회 (status 관계없이)
+// 2. 읽음 처리는 하지 않음 (순수 조회용)
+router.get("/check", async (req, res) => {
   try {
-    // 1. status 필드가 없거나 'new'로 간주되는 예약들을 찾음
-    const unchecked = await Reserve.find({
-      $or: [
-        { status: { $exists: false } },
-        { status: 'new' }
-      ]
-    });
+    const allReservations = await Reserve.find({});
 
-    // 2. 해당 예약들의 status를 모두 'checked'로 업데이트
-    const ids = unchecked.map(doc => doc._id);
-    if (ids.length > 0) {
-      await Reserve.updateMany(
-        { _id: { $in: ids } },
-        { $set: { status: 'checked' } }
-      );
-    }
+    console.log("🔍 전체 예약 목록 조회 결과:", allReservations); // 콘솔 출력
 
-    // 3. 클라이언트에 응답
+    res.json({ data: allReservations });
+  } catch (error) {
+    console.error("전체 예약 목록 조회 실패:", error);
+    res.status(500).json({ error: "조회 실패", detail: error.message });
+  }
+});
+
+// POST /api/reserve/:id/check
+// 1. 특정 예약 ID를 전달받아, 해당 예약의 status를 'checked'로 변경
+router.post("/:id/check", async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const result = await Reserve.updateOne(
+      { _id: id },
+      { $set: { status: "checked" } }
+    );
+
     res.json({
-      message: `새 예약 ${ids.length}건 확인 완료`,
-      count: ids.length,
-      data: unchecked.map(doc => ({
-        ...doc.toObject(),
-        status: 'new' // 프론트에서 처음 본 것이므로 new로 표시
-      }))
+      message: "예약 확인 처리 완료",
+      id,
+      modified: result.modifiedCount,
     });
   } catch (error) {
-    console.error('새 예약 조회 실패:', error);
-    res.status(500).json({ error: '조회 실패', detail: error.message });
+    console.error("예약 확인 처리 실패:", error);
+    res.status(500).json({ error: "확인 처리 실패", detail: error.message });
+  }
+});
+
+// POST /api/reserve/check-all
+// 1. 모든 'new' 상태 예약을 한 번에 'checked'로 처리
+router.post("/check-all", async (req, res) => {
+  try {
+    const result = await Reserve.updateMany(
+      {
+        $or: [{ status: { $exists: false } }, { status: "new" }],
+      },
+      { $set: { status: "checked" } }
+    );
+
+    res.json({
+      message: `총 ${result.modifiedCount}건 확인 처리 완료`,
+      count: result.modifiedCount,
+    });
+  } catch (error) {
+    console.error("새 예약 일괄 확인 실패:", error);
+    res.status(500).json({ error: "일괄 확인 실패", detail: error.message });
   }
 });
 

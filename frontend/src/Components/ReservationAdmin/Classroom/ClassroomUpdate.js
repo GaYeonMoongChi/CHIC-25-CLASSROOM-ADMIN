@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../css/reservationModal.css";
+import School from "../../../Image/School.svg";
 
 const ClassroomUpdate = ({ classroom, onClose, onUpdate }) => {
   const BACKEND_URL = "http://localhost:8000";
@@ -84,6 +85,10 @@ const ClassroomUpdate = ({ classroom, onClose, onUpdate }) => {
           <button className="modal-close" onClick={onClose}>
             ✖
           </button>
+          <h1 className="classroom-update__title">
+            <img className="book-image" src={School} alt="📖" />
+            강의실 수정
+          </h1>
         </header>
 
         <main className="classroom-update__main">

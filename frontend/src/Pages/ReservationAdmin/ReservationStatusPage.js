@@ -40,6 +40,9 @@ const RoomReservationStatusPage = () => {
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
+  // 새 예약 상태
+  const [newReservations, setNewReservations] = useState([]);
+
   // 강의실 사용 정보 데이터
   const [reservationsInfo, setReservationsInfo] = useState([]);
 
@@ -64,7 +67,7 @@ const RoomReservationStatusPage = () => {
     setSemester(e.target.value);
   };
 
-  // 학기 정렬 (ex. ["2025-겨울", "2025-2", "2025-여름", "2025-1", "2024-겨울", "2024-1"])
+  // 학기 정렬 (ex. ["2025-겨울", "2025-2", "2025-여름", "2025-1", "2024-겨울", "2024-2"])
   const sortSemesterList = (list) => {
     const semesterOrder = { 겨울: 4, 2: 3, 여름: 2, 1: 1 };
 
@@ -150,7 +153,34 @@ const RoomReservationStatusPage = () => {
     }
 
     fetchSemester();
+    fetchNewReservations();
   }, [navigate]);
+
+  // 예약 리스트 가져오기
+  const fetchNewReservations = async () => {
+    try {
+      const response = await axios.get(`${BACKEND_URL}/reserve/check`);
+      const data = response.data?.data || [];
+
+      setNewReservations(data);
+    } catch (error) {
+      console.error("새 예약 불러오기 실패:", error);
+    }
+  };
+
+  // 새 예약 확인 (읽음 처리)
+  const markAsChecked = async (reservationId) => {
+    try {
+      await axios.post(`${BACKEND_URL}/reserve/${reservationId}/check`);
+      setNewReservations((prev) =>
+        prev.map((r) =>
+          r._id === reservationId ? { ...r, status: "checked" } : r
+        )
+      );
+    } catch (error) {
+      console.error("예약 확인 처리 실패:", error);
+    }
+  };
 
   return (
     <div className="div">
@@ -159,12 +189,14 @@ const RoomReservationStatusPage = () => {
         <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
         <h1 className="reservation-status__title">
           <img src={KW_logo} alt="⏰" />
-          KW 강의실 예약현황
+          KW 강의실 사용현황
         </h1>
         <div className="reservation-status__nav">
-          {/* TODO: 새 예약이 몇 개 있는지 수도 표시하면 좋을 듯. or 새 예약이 있으면 점으로만 표시*/}
           <button onClick={openModal}>
-            새 예약 <span>5</span>
+            새 예약{" "}
+            <span>
+              {newReservations.filter((item) => item.status === "new").length}
+            </span>
           </button>
           <LogoutButton />
         </div>
@@ -172,10 +204,10 @@ const RoomReservationStatusPage = () => {
 
       <div className="reservation-status__search">
         <ul className="reservation-status__search-list">
-          <li className="classroom-info__search-item">
+          <li className="reservation-status__search-item">
             <label
               htmlFor="semester-select"
-              className="classroom-info__search-label"
+              className="reservation-status__search-label"
             >
               학기
             </label>
@@ -265,7 +297,14 @@ const RoomReservationStatusPage = () => {
         <div className="sidebar-overlay" onClick={toggleSidebar}></div>
       )}
 
-      {isModalOpen && <NewReservation onClose={closeModal} />}
+      {isModalOpen && (
+        <NewReservation
+          onClose={closeModal}
+          onCheck={markAsChecked}
+          reservation={newReservations}
+          fetchNewReservations={fetchNewReservations}
+        />
+      )}
     </div>
   );
 };
