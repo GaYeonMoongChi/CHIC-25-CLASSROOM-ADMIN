@@ -98,46 +98,42 @@ const NewReservation = ({
         </header>
 
         <main className="new-reservation__main">
-          <div className="new-reservation__list">
-            {reservation.length === 0 ? (
-              <p className="new-reservation__none-reservation">
-                새로운 예약이 없습니다.
-              </p>
-            ) : (
-              reservation.map((item, idx) => (
-                <table key={idx} className="new-reservation__table">
-                  <colgroup>
-                    <col style={{ width: "50%" }} />
-                    <col style={{ width: "40%" }} />
-                    <col style={{ width: "10%" }} />
-                  </colgroup>
-                  <tbody>
-                    <tr onClick={() => openDetailModal(item)}>
-                      <td className="new-reservation__date">
-                        <img
-                          className="new-reservation__image"
-                          src={Calender}
-                          alt="📅"
-                        />
-                        {formatDate(item.reserve_date)} (
-                        {item.reserve_start_time}~{item.reserve_end_time})
+          {reservation.length === 0 ? (
+            <p className="new-reservation__none-reservation">
+              새로운 예약이 없습니다.
+            </p>
+          ) : (
+            <table className="new-reservation__table">
+              <colgroup>
+                <col style={{ width: "50%" }} />
+                <col style={{ width: "40%" }} />
+                <col style={{ width: "10%" }} />
+              </colgroup>
+              <tbody>
+                {reservation.map((item, idx) => (
+                  <tr key={idx} onClick={() => openDetailModal(item)}>
+                    <td className="new-reservation__date">
+                      <img
+                        className="new-reservation__image"
+                        src={Calender}
+                        alt="📅"
+                      />
+                      {formatDate(item.reserve_date)} ({item.reserve_start_time}
+                      ~{item.reserve_end_time})
+                    </td>
+                    <td className="new-reservation__purpose">{item.purpose}</td>
+                    {item.status === "new" ? (
+                      <td className="new-reservation__badge">
+                        <img src={Exclamation} alt="새 예약" />
                       </td>
-                      <td className="new-reservation__purpose">
-                        {item.purpose}
-                      </td>
-                      {item.status === "new" ? (
-                        <td className="new-reservation__badge">
-                          <img src={Exclamation} alt="새 예약" />
-                        </td>
-                      ) : (
-                        <td className="new-reservation__badge"></td>
-                      )}
-                    </tr>
-                  </tbody>
-                </table>
-              ))
-            )}
-          </div>
+                    ) : (
+                      <td className="new-reservation__badge"></td>
+                    )}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          )}
         </main>
 
         {isDetailModalOpen && selectedReservation && (

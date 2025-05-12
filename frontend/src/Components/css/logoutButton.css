@@ -5,7 +5,7 @@
   border-radius: 30px;
   padding: 12px 7px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 15px;
   text-align: center;
   width: 100px;
   transition: background-color 0.3s ease;
@@ -14,7 +14,5 @@
 }
 
 #logout-button:hover {
-  background-color: #798df3;
-  color: #ffffff;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #798df349;
 }
