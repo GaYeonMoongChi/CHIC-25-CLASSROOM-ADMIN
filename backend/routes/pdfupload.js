@@ -9,7 +9,9 @@ const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
 const { exec } = require('child_process');
-
+const mongoose = require('mongoose');
+const Schedule = require('../db/schedule');
+require('dotenv').config(); 
 const router = express.Router();
 
 // uploads 대신 temp 폴더 사용
@@ -32,6 +34,8 @@ const upload = multer({ storage });
 
 router.post('/upload', upload.single('pdf'), async (req, res) => {
   const semester = req.body.semester;
+  const startDate = req.body.start_date;
+  const endDate = req.body.end_date;
   const file = req.file;
 
   if (!semester) {
@@ -52,6 +56,27 @@ router.post('/upload', upload.single('pdf'), async (req, res) => {
 
   const tempFilePath = path.resolve(file.path);
   console.log(`PDF 임시 저장 완료: ${tempFilePath}`);
+
+  // schedule 저장 추가
+  try {
+    const [yearStr, semesterStr] = semester.split('-');
+    const year = parseInt(yearStr, 10);
+    const start_time = new Date(startDate);
+    const end_time = new Date(endDate);
+
+    const newSchedule = new Schedule({
+      year,
+      semester: semesterStr,
+      start_time,
+      end_time,
+    });
+
+    await newSchedule.save();
+    console.log(`MongoDB에 schedule 저장 완료: ${semester}`);
+  } catch (dbErr) {
+    console.error('MongoDB 저장 실패:', dbErr);
+    return res.status(500).json({ error: '스케줄 저장 실패', detail: dbErr.message });
+  }
 
   const scriptDir = path.join(__dirname, '..', 'python');
   const nodeScript1 = path.join(__dirname, '..', 'scripts', 'updateClassTime.js');
@@ -110,7 +135,7 @@ router.post('/upload', upload.single('pdf'), async (req, res) => {
     return; // 아래 기존 로직과 중복 방지
   }
 
-  // 기존 학기 처리 (기존 코드 그대로 유지)
+  // 정규 학기 처리 (기존 코드 그대로 유지)
   const pdfplumberPath = path.join(scriptDir, 'pdf_plumber.py');
   const klasLecturePath = path.join(scriptDir, 'klas_lecture.py');
 
