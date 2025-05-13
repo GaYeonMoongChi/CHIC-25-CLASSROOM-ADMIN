@@ -138,6 +138,7 @@ const NewReservation = ({
 
         {isDetailModalOpen && selectedReservation && (
           <ReservationDetail
+            fetchNewReservations={fetchNewReservations}
             rowData={selectedReservation}
             onClose={closeDetailModal}
           />
