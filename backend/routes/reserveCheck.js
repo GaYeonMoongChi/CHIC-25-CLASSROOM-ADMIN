@@ -18,7 +18,7 @@ router.get("/check", async (req, res) => {
   try {
     const allReservations = await Reserve.find({});
 
-    console.log("🔍 전체 예약 목록 조회 결과:", allReservations); // 콘솔 출력
+    console.log("전체 예약 목록 조회 결과:", allReservations); // 콘솔 출력
 
     res.json({ data: allReservations });
   } catch (error) {
@@ -67,6 +67,28 @@ router.post("/check-all", async (req, res) => {
   } catch (error) {
     console.error("새 예약 일괄 확인 실패:", error);
     res.status(500).json({ error: "일괄 확인 실패", detail: error.message });
+  }
+});
+
+// DELETE /api/reserve/:id
+// 특정 예약 ID를 전달받아 해당 예약을 DB에서 삭제
+router.delete("/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const result = await Reserve.deleteOne({ _id: id });
+
+    if (result.deletedCount === 0) {
+      return res.status(404).json({ message: "해당 예약을 찾을 수 없습니다", id });
+    }
+
+    res.json({
+      message: "예약 삭제 완료",
+      id
+    });
+  } catch (error) {
+    console.error("예약 삭제 실패:", error);
+    res.status(500).json({ error: "삭제 실패", detail: error.message });
   }
 });
 
