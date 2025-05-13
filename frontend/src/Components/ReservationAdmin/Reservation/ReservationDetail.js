@@ -1,8 +1,12 @@
 import React, { useEffect } from "react";
+import axios from "axios";
 import "../css/reservationModal.css";
 import Calender from "../../../Image/Calender.svg";
 
-const ReservationDetail = ({ rowData, onClose }) => {
+const ReservationDetail = ({ rowData, onClose, fetchNewReservations }) => {
+  // 백앤드 주소
+  const BACKEND_URL = "http://localhost:8000/api";
+
   // 모달 열릴 때 스크롤 금지
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -11,10 +15,22 @@ const ReservationDetail = ({ rowData, onClose }) => {
     };
   }, []);
 
-  // 삭제 API (추후 요청코드 작성 예정)
+  // 삭제 요청 API
   const handleDelete = async () => {
     if (window.confirm("정말로 예약을 취소하시겠습니까?")) {
-      console.log("예약 삭제 로직 실행");
+      try {
+        await axios.delete(`${BACKEND_URL}/reserve/${rowData._id}`);
+        alert("예약이 성공적으로 삭제되었습니다.");
+        onClose(); // 모달 닫기
+
+        // 최신 상태로 UI 업데이트
+        if (fetchNewReservations) {
+          fetchNewReservations();
+        }
+      } catch (error) {
+        console.error("예약 삭제 실패:", error);
+        alert("예약 삭제 중 오류가 발생했습니다.");
+      }
     }
   };
 
