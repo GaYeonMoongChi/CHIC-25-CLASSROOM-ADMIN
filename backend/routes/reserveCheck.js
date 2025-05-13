@@ -2,14 +2,25 @@ const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
-
+const { classDB } = require("../db/class");
 dotenv.config();
 
-// 0. MongoDB 연결
-mongoose.connect(process.env.MONGO_URI_CLASS, {});
+const studentDB = mongoose.createConnection(process.env.MONGO_URI_STUDENT, {});
 
+// students 모델 정의
+const studentSchema = new mongoose.Schema({
+  studentId: String,
+  name: String
+}, { collection: 'students', versionKey: false });
+
+const Student = studentDB.model('student', studentSchema);
+
+// reserve, classroom_info 모델 정의
 const reserveSchema = new mongoose.Schema({}, { strict: false });
-const Reserve = mongoose.model("reserve", reserveSchema, "reserve");
+const classroomInfoSchema = new mongoose.Schema({}, { strict: false });
+
+const Reserve = classDB.model("reserve", reserveSchema, "reserve");
+const ClassroomInfo = classDB.model("classroom_info", classroomInfoSchema, "classroom_info");
 
 // GET /api/reserve/check
 // 1. 모든 예약 목록 조회 (status 관계없이)
@@ -18,9 +29,39 @@ router.get("/check", async (req, res) => {
   try {
     const allReservations = await Reserve.find({});
 
-    console.log("전체 예약 목록 조회 결과:", allReservations); // 콘솔 출력
+    const enhancedReservations = await Promise.all(
+      allReservations.map(async (reservation) => {
+        let studentName = null;
+        let building = null;
+        let room = null;
 
-    res.json({ data: allReservations });
+        // 학생 이름 조회
+        if (reservation.student_id) {
+          const student = await Student.findOne({ studentId: reservation.student_id });
+          if (student) {
+            studentName = student.name;
+          }
+        }
+
+        // 강의실 정보 조회
+        if (reservation.classroom_info_id) {
+          const classroom = await ClassroomInfo.findOne({ _id: reservation.classroom_info_id });
+          if (classroom) {
+            building = classroom.building || null;
+            room = classroom.room || null;
+          }
+        }
+
+        return {
+          ...reservation.toObject(),
+          student_name: studentName,
+          building,
+          room,
+        };
+      })
+    );
+
+    res.json({ data: enhancedReservations });
   } catch (error) {
     console.error("전체 예약 목록 조회 실패:", error);
     res.status(500).json({ error: "조회 실패", detail: error.message });
