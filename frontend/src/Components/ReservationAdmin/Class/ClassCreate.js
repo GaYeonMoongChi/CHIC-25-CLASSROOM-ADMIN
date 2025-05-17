@@ -99,7 +99,7 @@ const ClassCreate = ({ onClose, onCreate, semester }) => {
           </h1>
         </header>
 
-        <main className="classr-create__main">
+        <main className="class-create__main">
           <ul className="class-create__list">
             <li className="class-create__item">
               <strong className="class-create__label">▪️ 학기: </strong>

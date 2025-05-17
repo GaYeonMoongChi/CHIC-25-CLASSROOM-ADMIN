@@ -47,7 +47,7 @@ const ReservationDetail = ({ rowData, onClose, fetchNewReservations }) => {
           <h1 className="reservation-details__title">
             <img className="calender-image" src={Calender} alt="📅" />
             {isClass ? rowData.class_name : rowData.purpose} /{" "}
-            {isClass ? rowData.prof_name : rowData.professor}
+            {isClass ? rowData.prof_name : rowData.student_name}
           </h1>
         </header>
 
@@ -110,7 +110,9 @@ const ReservationDetail = ({ rowData, onClose, fetchNewReservations }) => {
                     ▪️ 강의실:
                   </strong>
                   <div className="reservation-details__content">
-                    {rowData.building} {rowData.roomId}
+                    {rowData.building && rowData.room
+                      ? `${rowData.building} ${rowData.room}`
+                      : "정보없음"}
                   </div>
                 </li>
                 <li className="reservation-details__item">
@@ -126,7 +128,15 @@ const ReservationDetail = ({ rowData, onClose, fetchNewReservations }) => {
                     ▪️ 예약자명:
                   </strong>
                   <div className="reservation-details__content">
-                    {rowData.professor ?? "정보없음"} ({rowData.student_id})
+                    {rowData.student_name ?? "정보없음"} ({rowData.student_id})
+                  </div>
+                </li>
+                <li className="reservation-details__item">
+                  <strong className="reservation-details__label">
+                    ▪️ 담당교수:
+                  </strong>
+                  <div className="reservation-details__content">
+                    {rowData.professor ?? "정보없음"}
                   </div>
                 </li>
                 <li className="reservation-details__item">
