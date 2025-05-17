@@ -57,7 +57,7 @@
 .reservation-status__search-list {
   width: 100%;
   background-color: transparent;
-  padding: 20px;
+  padding: 10px;
   display: flex;
   gap: 20px;
 }
@@ -65,13 +65,14 @@
 .reservation-status__search-item {
   background-color: white;
   color: #000000;
-  border-radius: 20px;
+  border-radius: 10px;
   border: none;
-  padding: 10px 15px;
+  padding: 10px;
   display: flex;
   align-items: center;
   font-weight: bold;
   width: 100%;
+  box-shadow: inset 3px 3px 5px rgba(0, 0, 0, 0.06);
 }
 
 .reservation-status__search-item > input {

@@ -43,8 +43,12 @@ const TimeTable = ({ reservations, date, building, roomId }) => {
     <div className="timetable-div">
       {/* 테이블 제목 */}
       <span className="table-title">
-        [{building} {roomId}] {formatDate(date)} 강의실 이용 시간표{" "}
-        <img className="calender_image" src={Calender} alt="📅" />
+        {formatDate(date)}{" "}
+        <strong>
+          [{building} {roomId}]{" "}
+        </strong>{" "}
+        강의실 이용 시간표{" "}
+        {/*<img className="calender_image" src={Calender} alt="📅" />*/}
       </span>
 
       {/* 테이블 메인 */}
