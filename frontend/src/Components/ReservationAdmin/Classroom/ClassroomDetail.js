@@ -10,7 +10,6 @@ const DetailModal = ({ classroom, onClose, onUpdate }) => {
   // 모달 열릴 때 스크롤 금지되도록 설정
   useEffect(() => {
     document.body.style.overflow = "hidden";
-
     return () => {
       document.body.style.overflow = "auto";
     };
@@ -24,7 +23,13 @@ const DetailModal = ({ classroom, onClose, onUpdate }) => {
 
   // 데이터 없으면 '정보없음' 띄우기
   const displayValue = (value) => {
-    if (value === null || value === undefined || value === "" || value === 0) {
+    if (
+      value === null ||
+      value === undefined ||
+      value === "" ||
+      value === 0 ||
+      (Array.isArray(value) && value.length === 0)
+    ) {
       return "정보없음";
     }
     return value;
@@ -33,7 +38,9 @@ const DetailModal = ({ classroom, onClose, onUpdate }) => {
   // 강의실 삭제 요청 api
   const handleDelete = async () => {
     const confirmDelete = window.confirm(
-      `${classroom.building} ${classroom.room} 강의실을 삭제하시겠습니까?`
+      `${displayValue(classroom.building)} ${displayValue(
+        classroom.room
+      )} 강의실을 삭제하시겠습니까?`
     );
     if (!confirmDelete) return;
 
