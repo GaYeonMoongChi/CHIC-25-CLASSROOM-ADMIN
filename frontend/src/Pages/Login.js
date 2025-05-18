@@ -63,7 +63,13 @@ const Login = () => {
         </header>
 
         <main className="login__main">
-          <div className="login__form">
+          <form
+            className="login__form"
+            onSubmit={(e) => {
+              e.preventDefault();
+              login();
+            }}
+          >
             <div className="login__input-group">
               <label className="login__label" htmlFor="admin-id">
                 ID:
@@ -91,23 +97,23 @@ const Login = () => {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
-          </div>
 
-          {errorMessage && <p className="login__error">{errorMessage}</p>}
+            {errorMessage && <p className="login__error">{errorMessage}</p>}
 
-          <div className="login__links">
-            <a href="/Find-password" className="password-find">
-              비밀번호 찾기
-            </a>
-            <span className="login__divider">|</span>
-            <a href="/signup" className="signup-link">
-              회원가입
-            </a>
-          </div>
+            <div className="login__links">
+              <a href="/Find-password" className="password-find">
+                비밀번호 찾기
+              </a>
+              <span className="login__divider">|</span>
+              <a href="/signup" className="signup-link">
+                회원가입
+              </a>
+            </div>
 
-          <button className="login__button" onClick={login}>
-            로그인
-          </button>
+            <button className="login__button" type="submit">
+              로그인
+            </button>
+          </form>
         </main>
       </div>
     </div>
