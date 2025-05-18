@@ -25,7 +25,7 @@ const scheduleSchema = new mongoose.Schema({
     type: Date,
     required: true
   }
-}, { collection: 'schedule' });
+}, { collection: 'schedule', versionKey: false });
 
 // class DB 연결된 mongoose 인스턴스에서 모델 생성
 const Schedule = global.classDB.model('Schedule', scheduleSchema);
