@@ -64,18 +64,15 @@ router.post('/upload', upload.single('pdf'), async (req, res) => {
     const start_time = new Date(startDate);
     const end_time = new Date(endDate);
 
-    const newSchedule = new Schedule({
-      year,
-      semester: semesterStr,
-      start_time,
-      end_time,
-    });
+    await Schedule.findOneAndUpdate(
+    { year, semester: semesterStr },
+    { start_time, end_time },
+    { upsert: true, new: true }, { versionKey : false});
 
-    await newSchedule.save();
     console.log(`MongoDB에 schedule 저장 완료: ${semester}`);
   } catch (dbErr) {
-    console.error('MongoDB 저장 실패:', dbErr);
-    return res.status(500).json({ error: '스케줄 저장 실패', detail: dbErr.message });
+  console.error('MongoDB 저장 실패:', dbErr);
+  return res.status(500).json({ error: '스케줄 저장 실패', detail: dbErr.message });
   }
 
   const scriptDir = path.join(__dirname, '..', 'python');

@@ -22,10 +22,14 @@ chrome_options.add_argument("--disable-dev-shm-usage")
 
 # 인자 체크
 if len(sys.argv) < 2:
-    print("사용법: python klas_lecture.py 2025-1")
+    # print("사용법: python klas_lecture.py 2025-1")
     sys.exit(1)
 
 collection_name = sys.argv[1]
+
+# 연도 및 학기 파싱
+year, semester = collection_name.split("-")
+season_text = "1학기" if semester == "1" else "2학기"
 
 load_dotenv()
 
@@ -138,6 +142,26 @@ try:
 
     driver.get("https://klas.kw.ac.kr/std/cps/atnlc/LectrePlanStdPage.do")
     time.sleep(3)
+
+    # 연도 선택
+    year_dropdown = driver.find_element(By.XPATH, '//*[@id="selectYear"]')
+    year_dropdown.click()
+    time.sleep(1)
+    year_options = driver.find_elements(By.XPATH, '//*[@id="selectYear"]/option')
+    for y in year_options:
+        if y.text.strip().startswith(year):
+            y.click()
+            break
+
+    # 학기 선택
+    term_dropdown = driver.find_element(By.XPATH, '//*[@id="selecthakgi"]')
+    term_dropdown.click()
+    time.sleep(1)
+    term_options = driver.find_elements(By.XPATH, '//*[@id="selecthakgi"]/option')
+    for t in term_options:
+        if season_text in t.text.strip():
+            t.click()
+            break
 
     page_size = 100
     total_courses = collection.count_documents({})
