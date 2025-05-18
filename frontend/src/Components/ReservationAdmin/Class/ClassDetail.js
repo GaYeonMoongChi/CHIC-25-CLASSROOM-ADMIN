@@ -10,7 +10,6 @@ const DetailModal = ({ classes, onClose, onUpdate, semester }) => {
   // 모달 열릴 때 스크롤 금지되도록 설정
   useEffect(() => {
     document.body.style.overflow = "hidden";
-
     return () => {
       document.body.style.overflow = "auto";
     };
@@ -22,10 +21,18 @@ const DetailModal = ({ classes, onClose, onUpdate, semester }) => {
 
   if (!classes) return null;
 
+  // 데이터 없으면 '정보없음' 띄우기
+  const displayValue = (value) => {
+    if (value === null || value === undefined || value === "" || value === 0) {
+      return "정보없음";
+    }
+    return value;
+  };
+
   // 강의 삭제 요청 api
   const handleDelete = async () => {
     const confirmDelete = window.confirm(
-      `${classes.class_name} 강의를 삭제하시겠습니까?`
+      `${displayValue(classes.class_name)} 강의를 삭제하시겠습니까?`
     );
     if (!confirmDelete) return;
 
@@ -61,7 +68,7 @@ const DetailModal = ({ classes, onClose, onUpdate, semester }) => {
           </button>
           <h1 className="class-details__title">
             <img className="book-image" src={Book} alt="📖" />
-            {classes.class_name}
+            {displayValue(classes.class_name)}
           </h1>
         </header>
 
@@ -69,28 +76,32 @@ const DetailModal = ({ classes, onClose, onUpdate, semester }) => {
           <ul className="class-details__list">
             <li className="class-details__item">
               <strong className="class-details__label">▪️ 학정번호: </strong>
-              <div className="class-details__content">{classes.class_idx}</div>
+              <div className="class-details__content">
+                {displayValue(classes.class_idx)}
+              </div>
             </li>
             <li className="class-details__item">
               <strong className="class-details__label">▪️ 강의실 호수: </strong>
               <div className="class-details__content">
-                {classes.classroom_idx}
+                {displayValue(classes.classroom_idx)}
               </div>
             </li>
             <li className="class-details__item">
               <strong className="class-details__label">▪️ 교수명: </strong>
-              <div className="class-details__content">{classes.prof_name}</div>
+              <div className="class-details__content">
+                {displayValue(classes.prof_name)}
+              </div>
             </li>
             <li className="class-details__item">
               <strong className="class-details__label">▪️ 취득학점: </strong>
               <div className="class-details__content">
-                {classes.class_credit}
+                {displayValue(classes.class_credit)}
               </div>
             </li>
             <li className="class-details__item">
               <strong className="class-details__label">▪️ 강의시간: </strong>
               <div className="class-details__content">
-                {classes.class_daytime}
+                {displayValue(classes.class_daytime)}
               </div>
             </li>
           </ul>

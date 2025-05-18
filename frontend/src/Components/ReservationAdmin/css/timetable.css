@@ -20,6 +20,11 @@
   gap: 10px;
 }
 
+.table-title strong {
+  color: #798df3;
+  font-weight: bold;
+}
+
 .calender_image {
   width: 20px;
 }
@@ -60,7 +65,7 @@
 }
 
 .class_type {
-  background-color: #dda82a;
+  background-color: #798df3;
   color: #fff;
   padding: 5px 10px;
   border-radius: 20px;
@@ -69,7 +74,7 @@
 }
 
 .reservation_type {
-  background-color: #798df3;
+  background-color: #dda82a;
   color: #fff;
   padding: 5px 10px;
   border-radius: 20px;

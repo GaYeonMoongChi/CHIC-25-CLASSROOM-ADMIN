@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../css/newReservation.css";
 import Calender from "../../../Image/Calender.svg";
 import ReservationDetail from "../Reservation/ReservationDetail";
@@ -18,10 +18,10 @@ const NewReservation = ({
   // 백앤드 주소
   const BACKEND_URL = "http://localhost:8000/api";
 
+  // 하위 컴포넌트 (ReservationDetail.js)에 전송할 데이터
   const openDetailModal = (item) => {
-    const formattedDate = formatDate(item.reserve_date);
+    const formattedDate = formatDate(item.reserve_date); // 형식 수정된 date
 
-    // 항상 reserve 상태이므로 tag를 붙여서 전달
     setSelectedReservation({
       ...item,
       tag: "reserve",
@@ -39,7 +39,7 @@ const NewReservation = ({
     setIsDetailModalOpen(false);
   };
 
-  // 날짜 문자열을 "YYYY.MM.DD" 형식으로 변환
+  // Date 형식 데이터 "YYYY.MM.DD" 형태로 변환
   const formatDate = (isoString) => {
     const date = new Date(isoString);
     const year = date.getFullYear();
@@ -67,6 +67,24 @@ const NewReservation = ({
       alert("전체 확인 처리 중 오류가 발생했습니다.");
     }
   };
+
+  // 예약 정렬
+  const sortedReservations = [...reservation].sort((a, b) => {
+    // status가 new 이면 앞에 정렬되도록
+    if (a.status === "new" && b.status !== "new") return -1;
+    if (a.status !== "new" && b.status === "new") return 1;
+
+    // 최신순 정렬
+    const formatDateTime = (r) => {
+      const datePart = new Date(r.reserve_date).toISOString().split("T")[0];
+      return new Date(`${datePart}T${r.reserve_start_time}:00`);
+    };
+
+    const dateA = formatDateTime(a);
+    const dateB = formatDateTime(b);
+
+    return dateB - dateA;
+  });
 
   return (
     <div className="modal-overlay" onClick={onClose}>
@@ -110,7 +128,7 @@ const NewReservation = ({
                 <col style={{ width: "10%" }} />
               </colgroup>
               <tbody>
-                {reservation.map((item, idx) => (
+                {sortedReservations.map((item, idx) => (
                   <tr key={idx} onClick={() => openDetailModal(item)}>
                     <td className="new-reservation__date">
                       <img

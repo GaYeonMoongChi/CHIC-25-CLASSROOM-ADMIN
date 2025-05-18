@@ -9,7 +9,6 @@ const DetailModal = ({ notice, onClose, onUpdate, formatDate }) => {
   // 모달 열릴 때 스크롤 금지되도록 설정
   useEffect(() => {
     document.body.style.overflow = "hidden";
-
     return () => {
       document.body.style.overflow = "auto";
     };
@@ -24,10 +23,18 @@ const DetailModal = ({ notice, onClose, onUpdate, formatDate }) => {
 
   if (!notice) return null;
 
+  // 데이터 없으면 '정보없음' 처리
+  const displayValue = (value) => {
+    if (value === null || value === undefined || value === "" || value === 0) {
+      return "정보없음";
+    }
+    return value;
+  };
+
   // 공지사항 삭제 API
   const handleDelete = async () => {
     const confirmDelete = window.confirm(
-      `"${localNotice.title}" 공지사항을 삭제하시겠습니까?`
+      `"${displayValue(localNotice.title)}" 공지사항을 삭제하시겠습니까?`
     );
     if (!confirmDelete) return;
 
@@ -61,7 +68,9 @@ const DetailModal = ({ notice, onClose, onUpdate, formatDate }) => {
           <button className="modal-close" onClick={onClose}>
             ✖
           </button>
-          <h1 className="notice-details__title">{localNotice.title}</h1>
+          <h1 className="notice-details__title">
+            {displayValue(localNotice.title)}
+          </h1>
         </header>
 
         <main className="notice-details__main">
@@ -69,13 +78,15 @@ const DetailModal = ({ notice, onClose, onUpdate, formatDate }) => {
             <li className="notice-details__item">
               <strong className="notice-details__label">▪️ 작성일: </strong>
               <div className="notice-details__content">
-                {formatDate ? formatDate(notice.created_at) : notice.created_at}
+                {formatDate && localNotice.created_at
+                  ? formatDate(localNotice.created_at)
+                  : displayValue(localNotice.created_at)}
               </div>
             </li>
             <li className="notice-details__item">
               <strong className="notice-details__label">▪️ 내용: </strong>
               <div className="notice-details__content">
-                {localNotice.contents}
+                {displayValue(localNotice.contents)}
               </div>
             </li>
           </ul>
