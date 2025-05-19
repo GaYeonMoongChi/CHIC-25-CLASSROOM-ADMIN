@@ -7,13 +7,13 @@ const NoticeCreate = ({ onClose, onCreate }) => {
   const BACKEND_URL = "http://localhost:8000";
 
   // 모달 열릴 때 스크롤 금지되도록 설정
-    useEffect(() => {
-      document.body.style.overflow = "hidden";
-  
-      return () => {
-        document.body.style.overflow = "auto";
-      };
-    }, []);
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, []);
 
   // 관리자 아이디 가져오기
   const adminInfoId = localStorage.getItem("admin_info_id");
@@ -102,6 +102,8 @@ const NoticeCreate = ({ onClose, onCreate }) => {
     }
   };
 
+  const todayStr = new Date().toISOString().split("T")[0];
+
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
@@ -114,17 +116,7 @@ const NoticeCreate = ({ onClose, onCreate }) => {
 
         <div className="notice-create__main">
           <ul className="notice-create__list">
-            <li className="notice-create__item">
-              <input
-                type="text"
-                className="notice-create__input"
-                placeholder="공지 제목을 입력하세요."
-                name="title"
-                value={noticeData.title}
-                onChange={handleChange}
-                onKeyDown={handleKeyDown}
-              />
-            </li>
+            <label className="notice-create__label">▪️ 공지글 유형</label>
             <li className="notice-create__item">
               <select
                 name="type"
@@ -141,30 +133,34 @@ const NoticeCreate = ({ onClose, onCreate }) => {
 
             {noticeData.type === "1" && (
               <>
+                <label className="notice-create__label">
+                  ▪️ 시작-종료 날짜
+                </label>
                 <li className="notice-create__item">
-                  <label>시작 날짜</label>
                   <input
                     className="notice-create__input"
                     type="date"
                     name="start_date"
                     value={
                       noticeData.start_date
-                        ? noticeData.start_date.toISOString().split("T")[0]
-                        : ""
+                        ? new Date(noticeData.start_date)
+                            .toISOString()
+                            .split("T")[0]
+                        : todayStr
                     }
                     onChange={handleDateChange}
                   />
-                </li>
-                <li className="notice-create__item">
-                  <label>종료 날짜</label>
+                  -
                   <input
                     className="notice-create__input"
                     type="date"
                     name="end_date"
                     value={
                       noticeData.end_date
-                        ? noticeData.end_date.toISOString().split("T")[0]
-                        : ""
+                        ? new Date(noticeData.end_date)
+                            .toISOString()
+                            .split("T")[0]
+                        : todayStr
                     }
                     onChange={handleDateChange}
                   />
@@ -172,6 +168,20 @@ const NoticeCreate = ({ onClose, onCreate }) => {
               </>
             )}
 
+            <label className="notice-create__label">▪️ 공지글 제목</label>
+            <li className="notice-create__item">
+              <input
+                type="text"
+                className="notice-create__input"
+                placeholder="공지 제목을 입력하세요."
+                name="title"
+                value={noticeData.title}
+                onChange={handleChange}
+                onKeyDown={handleKeyDown}
+              />
+            </li>
+
+            <label className="notice-create__label">▪️ 공지글 내용</label>
             <li className="notice-create__item">
               <textarea
                 className="notice-create__textarea"
