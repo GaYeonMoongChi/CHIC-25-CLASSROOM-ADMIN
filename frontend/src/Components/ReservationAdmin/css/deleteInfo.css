@@ -1,0 +1,53 @@
+.delete-info-tooltip {
+  position: absolute;
+  top: -80px;
+  right: 0;
+  background-color: #fff7f7;
+  color: #333;
+  border: 1px solid #ffcccc;
+  padding: 15px 17px;
+  font-size: 13px;
+  border-radius: 8px;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  z-index: 10;
+  width: max-content;
+  min-width: 200px;
+  pointer-events: auto;
+}
+
+.delete-info-text {
+  margin-bottom: 6px;
+  font-weight: bold;
+  font-size: 12px;
+  color: #d8000c;
+}
+
+.delete-info-contact {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+}
+
+.contact-label {
+  font-weight: 500;
+  color: #555;
+}
+
+.contact-number {
+  font-family: monospace;
+  display: inline-flex;
+  align-items: center; 
+  justify-content: center; 
+  gap: 6px;
+  background: #f2f2f2;
+  padding: 2px 6px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.contact-number img {
+  width: 12px;
+  cursor: pointer;
+}

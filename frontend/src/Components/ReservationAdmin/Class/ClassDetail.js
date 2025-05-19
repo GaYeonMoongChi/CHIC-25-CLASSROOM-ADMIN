@@ -68,7 +68,7 @@ const DetailModal = ({ classes, onClose, onUpdate, semester }) => {
           </button>
           <h1 className="class-details__title">
             <img className="book-image" src={Book} alt="📖" />
-            {displayValue(classes.class_name)}
+            {displayValue(classes.class_name)} ({classes.prof_name})
           </h1>
         </header>
 
@@ -95,7 +95,7 @@ const DetailModal = ({ classes, onClose, onUpdate, semester }) => {
             <li className="class-details__item">
               <strong className="class-details__label">▪️ 취득학점: </strong>
               <div className="class-details__content">
-                {displayValue(classes.class_credit)}
+                {displayValue(classes.class_credit)}학점
               </div>
             </li>
             <li className="class-details__item">

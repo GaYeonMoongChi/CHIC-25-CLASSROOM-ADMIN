@@ -40,19 +40,28 @@ const ClassInfoPage = () => {
   const onChangeClassName = (e) => setSearchClassName(e.target.value);
   const onChangeProfName = (e) => setSearchProfName(e.target.value);
 
+  const [errorMessage, setErrorMessage] = useState("");
+
   const fetchClasses = async () => {
-    // 강의 데이터 요청
     try {
       const response = await axios.get(`${BACKEND_URL}/${semester}`);
       const data = response.data;
 
       if (Array.isArray(data.classes)) {
-        setClassInfo(data.classes);
+        if (data.classes.length === 0) {
+          setErrorMessage("강의 정보가 등록 되어있지 않습니다.");
+          setClassInfo([]);
+        } else {
+          setErrorMessage("");
+          setClassInfo(data.classes);
+        }
       } else {
         console.error("classes가 배열이 아닙니다:", data.classes);
+        setErrorMessage("강의 정보를 받아올 수 없습니다.");
       }
     } catch (error) {
       console.error("강의실 데이터를 가져오는 중 오류 발생:", error);
+      setErrorMessage("강의 정보를 받아올 수 없습니다.");
     }
   };
 
@@ -220,10 +229,14 @@ const ClassInfoPage = () => {
 
       {/* 강의정보 리스트 */}
       <div className="class-info-update__main">
-        <ClassDepartment
-          classes={filteredClasses}
-          onUpdate={handleUpdateClass}
-        />
+        {errorMessage ? (
+          <p className="class-info__error-message">{errorMessage}</p>
+        ) : (
+          <ClassDepartment
+            classes={filteredClasses}
+            onUpdate={handleUpdateClass}
+          />
+        )}
       </div>
 
       {/* 오버레이 */}

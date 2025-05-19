@@ -21,8 +21,8 @@
 }
 
 .table-title strong {
-  color: #798df3;
-  font-weight: bold;
+  color: #8a1601bc;
+  font-weight: 500;
 }
 
 .calender_image {
@@ -44,6 +44,11 @@
   background-color: #ffffff50;
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
+  cursor: pointer;
+}
+
+.timetable-table tr:hover {
+  background-color: #ffffff;
 }
 
 .timetable-table td {

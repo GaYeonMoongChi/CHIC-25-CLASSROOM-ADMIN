@@ -28,8 +28,8 @@
 
 .building-name {
   display: flex;
-  justify-content: center; /* 가로 중앙 */
-  align-items: center; /* 세로 중앙 */
+  justify-content: center;
+  align-items: center; 
   font-size: 20px;
 }
 

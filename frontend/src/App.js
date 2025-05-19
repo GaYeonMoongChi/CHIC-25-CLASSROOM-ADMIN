@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Login from "./Pages/Login";
 import ClassroomInfoPage from "./Pages/ReservationAdmin/ClassroomInfoPage";
 import ReservationStatusPage from "./Pages/ReservationAdmin/ReservationStatusPage";
-import StudentInfoPage from "./Pages/ReservationAdmin/StudentInfoPage";
 import NoticePage from "./Pages/NoticeAdmin/NoticePage ";
 import ClassInfoPage from "./Pages/ReservationAdmin/ClassInfoPage";
 import Signup from "./Pages/Signup";
@@ -16,7 +15,6 @@ const App = () => {
         <Route path="/" element={<Login />} />
         <Route path="/Reservation" element={<ReservationStatusPage />} />
         <Route path="/Classroom" element={<ClassroomInfoPage />} />
-        <Route path="/Student" element={<StudentInfoPage />} />
         <Route path="/Class" element={<ClassInfoPage />} />
         <Route path="/Notice" element={<NoticePage />} />
         <Route path="/Signup" element={<Signup />} />

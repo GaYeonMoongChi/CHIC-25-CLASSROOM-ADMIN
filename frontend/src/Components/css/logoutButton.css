@@ -10,7 +10,7 @@
   width: 100px;
   transition: background-color 0.3s ease;
   font-weight: bold;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: inset 3px 3px 5px rgba(0, 0, 0, 0.05);
 }
 
 #logout-button:hover {
