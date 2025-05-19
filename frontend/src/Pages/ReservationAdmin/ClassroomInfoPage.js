@@ -116,6 +116,9 @@ const ClassroomInfoPage = () => {
           <img src={KW_logo} alt="🏫" />
           KW 강의실 정보 관리
         </h1>
+        <p className="classroompage-detail">
+          : 예약 가능한 강의실 정보를 열람하는 페이지 입니다.
+        </p>
         <div className="classroom-info-update__nav">
           <button
             className="classroom-info-update__action-create"

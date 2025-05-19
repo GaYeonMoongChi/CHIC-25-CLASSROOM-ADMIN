@@ -2,7 +2,6 @@
   display: flex;
   padding-bottom: 30px;
   padding-top: 30px;
-  margin-bottom: 20px;
   width: 95%;
   align-items: center;
 }
@@ -37,11 +36,17 @@
   width: 100px;
   transition: background-color 0.3s ease;
   font-weight: bold;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: inset 3px 3px 5px rgba(0, 0, 0, 0.05);
 }
 
 .classroom-info-update__action-create:hover {
-  background-color: #798df349;
+  background-color: #ffeedd90;
+}
+
+.classroompage-detail {
+  font-size: 13px;
+  color: #000;
+  padding-left: 10px;
 }
 
 .classroom-info__search {

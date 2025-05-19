@@ -63,10 +63,13 @@ const ReservationDetail = ({ rowData, onClose, fetchNewReservations }) => {
   // 공통 필드 예외처리
   const title = isClass
     ? rowData.class_name ?? "정보없음"
-    : rowData.purpose ?? "정보없음";
+    : `${rowData.building ?? ""} ${
+        rowData.room ?? rowData.roomId ?? ""
+      } 예약`.trim() || "정보없음";
+
   const subTitle = isClass
-    ? rowData.professor ?? rowData.prof_name ?? "정보없음"
-    : rowData.student_name ?? "정보없음";
+    ? rowData.professor ?? `(${rowData.prof_name})` ?? "정보없음"
+    : "";
 
   // 강의실
   const building = rowData.building ?? "";
@@ -78,7 +81,7 @@ const ReservationDetail = ({ rowData, onClose, fetchNewReservations }) => {
     rowData.reserve_date &&
     rowData.reserve_start_time &&
     rowData.reserve_end_time
-      ? `${rowData.reserve_date} (${rowData.reserve_start_time}~${rowData.reserve_end_time})`
+      ? `${rowData.reserve_date}, ${rowData.reserve_start_time} - ${rowData.reserve_end_time}시`
       : "정보없음";
 
   // 기타 필드
@@ -99,7 +102,7 @@ const ReservationDetail = ({ rowData, onClose, fetchNewReservations }) => {
           </button>
           <h1 className="reservation-details__title">
             <img className="calender-image" src={Calender} alt="📅" />
-            {title} / {subTitle}
+            {title} {subTitle}
           </h1>
         </header>
 
@@ -148,20 +151,22 @@ const ReservationDetail = ({ rowData, onClose, fetchNewReservations }) => {
               <>
                 <li className="reservation-details__item">
                   <strong className="reservation-details__label">
-                    ▪️ 이용 시간:
+                    ▪️ 이용 시간
                   </strong>
                   <div className="reservation-details__content">
                     {reserveTime}
                   </div>
                 </li>
+
                 <li className="reservation-details__item">
                   <strong className="reservation-details__label">
-                    ▪️ 강의실:
+                    ▪️ 이용 강의실:
                   </strong>
                   <div className="reservation-details__content">
                     {classroom}
                   </div>
                 </li>
+
                 <li className="reservation-details__item">
                   <strong className="reservation-details__label">
                     ▪️ 예약목적:
@@ -173,8 +178,14 @@ const ReservationDetail = ({ rowData, onClose, fetchNewReservations }) => {
                     ▪️ 예약자명:
                   </strong>
                   <div className="reservation-details__content">
-                    {studentName} ({studentId})
+                    {studentName} (학번: {studentId})
                   </div>
+                </li>
+                <li className="reservation-details__item">
+                  <strong className="reservation-details__label">
+                    ▪️ 예약자 연락처:
+                  </strong>
+                  <div className="reservation-details__content">{phone}</div>
                 </li>
                 <li className="reservation-details__item">
                   <strong className="reservation-details__label">
@@ -191,12 +202,6 @@ const ReservationDetail = ({ rowData, onClose, fetchNewReservations }) => {
                   <div className="reservation-details__content">
                     {participantCount}
                   </div>
-                </li>
-                <li className="reservation-details__item">
-                  <strong className="reservation-details__label">
-                    ▪️ 예약자 연락처:
-                  </strong>
-                  <div className="reservation-details__content">{phone}</div>
                 </li>
               </>
             )}

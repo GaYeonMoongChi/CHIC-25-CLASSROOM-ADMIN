@@ -25,11 +25,15 @@
   width: 100px;
   transition: background-color 0.3s ease;
   font-weight: bold;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: inset 3px 3px 5px rgba(0, 0, 0, 0.05);
 }
 
 .reservation-status__nav button:hover {
-  background-color: #798df349;
+  background-color: #ffeedd90;
+}
+
+.reservation-status__nav button span {
+  color: #8a1601bc;
 }
 
 .reservation-status__title {
@@ -41,6 +45,12 @@
 .reservation-status__title img {
   width: 45px;
   margin-right: 15px;
+}
+
+.reservationpage-detail {
+  font-size: 13px;
+  color: #000;
+  padding-left: 10px;
 }
 
 .reservation-status__main {

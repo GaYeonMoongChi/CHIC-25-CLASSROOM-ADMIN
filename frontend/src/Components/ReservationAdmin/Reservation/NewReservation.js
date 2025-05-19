@@ -45,7 +45,7 @@ const NewReservation = ({
     const year = date.getFullYear();
     const month = `${date.getMonth() + 1}`.padStart(2, "0");
     const day = `${date.getDate()}`.padStart(2, "0");
-    return `${year}.${month}.${day}`;
+    return `${year}년 ${month}월 ${day}일`;
   };
 
   // 전체 확인 버튼 클릭 시, 모든 new 예약이 checked 예약으로
@@ -139,7 +139,9 @@ const NewReservation = ({
                       {formatDate(item.reserve_date)} ({item.reserve_start_time}
                       ~{item.reserve_end_time})
                     </td>
-                    <td className="new-reservation__purpose">{item.purpose}</td>
+                    <td className="new-reservation__purpose">
+                      {item.building} {item.room} 예약
+                    </td>
                     {item.status === "new" ? (
                       <td className="new-reservation__badge">
                         <img src={Exclamation} alt="새 예약" />

@@ -192,6 +192,9 @@ const RoomReservationStatusPage = () => {
           <img src={KW_logo} alt="⏰" />
           KW 강의실 사용현황
         </h1>
+        <p className="reservationpage-detail">
+          : 현재 강의실 예약현황을 확인할 수 있는 페이지 입니다.
+        </p>
         <div className="reservation-status__nav">
           <button onClick={openModal}>
             새 예약{" "}
