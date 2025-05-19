@@ -183,5 +183,4 @@ if __name__ == "__main__":
 
     collection_name = sys.argv[1]
     crawl_season(collection_name)
-    # input("크롤링이 완료되었습니다. Enter 키를 누르면 브라우저가 종료됩니다...")
     driver.quit()
