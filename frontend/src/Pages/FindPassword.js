@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./css/signup.css";
+import "./css/findPassword.css";
 
 const Signup = () => {
   const BACKEND_URL = "http://localhost:8000/api/login";
@@ -126,18 +126,18 @@ const Signup = () => {
   };
 
   return (
-    <div className="signup__wrapper">
-      <div className="signup">
-        <header className="signup__header">
-          <h1 className="signup__title">
+    <div className="find-password__wrapper">
+      <div className="find-password">
+        <header className="find-password__header">
+          <h1 className="find-password__title">
             광운대학교 관리자 페이지 비밀번호 찾기
           </h1>
         </header>
 
-        <main className="signup__main">
+        <main className="find-password__main">
           <form onSubmit={handleSubmit}>
             {/* 이름 입력 */}
-            <div className="signup__input-group">
+            <div className="find-password__input-group">
               <label htmlFor="name">이름</label>
               <input
                 type="text"
@@ -153,7 +153,7 @@ const Signup = () => {
             </div>
 
             {/* 관리자 유형 선택 */}
-            <div className="signup__input-group">
+            <div className="find-password__input-group">
               <label htmlFor="type">관리자 유형</label>
               <select name="type" value={formData.type} onChange={handleChange}>
                 <option value="">관리자 유형을 선택하세요.</option>
@@ -169,7 +169,7 @@ const Signup = () => {
             </div>
 
             {/* 이메일 입력 및 인증 */}
-            <div className="signup__input-group">
+            <div className="find-password__input-group">
               <label htmlFor="email">이메일</label>
               <input
                 type="text"
@@ -191,7 +191,7 @@ const Signup = () => {
 
             {/* 인증 코드 입력 (이메일 인증 요청 후 표시됨) */}
             {isCodeSent && (
-              <div className="signup__input-group">
+              <div className="find-password__input-group">
                 <label htmlFor="verificationCode">인증 코드</label>
                 <input
                   type="text"
@@ -226,9 +226,9 @@ const Signup = () => {
               )}
             </div>
 
-            {/* 회원가입 버튼 */}
-            <button type="submit" className="signup-btn">
-              회원가입
+            {/* 비밀번호 찾기 버튼 */}
+            <button type="submit" className="find-password-btn">
+              비밀번호 찾기
             </button>
           </form>
         </main>

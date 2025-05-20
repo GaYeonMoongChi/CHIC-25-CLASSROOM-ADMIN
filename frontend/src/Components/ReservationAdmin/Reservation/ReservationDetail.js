@@ -5,6 +5,10 @@ import Calender from "../../../Image/Calender.svg";
 import DeleteInfo from "./DeleteInfo";
 
 const ReservationDetail = ({ rowData, onClose, fetchNewReservations }) => {
+  useEffect(() => {
+    console.log("ReservationDetail 컴포넌트에 전달된 rowData:", rowData);
+  }, [rowData]);
+
   // 백앤드 주소
   const BACKEND_URL = "http://localhost:8000/api";
 
@@ -90,7 +94,7 @@ const ReservationDetail = ({ rowData, onClose, fetchNewReservations }) => {
   const studentId = rowData.student_id ?? "정보없음";
   const professor = rowData.professor ?? rowData.prof_name ?? "정보없음";
   const participantCount = rowData.participant_count ?? "정보없음";
-  const phone = rowData.phone ?? "정보없음";
+  const phone = rowData.student_phone_number ?? "정보없음";
   const timeRange = rowData.timeRange ?? "정보없음";
 
   return (
