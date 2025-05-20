@@ -10,7 +10,8 @@ const studentDB = mongoose.createConnection(process.env.MONGO_URI_STUDENT, {});
 // students 모델 정의
 const studentSchema = new mongoose.Schema({
   studentId: String,
-  name: String
+  name: String,
+  phoneNumber : String
 }, { collection: 'students', versionKey: false });
 
 const Student = studentDB.model('student', studentSchema);
@@ -40,6 +41,7 @@ router.get("/check", async (req, res) => {
           const student = await Student.findOne({ studentId: reservation.student_id });
           if (student) {
             studentName = student.name;
+            studentPhoneNumber = student.phoneNumber;
           }
         }
 
@@ -55,6 +57,7 @@ router.get("/check", async (req, res) => {
         return {
           ...reservation.toObject(),
           student_name: studentName,
+          student_phone_number: studentPhoneNumber,
           building,
           room,
         };
