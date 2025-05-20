@@ -1,11 +1,12 @@
-.signin__wrapper {
+.signup__wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  margin-bottom: 50px;
 }
 
-.signin {
+.signup {
   display: flex;
   flex-direction: column;
   border-radius: 10px;
@@ -14,44 +15,44 @@
   gap: 30px;
 }
 
-.signin__header {
+.signup__header {
   margin-bottom: 10px;
   border-bottom: 2px solid #ccc;
   padding-bottom: 10px;
 }
 
-.signin__title {
+.signup__title {
   font-size: 24px;
   font-weight: bold;
   color: #333;
 }
 
-.signin__main {
+.signup__main {
   display: flex;
   flex-direction: column;
   gap: 15px;
   width: 100%;
 }
 
-.signin__input-group {
+.signup__input-group {
   display: flex;
   gap: 5px;
   margin-bottom: 15px;
 }
 
-.signin__input-group input::placeholder {
+.signup__input-group input::placeholder {
   font-size: 13px;
   color: #aaa;
 }
 
-.signin__input-group label {
+.signup__input-group label {
   font-size: 15px;
   font-weight: 600;
   color: #333;
   width: 20%;
 }
 
-.signin__input-group input {
+.signup__input-group input {
   flex: 1;
   height: 35px;
   padding: 10px;
@@ -62,7 +63,7 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.signin__input-group select {
+.signup__input-group select {
   flex: 1;
   height: 35px;
   padding: 5px;
@@ -74,12 +75,15 @@
   cursor: pointer;
 }
 
-.signin__input-group input:focus,
-.signin__input-group select:focus {
+.signup__input-group input:focus,
+.signup__input-group select:focus {
   outline: none;
 }
 
 .verify-email {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 35px;
   padding: 5px 10px;
   background-color: #798df3;
@@ -97,9 +101,9 @@
 }
 
 .signup-btn {
-  background-color: #eaf1ff;
+  background-color: #798df3;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  color: #000000;
+  color: #fff;
   border: none;
   padding: 10px;
   border-radius: 5px;
@@ -112,22 +116,39 @@
 }
 
 .signup-btn:hover {
-  background-color: #798df3;
+  background-color: #6078f3;
   color: #ffffff;
 }
 
 .error__block {
-  text-align: center;
   margin-bottom: 30px;
   gap: 10px;
 }
 
 .error {
   color: #798df3;
-  font-size: 14px;
+  font-size: 13px;
   display: inline-block;
 }
 
 .success {
   color: #798df3;
+}
+
+.spinner {
+  width: 15px;
+  height: 15px;
+  border: 3px solid #ccc;
+  border-top: 3px solid #fff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin-left: 5px;
+  margin-right: 5px;
+  display: inline-block;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }

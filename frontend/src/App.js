@@ -7,6 +7,7 @@ import ReservationStatusPage from "./Pages/ReservationAdmin/ReservationStatusPag
 import NoticePage from "./Pages/NoticeAdmin/NoticePage ";
 import ClassInfoPage from "./Pages/ReservationAdmin/ClassInfoPage";
 import Signup from "./Pages/Signup";
+import FindPassword from "./Pages/FindPassword";
 
 const App = () => {
   return (
@@ -18,7 +19,7 @@ const App = () => {
         <Route path="/Class" element={<ClassInfoPage />} />
         <Route path="/Notice" element={<NoticePage />} />
         <Route path="/Signup" element={<Signup />} />
-        <Route path="/Find-password" element={<Signup />} />
+        <Route path="/Find-password" element={<FindPassword />} />
       </Routes>
     </Router>
   );
