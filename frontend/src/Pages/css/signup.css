@@ -12,19 +12,42 @@
   border-radius: 10px;
   width: 100%;
   max-width: 520px;
-  gap: 30px;
 }
 
 .signup__header {
-  margin-bottom: 10px;
+  position: relative; /* 자식 요소 absolute 기준 */
+  display: flex;
+  align-items: center;
+  margin-bottom: 40px;
   border-bottom: 2px solid #ccc;
   padding-bottom: 10px;
+}
+
+.back-button {
+  position: absolute;
+  left: 0;
+  background: none;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  padding: 0;
+  top: 8px;
+}
+
+.back-button__icon {
+  width: 24px;
+  height: 24px;
+}
+
+.back-button:hover {
+  background-color: #66666630;
 }
 
 .signup__title {
   font-size: 24px;
   font-weight: bold;
   color: #333;
+  padding-left: 40px;
 }
 
 .signup__main {
