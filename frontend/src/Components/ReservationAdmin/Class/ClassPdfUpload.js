@@ -123,6 +123,17 @@ const ClassPdfUpload = ({ onClose }) => {
           <h1 className="class-create__title">
             <img className="book-image" src={Book} alt="📖" />
             시간표 PDF 파일 업로드
+            <span className="class-create__submit_span">
+              <button
+                className={`class-create__submit ${
+                  isUploading ? "disabled" : ""
+                }`}
+                onClick={handleSubmit}
+                disabled={isUploading}
+              >
+                완료
+              </button>
+            </span>
           </h1>
         </header>
 
@@ -173,18 +184,6 @@ const ClassPdfUpload = ({ onClose }) => {
               />
             </li>
           </ul>
-
-          <div className="class-create__submit_div">
-            <button
-              className={`class-create__submit ${
-                isUploading ? "disabled" : ""
-              }`}
-              onClick={handleSubmit}
-              disabled={isUploading}
-            >
-              완료
-            </button>
-          </div>
         </main>
 
         {isUploading && (

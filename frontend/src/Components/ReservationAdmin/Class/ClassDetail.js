@@ -69,6 +69,21 @@ const DetailModal = ({ classes, onClose, onUpdate, semester }) => {
           <h1 className="class-details__title">
             <img className="book-image" src={Book} alt="📖" />
             {displayValue(classes.class_name)} ({classes.prof_name})
+
+            <span className="class-details__actions">
+              <button
+                className="class-details__update"
+                onClick={switchUpdateMode}
+              >
+                수정
+              </button>
+              <button
+                className="classroom-details__delete"
+                onClick={handleDelete}
+              >
+                삭제
+              </button>
+            </span>
           </h1>
         </header>
 
@@ -105,21 +120,6 @@ const DetailModal = ({ classes, onClose, onUpdate, semester }) => {
               </div>
             </li>
           </ul>
-
-          <div className="class-details__update_div">
-            <button
-              className="class-details__update"
-              onClick={switchUpdateMode}
-            >
-              수정
-            </button>
-            <button
-              className="classroom-details__delete"
-              onClick={handleDelete}
-            >
-              삭제
-            </button>
-          </div>
         </main>
       </div>
 

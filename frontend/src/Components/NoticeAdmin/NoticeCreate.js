@@ -111,12 +111,19 @@ const NoticeCreate = ({ onClose, onCreate }) => {
           <button className="modal-close" onClick={onClose}>
             ✖
           </button>
-          <h1 className="notice-create__title">공지글 생성</h1>
+          <h1 className="notice-create__title">
+            공지글 생성
+            <span className="notice-create__submit_span">
+              <button className="notice-create__submit" onClick={handleSubmit}>
+                완료
+              </button>
+            </span>
+          </h1>
         </header>
 
         <div className="notice-create__main">
           <ul className="notice-create__list">
-            <label className="notice-create__label">▪️ 공지글 유형</label>
+            <label className="notice-create__label">공지글 유형</label>
             <li className="notice-create__item">
               <select
                 name="type"
@@ -168,7 +175,7 @@ const NoticeCreate = ({ onClose, onCreate }) => {
               </>
             )}
 
-            <label className="notice-create__label">▪️ 공지글 제목</label>
+            <label className="notice-create__label">공지글 제목</label>
             <li className="notice-create__item">
               <input
                 type="text"
@@ -181,7 +188,7 @@ const NoticeCreate = ({ onClose, onCreate }) => {
               />
             </li>
 
-            <label className="notice-create__label">▪️ 공지글 내용</label>
+            <label className="notice-create__label">공지글 내용</label>
             <li className="notice-create__item">
               <textarea
                 className="notice-create__textarea"
@@ -192,12 +199,6 @@ const NoticeCreate = ({ onClose, onCreate }) => {
               ></textarea>
             </li>
           </ul>
-
-          <div className="notice-create__submit_div">
-            <button className="notice-create__submit" onClick={handleSubmit}>
-              완료
-            </button>
-          </div>
         </div>
       </div>
     </div>

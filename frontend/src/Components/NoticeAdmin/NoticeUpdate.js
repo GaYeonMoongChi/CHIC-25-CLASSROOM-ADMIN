@@ -76,7 +76,14 @@ const NoticeUpdate = ({ notice, onClose, onUpdate }) => {
           <button className="modal-close" onClick={onClose}>
             ✖
           </button>
-          <h1 className="notice-update__title">공지글 수정</h1>
+          <h1 className="notice-update__title">
+            공지글 수정
+            <span className="notice-update__submit_span">
+              <button className="notice-update__submit" onClick={handleUpdate}>
+                완료
+              </button>
+            </span>
+          </h1>
         </header>
 
         <main className="notice-update__main">
@@ -107,12 +114,6 @@ const NoticeUpdate = ({ notice, onClose, onUpdate }) => {
               ></textarea>
             </li>
           </ul>
-
-          <div className="notice-update__submit_div">
-            <button className="notice-update__submit" onClick={handleUpdate}>
-              완료
-            </button>
-          </div>
         </main>
       </div>
     </div>
