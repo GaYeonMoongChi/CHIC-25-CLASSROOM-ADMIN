@@ -79,6 +79,20 @@ const DetailModal = ({ classroom, onClose, onUpdate }) => {
           <h1 className="classroom-details__title">
             <img className="school_image" src={School} alt="🏢" />{" "}
             {displayValue(classroom.building)} {displayValue(classroom.room)}
+            <span className="classroom-details__actions">
+              <button
+                className="classroom-details__update"
+                onClick={switchUpdateMode}
+              >
+                수정
+              </button>
+              <button
+                className="classroom-details__delete"
+                onClick={handleDelete}
+              >
+                삭제
+              </button>
+            </span>
           </h1>
         </header>
 
@@ -116,18 +130,6 @@ const DetailModal = ({ classroom, onClose, onUpdate }) => {
             </li>
           </ul>
         </main>
-
-        <div className="classroom-details__update_div">
-          <button
-            className="classroom-details__update"
-            onClick={switchUpdateMode}
-          >
-            수정
-          </button>
-          <button className="classroom-details__delete" onClick={handleDelete}>
-            삭제
-          </button>
-        </div>
       </div>
 
       {isUpdateMode && (

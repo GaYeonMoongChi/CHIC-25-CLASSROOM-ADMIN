@@ -70,6 +70,18 @@ const DetailModal = ({ notice, onClose, onUpdate, formatDate }) => {
           </button>
           <h1 className="notice-details__title">
             {displayValue(localNotice.title)}
+
+            <span className="notice-details__actions">
+              <button
+                className="notice-details__update"
+                onClick={switchUpdateMode}
+              >
+                수정
+              </button>
+              <button className="notice-details__delete" onClick={handleDelete}>
+                삭제
+              </button>
+            </span>
           </h1>
         </header>
 
@@ -90,18 +102,6 @@ const DetailModal = ({ notice, onClose, onUpdate, formatDate }) => {
               </div>
             </li>
           </ul>
-
-          <div className="notice-details__update_div">
-            <button
-              className="notice-details__update"
-              onClick={switchUpdateMode}
-            >
-              수정
-            </button>
-            <button className="notice-details__delete" onClick={handleDelete}>
-              삭제
-            </button>
-          </div>
         </main>
 
         {/* 수정 모달 */}

@@ -84,6 +84,11 @@ const ClassUpdate = ({ classes, onClose, onUpdate, semester }) => {
             {" "}
             <img className="book-image" src={Book} alt="📖" />
             강의 정보 수정
+            <span className="class-update__submit_span">
+              <button className="class-update__submit" onClick={handleUpdate}>
+                완료
+              </button>
+            </span>
           </h1>
         </header>
 
@@ -157,12 +162,6 @@ const ClassUpdate = ({ classes, onClose, onUpdate, semester }) => {
               />
             </li>
           </ul>
-
-          <div className="class-update__submit_div">
-            <button className="class-update__submit" onClick={handleUpdate}>
-              완료
-            </button>
-          </div>
         </main>
       </div>
     </div>

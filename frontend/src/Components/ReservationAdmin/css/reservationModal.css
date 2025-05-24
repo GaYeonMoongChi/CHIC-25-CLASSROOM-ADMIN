@@ -44,6 +44,10 @@
   gap: 10px;
 }
 
+.classroom-details__actions {
+  margin-left: auto;
+}
+
 .school_image {
   width: 30px;
 }
@@ -74,21 +78,20 @@
   border-radius: 10px;
 }
 
-.classroom-details__update_div {
-  margin-top: 30px;
-  display: flex;
-  justify-content: flex-end;
-}
-
 .classroom-details__update {
-  padding: 10px 20px;
-  border-radius: 10px;
-  border: none;
   background-color: white;
   color: #798df3;
-  margin-right: 20px;
-  font-weight: bold;
+  border: none;
+  border-radius: 30px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 13px;
+  text-align: center;
+  width: 70px;
+  transition: background-color 0.3s ease;
+  font-weight: 500;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-left: 10px;
 }
 
 .classroom-details__update:hover {
@@ -96,14 +99,19 @@
 }
 
 .classroom-details__delete {
-  padding: 10px 20px;
-  border-radius: 10px;
-  border: none;
   background-color: white;
   color: #e89baa;
+  border: none;
+  border-radius: 30px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 13px;
+  text-align: center;
+  width: 80px;
+  transition: background-color 0.3s ease;
+  font-weight: 500;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin-right: 20px;
-  font-weight: bold;
+  margin-left: 10px;
 }
 
 .classroom-details__delete:hover {
@@ -118,6 +126,10 @@
   align-items: center;
   text-align: center;
   gap: 10px;
+}
+
+.classroom-create__submit_span {
+  margin-left: auto;
 }
 
 .classroom-create__item {
@@ -166,14 +178,19 @@
 }
 
 .classroom-create__submit {
-  padding: 10px 20px;
-  border-radius: 10px;
-  border: none;
   background-color: white;
   color: #798df3;
-  margin-right: 20px;
-  font-weight: bold;
+  border: none;
+  border-radius: 30px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 13px;
+  text-align: center;
+  width: 70px;
+  transition: background-color 0.3s ease;
+  font-weight: 500;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-left: 10px;
 }
 
 .classroom-create__submit:hover {
@@ -188,6 +205,10 @@
   align-items: center;
   text-align: center;
   gap: 10px;
+}
+
+.classroom-update__submit_span {
+  margin-left: auto;
 }
 
 .classroom-update__item {
@@ -233,14 +254,19 @@
 }
 
 .classroom-update__submit {
-  padding: 10px 20px;
-  border-radius: 10px;
-  border: none;
   background-color: white;
   color: #798df3;
-  margin-right: 20px;
-  font-weight: bold;
+  border: none;
+  border-radius: 30px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 13px;
+  text-align: center;
+  width: 70px;
+  transition: background-color 0.3s ease;
+  font-weight: 500;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-left: 10px;
 }
 
 .classroom-update__submit:hover {
@@ -255,6 +281,10 @@
   align-items: center;
   text-align: center;
   gap: 10px;
+}
+
+.class-details__actions {
+  margin-left: auto;
 }
 
 .book-image {
@@ -294,18 +324,43 @@
 }
 
 .class-details__update {
-  padding: 10px 20px;
-  border-radius: 10px;
-  border: none;
   background-color: white;
   color: #798df3;
-  margin-right: 20px;
-  font-weight: bold;
+  border: none;
+  border-radius: 30px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 13px;
+  text-align: center;
+  width: 70px;
+  transition: background-color 0.3s ease;
+  font-weight: 500;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-left: 10px;
 }
 
 .class-details__update:hover {
   background-color: #798df349;
+}
+
+.class-details__delete {
+  background-color: white;
+  color: #e89baa;
+  border: none;
+  border-radius: 30px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 13px;
+  text-align: center;
+  width: 70px;
+  transition: background-color 0.3s ease;
+  font-weight: 500;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-left: 10px;
+}
+
+.class-details__delete:hover {
+  background-color: #e89baa52;
 }
 
 /* 강의 등록 모달 */
@@ -316,6 +371,10 @@
   align-items: center;
   text-align: center;
   gap: 10px;
+}
+
+.class-create__submit_span {
+  margin-left: auto;
 }
 
 .class-create__item {
@@ -368,14 +427,19 @@
 }
 
 .class-create__submit {
-  padding: 10px 20px;
-  border-radius: 10px;
-  border: none;
   background-color: white;
   color: #798df3;
-  margin-right: 20px;
-  font-weight: bold;
+  border: none;
+  border-radius: 30px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 13px;
+  text-align: center;
+  width: 70px;
+  transition: background-color 0.3s ease;
+  font-weight: 500;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-left: 10px;
 }
 
 .class-create__submit:hover {
@@ -396,6 +460,10 @@
   align-items: center;
   text-align: center;
   gap: 10px;
+}
+
+.class-update__submit_span {
+  margin-left: auto;
 }
 
 .class-update__label {
@@ -441,14 +509,19 @@
 }
 
 .class-update__submit {
-  padding: 10px 20px;
-  border-radius: 10px;
-  border: none;
   background-color: white;
   color: #798df3;
-  margin-right: 20px;
-  font-weight: bold;
+  border: none;
+  border-radius: 30px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 13px;
+  text-align: center;
+  width: 70px;
+  transition: background-color 0.3s ease;
+  font-weight: 500;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-left: 10px;
 }
 
 .class-update__submit:hover {
