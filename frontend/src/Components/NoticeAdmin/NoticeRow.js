@@ -20,7 +20,9 @@ const NoticeRow = ({ notice, onUpdate, formatDate }) => {
                 >
                   {notice.type ? "팝업" : "고정"}
                 </span>{" "}
-                {notice.title}
+                <span className="notice-page__title-ellipsis">
+                  {notice.title}
+                </span>
               </td>
             </tr>
             <tr className="notice-page__row">

@@ -116,23 +116,16 @@ const ClassPdfUpload = ({ onClose }) => {
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-        <header>
+        <header className="class-create__header">
           <button className="modal-close" onClick={onClose}>
             ✖
           </button>
           <h1 className="class-create__title">
             <img className="book-image" src={Book} alt="📖" />
             시간표 PDF 파일 업로드
-            <span className="class-create__submit_span">
-              <button
-                className={`class-create__submit ${
-                  isUploading ? "disabled" : ""
-                }`}
-                onClick={handleSubmit}
-                disabled={isUploading}
-              >
-                완료
-              </button>
+            <span className="classroompage-detail">
+              : 업로드한 시간표가 페이지에 반영되기까지 최소 5시간 이상
+              소요됩니다.
             </span>
           </h1>
         </header>
@@ -140,7 +133,7 @@ const ClassPdfUpload = ({ onClose }) => {
         <main className="class-create__main">
           <ul className="class-create__list">
             <li className="class-create__item">
-              <strong className="class-create__label">▪️ 년도-학기: </strong>
+              <strong className="class-create__label">▪️ 년도-학기 </strong>
               <input
                 type="text"
                 placeholder=" '2025-1', '2025-2', '2025-여름', '2025-겨울' 형식으로 입력하세요."
@@ -152,7 +145,7 @@ const ClassPdfUpload = ({ onClose }) => {
             </li>
 
             <li className="class-create__item">
-              <strong className="class-create__label">▪️ 개강 - 종강일:</strong>
+              <strong className="class-create__label">▪️ 개강 - 종강일</strong>
               <div className="date-range-row">
                 <Calendar
                   onChange={setStartDate}
@@ -174,7 +167,7 @@ const ClassPdfUpload = ({ onClose }) => {
 
             <li className="class-create__item">
               <strong className="class-create__label">
-                ▪️ 강의 계획서 (PDF):
+                ▪️ 강의 계획서 (.pdf)
               </strong>
               <input
                 type="file"
@@ -185,6 +178,16 @@ const ClassPdfUpload = ({ onClose }) => {
             </li>
           </ul>
         </main>
+
+        <span className="class-create__submit_span">
+          <button
+            className={`class-create__submit ${isUploading ? "disabled" : ""}`}
+            onClick={handleSubmit}
+            disabled={isUploading}
+          >
+            완료
+          </button>
+        </span>
 
         {isUploading && (
           <div className="uploading-text">강의 데이터 등록 중...</div>

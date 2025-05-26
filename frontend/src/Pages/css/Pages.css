@@ -11,5 +11,10 @@
 
 body {
   background: linear-gradient(to right, #f3f4f6 10%, #ffeedd 30%, #f5f8ff 60%);
-  background-size: 100% 100%; /* 배경 크기 설정 */
+  background-size: 100% 100%;
+  overflow-x: hidden;
+}
+
+html {
+  overflow-x: hidden; /* 일부 브라우저 대응 */
 }

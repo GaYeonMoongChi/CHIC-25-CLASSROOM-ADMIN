@@ -86,14 +86,6 @@ const ClassroomCreate = ({ onClose, onCreate }) => {
           <h1 className="classroom-create__title">
             <img className="book-image" src={School} alt="📖" />
             강의실 등록
-            <span className="classroom-create__submit_span">
-              <button
-                className="classroom-create__submit"
-                onClick={handleSubmit}
-              >
-                완료
-              </button>
-            </span>
           </h1>
         </header>
 
@@ -170,6 +162,12 @@ const ClassroomCreate = ({ onClose, onCreate }) => {
             </li>
           </ul>
         </main>
+
+        <span className="classroom-create__submit_span">
+          <button className="classroom-create__submit" onClick={handleSubmit}>
+            완료
+          </button>
+        </span>
       </div>
     </div>
   );

@@ -111,20 +111,13 @@ const NoticeCreate = ({ onClose, onCreate }) => {
           <button className="modal-close" onClick={onClose}>
             ✖
           </button>
-          <h1 className="notice-create__title">
-            공지글 생성
-            <span className="notice-create__submit_span">
-              <button className="notice-create__submit" onClick={handleSubmit}>
-                완료
-              </button>
-            </span>
-          </h1>
+          <h1 className="notice-create__title">공지글 생성</h1>
         </header>
 
         <div className="notice-create__main">
           <ul className="notice-create__list">
-            <label className="notice-create__label">공지글 유형</label>
             <li className="notice-create__item">
+              <label className="notice-create__label">공지글 유형</label>
               <select
                 name="type"
                 onChange={handleChange}
@@ -140,43 +133,43 @@ const NoticeCreate = ({ onClose, onCreate }) => {
 
             {noticeData.type === "1" && (
               <>
-                <label className="notice-create__label">
-                  ▪️ 시작-종료 날짜
-                </label>
                 <li className="notice-create__item">
-                  <input
-                    className="notice-create__input"
-                    type="date"
-                    name="start_date"
-                    value={
-                      noticeData.start_date
-                        ? new Date(noticeData.start_date)
-                            .toISOString()
-                            .split("T")[0]
-                        : todayStr
-                    }
-                    onChange={handleDateChange}
-                  />
-                  -
-                  <input
-                    className="notice-create__input"
-                    type="date"
-                    name="end_date"
-                    value={
-                      noticeData.end_date
-                        ? new Date(noticeData.end_date)
-                            .toISOString()
-                            .split("T")[0]
-                        : todayStr
-                    }
-                    onChange={handleDateChange}
-                  />
+                  <label className="notice-create__label">시작-종료 날짜</label>
+                  <div className="notice-create__item_div">
+                    <input
+                      className="notice-create__input"
+                      type="date"
+                      name="start_date"
+                      value={
+                        noticeData.start_date
+                          ? new Date(noticeData.start_date)
+                              .toISOString()
+                              .split("T")[0]
+                          : todayStr
+                      }
+                      onChange={handleDateChange}
+                    />
+                    -
+                    <input
+                      className="notice-create__input"
+                      type="date"
+                      name="end_date"
+                      value={
+                        noticeData.end_date
+                          ? new Date(noticeData.end_date)
+                              .toISOString()
+                              .split("T")[0]
+                          : todayStr
+                      }
+                      onChange={handleDateChange}
+                    />
+                  </div>
                 </li>
               </>
             )}
 
-            <label className="notice-create__label">공지글 제목</label>
             <li className="notice-create__item">
+              <label className="notice-create__label">공지글 제목</label>
               <input
                 type="text"
                 className="notice-create__input"
@@ -188,8 +181,8 @@ const NoticeCreate = ({ onClose, onCreate }) => {
               />
             </li>
 
-            <label className="notice-create__label">공지글 내용</label>
             <li className="notice-create__item">
+              <label className="notice-create__label">공지글 내용</label>
               <textarea
                 className="notice-create__textarea"
                 placeholder="공지 내용을 입력하세요."
@@ -199,6 +192,12 @@ const NoticeCreate = ({ onClose, onCreate }) => {
               ></textarea>
             </li>
           </ul>
+        </div>
+
+        <div className="notice-create__submit_span">
+          <button className="notice-create__submit" onClick={handleSubmit}>
+            완료
+          </button>
         </div>
       </div>
     </div>

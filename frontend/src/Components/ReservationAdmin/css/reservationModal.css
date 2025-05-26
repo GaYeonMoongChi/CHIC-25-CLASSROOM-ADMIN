@@ -364,8 +364,15 @@
 }
 
 /* 강의 등록 모달 */
+.class-create__header {
+  display: flex;
+  padding-bottom: 30px;
+  width: 95%;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
 .class-create__title {
-  margin-bottom: 50px;
   font-size: 25px;
   display: flex;
   align-items: center;
