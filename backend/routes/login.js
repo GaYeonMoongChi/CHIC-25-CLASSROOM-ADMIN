@@ -251,7 +251,7 @@ router.post("/request-reset", async (req, res) => {
 
 router.post("/reset-password", async (req, res) => {
   try {
-    const { email, newPassword } = req.body;
+    const { email, newPassword } = req.body;k
 
     if (!email || !newPassword) {
       return res.status(400).json({ error: "이메일과 새 비밀번호를 입력하세요." });
