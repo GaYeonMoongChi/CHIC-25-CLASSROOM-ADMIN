@@ -29,8 +29,8 @@
 .building-name {
   display: flex;
   justify-content: center;
-  align-items: center; 
-  font-size: 20px;
+  align-items: center;
+  font-size: 27px;
 }
 
 .building-name img {

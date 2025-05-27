@@ -6,7 +6,7 @@
 
 .div {
   transition: transform 0.3s ease;
-  padding-left: 100px;
+  padding: 0 100px;
 }
 
 body {

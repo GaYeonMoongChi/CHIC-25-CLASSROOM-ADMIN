@@ -130,3 +130,7 @@ h2.react-datepicker__current-month {
 .react-datepicker__input-container input:focus {
   outline: none;
 }
+
+.calendar-input-text {
+  font-size: 17px;
+}

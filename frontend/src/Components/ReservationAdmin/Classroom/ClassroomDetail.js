@@ -84,13 +84,13 @@ const DetailModal = ({ classroom, onClose, onUpdate }) => {
                 className="classroom-details__update"
                 onClick={switchUpdateMode}
               >
-                수정
+                강의실 수정
               </button>
               <button
                 className="classroom-details__delete"
                 onClick={handleDelete}
               >
-                삭제
+                강의실 삭제
               </button>
             </span>
           </h1>
@@ -100,30 +100,26 @@ const DetailModal = ({ classroom, onClose, onUpdate }) => {
           <ul className="classroom-details__list">
             <li className="classroom-details__item">
               <strong className="classroom-details__label">
-                ▪️ 관리부서 / 학과:{" "}
+                ▪️ 관리부서 / 학과{" "}
               </strong>
               <div className="classroom-details__content">
                 {displayValue(classroom.contactDepartment)}
               </div>
             </li>
             <li className="classroom-details__item">
-              <strong className="classroom-details__label">
-                ▪️ 수용인원:{" "}
-              </strong>
+              <strong className="classroom-details__label">▪️ 수용인원 </strong>
               <div className="classroom-details__content">
                 {displayValue(classroom.minNumberOfUsers)}
               </div>
             </li>
             <li className="classroom-details__item">
-              <strong className="classroom-details__label">▪️ 장비: </strong>
+              <strong className="classroom-details__label">▪️ 장비 </strong>
               <div className="classroom-details__content">
                 {displayValue(classroom.equipment)}
               </div>
             </li>
             <li className="classroom-details__item">
-              <strong className="classroom-details__label">
-                ▪️ 전화번호:{" "}
-              </strong>
+              <strong className="classroom-details__label">▪️ 전화번호 </strong>
               <div className="classroom-details__content">
                 {displayValue(classroom.contactNumber)}
               </div>

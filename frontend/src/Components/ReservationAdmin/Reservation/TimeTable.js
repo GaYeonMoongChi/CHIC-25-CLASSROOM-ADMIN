@@ -3,7 +3,13 @@ import "../css/timetable.css";
 import ReservationDetail from "./ReservationDetail";
 import Calender from "../../../Image/Calender.svg";
 
-const TimeTable = ({ reservations, date, building, roomId }) => {
+const TimeTable = ({
+  reservations,
+  date,
+  building,
+  roomId,
+  hasServerError,
+}) => {
   // 날짜 형식 변환
   const formatDate = (dateString) => {
     if (!dateString) return "";
@@ -47,8 +53,7 @@ const TimeTable = ({ reservations, date, building, roomId }) => {
         <strong>
           [{building} {roomId}]{" "}
         </strong>{" "}
-        강의실 이용 시간표{" "}
-        {/*<img className="calender_image" src={Calender} alt="📅" />*/}
+        강의실 이용 시간표
       </span>
 
       {/* 테이블 메인 */}
@@ -101,7 +106,9 @@ const TimeTable = ({ reservations, date, building, roomId }) => {
           ) : (
             <tr>
               <td className="no-result" colSpan="4">
-                등록된 강의실 일정이 없습니다.
+                {hasServerError
+                  ? "서버 연결에 실패했습니다. 잠시 후 다시 시도해주세요."
+                  : "등록된 강의실 일정이 없습니다."}
               </td>
             </tr>
           )}

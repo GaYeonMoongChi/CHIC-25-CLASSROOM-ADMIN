@@ -14,9 +14,9 @@
 
 .modal-content {
   background: linear-gradient(to right, #f3f4f6 10%, #ffeedd 30%, #f5f8ff 60%);
-  padding: 50px;
+  padding: 40px;
   border-radius: 8px;
-  width: 90%;
+  width: 85%;
   height: 100%;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   position: relative;
@@ -37,7 +37,7 @@
 /* 강의실 상세보기 모달 */
 .classroom-details__title {
   margin-bottom: 50px;
-  font-size: 25px;
+  font-size: 27px;
   display: flex;
   align-items: center;
   text-align: center;
@@ -65,8 +65,9 @@
 }
 
 .classroom-details__label {
-  font-weight: 500;
+  font-weight: bold;
   width: 20%;
+  font-size: 20px;
 }
 
 .classroom-details__content {
@@ -76,6 +77,7 @@
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
   border: none;
   border-radius: 10px;
+  font-size: 17px;
 }
 
 .classroom-details__update {
@@ -83,15 +85,14 @@
   color: #798df3;
   border: none;
   border-radius: 30px;
-  padding: 5px 10px;
+  padding: 10px 20px;
   cursor: pointer;
-  font-size: 13px;
+  font-size: 16px;
   text-align: center;
-  width: 70px;
   transition: background-color 0.3s ease;
-  font-weight: 500;
+  font-weight: bold;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .classroom-details__update:hover {
@@ -103,13 +104,12 @@
   color: #e89baa;
   border: none;
   border-radius: 30px;
-  padding: 5px 10px;
+  padding: 10px 20px;
   cursor: pointer;
-  font-size: 13px;
+  font-size: 16px;
   text-align: center;
-  width: 80px;
   transition: background-color 0.3s ease;
-  font-weight: 500;
+  font-weight: bold;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   margin-left: 10px;
 }
@@ -121,7 +121,7 @@
 /* 강의실 등록 모달 */
 .classroom-create__title {
   margin-bottom: 50px;
-  font-size: 25px;
+  font-size: 27px;
   display: flex;
   align-items: center;
   text-align: center;
@@ -140,8 +140,9 @@
 }
 
 .classroom-create__label {
-  font-weight: 500;
+  font-weight: bold;
   width: 20%;
+  font-size: 20px;
 }
 
 .classroom-create__list {
@@ -158,6 +159,7 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border: none;
   border-radius: 10px;
+  font-size: 17px;
 }
 
 .classroom-create__textarea {
@@ -182,15 +184,13 @@
   color: #798df3;
   border: none;
   border-radius: 30px;
-  padding: 5px 10px;
+  padding: 10px 20px;
   cursor: pointer;
-  font-size: 13px;
+  font-size: 16px;
   text-align: center;
-  width: 70px;
   transition: background-color 0.3s ease;
-  font-weight: 500;
+  font-weight: bold;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin-left: 10px;
 }
 
 .classroom-create__submit:hover {
@@ -200,7 +200,7 @@
 /* 강의실 수정 모달 */
 .classroom-update__title {
   margin-bottom: 50px;
-  font-size: 25px;
+  font-size: 27px;
   display: flex;
   align-items: center;
   text-align: center;
@@ -219,7 +219,9 @@
 }
 
 .classroom-update__label {
+  font-weight: bold;
   width: 20%;
+  font-size: 20px;
 }
 
 .classroom-update__list {
@@ -234,6 +236,7 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border: none;
   border-radius: 10px;
+  font-size: 17px;
 }
 
 .classroom-update__textarea {
@@ -258,15 +261,13 @@
   color: #798df3;
   border: none;
   border-radius: 30px;
-  padding: 5px 10px;
+  padding: 10px 20px;
   cursor: pointer;
-  font-size: 13px;
+  font-size: 16px;
   text-align: center;
-  width: 70px;
   transition: background-color 0.3s ease;
-  font-weight: 500;
+  font-weight: bold;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin-left: 10px;
 }
 
 .classroom-update__submit:hover {
@@ -276,7 +277,7 @@
 /* 강의 상세보기 모달 */
 .class-details__title {
   margin-bottom: 50px;
-  font-size: 25px;
+  font-size: 27px;
   display: flex;
   align-items: center;
   text-align: center;
@@ -304,8 +305,9 @@
 }
 
 .class-details__label {
-  font-weight: 500;
-  width: 20%;
+  font-weight: bold;
+  width: 15%;
+  font-size: 20px;
 }
 
 .class-details__content {
@@ -315,6 +317,7 @@
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
   border: none;
   border-radius: 10px;
+  font-size: 17px;
 }
 
 .class-details__update_div {
@@ -328,15 +331,14 @@
   color: #798df3;
   border: none;
   border-radius: 30px;
-  padding: 5px 10px;
+  padding: 10px 20px;
   cursor: pointer;
-  font-size: 13px;
+  font-size: 16px;
   text-align: center;
-  width: 70px;
   transition: background-color 0.3s ease;
-  font-weight: 500;
+  font-weight: bold;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .class-details__update:hover {
@@ -348,13 +350,12 @@
   color: #e89baa;
   border: none;
   border-radius: 30px;
-  padding: 5px 10px;
+  padding: 10px 20px;
   cursor: pointer;
-  font-size: 13px;
+  font-size: 16px;
   text-align: center;
-  width: 70px;
   transition: background-color 0.3s ease;
-  font-weight: 500;
+  font-weight: bold;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   margin-left: 10px;
 }
@@ -364,24 +365,22 @@
 }
 
 /* 강의 등록 모달 */
-.class-create__header {
-  display: flex;
-  padding-bottom: 30px;
-  width: 95%;
-  align-items: center;
-  margin-bottom: 30px;
-}
-
 .class-create__title {
-  font-size: 25px;
+  font-size: 27px;
   display: flex;
   align-items: center;
-  text-align: center;
-  gap: 10px;
+  margin-bottom: 50px;
 }
 
 .class-create__submit_span {
   margin-left: auto;
+}
+
+.classroompage-detail {
+  color: #8a1601bc;
+  font-weight: 500;
+  font-size: 17px;
+  padding-left: 10px;
 }
 
 .class-create__item {
@@ -392,8 +391,15 @@
 }
 
 .class-create__label {
-  font-weight: 500;
+  font-weight: bold;
+  width: 15%;
+  font-size: 20px;
+}
+
+.class-create-pdf_label {
+  font-weight: bold;
   width: 20%;
+  font-size: 20px;
 }
 
 .class-create__list {
@@ -410,6 +416,7 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border: none;
   border-radius: 10px;
+  font-size: 17px;
 }
 
 .class-create__input::placeholder {
@@ -438,15 +445,13 @@
   color: #798df3;
   border: none;
   border-radius: 30px;
-  padding: 5px 10px;
+  padding: 10px 20px;
   cursor: pointer;
-  font-size: 13px;
+  font-size: 16px;
   text-align: center;
-  width: 70px;
   transition: background-color 0.3s ease;
-  font-weight: 500;
+  font-weight: bold;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin-left: 10px;
 }
 
 .class-create__submit:hover {
@@ -462,7 +467,7 @@
 /* 강의 수정 모달 */
 .class-update__title {
   margin-bottom: 50px;
-  font-size: 25px;
+  font-size: 27px;
   display: flex;
   align-items: center;
   text-align: center;
@@ -474,8 +479,9 @@
 }
 
 .class-update__label {
-  font-weight: 500;
-  width: 20%;
+  font-weight: bold;
+  width: 15%;
+  font-size: 20px;
 }
 
 .class-update__item {
@@ -520,15 +526,13 @@
   color: #798df3;
   border: none;
   border-radius: 30px;
-  padding: 5px 10px;
+  padding: 10px 20px;
   cursor: pointer;
-  font-size: 13px;
+  font-size: 16px;
   text-align: center;
-  width: 70px;
   transition: background-color 0.3s ease;
-  font-weight: 500;
+  font-weight: bold;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin-left: 10px;
 }
 
 .class-update__submit:hover {
@@ -549,11 +553,21 @@
 /* 강의실 사용현황 상세보기 모달 */
 .reservation-details__title {
   margin-bottom: 50px;
-  font-size: 25px;
+  font-size: 27px;
   display: flex;
   align-items: center;
-  text-align: center;
+  justify-content: space-between;
+}
+
+.reservation-details__title-left {
+  display: flex;
+  align-items: center;
   gap: 10px;
+}
+
+.delete-button-wrapper {
+  display: flex;
+  align-items: center;
 }
 
 .calender-image {
@@ -572,8 +586,9 @@
 }
 
 .reservation-details__label {
-  font-weight: 500;
-  width: 20%;
+  font-weight: bold;
+  width: 15%;
+  font-size: 20px;
 }
 
 .reservation-details__content {
@@ -583,6 +598,7 @@
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
   border: none;
   border-radius: 10px;
+  font-size: 17px;
 }
 
 .reservation-details__update_div {
@@ -610,16 +626,72 @@
 }
 
 .reservation-details__delete {
-  padding: 10px 20px;
-  border-radius: 10px;
-  border: none;
   background-color: white;
   color: #e89baa;
-  margin-right: 20px;
+  border: none;
+  border-radius: 30px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  text-align: center;
+  transition: background-color 0.3s ease;
   font-weight: bold;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-left: 10px;
 }
 
 .reservation-details__delete:hover {
   background-color: #e89baa52;
+}
+
+/* 강의 pdf 등록 모달 */
+.pdf-upload__title-wrapper {
+  margin-bottom: 50px;
+}
+
+.pdf-upload__header {
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+  align-items: flex-start;
+  position: relative;
+  padding: 20px 0;
+}
+
+.pdf-upload__close-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.pdf-upload__title-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.pdf-upload__title-left {
+  display: flex;
+  align-items: center; /* 세로 가운데 정렬 */
+  gap: 12px; /* 제목과 설명 간 간격 */
+  width: 100%; /* 가운데 정렬을 위해 전체 너비 */
+  flex-wrap: nowrap; /* 한 줄 유지 */
+}
+
+.pdf-upload__title {
+  font-size: 27px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+}
+
+.pdf-upload__description {
+  font-size: 15px;
+  color: #555;
 }

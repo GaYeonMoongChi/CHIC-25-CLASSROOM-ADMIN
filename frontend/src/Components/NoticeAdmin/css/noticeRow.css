@@ -35,7 +35,7 @@
   padding: 5px 15px;
   border-radius: 10px;
   cursor: pointer;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 400;
 }
 
@@ -46,6 +46,7 @@
   margin-right: 10px;
   font-weight: 500;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-size: 17px;
 }
 
 .notice-page__type-fix {
@@ -55,6 +56,7 @@
   margin-right: 10px;
   font-weight: 500;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-size: 17px;
 }
 
 .notice-page__title-ellipsis {
@@ -64,4 +66,5 @@
   overflow: hidden;
   text-overflow: ellipsis;
   vertical-align: bottom;
+  font-size: 20px;
 }

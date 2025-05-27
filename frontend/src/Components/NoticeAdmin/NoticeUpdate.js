@@ -76,12 +76,20 @@ const NoticeUpdate = ({ notice, onClose, onUpdate }) => {
           <button className="modal-close" onClick={onClose}>
             ✖
           </button>
-          <h1 className="notice-update__title">공지글 수정</h1>
+          <h1 className="notice-update__title">
+            공지글 수정
+            <span className="notice-update__submit_span">
+              <button className="notice-update__submit" onClick={handleUpdate}>
+                완료
+              </button>
+            </span>
+          </h1>
         </header>
 
         <main className="notice-update__main">
           <ul className="notice-update__list">
             <li className="notice-update__item">
+              <strong className="notice-details__label">▪️ 작성일 </strong>
               <input
                 type="text"
                 value={noticeData.title}
@@ -93,7 +101,9 @@ const NoticeUpdate = ({ notice, onClose, onUpdate }) => {
                 placeholder="공지 제목을 입력하세요."
               />
             </li>
+
             <li className="notice-update__item">
+              <strong className="notice-details__label">▪️ 내용 </strong>
               <textarea
                 value={noticeData.contents}
                 onChange={(e) =>
@@ -108,12 +118,6 @@ const NoticeUpdate = ({ notice, onClose, onUpdate }) => {
             </li>
           </ul>
         </main>
-
-        <span className="notice-update__submit_span">
-          <button className="notice-update__submit" onClick={handleUpdate}>
-            완료
-          </button>
-        </span>
       </div>
     </div>
   );

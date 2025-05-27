@@ -127,13 +127,24 @@ const ClassPdfUpload = ({ onClose }) => {
               : 업로드한 시간표가 페이지에 반영되기까지 최소 5시간 이상
               소요됩니다.
             </span>
+            <span className="class-create__submit_span">
+              <button
+                className={`class-create__submit ${
+                  isUploading ? "disabled" : ""
+                }`}
+                onClick={handleSubmit}
+                disabled={isUploading}
+              >
+                등록
+              </button>
+            </span>
           </h1>
         </header>
 
         <main className="class-create__main">
           <ul className="class-create__list">
             <li className="class-create__item">
-              <strong className="class-create__label">▪️ 년도-학기 </strong>
+              <strong className="class-create-pdf_label">▪️ 년도-학기 </strong>
               <input
                 type="text"
                 placeholder=" '2025-1', '2025-2', '2025-여름', '2025-겨울' 형식으로 입력하세요."
@@ -145,7 +156,9 @@ const ClassPdfUpload = ({ onClose }) => {
             </li>
 
             <li className="class-create__item">
-              <strong className="class-create__label">▪️ 개강 - 종강일</strong>
+              <strong className="class-create-pdf_label">
+                ▪️ 개강 - 종강일
+              </strong>
               <div className="date-range-row">
                 <Calendar
                   onChange={setStartDate}
@@ -166,7 +179,7 @@ const ClassPdfUpload = ({ onClose }) => {
             </li>
 
             <li className="class-create__item">
-              <strong className="class-create__label">
+              <strong className="class-create-pdf_label">
                 ▪️ 강의 계획서 (.pdf)
               </strong>
               <input
@@ -178,16 +191,6 @@ const ClassPdfUpload = ({ onClose }) => {
             </li>
           </ul>
         </main>
-
-        <span className="class-create__submit_span">
-          <button
-            className={`class-create__submit ${isUploading ? "disabled" : ""}`}
-            onClick={handleSubmit}
-            disabled={isUploading}
-          >
-            완료
-          </button>
-        </span>
 
         {isUploading && (
           <div className="uploading-text">강의 데이터 등록 중...</div>

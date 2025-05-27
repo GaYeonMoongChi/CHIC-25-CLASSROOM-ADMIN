@@ -69,19 +69,18 @@ const DetailModal = ({ classes, onClose, onUpdate, semester }) => {
           <h1 className="class-details__title">
             <img className="book-image" src={Book} alt="📖" />
             {displayValue(classes.class_name)} ({classes.prof_name})
-
             <span className="class-details__actions">
               <button
                 className="class-details__update"
                 onClick={switchUpdateMode}
               >
-                수정
+                강의 수정
               </button>
               <button
                 className="classroom-details__delete"
                 onClick={handleDelete}
               >
-                삭제
+                강의 삭제
               </button>
             </span>
           </h1>
@@ -90,31 +89,31 @@ const DetailModal = ({ classes, onClose, onUpdate, semester }) => {
         <main className="class-details__main">
           <ul className="class-details__list">
             <li className="class-details__item">
-              <strong className="class-details__label">▪️ 학정번호: </strong>
+              <strong className="class-details__label">▪️ 학정번호 </strong>
               <div className="class-details__content">
                 {displayValue(classes.class_idx)}
               </div>
             </li>
             <li className="class-details__item">
-              <strong className="class-details__label">▪️ 강의실 호수: </strong>
+              <strong className="class-details__label">▪️ 강의실 호수 </strong>
               <div className="class-details__content">
                 {displayValue(classes.classroom_idx)}
               </div>
             </li>
             <li className="class-details__item">
-              <strong className="class-details__label">▪️ 교수명: </strong>
+              <strong className="class-details__label">▪️ 교수명 </strong>
               <div className="class-details__content">
                 {displayValue(classes.prof_name)}
               </div>
             </li>
             <li className="class-details__item">
-              <strong className="class-details__label">▪️ 취득학점: </strong>
+              <strong className="class-details__label">▪️ 취득학점 </strong>
               <div className="class-details__content">
                 {displayValue(classes.class_credit)}학점
               </div>
             </li>
             <li className="class-details__item">
-              <strong className="class-details__label">▪️ 강의시간: </strong>
+              <strong className="class-details__label">▪️ 강의시간 </strong>
               <div className="class-details__content">
                 {displayValue(classes.class_daytime)}
               </div>
