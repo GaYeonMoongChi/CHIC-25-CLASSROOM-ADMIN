@@ -32,6 +32,10 @@ const RoomReservationStatusPage = () => {
   const [searchBuilding, setBuilding] = useState("새빛관");
   const [availableRooms, setAvailableRooms] = useState([]);
 
+  // 에러 값 상태 관리
+  const [hasServerError, setHasServerError] = useState(false);
+  const [hasSemesterError, setHasSemesterError] = useState(false);
+
   // 사이드바 상태 관리
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const toggleSidebar = () => setIsSidebarOpen((prev) => !prev);
@@ -65,7 +69,16 @@ const RoomReservationStatusPage = () => {
   };
   const onChangeDate = (e) => setSearchDate(e.target.value);
   const handleSemesterChange = (e) => {
-    setSemester(e.target.value);
+    const selectedSemester = e.target.value;
+    setSemester(selectedSemester);
+
+    const [year] = selectedSemester.split("-"); // 학기에서 연도 추출
+    const today = new Date(); // 오늘 날짜
+    const month = String(today.getMonth() + 1).padStart(2, "0");
+    const day = String(today.getDate()).padStart(2, "0");
+
+    const newDate = `${year}-${month}-${day}`;
+    setSearchDate(newDate); // 연도는 학기에서, 월/일은 오늘 날짜 기준
   };
 
   // 학기 정렬 (ex. ["2025-겨울", "2025-2", "2025-여름", "2025-1", "2024-겨울", "2024-2"])
@@ -96,9 +109,13 @@ const RoomReservationStatusPage = () => {
         const sortedList = sortSemesterList(data.collections);
         setSemesterList(sortedList);
         setSemester(sortedList[0]);
+        setHasSemesterError(false);
+      } else {
+        setHasSemesterError(true);
       }
     } catch (error) {
       console.error("학기 목록을 가져오는 중 오류 발생:", error);
+      setHasSemesterError(true);
     }
   };
 
@@ -120,8 +137,10 @@ const RoomReservationStatusPage = () => {
           reservation: results,
         },
       ]);
+      setHasServerError(false);
     } catch (error) {
       console.error("예약 현황 불러오기 실패:", error);
+      setHasServerError(true);
     }
   }, [semester, searchBuilding, searchRoom, searchDate]);
 
@@ -218,6 +237,7 @@ const RoomReservationStatusPage = () => {
         onChangeBuilding={onChangeBuilding}
         onChangeRoom={onChangeRoom}
         onChangeDate={onChangeDate}
+        hasSemesterError={hasSemesterError}
       />
 
       {/* 타임 테이블*/}
@@ -227,6 +247,7 @@ const RoomReservationStatusPage = () => {
           date={searchDate}
           building={searchBuilding}
           roomId={searchRoom}
+          hasServerError={hasServerError}
         />
       </div>
 

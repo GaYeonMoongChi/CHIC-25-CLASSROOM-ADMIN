@@ -1,4 +1,5 @@
 .notice-page__row_div {
+  max-width: 100%;
   padding: 7px 20px;
   display: flex;
   align-items: center;
@@ -34,7 +35,7 @@
   padding: 5px 15px;
   border-radius: 10px;
   cursor: pointer;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 400;
 }
 
@@ -45,6 +46,7 @@
   margin-right: 10px;
   font-weight: 500;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-size: 17px;
 }
 
 .notice-page__type-fix {
@@ -54,4 +56,15 @@
   margin-right: 10px;
   font-weight: 500;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  font-size: 17px;
+}
+
+.notice-page__title-ellipsis {
+  display: inline-block;
+  max-width: 80%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: bottom;
+  font-size: 20px;
 }

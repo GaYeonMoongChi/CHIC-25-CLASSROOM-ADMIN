@@ -89,6 +89,7 @@ const NoticeUpdate = ({ notice, onClose, onUpdate }) => {
         <main className="notice-update__main">
           <ul className="notice-update__list">
             <li className="notice-update__item">
+              <strong className="notice-details__label">▪️ 작성일 </strong>
               <input
                 type="text"
                 value={noticeData.title}
@@ -100,7 +101,9 @@ const NoticeUpdate = ({ notice, onClose, onUpdate }) => {
                 placeholder="공지 제목을 입력하세요."
               />
             </li>
+
             <li className="notice-update__item">
+              <strong className="notice-details__label">▪️ 내용 </strong>
               <textarea
                 value={noticeData.contents}
                 onChange={(e) =>

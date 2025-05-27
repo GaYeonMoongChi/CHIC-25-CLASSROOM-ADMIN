@@ -76,10 +76,10 @@ const DetailModal = ({ notice, onClose, onUpdate, formatDate }) => {
                 className="notice-details__update"
                 onClick={switchUpdateMode}
               >
-                수정
+                공지글 수정
               </button>
               <button className="notice-details__delete" onClick={handleDelete}>
-                삭제
+                공지글 삭제
               </button>
             </span>
           </h1>
@@ -88,7 +88,7 @@ const DetailModal = ({ notice, onClose, onUpdate, formatDate }) => {
         <main className="notice-details__main">
           <ul className="notice-details__list">
             <li className="notice-details__item">
-              <strong className="notice-details__label">▪️ 작성일: </strong>
+              <strong className="notice-details__label">▪️ 작성일 </strong>
               <div className="notice-details__content">
                 {formatDate && localNotice.created_at
                   ? formatDate(localNotice.created_at)
@@ -96,10 +96,10 @@ const DetailModal = ({ notice, onClose, onUpdate, formatDate }) => {
               </div>
             </li>
             <li className="notice-details__item">
-              <strong className="notice-details__label">▪️ 내용: </strong>
-              <div className="notice-details__content">
+              <strong className="notice-details__label">▪️ 내용 </strong>
+              <pre className="notice-details__content">
                 {displayValue(localNotice.contents)}
-              </div>
+              </pre>
             </li>
           </ul>
         </main>

@@ -11,10 +11,12 @@ const ReservationSearchBar = ({
   onChangeBuilding,
   onChangeRoom,
   onChangeDate,
+  hasSemesterError,
 }) => {
   return (
     <div className="reservation-status__search">
-      <ul className="reservation-status__search-list">
+      {/* 1행: 학기 + 날짜 */}
+      <ul className="reservation-status__search-list row">
         <li className="reservation-status__search-item">
           <label
             htmlFor="semester-select"
@@ -27,15 +29,34 @@ const ReservationSearchBar = ({
             className="reservation-status__search-input"
             value={semester}
             onChange={handleSemesterChange}
+            disabled={hasSemesterError}
           >
-            {semesterList.map((sem, idx) => (
-              <option key={idx} value={sem}>
-                {sem}
-              </option>
-            ))}
+            {hasSemesterError ? (
+              <option>학기 정보를 불러올 수 없습니다</option>
+            ) : (
+              semesterList.map((sem, idx) => (
+                <option key={idx} value={sem}>
+                  {sem}
+                </option>
+              ))
+            )}
           </select>
         </li>
 
+        <li className="reservation-status__search-item">
+          <label className="reservation-status__search-label">날짜</label>
+          <input
+            type="date"
+            className="reservation-status__search-input"
+            placeholder="YYYY-MM-DD 형식으로 입력하세요."
+            onChange={onChangeDate}
+            value={searchDate}
+          />
+        </li>
+      </ul>
+
+      {/* 2행: 건물명 + 호수 */}
+      <ul className="reservation-status__search-list row">
         <li className="reservation-status__search-item">
           <label
             htmlFor="building-select"
@@ -80,17 +101,6 @@ const ReservationSearchBar = ({
               <option value="">선택할 수 있는 강의실이 없습니다</option>
             )}
           </select>
-        </li>
-
-        <li className="reservation-status__search-item">
-          <label className="reservation-status__search-label">날짜</label>
-          <input
-            type="text"
-            className="reservation-status__search-input"
-            placeholder="YYYY-MM-DD 형식으로 입력하세요."
-            onChange={onChangeDate}
-            value={searchDate}
-          />
         </li>
       </ul>
     </div>

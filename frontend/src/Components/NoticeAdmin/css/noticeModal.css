@@ -16,7 +16,7 @@
   background: linear-gradient(to right, #f3f4f6 10%, #ffeedd 30%, #f5f8ff 60%);
   padding: 50px;
   border-radius: 8px;
-  width: 1000px;
+  width: 85%;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   position: relative;
   max-height: 80vh;
@@ -36,15 +36,18 @@
 /* notice 상세보기 모달 */
 .notice-details__title {
   margin-bottom: 50px;
-  font-size: 25px;
+  font-size: 27px;
   display: flex;
   align-items: center;
-  text-align: center;
   gap: 10px;
+  max-width: 100%;
+  line-break: anywhere;
 }
 
 .notice-details__actions {
   margin-left: auto;
+  text-align: right;
+  gap: 10px;
 }
 
 .notice-details__list {
@@ -60,11 +63,13 @@
 }
 
 .notice-details__label {
-  font-weight: 500;
+  font-weight: bold;
   width: 12%;
+  font-size: 20px;
 }
 
 .notice-details__content {
+  font-family: "Pretendard", "Noto Sans KR", sans-serif;
   padding: 15px 10px;
   width: 100%;
   height: auto;
@@ -72,10 +77,8 @@
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
   border: none;
   border-radius: 10px;
-}
-
-.notice-update__submit_span {
-  margin-left: auto;
+  line-break: anywhere;
+  font-size: 17px;
 }
 
 .notice-details__update_div {
@@ -89,15 +92,14 @@
   color: #798df3;
   border: none;
   border-radius: 30px;
-  padding: 5px 10px;
+  padding: 10px 20px;
   cursor: pointer;
-  font-size: 13px;
+  font-size: 16px;
   text-align: center;
-  width: 70px;
   transition: background-color 0.3s ease;
-  font-weight: 500;
+  font-weight: bold;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .notice-details__update:hover {
@@ -109,13 +111,12 @@
   color: #e89baa;
   border: none;
   border-radius: 30px;
-  padding: 5px 10px;
+  padding: 10px 20px;
   cursor: pointer;
-  font-size: 13px;
+  font-size: 16px;
   text-align: center;
-  width: 80px;
   transition: background-color 0.3s ease;
-  font-weight: 500;
+  font-weight: bold;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   margin-left: 10px;
 }
@@ -127,7 +128,7 @@
 /* notice 등록 모달 */
 .notice-create__title {
   margin-bottom: 50px;
-  font-size: 25px;
+  font-size: 27px;
   display: flex;
   align-items: center;
   text-align: center;
@@ -135,6 +136,10 @@
 }
 
 .notice-create__submit_span {
+  display: flex;
+}
+
+.notice-create__submit_span > button {
   margin-left: auto;
 }
 
@@ -151,16 +156,19 @@
 }
 
 .notice-create__label {
-  font-weight: 500;
-  font-size: 14px;
-  padding-left: 5px;
-  width: 30%;
+  width: 15%;
+  text-align: left;
+  font-weight: bold;
+  font-size: 20px;
 }
 
 .notice-create__list {
   list-style: none;
   width: 100%;
-  text-align: left;
+}
+
+.notice-create__item_div {
+  display: flex;
 }
 
 .notice-create__input {
@@ -170,6 +178,7 @@
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
   border: none;
   border-radius: 10px;
+  font-size: 17px;
 }
 
 .notice-create__item select {
@@ -182,6 +191,7 @@
 }
 
 .notice-create__textarea {
+  font-family: "Pretendard", "Noto Sans KR", sans-serif;
   padding: 15px 10px;
   width: 100%;
   height: 400px;
@@ -190,6 +200,8 @@
   border: none;
   border-radius: 10px;
   resize: none;
+  font-size: 17px;
+  font-family: sans-serif;
 }
 
 .notice-create__submit_div {
@@ -203,15 +215,13 @@
   color: #798df3;
   border: none;
   border-radius: 30px;
-  padding: 5px 10px;
+  padding: 10px 20px;
   cursor: pointer;
-  font-size: 13px;
+  font-size: 16px;
   text-align: center;
-  width: 70px;
   transition: background-color 0.3s ease;
-  font-weight: 500;
+  font-weight: bold;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin-left: 10px;
 }
 
 .notice-create__submit:hover {
@@ -221,11 +231,15 @@
 /* Notice 수정 모달 */
 .notice-update__title {
   margin-bottom: 50px;
-  font-size: 25px;
+  font-size: 27px;
   display: flex;
   align-items: center;
   text-align: center;
   gap: 10px;
+}
+
+.notice-update__submit_span {
+  margin-left: auto;
 }
 
 .notice-update__item {
@@ -236,8 +250,9 @@
 }
 
 .notice-update__label {
-  font-weight: 500;
+  font-weight: bold;
   width: 15%;
+  font-size: 20px;
 }
 
 .notice-update__list {
@@ -251,9 +266,11 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border: none;
   border-radius: 10px;
+  font-size: 17px;
 }
 
 .notice-update__textarea {
+  font-family: "Pretendard", "Noto Sans KR", sans-serif;
   padding: 15px 10px;
   width: 100%;
   height: 400px;
@@ -262,6 +279,8 @@
   border: none;
   border-radius: 10px;
   resize: none;
+  font-size: 17px;
+  font-family: sans-serif;
 }
 
 .notice-update__submit_div {
@@ -275,15 +294,13 @@
   color: #798df3;
   border: none;
   border-radius: 30px;
-  padding: 5px 10px;
+  padding: 10px 20px;
   cursor: pointer;
-  font-size: 13px;
+  font-size: 16px;
   text-align: center;
-  width: 70px;
   transition: background-color 0.3s ease;
-  font-weight: 500;
+  font-weight: bold;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin-left: 10px;
 }
 
 .notice-update__submit:hover {

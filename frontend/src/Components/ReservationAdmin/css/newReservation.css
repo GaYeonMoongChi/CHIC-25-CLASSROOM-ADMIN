@@ -35,7 +35,7 @@
 }
 
 .new-reservation__title {
-  font-size: 25px;
+  font-size: 27px;
   display: flex;
   align-items: center;
   text-align: center;
@@ -45,8 +45,8 @@
 
 .new-reservation__header p {
   margin-bottom: 50px;
-  padding-left: 50px;
-  font-size: 13px;
+  font-size: 16px;
+  text-indent: 30px;
 }
 
 .new-reservation__header p strong {
@@ -67,15 +67,14 @@
   color: #798df3;
   border: none;
   border-radius: 30px;
-  padding: 5px 10px;
+  padding: 10px 20px;
   cursor: pointer;
-  font-size: 13px;
+  font-size: 16px;
   text-align: center;
-  width: 100px;
   transition: background-color 0.3s ease;
-  font-weight: 500;
+  font-weight: bold;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin-left: 10px;
+  margin-left: 20px;
 }
 
 .new-reservation__check-all:hover {
@@ -112,6 +111,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   vertical-align: middle;
+  font-size: 20px;
 }
 
 .new-reservation__date {

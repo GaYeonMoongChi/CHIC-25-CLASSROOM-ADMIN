@@ -159,12 +159,18 @@ const ClassroomInfoPage = () => {
               onChange={onChangeIdx}
               disabled={!searchBuilding} // 건물 먼저 선택해야 활성화
             >
-              <option value="">전체</option>
-              {roomList.map((room) => (
-                <option key={room} value={room}>
-                  {room}
-                </option>
-              ))}
+              {!searchBuilding ? (
+                <option value="">건물명을 먼저 선택해주세요</option>
+              ) : (
+                <>
+                  <option value="">전체</option>
+                  {roomList.map((room) => (
+                    <option key={room} value={room}>
+                      {room}
+                    </option>
+                  ))}
+                </>
+              )}
             </select>
           </li>
         </ul>

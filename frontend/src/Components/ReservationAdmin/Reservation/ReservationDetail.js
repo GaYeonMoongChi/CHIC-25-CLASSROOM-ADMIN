@@ -105,8 +105,29 @@ const ReservationDetail = ({ rowData, onClose, fetchNewReservations }) => {
             ✖
           </button>
           <h1 className="reservation-details__title">
-            <img className="calender-image" src={Calender} alt="📅" />
-            {title} {subTitle}
+            <div className="reservation-details__title-left">
+              <img className="calender-image" src={Calender} alt="📅" />
+              {title} {subTitle}
+            </div>
+
+            {isReserve && (
+              <div
+                className="delete-button-wrapper"
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+              >
+                <button
+                  className="reservation-details__delete"
+                  onClick={handleDelete}
+                >
+                  예약 삭제
+                </button>
+
+                {isHoveringDeleteArea && (
+                  <DeleteInfo phone={phone} studentName={studentName} />
+                )}
+              </div>
+            )}
           </h1>
         </header>
 
@@ -117,7 +138,7 @@ const ReservationDetail = ({ rowData, onClose, fetchNewReservations }) => {
               <>
                 <li className="reservation-details__item">
                   <strong className="reservation-details__label">
-                    ▪️ 이용 시간:
+                    ▪️ 이용 시간
                   </strong>
                   <div className="reservation-details__content">
                     {timeRange}
@@ -125,7 +146,7 @@ const ReservationDetail = ({ rowData, onClose, fetchNewReservations }) => {
                 </li>
                 <li className="reservation-details__item">
                   <strong className="reservation-details__label">
-                    ▪️ 강의실:
+                    ▪️ 강의실
                   </strong>
                   <div className="reservation-details__content">
                     {classroom}
@@ -133,7 +154,7 @@ const ReservationDetail = ({ rowData, onClose, fetchNewReservations }) => {
                 </li>
                 <li className="reservation-details__item">
                   <strong className="reservation-details__label">
-                    ▪️ 강의명:
+                    ▪️ 강의명
                   </strong>
                   <div className="reservation-details__content">
                     {rowData.class_name ?? "정보없음"}
@@ -141,7 +162,7 @@ const ReservationDetail = ({ rowData, onClose, fetchNewReservations }) => {
                 </li>
                 <li className="reservation-details__item">
                   <strong className="reservation-details__label">
-                    ▪️ 교수명:
+                    ▪️ 교수명
                   </strong>
                   <div className="reservation-details__content">
                     {professor}
@@ -164,7 +185,7 @@ const ReservationDetail = ({ rowData, onClose, fetchNewReservations }) => {
 
                 <li className="reservation-details__item">
                   <strong className="reservation-details__label">
-                    ▪️ 이용 강의실:
+                    ▪️ 이용 강의실
                   </strong>
                   <div className="reservation-details__content">
                     {classroom}
@@ -173,13 +194,13 @@ const ReservationDetail = ({ rowData, onClose, fetchNewReservations }) => {
 
                 <li className="reservation-details__item">
                   <strong className="reservation-details__label">
-                    ▪️ 예약목적:
+                    ▪️ 예약목적
                   </strong>
                   <div className="reservation-details__content">{purpose}</div>
                 </li>
                 <li className="reservation-details__item">
                   <strong className="reservation-details__label">
-                    ▪️ 예약자명:
+                    ▪️ 예약자명
                   </strong>
                   <div className="reservation-details__content">
                     {studentName} (학번: {studentId})
@@ -187,13 +208,13 @@ const ReservationDetail = ({ rowData, onClose, fetchNewReservations }) => {
                 </li>
                 <li className="reservation-details__item">
                   <strong className="reservation-details__label">
-                    ▪️ 예약자 연락처:
+                    ▪️ 예약자 연락처
                   </strong>
                   <div className="reservation-details__content">{phone}</div>
                 </li>
                 <li className="reservation-details__item">
                   <strong className="reservation-details__label">
-                    ▪️ 담당교수:
+                    ▪️ 담당교수
                   </strong>
                   <div className="reservation-details__content">
                     {professor}
@@ -201,7 +222,7 @@ const ReservationDetail = ({ rowData, onClose, fetchNewReservations }) => {
                 </li>
                 <li className="reservation-details__item">
                   <strong className="reservation-details__label">
-                    ▪️ 총 사용자 수:
+                    ▪️ 총 사용자 수
                   </strong>
                   <div className="reservation-details__content">
                     {participantCount}
@@ -211,28 +232,6 @@ const ReservationDetail = ({ rowData, onClose, fetchNewReservations }) => {
             )}
           </ul>
         </main>
-
-        {/* 예약일 때만 예약 삭제 버튼 표시 */}
-        {isReserve && (
-          <div className="reservation-details__update_div">
-            <div
-              className="delete-button-wrapper"
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
-            >
-              <button
-                className="reservation-details__delete"
-                onClick={handleDelete}
-              >
-                예약 삭제
-              </button>
-
-              {isHoveringDeleteArea && (
-                <DeleteInfo phone={phone} studentName={studentName} />
-              )}
-            </div>
-          </div>
-        )}
       </div>
     </div>
   );

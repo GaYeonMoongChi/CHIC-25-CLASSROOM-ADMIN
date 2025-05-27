@@ -1,6 +1,8 @@
 .no-result {
   padding-top: 30px;
-  color: #798df3;
+  color: #8a1601bc;
+  font-weight: 500;
+  font-size: 17px;
 }
 
 .timetable-div {
@@ -8,11 +10,14 @@
   flex-direction: column;
   align-items: center;
   margin-top: 50px;
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.377);
+  padding-top: 20px;
 }
 
 .table-title {
   font-weight: bold;
-  font-size: 23px;
+  font-size: 27px;
   margin-bottom: 30px;
   display: flex;
   align-items: center;
@@ -30,13 +35,11 @@
 }
 
 .timetable-table {
-  width: 80%;
+  width: 100%;
   margin: 0 auto;
   table-layout: fixed;
   border-collapse: separate;
   border-spacing: 0 8px;
-  border-radius: 20px;
-  background-color: rgba(255, 255, 255, 0.377);
   padding: 10px 15px;
 }
 
@@ -58,6 +61,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  font-size: 20px;
 }
 
 .time {

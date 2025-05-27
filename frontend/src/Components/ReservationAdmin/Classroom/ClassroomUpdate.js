@@ -102,7 +102,7 @@ const ClassroomUpdate = ({ classroom, onClose, onUpdate }) => {
         <main className="classroom-update__main">
           <ul className="classroom-update__list">
             <li className="classroom-update__item">
-              <strong className="classroom-update__label">▪️ 건물명: </strong>
+              <strong className="classroom-update__label">▪️ 건물명 </strong>
               <input
                 type="text"
                 name="building"
@@ -113,7 +113,7 @@ const ClassroomUpdate = ({ classroom, onClose, onUpdate }) => {
               />
             </li>
             <li className="classroom-update__item">
-              <strong className="classroom-update__label">▪️ 호수: </strong>
+              <strong className="classroom-update__label">▪️ 호수 </strong>
               <input
                 type="text"
                 name="room"
@@ -126,7 +126,7 @@ const ClassroomUpdate = ({ classroom, onClose, onUpdate }) => {
 
             <li className="classroom-update__item">
               <strong className="classroom-update__label">
-                ▪️ 관리부서 / 학과:{" "}
+                ▪️ 관리부서 / 학과{" "}
               </strong>
               <input
                 type="text"
@@ -138,7 +138,7 @@ const ClassroomUpdate = ({ classroom, onClose, onUpdate }) => {
               />
             </li>
             <li className="classroom-update__item">
-              <strong className="classroom-update__label">▪️ 수용인원: </strong>
+              <strong className="classroom-update__label">▪️ 수용인원 </strong>
               <input
                 type="text"
                 name="minNumberOfUsers"
@@ -149,7 +149,7 @@ const ClassroomUpdate = ({ classroom, onClose, onUpdate }) => {
               />
             </li>
             <li className="classroom-update__item">
-              <strong className="classroom-update__label">▪️ 비품: </strong>
+              <strong className="classroom-update__label">▪️ 장비 </strong>
               <input
                 type="text"
                 name="equipment"
@@ -160,7 +160,7 @@ const ClassroomUpdate = ({ classroom, onClose, onUpdate }) => {
               />
             </li>
             <li className="classroom-update__item">
-              <strong className="classroom-update__label">▪️ 전화번호: </strong>
+              <strong className="classroom-update__label">▪️ 전화번호 </strong>
               <input
                 type="text"
                 name="contactNumber"

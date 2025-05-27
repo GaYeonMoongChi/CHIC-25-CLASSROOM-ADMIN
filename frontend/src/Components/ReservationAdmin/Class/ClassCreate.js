@@ -98,7 +98,7 @@ const ClassCreate = ({ onClose, onCreate, semester }) => {
             강의 등록
             <span className="class-create__submit_span">
               <button className="class-create__submit" onClick={handleSubmit}>
-                완료
+                등록
               </button>
             </span>
           </h1>
@@ -107,7 +107,7 @@ const ClassCreate = ({ onClose, onCreate, semester }) => {
         <main className="class-create__main">
           <ul className="class-create__list">
             <li className="class-create__item">
-              <strong className="class-create__label">▪️ 학기: </strong>
+              <strong className="class-create__label">▪️ 학기 </strong>
               <input
                 type="text"
                 name="semester"
@@ -120,7 +120,7 @@ const ClassCreate = ({ onClose, onCreate, semester }) => {
             </li>
 
             <li className="class-create__item">
-              <strong className="class-create__label">▪️ 학정번호: </strong>
+              <strong className="class-create__label">▪️ 학정번호 </strong>
               <input
                 type="text"
                 name="class_idx"
@@ -131,7 +131,7 @@ const ClassCreate = ({ onClose, onCreate, semester }) => {
               ></input>
             </li>
             <li className="class-create__item">
-              <strong className="class-create__label">▪️ 호수: </strong>
+              <strong className="class-create__label">▪️ 호수 </strong>
               <input
                 type="text"
                 name="classroom_idx"
@@ -142,7 +142,7 @@ const ClassCreate = ({ onClose, onCreate, semester }) => {
               ></input>
             </li>
             <li className="class-create__item">
-              <strong className="class-create__label">▪️ 강좌명: </strong>
+              <strong className="class-create__label">▪️ 강좌명 </strong>
               <input
                 type="text"
                 name="class_name"
@@ -153,7 +153,7 @@ const ClassCreate = ({ onClose, onCreate, semester }) => {
               ></input>
             </li>
             <li className="class-create__item">
-              <strong className="class-create__label">▪️ 교수명: </strong>
+              <strong className="class-create__label">▪️ 교수명 </strong>
               <input
                 type="text"
                 name="prof_name"
@@ -164,7 +164,7 @@ const ClassCreate = ({ onClose, onCreate, semester }) => {
               ></input>
             </li>
             <li className="class-create__item">
-              <strong className="class-create__label">▪️ 학점: </strong>
+              <strong className="class-create__label">▪️ 학점 </strong>
               <input
                 type="int"
                 name="class_credit"
@@ -175,7 +175,7 @@ const ClassCreate = ({ onClose, onCreate, semester }) => {
               ></input>
             </li>
             <li className="class-create__item">
-              <strong className="class-create__label">▪️ 강의시간: </strong>
+              <strong className="class-create__label">▪️ 강의시간 </strong>
               <input
                 type="text"
                 name="class_daytime"
