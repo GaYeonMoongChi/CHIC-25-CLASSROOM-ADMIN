@@ -215,6 +215,75 @@ router.post("/", async (req, res) => {
   }
 });
 
+
+// 비밀번호 찾기
+// POST /api/login/request-reset
+// { "name": "정유빈", "email": "dbqls8969@kw.ac.kr", "type": "class_admin" }
+
+router.post("/request-reset", async (req, res) => {
+  try {
+    const { name, email, type } = req.body;
+
+    if (!name || !email || !type) {
+      return res.status(400).json({ error: "모든 필드를 입력하세요." });
+    }
+
+    const manager = await Manager.findOne({ name, email, type });
+    if (!manager) {
+      return res.status(404).json({ error: "해당 정보의 계정이 존재하지 않습니다." });
+    }
+
+    // 기존 /send-code 로직을 프론트에서 호출하면 됨
+    // 여기선 사용자 정보 확인만
+
+    res.json({ message: "사용자 정보가 확인되었습니다. 이메일 인증을 진행하세요.", email });
+  } catch (error) {
+    console.error("비밀번호 재설정 요청 오류:", error);
+    res.status(500).json({ error: "서버 오류" });
+  }
+});
+
+// POST /api/login/reset-password
+// {
+//   "email": "dbqls8969@kw.ac.kr",
+//   "newPassword": "newpass123"
+// }
+
+router.post("/reset-password", async (req, res) => {
+  try {
+    const { email, newPassword } = req.body;
+
+    if (!email || !newPassword) {
+      return res.status(400).json({ error: "이메일과 새 비밀번호를 입력하세요." });
+    }
+
+    // 이메일 인증이 되었는지 확인 (이메일이 인증 목록에 없어야 인증된 것으로 간주)
+    const isVerified = !emailVerificationStore.has(email);
+    if (!isVerified) {
+      return res.status(403).json({ error: "이메일 인증이 필요합니다." });
+    }
+
+    const manager = await Manager.findOne({ email });
+    if (!manager) {
+      return res.status(404).json({ error: "계정을 찾을 수 없습니다." });
+    }
+
+    // 새 비밀번호 암호화
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(newPassword, salt);
+
+    manager.pw = hashedPassword;
+    await manager.save();
+
+    res.json({ message: "비밀번호가 성공적으로 변경되었습니다." });
+  } catch (error) {
+    console.error("비밀번호 재설정 오류:", error);
+    res.status(500).json({ error: "서버 오류" });
+  }
+});
+
+
+
 /*
 const auth = require('../middleware/auth');
   router.get('/admin-only', auth, (req, res) => {
