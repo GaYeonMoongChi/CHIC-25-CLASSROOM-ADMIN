@@ -78,10 +78,10 @@ const ClassPdfUpload = ({ onClose }) => {
         handleClose();
       } else if (result && result.message) {
         alert(
-          `업로드는 완료 되었지만 서버에서 문제가 발생했습니다:\n${result.message}`
+          `시간표 파일이 서버에 전송 되었지만, 프로그램 문제로 시간표 등록이 정상적으로 되지 않을 수 있습니다. 관리자에게 문의하세요. :\n${result.message}`
         );
       } else {
-        alert("서버 응답이 정상적이지 않습니다. 관리자에게 문의하세요.");
+        alert("서버 응답이 정상적이지 않습니다. 서버 관리자에게 문의하세요.");
       }
     } catch (error) {
       console.error(`${semester} 시간표 등록 오류:`, error);

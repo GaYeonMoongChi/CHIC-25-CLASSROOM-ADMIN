@@ -95,13 +95,13 @@ const ClassUpdate = ({ classes, onClose, onUpdate, semester }) => {
         <main className="class-update__main">
           <ul className="class-update__list">
             <li className="class-create__item">
-              <strong className="class-update__label">▪️ 학정번호: </strong>
+              <strong className="class-update__label">▪️ 학정번호 </strong>
               <div className="class-details__content">
                 {classData.class_idx}
               </div>
             </li>
             <li className="class-update__item">
-              <strong className="class-update__label">▪️ 강좌명: </strong>
+              <strong className="class-update__label">▪️ 강좌명 </strong>
               <input
                 type="text"
                 value={classData.class_name}
@@ -114,7 +114,7 @@ const ClassUpdate = ({ classes, onClose, onUpdate, semester }) => {
             </li>
 
             <li className="class-update__item">
-              <strong className="class-update__label">▪️ 강의실 호수: </strong>
+              <strong className="class-update__label">▪️ 강의실 호수 </strong>
               <input
                 type="text"
                 value={classData.classroom_idx}
@@ -126,7 +126,7 @@ const ClassUpdate = ({ classes, onClose, onUpdate, semester }) => {
               />
             </li>
             <li className="class-update__item">
-              <strong className="class-update__label">▪️ 교수명: </strong>
+              <strong className="class-update__label">▪️ 교수명 </strong>
               <input
                 type="text"
                 value={classData.prof_name}
@@ -138,7 +138,7 @@ const ClassUpdate = ({ classes, onClose, onUpdate, semester }) => {
               />
             </li>
             <li className="class-update__item">
-              <strong className="class-update__label">▪️ 취득학점: </strong>
+              <strong className="class-update__label">▪️ 취득학점 </strong>
               <input
                 type="text"
                 value={classData.class_credit}
@@ -150,7 +150,7 @@ const ClassUpdate = ({ classes, onClose, onUpdate, semester }) => {
               />
             </li>
             <li className="class-update__item">
-              <strong className="class-update__label">▪️ 강의시간: </strong>
+              <strong className="class-update__label">▪️ 강의시간 </strong>
               <input
                 type="text"
                 value={classData.class_daytime}
