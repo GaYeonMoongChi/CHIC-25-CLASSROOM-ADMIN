@@ -2,9 +2,9 @@ const express = require("express");
 const router = express.Router();
 const nodemailer = require("nodemailer");
 const dotenv = require("dotenv");
-const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const Manager = require("../db/manager"); // 사용자 모델 추가
+const bcrypt = require("bcryptjs");
 
 dotenv.config();
 
@@ -215,7 +215,6 @@ router.post("/", async (req, res) => {
   }
 });
 
-
 // 비밀번호 찾기
 // POST /api/login/request-reset
 // { "name": "정유빈", "email": "dbqls8969@kw.ac.kr", "type": "class_admin" }
@@ -230,13 +229,18 @@ router.post("/request-reset", async (req, res) => {
 
     const manager = await Manager.findOne({ name, email, type });
     if (!manager) {
-      return res.status(404).json({ error: "해당 정보의 계정이 존재하지 않습니다." });
+      return res
+        .status(404)
+        .json({ error: "해당 정보의 계정이 존재하지 않습니다." });
     }
 
     // 기존 /send-code 로직을 프론트에서 호출하면 됨
     // 여기선 사용자 정보 확인만
 
-    res.json({ message: "사용자 정보가 확인되었습니다. 이메일 인증을 진행하세요.", email });
+    res.json({
+      message: "사용자 정보가 확인되었습니다. 이메일 인증을 진행하세요.",
+      email,
+    });
   } catch (error) {
     console.error("비밀번호 재설정 요청 오류:", error);
     res.status(500).json({ error: "서버 오류" });
@@ -254,7 +258,9 @@ router.post("/reset-password", async (req, res) => {
     const { email, newPassword } = req.body;
 
     if (!email || !newPassword) {
-      return res.status(400).json({ error: "이메일과 새 비밀번호를 입력하세요." });
+      return res
+        .status(400)
+        .json({ error: "이메일과 새 비밀번호를 입력하세요." });
     }
 
     // 이메일 인증이 되었는지 확인 (이메일이 인증 목록에 없어야 인증된 것으로 간주)
@@ -281,8 +287,6 @@ router.post("/reset-password", async (req, res) => {
     res.status(500).json({ error: "서버 오류" });
   }
 });
-
-
 
 /*
 const auth = require('../middleware/auth');

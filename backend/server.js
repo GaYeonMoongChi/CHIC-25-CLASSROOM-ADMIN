@@ -10,7 +10,12 @@ const app = express(); // Express 애플리케이션 생성
 const port = 8000; // 서버 포트 설정
 
 // CORS 설정
-app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    credentials: true,
+  })
+);
 
 // JSON 데이터 처리를 위한 미들웨어
 app.use(express.json());
@@ -38,11 +43,11 @@ connectDB().then(() => {
   const appointmentstatusRoutes = require("./routes/appointment_status");
   app.use("/api/appointment-status", appointmentstatusRoutes);
 
-  const reserveCheck = require('./routes/reserveCheck');
-  app.use('/api/reserve', reserveCheck);
+  const reserveCheck = require("./routes/reserveCheck");
+  app.use("/api/reserve", reserveCheck);
 
-  const uploadPdfRoute = require('./routes/pdfupload');
-  app.use('/api', uploadPdfRoute);
+  const uploadPdfRoute = require("./routes/pdfupload");
+  app.use("/api", uploadPdfRoute);
 
   // 서버 실행
   app.listen(port, () => {
