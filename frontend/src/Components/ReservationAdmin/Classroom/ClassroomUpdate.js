@@ -110,6 +110,7 @@ const ClassroomUpdate = ({ classroom, onClose, onUpdate }) => {
                 onChange={handleChange}
                 className="classroom-update__input"
                 onKeyDown={handleKeyDown}
+                placeholder="건물명을 입력해주세요. ( 예: 비마관 )"
               />
             </li>
             <li className="classroom-update__item">
@@ -121,6 +122,8 @@ const ClassroomUpdate = ({ classroom, onClose, onUpdate }) => {
                 onChange={handleChange}
                 className="classroom-update__input"
                 onKeyDown={handleKeyDown}
+                placeholder="강의실 호수를 입력하세요. (
+                예:103 )"
               />
             </li>
 
@@ -135,17 +138,19 @@ const ClassroomUpdate = ({ classroom, onClose, onUpdate }) => {
                 onChange={handleChange}
                 className="classroom-update__input"
                 onKeyDown={handleKeyDown}
+                placeholder="강의실 관리부서 또는 학과를 입력하세요. ( 예: 정보융합학부, 전자공학과, MOOC센터... )"
               />
             </li>
             <li className="classroom-update__item">
               <strong className="classroom-update__label">▪️ 수용인원 </strong>
               <input
-                type="text"
+                type="number"
                 name="minNumberOfUsers"
                 value={classroomData.minNumberOfUsers}
                 onChange={handleChange}
                 className="classroom-update__input"
                 onKeyDown={handleKeyDown}
+                placeholder="강의실의 최소 수용인원을 입력하세요. (예: 50)"
               />
             </li>
             <li className="classroom-update__item">
@@ -157,6 +162,7 @@ const ClassroomUpdate = ({ classroom, onClose, onUpdate }) => {
                 onChange={handleChange}
                 className="classroom-update__input"
                 onKeyDown={handleKeyDown}
+                placeholder="강의실에 구비되어 있는 장비를 입력하세요."
               />
             </li>
             <li className="classroom-update__item">
@@ -168,6 +174,7 @@ const ClassroomUpdate = ({ classroom, onClose, onUpdate }) => {
                 onChange={handleChange}
                 className="classroom-update__input"
                 onKeyDown={handleKeyDown}
+                placeholder="강의실 전화번호를 입력하세요. ( 예: 02-940-xxxx 형식으로 입력 )"
               />
             </li>
           </ul>

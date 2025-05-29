@@ -18,11 +18,10 @@
   color: black;
   border: none;
   border-radius: 30px;
-  padding: 12px 7px;
+  padding: 10px 20px;
   cursor: pointer;
-  font-size: 15px;
+  font-size: 18px;
   text-align: center;
-  width: 100px;
   transition: background-color 0.3s ease;
   font-weight: bold;
   box-shadow: inset 3px 3px 5px rgba(0, 0, 0, 0.05);
@@ -33,7 +32,7 @@
 }
 
 .reservation-status__nav button span {
-  color: #8a1601bc;
+  color: #000;
 }
 
 .reservation-status__title {
@@ -48,8 +47,9 @@
 }
 
 .reservationpage-detail {
-  font-size: 15px;
-  color: #000;
+  color: #8a1601bc;
+  font-weight: 500;
+  font-size: 17px;
   padding-left: 10px;
 }
 
