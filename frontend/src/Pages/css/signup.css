@@ -15,7 +15,6 @@
 }
 
 .signup__header {
-  position: relative; /* 자식 요소 absolute 기준 */
   display: flex;
   align-items: center;
   margin-bottom: 40px;
@@ -47,7 +46,6 @@
   font-size: 24px;
   font-weight: bold;
   color: #333;
-  padding-left: 40px;
 }
 
 .signup__main {
