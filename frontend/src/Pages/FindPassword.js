@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "./css/findPassword.css";
 
 const Signup = () => {
-  const BACKEND_URL = "http://localhost:8000/api";
+  const BACKEND_URL = "http://localhost:8000/api/login";
   const navigate = useNavigate();
 
   // 비밀번호 입력 상태 관리
@@ -171,7 +171,7 @@ const Signup = () => {
       const resetData = await resetResponse.json();
       if (resetResponse.ok) {
         alert("비밀번호가 성공적으로 변경되었습니다.");
-        navigate("/login");
+        navigate("/");
       } else {
         alert(resetData.error || "비밀번호 재설정 실패");
       }
