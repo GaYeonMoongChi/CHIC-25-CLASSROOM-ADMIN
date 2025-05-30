@@ -95,7 +95,7 @@ const DetailModal = ({ classes, onClose, onUpdate, semester }) => {
               </div>
             </li>
             <li className="class-details__item">
-              <strong className="class-details__label">▪️ 강의실 호수 </strong>
+              <strong className="class-details__label">▪️ 강의실 </strong>
               <div className="class-details__content">
                 {displayValue(classes.classroom_idx)}
               </div>
