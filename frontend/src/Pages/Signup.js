@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./css/signup.css";
-import Back from "../Image/Back.svg";
 
 const Signup = () => {
   const BACKEND_URL = "http://localhost:8000/api/login";
@@ -136,7 +135,12 @@ const Signup = () => {
       const response = await fetch(`${BACKEND_URL}/manager/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          pw: formData.pw,
+          type: formData.type,
+        }),
       });
 
       const data = await response.json();
@@ -155,14 +159,7 @@ const Signup = () => {
     <div className="signup__wrapper">
       <div className="signup">
         <header className="signup__header">
-          <button
-            type="button"
-            className="back-button"
-            onClick={() => navigate(-1)}
-          >
-            <img src={Back} alt="뒤로가기" className="back-button__icon" />
-          </button>
-          <h1 className="signup__title">광운대학교 관리자 페이지 회원가입</h1>
+          <h1 className="signup__title">[광운대학교 관리자 페이지] 회원가입</h1>
         </header>
 
         <main className="signup__main">

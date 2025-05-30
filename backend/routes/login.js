@@ -29,7 +29,7 @@ router.post("/send-code", async (req, res) => {
   try {
     console.log("/api/login/send-code POST 요청 받음!", req.body);
 
-    const { email } = req.body;
+    const { email, purpose } = req.body;
 
     // 이메일이 `@kw.ac.kr` 도메인인지 확인
     if (!email.endsWith("@kw.ac.kr")) {
@@ -38,22 +38,30 @@ router.post("/send-code", async (req, res) => {
         .json({ error: "광운대학교 이메일(@kw.ac.kr)만 사용 가능합니다." });
     }
 
-    // 중복 이메일 검사
     const existingUser = await Manager.findOne({ email });
-    if (existingUser) {
-      return res.status(400).json({ error: "이미 가입된 이메일입니다." });
+
+    if (purpose === "signup") {
+      // 회원가입 시에는 중복된 이메일이면 에러
+      if (existingUser) {
+        return res.status(400).json({ error: "이미 가입된 이메일입니다." });
+      }
     }
 
-    // 6자리 랜덤 인증 코드 생성
+    if (purpose === "reset-password") {
+      // 비밀번호 재설정 시에는 가입된 이메일이 반드시 있어야 함
+      if (!existingUser) {
+        return res.status(404).json({ error: "등록되지 않은 이메일입니다." });
+      }
+    }
+
+    // 인증 코드 생성 및 전송
     const verificationCode = Math.floor(
       100000 + Math.random() * 900000
     ).toString();
-    const expiresAt = Date.now() + 3 * 60 * 1000; // 유효 시간: 3분
+    const expiresAt = Date.now() + 3 * 60 * 1000;
 
-    // 인증 코드 저장
     emailVerificationStore.set(email, { code: verificationCode, expiresAt });
 
-    // 이메일 발송
     const mailOptions = {
       from: process.env.NODEMAILER_USER,
       to: email,

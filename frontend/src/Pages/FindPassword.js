@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "./css/findPassword.css";
 
 const Signup = () => {
-  const BACKEND_URL = "http://localhost:8000/api/login";
+  const BACKEND_URL = "http://localhost:8000/api";
   const navigate = useNavigate();
 
   // 비밀번호 입력 상태 관리
@@ -17,9 +17,17 @@ const Signup = () => {
   const [isCodeSent, setIsCodeSent] = useState(false);
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const [showPasswordForm, setShowPasswordForm] = useState(false);
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   // 이메일 유효성 검사 함수
   const validateEmail = (email) => /^[a-zA-Z0-9._%+-]+@kw\.ac\.kr$/.test(email);
+
+  // 비밀번호 유효성 검사 함수
+  const validatePassword = (pw) => {
+    return /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(pw);
+  };
 
   // 입력값 변경 핸들러
   const handleChange = (e) => {
@@ -84,7 +92,10 @@ const Signup = () => {
       const response = await fetch(`${BACKEND_URL}/verify-code`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: formData.email, code: verificationCode }),
+        body: JSON.stringify({
+          email: formData.email,
+          code: verificationCode,
+        }),
       });
 
       const data = await response.json();
@@ -103,11 +114,12 @@ const Signup = () => {
     }
   };
 
-  // 비밀번호 찾기 요청 처리
+  // 비밀번호 재설정 요청 처리
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrors({});
 
+    // 초기 입력값 확인
     let newErrors = {};
     if (!formData.name) newErrors.name = "이름을 입력하세요.";
     if (!formData.type) newErrors.type = "관리자 유형을 선택하세요.";
@@ -115,6 +127,12 @@ const Signup = () => {
       newErrors.email = "광운대학교 이메일(@kw.ac.kr)만 사용 가능합니다.";
     if (!isEmailVerified)
       newErrors.emailVerification = "이메일 인증을 완료하세요.";
+    if (!validatePassword(newPassword)) {
+      newErrors.pw = "비밀번호는 최소 8자 이상, 영문+숫자를 포함해야 합니다.";
+    }
+    if (newPassword !== confirmPassword) {
+      newErrors.confirmPw = "비밀번호가 일치하지 않습니다.";
+    }
 
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
@@ -122,7 +140,45 @@ const Signup = () => {
       return;
     }
 
-    // 비밀번호 찾기 api 요청
+    try {
+      // 사용자 정보 확인
+      const checkResponse = await fetch(`${BACKEND_URL}/request-reset`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          type: formData.type,
+        }),
+      });
+
+      const checkData = await checkResponse.json();
+      if (!checkResponse.ok) {
+        alert(checkData.error || "사용자 정보 확인 실패");
+        return;
+      }
+
+      // 비밀번호 재설정
+      const resetResponse = await fetch(`${BACKEND_URL}/reset-password`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: formData.email,
+          newPassword: newPassword,
+        }),
+      });
+
+      const resetData = await resetResponse.json();
+      if (resetResponse.ok) {
+        alert("비밀번호가 성공적으로 변경되었습니다.");
+        navigate("/login");
+      } else {
+        alert(resetData.error || "비밀번호 재설정 실패");
+      }
+    } catch (error) {
+      alert("서버 오류로 비밀번호 재설정에 실패했습니다.");
+      console.error(error);
+    }
   };
 
   return (
@@ -130,7 +186,7 @@ const Signup = () => {
       <div className="find-password">
         <header className="find-password__header">
           <h1 className="find-password__title">
-            광운대학교 관리자 페이지 비밀번호 찾기
+            [광운대학교 관리자 페이지] 비밀번호 재설정
           </h1>
         </header>
 
@@ -226,10 +282,73 @@ const Signup = () => {
               )}
             </div>
 
-            {/* 비밀번호 찾기 버튼 */}
-            <button type="submit" className="find-password-btn">
-              비밀번호 찾기
-            </button>
+            {/* 비밀번호 재설정 버튼 */}
+            {!showPasswordForm && (
+              <button
+                type="button"
+                className="find-password-btn"
+                onClick={() => {
+                  let newErrors = {};
+                  if (!formData.name) newErrors.name = "이름을 입력하세요.";
+                  if (!formData.type)
+                    newErrors.type = "관리자 유형을 선택하세요.";
+                  if (!validateEmail(formData.email))
+                    newErrors.email =
+                      "광운대학교 이메일(@kw.ac.kr)만 사용 가능합니다.";
+                  if (!isEmailVerified)
+                    newErrors.emailVerification = "이메일 인증을 완료하세요.";
+
+                  if (Object.keys(newErrors).length > 0) {
+                    setErrors(newErrors);
+                    alert("입력값을 확인하세요.");
+                    return;
+                  }
+
+                  setShowPasswordForm(true); // 폼 보여주기
+                }}
+              >
+                비밀번호 재설정
+              </button>
+            )}
+
+            {/* 새 비밀번호 설정폼 */}
+            {showPasswordForm && (
+              <>
+                <div className="find-password__input-group">
+                  <label htmlFor="newPassword">새 비밀번호</label>
+                  <input
+                    type="password"
+                    name="newPassword"
+                    value={newPassword}
+                    placeholder="8자 이상, 영문+숫자 포함"
+                    onChange={(e) => setNewPassword(e.target.value)}
+                  />
+                </div>
+                <div className="error__block">
+                  {errors.pw && <p className="error">{errors.pw}</p>}
+                </div>
+
+                <div className="find-password__input-group">
+                  <label htmlFor="confirmPassword">비밀번호 확인</label>
+                  <input
+                    type="password"
+                    name="confirmPassword"
+                    value={confirmPassword}
+                    placeholder="비밀번호를 다시 입력해주세요."
+                    onChange={(e) => setConfirmPassword(e.target.value)}
+                  />
+                </div>
+                <div className="error__block">
+                  {errors.confirmPw && (
+                    <p className="error">{errors.confirmPw}</p>
+                  )}
+                </div>
+
+                <button type="submit" className="find-password-btn">
+                  새 비밀번호 설정 완료
+                </button>
+              </>
+            )}
           </form>
         </main>
       </div>
