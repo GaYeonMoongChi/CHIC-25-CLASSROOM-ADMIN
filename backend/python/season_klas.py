@@ -14,7 +14,7 @@ from pymongo import MongoClient
 from dotenv import load_dotenv
 
 chrome_options = Options()
-chrome_options.add_argument("--headless")
+chrome_options.add_argument("--headless=new")
 chrome_options.add_argument("--disable-gpu")
 chrome_options.add_argument("--window-size=1920,1080")
 chrome_options.add_argument("--no-sandbox")
@@ -27,9 +27,6 @@ load_dotenv()
 client = MongoClient(os.getenv("MONGO_URI_CLASS"))
 db = client["class"]
 
-# Chrome 드라이버 설정
-chrome_options = Options()
-# chrome_options.add_argument("--headless=new")
 driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
 
 # 경고창 처리
@@ -115,7 +112,10 @@ def crawl_season(collection_name):
 
         wait = WebDriverWait(driver, 10)
         input_box = wait.until(EC.element_to_be_clickable((By.XPATH, prof_input_xpath)))
+        driver.execute_script("arguments[0].scrollIntoView(true);", input_box)
+        driver.execute_script("arguments[0].focus();", input_box)
         input_box.clear()
+        time.sleep(0.3)
         input_box.send_keys(prof)
         time.sleep(0.5)
 
@@ -141,17 +141,35 @@ def crawl_season(collection_name):
                 class_prof_xpath = '//*[@id="appModule"]/div[2]/div[2]/table[1]/tbody/tr[5]/td[1]'
                 classroom_xpath = '//*[@id="appModule"]/div[2]/div[2]/table[1]/tbody/tr[4]/td[1]'
                 fallback_classroom_xpath = '//*[@id="appModule"]/div[2]/div[2]/table[1]/tbody/tr[5]/td[1]'
-
+                                           
                 class_info = driver.find_element(By.XPATH, class_info_xpath).text
                 class_prof = driver.find_element(By.XPATH, class_prof_xpath).text.strip()
 
-                classroom_element = driver.find_element(By.XPATH, classroom_xpath)
-                classroom_text = classroom_element.text.strip()
+                try:
+                    classroom_element = driver.find_element(By.XPATH, classroom_xpath)
+                    classroom_text = classroom_element.text.strip()
+                    if not classroom_text:
+                        raise ValueError("빈 텍스트")
+                except Exception:
+                    try:
+                        classroom_element = driver.find_element(By.XPATH, fallback_classroom_xpath)
+                        classroom_text = classroom_element.text.strip()
+                    except Exception:
+                        classroom_text = ""
 
-                # 빈 값일 경우 fallback xpath 사용
-                if not classroom_text:
-                    fallback_element = driver.find_element(By.XPATH, fallback_classroom_xpath)
-                    classroom_text = fallback_element.text.strip()
+                # 아작 아래는 테스트 안 해봄(실험 과목 계열에 대해서 classroom 못 받아옴)
+                # try:
+                #     classroom_element = driver.find_element(By.XPATH, classroom_xpath)
+                #     classroom_text = driver.execute_script("return arguments[0].textContent;", classroom_element).strip()
+                #     if not classroom_text or len(classroom_text) < 2:
+                #         raise ValueError("빈 텍스트")
+                # except Exception:
+                #     try:
+                #         fallback_element = driver.find_element(By.XPATH, fallback_classroom_xpath)
+                #         classroom_text = driver.execute_script("return arguments[0].textContent;", fallback_element).strip()
+                #     except Exception:
+                #         classroom_text = ""
+        
 
                 class_name = parse_class_info(class_info)
                 classroom_idx = parse_classroom(classroom_text)
