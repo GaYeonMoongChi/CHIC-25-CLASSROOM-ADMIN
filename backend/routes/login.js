@@ -263,7 +263,7 @@ router.post("/request-reset", async (req, res) => {
 
 router.post("/reset-password", async (req, res) => {
   try {
-    const { email, newPassword } = req.body;
+    const { email, newPassword } = req.body;k
 
     if (!email || !newPassword) {
       return res

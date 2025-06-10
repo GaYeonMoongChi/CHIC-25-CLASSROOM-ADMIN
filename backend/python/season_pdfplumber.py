@@ -19,27 +19,44 @@ def is_valid_class_idx(text):
 
 def extract_classes_from_table(table):
     results = []
-    for row in table:
+    if not table or len(table) < 2:
+        return results
+
+    header = [cell.strip() for cell in table[0]]
+    data_rows = table[1:]
+
+     # 필요한 열의 인덱스를 동적으로 추출
+    try:
+        idx_subject = header.index("과목명")
+        idx_credit = header.index("학점")
+        idx_prof = header.index("담당교수")
+        idx_note = header.index("비 고") if "비 고" in header else None
+    except ValueError as e:
+        print("[에러] 헤더를 찾을 수 없습니다:", e)
+        return results
+
+    for row in data_rows:
         row = [cell.strip() if cell else "" for cell in row]
-        if len(row) < 9 or not is_valid_class_idx(row[0]):
-            continue
+        if len(row) <= max(idx_subject, idx_credit, idx_prof):
+            continue  # 데이터 부족
 
-        raw_class_name = row[3]
-        class_name = re.sub(r"\s*\(.*?\)", "", raw_class_name).strip()
-        class_credit = row[4]
-        prof_name = row[8]
-        option = row[9] if len(row) > 9 else ""
+        class_name_raw = row[idx_subject]
+        class_name = re.sub(r"\s*\(.*?\)", "", class_name_raw).strip()
 
-        # 담당교수 없으면 skip
+        credit = row[idx_credit]
+        prof_name = row[idx_prof]
+        note = row[idx_note] if idx_note is not None and idx_note < len(row) else ""
+
         if not prof_name:
-            continue
+            continue  # 담당교수 없으면 스킵
 
         results.append({
             "class_name": class_name,
-            "class_credit": int(class_credit) if class_credit.isdigit() else 0,
+            "class_credit": int(credit) if credit.isdigit() else 0,
             "prof_name": prof_name,
-            "option": option
+            "option": note
         })
+
     return results
 
 
