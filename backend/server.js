@@ -7,12 +7,11 @@ const cors = require("cors"); // CORS 모듈 불러오기
 dotenv.config(); // .env 파일의 내용을 로드
 
 const app = express(); // Express 애플리케이션 생성
-const port = 8000; // 서버 포트 설정
 
 // CORS 설정
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: process.env.FRONTEND_URL,
     credentials: true,
   })
 );
@@ -50,7 +49,9 @@ connectDB().then(() => {
   app.use("/api", uploadPdfRoute);
 
   // 서버 실행
-  app.listen(port, () => {
-    console.log(`서버가 http://localhost:${port} 에서 실행 중입니다.`);
+  app.listen(process.env.PORT, () => {
+    console.log(
+      `서버가 http://localhost:${process.env.PORT} 에서 실행 중입니다.`
+    );
   });
 });

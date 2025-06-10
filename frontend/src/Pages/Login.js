@@ -44,9 +44,9 @@ const Login = () => {
       // 관리자 유형에 따라 페이지 이동
       const { type } = data;
       if (type === "class_admin") {
-        navigate("/Reservation");
+        navigate("/reservation");
       } else if (type === "ad_admin") {
-        navigate("/Notice");
+        navigate("/notice");
       } else {
         setErrorMessage("잘못된 관리자 유형입니다.");
       }
@@ -101,7 +101,7 @@ const Login = () => {
             {errorMessage && <p className="login__error">{errorMessage}</p>}
 
             <div className="login__links">
-              <a href="/Find-password" className="password-find">
+              <a href="/find-password" className="password-find">
                 비밀번호 찾기
               </a>
               <span className="login__divider">|</span>
