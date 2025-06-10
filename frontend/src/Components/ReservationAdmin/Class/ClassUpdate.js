@@ -5,7 +5,7 @@ import Book from "../../../Image/Book.svg";
 
 const ClassUpdate = ({ classes, onClose, onUpdate, semester }) => {
   // 백앤드 주소
-  const BACKEND_URL = "http://localhost:8000/api/class";
+  const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
   // 수정할 값들의 상태
   const [classData, setClassData] = useState({
@@ -36,7 +36,7 @@ const ClassUpdate = ({ classes, onClose, onUpdate, semester }) => {
     setClassData((prev) => ({ ...prev, [name]: value }));
   };
 
-  // 학생 정보 수정 요청
+  // 강의 정보 수정 요청
   const handleUpdate = async () => {
     if (!classes.class_idx) {
       alert("강의 데이터가 조회되지 않습니다.");
@@ -45,22 +45,22 @@ const ClassUpdate = ({ classes, onClose, onUpdate, semester }) => {
 
     try {
       const response = await axios.put(
-        `${BACKEND_URL}/${semester}/${classes.class_idx}`,
+        `${BACKEND_URL}/api/class/${semester}/${classes.class_idx}`,
         classData
       );
 
       if (response.status === 200) {
-        alert("학생 정보가 수정되었습니다.");
+        alert("강의 정보가 수정되었습니다.");
         if (onUpdate) {
           onUpdate(classData, null);
         }
         onClose();
       } else {
-        alert(response.data.message || "학생 정보 수정에 실패했습니다.");
+        alert(response.data.message || "강의 정보 수정에 실패했습니다.");
       }
     } catch (error) {
-      console.error("학생 정보 수정 오류:", error);
-      alert("학생 정보 수정 중 오류가 발생했습니다.");
+      console.error("강의 정보 수정 오류:", error);
+      alert("강의 정보 수정 중 오류가 발생했습니다.");
     }
   };
 

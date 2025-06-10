@@ -5,7 +5,7 @@ import Book from "../../../Image/Book.svg";
 
 const ClassCreate = ({ onClose, onCreate, semester }) => {
   // 백앤드 주소
-  const BACKEND_URL = "http://localhost:8000/api/class";
+  const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
   // 모달 열릴 때 스크롤 금지되도록 설정
   useEffect(() => {
@@ -50,7 +50,7 @@ const ClassCreate = ({ onClose, onCreate, semester }) => {
 
     try {
       const response = await axios.post(
-        `${BACKEND_URL}/${semester}`,
+        `${BACKEND_URL}/api/class/${semester}`,
         classData
       );
       alert("강의 등록이 완료되었습니다.");

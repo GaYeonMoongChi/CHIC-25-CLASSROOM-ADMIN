@@ -6,10 +6,11 @@ import Book from "../../../Image/Book.svg";
 
 const ClassPdfUpload = ({ onClose }) => {
   // 백앤드 주소
-  const BACKEND_URL = "http://localhost:8000";
+  const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
-  const [startDate, setStartDate] = useState(null); // 개강
-  const [endDate, setEndDate] = useState(null); // 종강
+  // 개강, 종강 날짜 상태 관리
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
 
   // 모달 열릴 때 스크롤 금지되도록 설정
   useEffect(() => {

@@ -4,7 +4,7 @@ import "../css/reservationModal.css";
 import School from "../../../Image/School.svg";
 
 const ClassroomUpdate = ({ classroom, onClose, onUpdate }) => {
-  const BACKEND_URL = "http://localhost:8000";
+  const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
   // 모달 열릴 때 스크롤 금지되도록 설정
   useEffect(() => {

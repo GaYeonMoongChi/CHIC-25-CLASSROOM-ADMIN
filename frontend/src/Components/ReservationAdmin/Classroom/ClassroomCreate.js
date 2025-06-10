@@ -5,7 +5,7 @@ import School from "../../../Image/School.svg";
 
 const ClassroomCreate = ({ onClose, onCreate }) => {
   // 백앤드 주소
-  const BACKEND_URL = "http://localhost:8000";
+  const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
   // 모달 열릴 때 스크롤 금지되도록 설정
   useEffect(() => {
@@ -34,10 +34,10 @@ const ClassroomCreate = ({ onClose, onCreate }) => {
 
   // 강의실 등록 요청
   const handleSubmit = async () => {
-    const { building, room, contactLocation, contactNumber } = classroomData;
+    const { building, room, contactNumber } = classroomData;
 
     // 필수 입력값 검사
-    if (!building || !room || !contactLocation) {
+    if (!building || !room) {
       alert("필수 항목을 입력해주세요.");
       return;
     }

@@ -11,8 +11,7 @@ import { useNavigate } from "react-router-dom";
 import KW_logo from "../../Image/KW_logo.svg";
 
 const ClassInfoPage = () => {
-  // 백앤드 주소 | 네비게이트 상수 선언
-  const BACKEND_URL = "http://localhost:8000/api/class";
+  const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
   const navigate = useNavigate();
 
   // 사이드바
@@ -44,7 +43,7 @@ const ClassInfoPage = () => {
 
   const fetchClasses = async () => {
     try {
-      const response = await axios.get(`${BACKEND_URL}/${semester}`);
+      const response = await axios.get(`${BACKEND_URL}/api/class/${semester}`);
       const data = response.data;
 
       if (Array.isArray(data.classes)) {
@@ -68,7 +67,7 @@ const ClassInfoPage = () => {
   // 학기 데이터 요청
   const fetchSemester = async () => {
     try {
-      const response = await axios.get(`${BACKEND_URL}/collections`);
+      const response = await axios.get(`${BACKEND_URL}/api/class/collections`);
       const data = response.data;
 
       if (Array.isArray(data.collections) && data.collections.length > 0) {
@@ -235,6 +234,7 @@ const ClassInfoPage = () => {
           <ClassDepartment
             classes={filteredClasses}
             onUpdate={handleUpdateClass}
+            semester={semester}
           />
         )}
       </div>
