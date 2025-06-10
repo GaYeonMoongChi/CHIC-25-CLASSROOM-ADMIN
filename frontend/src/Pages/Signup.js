@@ -4,6 +4,7 @@ import "./css/signup.css";
 
 const Signup = () => {
   const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+  console.log("백엔드 URL:", process.env.REACT_APP_BACKEND_URL);
 
   const navigate = useNavigate();
 
