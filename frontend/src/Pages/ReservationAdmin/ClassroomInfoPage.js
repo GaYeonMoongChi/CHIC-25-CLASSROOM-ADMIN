@@ -10,8 +10,7 @@ import LogoutButton from "../../Components/LogoutButton";
 import KW_logo from "../../Image/KW_logo.svg";
 
 const ClassroomInfoPage = () => {
-  // 백앤드 주소
-  const BACKEND_URL = "http://localhost:8000";
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
   // 페이지 이동 네비게이션
   const navigate = useNavigate();

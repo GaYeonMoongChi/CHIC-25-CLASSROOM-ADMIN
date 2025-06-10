@@ -10,12 +10,11 @@ import LogoutButton from "../../Components/LogoutButton";
 import KW_logo from "../../Image/KW_logo.svg";
 import moment from "moment";
 import { debounce } from "lodash";
-import BuildingRooms from "../../Components/ReservationAdmin/Reservation/BuildingRooms";
+import BuildingRooms from "../../data/BuildingRooms";
 import ReservationSearchBar from "../../Components/ReservationAdmin/Reservation/ReservationSearchBar";
 
 const RoomReservationStatusPage = () => {
-  // 백앤드 주소
-  const BACKEND_URL = "http://localhost:8000/api";
+  const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
   // 페이지 이동 네비게이션
   const navigate = useNavigate();
@@ -102,7 +101,7 @@ const RoomReservationStatusPage = () => {
   // 학기 데이터 요청
   const fetchSemester = async () => {
     try {
-      const response = await axios.get(`${BACKEND_URL}/class/collections`);
+      const response = await axios.get(`${BACKEND_URL}/api/class/collections`);
       const data = response.data;
 
       if (Array.isArray(data.collections) && data.collections.length > 0) {
@@ -124,7 +123,7 @@ const RoomReservationStatusPage = () => {
     if (!semester) return;
     try {
       const response = await axios.get(
-        `${BACKEND_URL}/appointment-status/${semester}?building=${searchBuilding}&room=${searchRoom}&date=${searchDate}`
+        `${BACKEND_URL}/api/appointment-status/${semester}?building=${searchBuilding}&room=${searchRoom}&date=${searchDate}`
       );
 
       console.log("응답 데이터:", response.data);
@@ -179,7 +178,7 @@ const RoomReservationStatusPage = () => {
   // 예약 리스트 가져오기
   const fetchNewReservations = async () => {
     try {
-      const response = await axios.get(`${BACKEND_URL}/reserve/check`);
+      const response = await axios.get(`${BACKEND_URL}/api/reserve/check`);
       const data = response.data?.data || [];
 
       setNewReservations(data);
@@ -191,7 +190,7 @@ const RoomReservationStatusPage = () => {
   // 새 예약 확인 (읽음 처리)
   const markAsChecked = async (reservationId) => {
     try {
-      await axios.post(`${BACKEND_URL}/reserve/${reservationId}/check`);
+      await axios.post(`${BACKEND_URL}/api/reserve/${reservationId}/check`);
       setNewReservations((prev) =>
         prev.map((r) =>
           r._id === reservationId ? { ...r, status: "checked" } : r

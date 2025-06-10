@@ -5,7 +5,7 @@ import Keyboard_arrow_down from "../../../Image/Keyboard_arrow_down.svg";
 import Keyboard_arrow_up from "../../../Image/Keyboard_arrow_up.svg";
 import Book from "../../../Image/Book.svg";
 
-const ClassDepartment = ({ classes, onUpdate }) => {
+const ClassDepartment = ({ classes, onUpdate, semester }) => {
   const [openDepartments, setOpenDepartments] = useState({});
 
   // 단과대별 그룹핑
@@ -65,6 +65,7 @@ const ClassDepartment = ({ classes, onUpdate }) => {
                     key={classItem.departmentName}
                     classes={classItem}
                     onUpdate={onUpdate}
+                    semester={semester}
                   />
                 ))}
               </tbody>

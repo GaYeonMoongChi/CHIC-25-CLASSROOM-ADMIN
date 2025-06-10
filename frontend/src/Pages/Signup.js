@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 import "./css/signup.css";
 
 const Signup = () => {
-  const BACKEND_URL = "http://localhost:8000/api/login";
+  const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+
   const navigate = useNavigate();
 
   // 입력 상태 관리
@@ -54,7 +55,7 @@ const Signup = () => {
     }
 
     try {
-      const response = await fetch(`${BACKEND_URL}/send-code`, {
+      const response = await fetch(`${BACKEND_URL}/api/login/send-code`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: formData.email }),
@@ -85,7 +86,7 @@ const Signup = () => {
     setErrors({});
 
     try {
-      const response = await fetch(`${BACKEND_URL}/verify-code`, {
+      const response = await fetch(`${BACKEND_URL}/api/login/verify-code`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: formData.email, code: verificationCode }),
@@ -132,16 +133,19 @@ const Signup = () => {
     }
 
     try {
-      const response = await fetch(`${BACKEND_URL}/manager/register`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          pw: formData.pw,
-          type: formData.type,
-        }),
-      });
+      const response = await fetch(
+        `${BACKEND_URL}/api/login/manager/register`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: formData.name,
+            email: formData.email,
+            pw: formData.pw,
+            type: formData.type,
+          }),
+        }
+      );
 
       const data = await response.json();
       if (response.ok) {

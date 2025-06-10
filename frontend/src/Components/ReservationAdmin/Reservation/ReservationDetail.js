@@ -10,7 +10,7 @@ const ReservationDetail = ({ rowData, onClose, fetchNewReservations }) => {
   }, [rowData]);
 
   // 백앤드 주소
-  const BACKEND_URL = "http://localhost:8000/api";
+  const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
   // 모달 열릴 때 스크롤 금지
   useEffect(() => {
@@ -46,7 +46,7 @@ const ReservationDetail = ({ rowData, onClose, fetchNewReservations }) => {
   const handleDelete = async () => {
     if (window.confirm("정말로 예약을 취소하시겠습니까?")) {
       try {
-        await axios.delete(`${BACKEND_URL}/reserve/${rowData._id}`);
+        await axios.delete(`${BACKEND_URL}/api/reserve/${rowData._id}`);
         alert("예약이 성공적으로 삭제되었습니다.");
         onClose(); // 모달 닫기
 

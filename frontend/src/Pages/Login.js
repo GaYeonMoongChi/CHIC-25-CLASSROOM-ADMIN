@@ -3,7 +3,7 @@ import "./css/login.css";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const BACKEND_URL = "http://localhost:8000";
+  const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");

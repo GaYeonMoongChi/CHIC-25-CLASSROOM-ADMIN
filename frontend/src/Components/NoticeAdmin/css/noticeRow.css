@@ -61,7 +61,7 @@
 
 .notice-page__title-ellipsis {
   display: inline-block;
-  max-width: 80%;
+  max-width: 90%;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

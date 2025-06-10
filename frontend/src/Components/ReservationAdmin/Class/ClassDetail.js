@@ -5,7 +5,7 @@ import Book from "../../../Image/Book.svg";
 
 const DetailModal = ({ classes, onClose, onUpdate, semester }) => {
   // 백앤드 주소
-  const BACKEND_URL = "http://localhost:8000/api/class";
+  const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
   // 모달 열릴 때 스크롤 금지되도록 설정
   useEffect(() => {
@@ -38,7 +38,9 @@ const DetailModal = ({ classes, onClose, onUpdate, semester }) => {
 
     try {
       const response = await fetch(
-        `${BACKEND_URL}/${semester}/${encodeURIComponent(classes.class_idx)}`,
+        `${BACKEND_URL}/api/class/${semester}/${encodeURIComponent(
+          classes.class_idx
+        )}`,
         {
           method: "DELETE",
         }

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "./css/findPassword.css";
 
 const Signup = () => {
-  const BACKEND_URL = "http://localhost:8000/api/login";
+  const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
   const navigate = useNavigate();
 
   // 비밀번호 입력 상태 관리
@@ -58,7 +58,7 @@ const Signup = () => {
     }
 
     try {
-      const response = await fetch(`${BACKEND_URL}/send-code`, {
+      const response = await fetch(`${BACKEND_URL}/api/login/send-code`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: formData.email }),
@@ -89,7 +89,7 @@ const Signup = () => {
     setErrors({});
 
     try {
-      const response = await fetch(`${BACKEND_URL}/verify-code`, {
+      const response = await fetch(`${BACKEND_URL}/api/login/verify-code`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -142,15 +142,18 @@ const Signup = () => {
 
     try {
       // 사용자 정보 확인
-      const checkResponse = await fetch(`${BACKEND_URL}/request-reset`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          type: formData.type,
-        }),
-      });
+      const checkResponse = await fetch(
+        `${BACKEND_URL}/api/login/request-reset`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: formData.name,
+            email: formData.email,
+            type: formData.type,
+          }),
+        }
+      );
 
       const checkData = await checkResponse.json();
       if (!checkResponse.ok) {
@@ -159,14 +162,17 @@ const Signup = () => {
       }
 
       // 비밀번호 재설정
-      const resetResponse = await fetch(`${BACKEND_URL}/reset-password`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email: formData.email,
-          newPassword: newPassword,
-        }),
-      });
+      const resetResponse = await fetch(
+        `${BACKEND_URL}/api/login/reset-password`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email: formData.email,
+            newPassword: newPassword,
+          }),
+        }
+      );
 
       const resetData = await resetResponse.json();
       if (resetResponse.ok) {

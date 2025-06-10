@@ -6,7 +6,7 @@ const classroomSchema = new mongoose.Schema({
     equipment: { type: [String], default: [] }, // 장비 목록 (배열)
     minNumberOfUsers: { type: String, default: null }, // 최소 사용자 수 (기본 null)
     contactDepartment: { type: String, required: true }, // 담당 부서
-    contactLocation: { type: String, required: true }, // 담당 부서 위치
+    contactLocation: { type: String, required: false }, // 담당 부서 위치
     contactNumber: { type: String, required: true } // 담당 부서 연락처
 }, { versionKey: false });
 

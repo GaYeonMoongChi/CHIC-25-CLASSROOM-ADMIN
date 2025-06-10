@@ -4,7 +4,7 @@ import NoticeUpdate from "./NoticeUpdate";
 
 const DetailModal = ({ notice, onClose, onUpdate, formatDate }) => {
   // 백앤드 주소
-  const BACKEND_URL = "http://localhost:8000";
+  const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
   // 모달 열릴 때 스크롤 금지되도록 설정
   useEffect(() => {

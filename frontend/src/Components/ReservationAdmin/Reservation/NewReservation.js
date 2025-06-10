@@ -16,7 +16,7 @@ const NewReservation = ({
   const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
 
   // 백앤드 주소
-  const BACKEND_URL = "http://localhost:8000/api";
+  const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
   // 하위 컴포넌트 (ReservationDetail.js)에 전송할 데이터
   const openDetailModal = (item) => {
@@ -56,7 +56,7 @@ const NewReservation = ({
     if (!confirmed) return;
 
     try {
-      await axios.post(`${BACKEND_URL}/reserve/check-all`);
+      await axios.post(`${BACKEND_URL}/api/reserve/check-all`);
       alert("모든 새 예약을 확인 처리했습니다.");
 
       if (fetchNewReservations) {
