@@ -5,8 +5,6 @@ COPY . .
 
 RUN npm install
 
-COPY .env .env
-
-EXPOSE 8000
+EXPOSE 8080
 
 CMD ["node", "server.js"]
