@@ -50,8 +50,5 @@ connectDB().then(() => {
 
   // 서버 실행
   app.listen(process.env.PORT, () => {
-    console.log(
-      `서버가 http://localhost:${process.env.PORT} 에서 실행 중입니다.`
-    );
   });
 });
