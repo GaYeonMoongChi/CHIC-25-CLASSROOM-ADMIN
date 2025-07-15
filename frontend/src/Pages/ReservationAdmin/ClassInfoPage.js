@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../css/Pages.css";
 import "./css/classPage.css";
-import Sidebar from "../../Components/ReservationAdmin/ReservationSidebar";
+import Sidebar from "../../Components/Sidebar";
 import ClassDepartment from "../../Components/ReservationAdmin/Class/ClassDepartment";
 import ClassCreate from "../../Components/ReservationAdmin/Class/ClassCreate";
 import ClassPdfUpload from "../../Components/ReservationAdmin/Class/ClassPdfUpload";

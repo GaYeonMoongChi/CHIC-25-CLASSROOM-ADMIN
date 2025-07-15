@@ -10,9 +10,16 @@ const Login = () => {
   const [pw, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
+  // 이메일 유효성 검사
+  const validateEmail = (email) => /^[a-zA-Z0-9._%+-]+@kw\.ac\.kr$/.test(email);
+
   const login = async () => {
     if (!email) {
-      setErrorMessage("ID를 입력해주세요.");
+      setErrorMessage("이메일을 입력해주세요.");
+      return;
+    }
+    if (!validateEmail(email)) {
+      setErrorMessage("광운대학교 이메일(@kw.ac.kr)만 사용할 수 있습니다.");
       return;
     }
     if (!pw) {
@@ -25,9 +32,7 @@ const Login = () => {
     try {
       const response = await fetch(`${BACKEND_URL}/api/login`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, pw }),
       });
 
@@ -41,17 +46,10 @@ const Login = () => {
       localStorage.setItem("token", data.token);
       localStorage.setItem("admin_info_id", data.admin_info_id);
 
-      // 관리자 유형에 따라 페이지 이동
-      const { type } = data;
-      if (type === "class_admin") {
-        navigate("/reservation");
-      } else if (type === "ad_admin") {
-        navigate("/notice");
-      } else {
-        setErrorMessage("잘못된 관리자 유형입니다.");
-      }
+      // 로그인 성공 시 관리자 홈으로 이동
+      navigate("/reservation");
     } catch (error) {
-      setErrorMessage(error.message);
+      setErrorMessage(error.message || "서버 오류로 로그인에 실패했습니다.");
     }
   };
 
@@ -70,9 +68,10 @@ const Login = () => {
               login();
             }}
           >
+            {/* 이메일 입력 */}
             <div className="login__input-group">
               <label className="login__label" htmlFor="admin-id">
-                ID:
+                이메일
               </label>
               <input
                 id="admin-id"
@@ -84,9 +83,10 @@ const Login = () => {
               />
             </div>
 
+            {/* 비밀번호 입력 */}
             <div className="login__input-group">
               <label className="login__label" htmlFor="admin-password">
-                PASSWORD:
+                비밀번호
               </label>
               <input
                 id="admin-password"
@@ -98,8 +98,10 @@ const Login = () => {
               />
             </div>
 
+            {/* 오류 메시지 표시 */}
             {errorMessage && <p className="login__error">{errorMessage}</p>}
 
+            {/* 링크 */}
             <div className="login__links">
               <a href="/find-password" className="password-find">
                 비밀번호 찾기
@@ -110,6 +112,7 @@ const Login = () => {
               </a>
             </div>
 
+            {/* 로그인 버튼 */}
             <button className="login__button" type="submit">
               로그인
             </button>
