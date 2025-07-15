@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { format } from "date-fns";
 import "../css/Pages.css";
@@ -7,6 +7,7 @@ import NoticeRow from "../../Components/NoticeAdmin/NoticeRow";
 import NoticeCreate from "../../Components/NoticeAdmin/NoticeCreate";
 import LogoutButton from "../../Components/LogoutButton";
 import KW_logo from "../../Image/KW_logo.svg";
+import Sidebar from "../../Components/Sidebar";
 
 const NoticePage = () => {
   const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
@@ -98,8 +99,9 @@ const NoticePage = () => {
   };
 
   return (
-    <div className="notice-div">
+    <div className="div">
       <div className="notice-page__header">
+        <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
         <h1 className="notice-page__title">
           <img src={KW_logo} alt="🧑‍🏫" />
           KW 강의실 예약 공지사항
@@ -173,6 +175,11 @@ const NoticePage = () => {
           onClose={toggleCreateModal}
           onCreate={handleNoticeCreate}
         />
+      )}
+
+      {/* 사이드바가 열릴 때 표시되는 오버레이 */}
+      {isSidebarOpen && (
+        <div className="sidebar-overlay" onClick={toggleSidebar}></div>
       )}
     </div>
   );
