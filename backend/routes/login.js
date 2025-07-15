@@ -2,9 +2,9 @@ const express = require("express");
 const router = express.Router();
 const nodemailer = require("nodemailer");
 const dotenv = require("dotenv");
+const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const Manager = require("../db/manager"); // 사용자 모델 추가
-const bcrypt = require("bcryptjs");
 
 dotenv.config();
 
@@ -29,7 +29,7 @@ router.post("/send-code", async (req, res) => {
   try {
     console.log("/api/login/send-code POST 요청 받음!", req.body);
 
-    const { email, purpose } = req.body;
+    const { email } = req.body;
 
     // 이메일이 `@kw.ac.kr` 도메인인지 확인
     if (!email.endsWith("@kw.ac.kr")) {
@@ -38,30 +38,22 @@ router.post("/send-code", async (req, res) => {
         .json({ error: "광운대학교 이메일(@kw.ac.kr)만 사용 가능합니다." });
     }
 
+    // 중복 이메일 검사
     const existingUser = await Manager.findOne({ email });
-
-    if (purpose === "signup") {
-      // 회원가입 시에는 중복된 이메일이면 에러
-      if (existingUser) {
-        return res.status(400).json({ error: "이미 가입된 이메일입니다." });
-      }
+    if (existingUser) {
+      return res.status(400).json({ error: "이미 가입된 이메일입니다." });
     }
 
-    if (purpose === "reset-password") {
-      // 비밀번호 재설정 시에는 가입된 이메일이 반드시 있어야 함
-      if (!existingUser) {
-        return res.status(404).json({ error: "등록되지 않은 이메일입니다." });
-      }
-    }
-
-    // 인증 코드 생성 및 전송
+    // 6자리 랜덤 인증 코드 생성
     const verificationCode = Math.floor(
       100000 + Math.random() * 900000
     ).toString();
-    const expiresAt = Date.now() + 3 * 60 * 1000;
+    const expiresAt = Date.now() + 3 * 60 * 1000; // 유효 시간: 3분
 
+    // 인증 코드 저장
     emailVerificationStore.set(email, { code: verificationCode, expiresAt });
 
+    // 이메일 발송
     const mailOptions = {
       from: process.env.NODEMAILER_USER,
       to: email,
@@ -137,18 +129,11 @@ router.post("/manager/register", async (req, res) => {
   try {
     console.log("/api/manager/register POST 요청 받음!", req.body);
 
-    const { name, email, pw, type } = req.body;
+    const { name, email, pw } = req.body;
 
     // 필수 값 확인
-    if (!name || !email || !pw || !type) {
+    if (!name || !email || !pw ) {
       return res.status(400).json({ error: "모든 필드를 입력해야 합니다." });
-    }
-
-    // type 값이 올바른지 검증
-    if (!["class_admin", "ad_admin"].includes(type)) {
-      return res
-        .status(400)
-        .json({ error: "유효한 관리자 유형을 선택하세요." });
     }
 
     // 이메일 중복 확인
@@ -158,12 +143,12 @@ router.post("/manager/register", async (req, res) => {
     }
 
     // 새로운 관리자 저장
-    const newManager = new Manager({ name, email, pw, type });
+    const newManager = new Manager({ name, email, pw});
     await newManager.save();
 
     res
       .status(201)
-      .json({ message: "관리자 등록 완료", manager: { name, email, type } });
+      .json({ message: "관리자 등록 완료", manager: { name, email } });
   } catch (error) {
     console.error("관리자 등록 실패:", error);
     res.status(500).json({ error: "서버 오류" });
@@ -204,7 +189,6 @@ router.post("/", async (req, res) => {
         id: manager._id,
         email: manager.email,
         name: manager.name,
-        type: manager.type,
       },
       process.env.JWT_SECRET,
       { expiresIn: "1h" }
@@ -214,8 +198,7 @@ router.post("/", async (req, res) => {
     res.json({
       message: "로그인 성공",
       token,
-      admin_info_id: manager._id,
-      type: manager.type,
+      admin_info_id: manager._id
     });
   } catch (error) {
     console.error("로그인 실패:", error);
@@ -223,32 +206,28 @@ router.post("/", async (req, res) => {
   }
 });
 
+
 // 비밀번호 찾기
 // POST /api/login/request-reset
-// { "name": "정유빈", "email": "dbqls8969@kw.ac.kr", "type": "class_admin" }
+// { "name": "정유빈", "email": "dbqls8969@kw.ac.kr" }
 
 router.post("/request-reset", async (req, res) => {
   try {
-    const { name, email, type } = req.body;
+    const { name, email } = req.body;
 
-    if (!name || !email || !type) {
+    if (!name || !email ) {
       return res.status(400).json({ error: "모든 필드를 입력하세요." });
     }
 
-    const manager = await Manager.findOne({ name, email, type });
+    const manager = await Manager.findOne({ name, email });
     if (!manager) {
-      return res
-        .status(404)
-        .json({ error: "해당 정보의 계정이 존재하지 않습니다." });
+      return res.status(404).json({ error: "해당 정보의 계정이 존재하지 않습니다." });
     }
 
     // 기존 /send-code 로직을 프론트에서 호출하면 됨
     // 여기선 사용자 정보 확인만
 
-    res.json({
-      message: "사용자 정보가 확인되었습니다. 이메일 인증을 진행하세요.",
-      email,
-    });
+    res.json({ message: "사용자 정보가 확인되었습니다. 이메일 인증을 진행하세요.", email });
   } catch (error) {
     console.error("비밀번호 재설정 요청 오류:", error);
     res.status(500).json({ error: "서버 오류" });
@@ -266,9 +245,7 @@ router.post("/reset-password", async (req, res) => {
     const { email, newPassword } = req.body;k
 
     if (!email || !newPassword) {
-      return res
-        .status(400)
-        .json({ error: "이메일과 새 비밀번호를 입력하세요." });
+      return res.status(400).json({ error: "이메일과 새 비밀번호를 입력하세요." });
     }
 
     // 이메일 인증이 되었는지 확인 (이메일이 인증 목록에 없어야 인증된 것으로 간주)
@@ -295,6 +272,8 @@ router.post("/reset-password", async (req, res) => {
     res.status(500).json({ error: "서버 오류" });
   }
 });
+
+
 
 /*
 const auth = require('../middleware/auth');
