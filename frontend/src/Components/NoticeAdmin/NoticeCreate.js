@@ -111,13 +111,13 @@ const NoticeCreate = ({ onClose, onCreate }) => {
           <button className="modal-close" onClick={onClose}>
             ✖
           </button>
-          <h1 className="notice-create__title">공지글 생성</h1>
+          <h1 className="notice-create__title">공지글 등록</h1>
         </header>
 
         <div className="notice-create__main">
           <ul className="notice-create__list">
             <li className="notice-create__item">
-              <label className="notice-create__label">▪️ 공지글 유형</label>
+              <label className="notice-create__label">▪ 공지글 유형</label>
               <select
                 name="type"
                 onChange={handleChange}
@@ -135,7 +135,7 @@ const NoticeCreate = ({ onClose, onCreate }) => {
               <>
                 <li className="notice-create__item">
                   <label className="notice-create__label">
-                    ▪️ 시작-종료 날짜
+                    ▪ 시작-종료 날짜
                   </label>
                   <div className="notice-create__item_div">
                     <input
@@ -171,7 +171,7 @@ const NoticeCreate = ({ onClose, onCreate }) => {
             )}
 
             <li className="notice-create__item">
-              <label className="notice-create__label">▪️ 공지글 제목</label>
+              <label className="notice-create__label">▪ 공지글 제목</label>
               <input
                 type="text"
                 className="notice-create__input"
@@ -184,7 +184,7 @@ const NoticeCreate = ({ onClose, onCreate }) => {
             </li>
 
             <li className="notice-create__item">
-              <label className="notice-create__label">▪️ 공지글 내용</label>
+              <label className="notice-create__label">▪ 공지글 내용</label>
               <textarea
                 className="notice-create__textarea"
                 placeholder="공지 내용을 입력하세요."
@@ -196,7 +196,7 @@ const NoticeCreate = ({ onClose, onCreate }) => {
           </ul>
         </div>
 
-        <div className="notice-create__submit_span">
+        <div className="notice-create__submit_box">
           <button className="notice-create__submit" onClick={handleSubmit}>
             완료
           </button>
