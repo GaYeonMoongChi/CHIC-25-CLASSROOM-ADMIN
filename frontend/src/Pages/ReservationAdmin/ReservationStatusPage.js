@@ -4,7 +4,7 @@ import axios from "axios";
 import Timetable from "../../Components/ReservationAdmin/Reservation/TimeTable";
 import "../css/Pages.css";
 import "./css/roomReservationStatus.css";
-import Sidebar from "../../Components/ReservationAdmin/ReservationSidebar";
+import Sidebar from "../../Components/Sidebar";
 import NewReservation from "../../Components/ReservationAdmin/Reservation/NewReservation";
 import LogoutButton from "../../Components/LogoutButton";
 import KW_logo from "../../Image/KW_logo.svg";

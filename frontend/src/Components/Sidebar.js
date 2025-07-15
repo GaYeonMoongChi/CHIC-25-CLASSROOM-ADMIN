@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import "../css/sidebar.css";
+import "./css/sidebar.css";
 import { useEffect } from "react";
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
@@ -22,6 +22,11 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
       id: "class-update-link",
       to: "/class",
       text: "강의 정보 관리",
+    },
+    {
+      id: "notice-page-link",
+      to: "/notice",
+      text: "공지글 관리",
     },
   ];
 

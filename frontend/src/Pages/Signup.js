@@ -11,7 +11,6 @@ const Signup = () => {
   // 입력 상태 관리
   const [formData, setFormData] = useState({
     name: "",
-    type: "",
     email: "",
     pw: "",
     pwConfirm: "",
@@ -116,7 +115,6 @@ const Signup = () => {
 
     let newErrors = {};
     if (!formData.name) newErrors.name = "이름을 입력하세요.";
-    if (!formData.type) newErrors.type = "관리자 유형을 선택하세요.";
     if (!validateEmail(formData.email))
       newErrors.email = "광운대학교 이메일(@kw.ac.kr)만 사용 가능합니다.";
     if (!formData.pw) newErrors.pw = "비밀번호를 입력하세요.";
@@ -143,7 +141,6 @@ const Signup = () => {
             name: formData.name,
             email: formData.email,
             pw: formData.pw,
-            type: formData.type,
           }),
         }
       );
@@ -183,18 +180,6 @@ const Signup = () => {
 
             <div className="error__block">
               {errors.name && <p className="error">{errors.name}</p>}
-            </div>
-
-            {/* 관리자 유형 선택 */}
-            <div className="signup__input-group">
-              <label htmlFor="type">관리자 유형</label>
-              <select name="type" value={formData.type} onChange={handleChange}>
-                <option value="">관리자 유형을 선택하세요.</option>
-                <option value="class_admin">
-                  강의실예약 / 강의실 / 강의 관리자
-                </option>
-                <option value="ad_admin">공지 / 홍보글 관리자</option>
-              </select>
             </div>
 
             <div className="error__block">
