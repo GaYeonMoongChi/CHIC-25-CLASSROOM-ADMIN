@@ -17,7 +17,9 @@ const studentSchema = new mongoose.Schema({
 const Student = studentDB.model('student', studentSchema);
 
 // reserve, classroom_info 모델 정의
-const reserveSchema = new mongoose.Schema({}, { strict: false });
+const reserveSchema = new mongoose.Schema({
+  status: { type: String, default: "new" }
+}, { strict: false });
 const classroomInfoSchema = new mongoose.Schema({}, { strict: false });
 
 const Reserve = classDB.model("reserve", reserveSchema, "reserve");
@@ -68,6 +70,28 @@ router.get("/check", async (req, res) => {
   } catch (error) {
     console.error("전체 예약 목록 조회 실패:", error);
     res.status(500).json({ error: "조회 실패", detail: error.message });
+  }
+});
+
+// POST /api/reserve
+// 새로운 예약 생성
+router.post("/", async (req, res) => {
+  try {
+    const reserveData = {
+      ...req.body,
+      status: "new", 
+    };
+
+    const newReserve = new Reserve(reserveData);
+    await newReserve.save();
+
+    res.status(201).json({
+      message: "예약이 성공적으로 생성되었습니다.",
+      data: newReserve,
+    });
+  } catch (error) {
+    console.error("예약 생성 실패:", error);
+    res.status(500).json({ error: "예약 생성 실패", detail: error.message });
   }
 });
 
