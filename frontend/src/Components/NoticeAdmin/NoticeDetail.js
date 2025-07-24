@@ -69,6 +69,11 @@ const DetailModal = ({ notice, onClose, onUpdate, formatDate }) => {
             ✖
           </button>
           <h1 className="notice-details__title">
+            <span
+              className={`notice-page__type-${notice.type ? "pop-up" : "fix"}`}
+            >
+              {notice.type ? "팝업 게시글" : "고정 게시글"}
+            </span>
             {displayValue(localNotice.title)}
 
             <span className="notice-details__actions">
@@ -88,15 +93,28 @@ const DetailModal = ({ notice, onClose, onUpdate, formatDate }) => {
         <main className="notice-details__main">
           <ul className="notice-details__list">
             <li className="notice-details__item">
-              <strong className="notice-details__label">▪️ 작성일 </strong>
+              <strong className="notice-details__label">▪ 작성일 </strong>
               <div className="notice-details__content">
                 {formatDate && localNotice.created_at
                   ? formatDate(localNotice.created_at)
                   : displayValue(localNotice.created_at)}
               </div>
             </li>
+            {notice.type === true && (
+              <li className="notice-details__item">
+                <strong className="notice-details__label">
+                  ▪ 게시 시작 ~ 종료 날짜{" "}
+                </strong>
+                <div className="notice-details__content">
+                  {formatDate && localNotice.start_date && localNotice.end_date
+                    ? `${formatDate(localNotice.start_date)} ~ ${formatDate(localNotice.end_date)}`
+                    : "정보없음"}{" "}
+                  동안 게시됨
+                </div>
+              </li>
+            )}
             <li className="notice-details__item">
-              <strong className="notice-details__label">▪️ 내용 </strong>
+              <strong className="notice-details__label">▪ 내용 </strong>
               <pre className="notice-details__content">
                 {displayValue(localNotice.contents)}
               </pre>
