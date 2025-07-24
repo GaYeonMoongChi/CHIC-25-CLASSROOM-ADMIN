@@ -156,19 +156,6 @@ def crawl_season(collection_name):
                         classroom_text = classroom_element.text.strip()
                     except Exception:
                         classroom_text = ""
-
-                # 아작 아래는 테스트 안 해봄(실험 과목 계열에 대해서 classroom 못 받아옴)
-                # try:
-                #     classroom_element = driver.find_element(By.XPATH, classroom_xpath)
-                #     classroom_text = driver.execute_script("return arguments[0].textContent;", classroom_element).strip()
-                #     if not classroom_text or len(classroom_text) < 2:
-                #         raise ValueError("빈 텍스트")
-                # except Exception:
-                #     try:
-                #         fallback_element = driver.find_element(By.XPATH, fallback_classroom_xpath)
-                #         classroom_text = driver.execute_script("return arguments[0].textContent;", fallback_element).strip()
-                #     except Exception:
-                #         classroom_text = ""
         
 
                 class_name = parse_class_info(class_info)

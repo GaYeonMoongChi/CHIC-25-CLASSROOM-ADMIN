@@ -71,6 +71,7 @@ router.delete('/:id', async (req, res) => {
 });
 
 // 모든 notice_popup 데이터 가져오기(type이 true인 것만)
+// 중요 : false / 일반 : true
 // GET /api/notice/popup
 router.get("/popup", async (req, res) => {
     try {
