@@ -18,7 +18,7 @@ const NoticeRow = ({ notice, onUpdate, formatDate }) => {
                     notice.type ? "pop-up" : "fix"
                   }`}
                 >
-                  {notice.type ? "팝업" : "고정"}
+                  {notice.type ? "팝업 게시글" : "고정 게시글"}
                 </span>{" "}
                 <span className="notice-page__title-ellipsis">
                   {notice.title}

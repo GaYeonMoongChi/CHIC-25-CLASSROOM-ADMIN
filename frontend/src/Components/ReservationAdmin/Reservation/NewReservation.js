@@ -96,7 +96,7 @@ const NewReservation = ({
           <h1 className="new-reservation__title">
             <img className="calender-image" src={Doorbell} alt="📅" /> 새 예약
             {/* 전체 확인 버튼 */}
-            {reservation.length > 0 && (
+            {reservation.some((item) => item.status === "new") && (
               <button
                 className="new-reservation__check-all"
                 onClick={handleCheckAll}
@@ -129,7 +129,16 @@ const NewReservation = ({
               </colgroup>
               <tbody>
                 {sortedReservations.map((item, idx) => (
-                  <tr key={idx} onClick={() => openDetailModal(item)}>
+                  <tr
+                    key={idx}
+                    onClick={() => openDetailModal(item)}
+                    style={{
+                      opacity: item.status === "new" ? 1 : 0.4,
+                      transition: "opacity 0.3s",
+                      cursor: "pointer",
+                    }}
+                    className="new-reservation__row"
+                  >
                     <td className="new-reservation__date">
                       <img
                         className="new-reservation__image"
@@ -147,7 +156,7 @@ const NewReservation = ({
                         <img src={Exclamation} alt="새 예약" />
                       </td>
                     ) : (
-                      <td className="new-reservation__badge"></td>
+                      <td className="new-reservation__badge" />
                     )}
                   </tr>
                 ))}

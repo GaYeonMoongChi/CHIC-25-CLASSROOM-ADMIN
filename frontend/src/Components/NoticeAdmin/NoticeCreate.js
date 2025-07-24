@@ -127,7 +127,7 @@ const NoticeCreate = ({ onClose, onCreate }) => {
                   공지글 유형을 선택하세요.
                 </option>
                 <option value="0">고정 게시글</option>
-                <option value="1">팝업</option>
+                <option value="1">팝업 게시글</option>
               </select>
             </li>
 

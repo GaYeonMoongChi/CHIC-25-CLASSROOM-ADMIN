@@ -104,7 +104,7 @@ const NoticePage = () => {
         <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
         <h1 className="notice-page__title">
           <img src={KW_logo} alt="🧑‍🏫" />
-          KW 강의실 예약 공지사항
+          KW 공지사항
         </h1>
         <div className="notice-page__nav">
           <button
